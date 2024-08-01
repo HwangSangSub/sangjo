@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+  <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%5level [%thread] - %msg%n</pattern>
+    </encoder>
+  </appender>
+  <!--  해당 대상에 대한 로그를 작성해준다. -->
+  <logger name="sangjo.BoardMapper">
+    <level value="debug"/>
+  </logger>
+  <root level="error">
+    <appender-ref ref="stdout"/>
+  </root>
+</configuration>
