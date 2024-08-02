@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import sangjo.common.Control;
 import sangjo.control.IndexControl;
+import sangjo.control.OrderControl;
 import sangjo.control.TestPageControl;
 import sangjo.control.MyPageControl;
 
@@ -27,6 +28,7 @@ public class FrontController extends HttpServlet {
 		
 		map.put("/myPage.do", new MyPageControl());// 마이페이지
 		map.put("/index.do", new IndexControl());// 메인페이지 오픈
+		map.put("/order.do", new OrderControl()); // 주문
 		
 		
 	}
