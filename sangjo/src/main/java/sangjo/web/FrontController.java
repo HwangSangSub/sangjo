@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import sangjo.common.Control;
+import sangjo.control.FindMemberIdControl;
 import sangjo.control.IndexControl;
+import sangjo.control.JoinControl;
+import sangjo.control.LoginControl;
+import sangjo.control.MemberIdCheckControl;
 import sangjo.control.TestPageControl;
 
 public class FrontController extends HttpServlet {
@@ -23,6 +27,12 @@ public class FrontController extends HttpServlet {
 	public void init() throws ServletException {
 		map.put("/testPage.do", new TestPageControl());
 		map.put("/index.do", new IndexControl());// 메인페이지 오픈
+	
+		/*회원 파트*/
+		map.put("/memberIdCheck.do", new MemberIdCheckControl());
+		map.put("/join.do", new JoinControl());
+		map.put("/login.do", new LoginControl());
+		map.put("/findMemberId.do", new FindMemberIdControl());
 	}
 	
 	@Override
