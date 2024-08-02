@@ -319,15 +319,15 @@ FROM tbl_member;
 COMMIT;
 
 ------------------------------ 샘플데이터 넣기(tbl_category)
-INSERT INTO tbl_category(category_no, category, category_datail, category_name, cd_name)
+INSERT INTO tbl_category(category_no, category, category_detail, category_name, cd_name)
 VALUES (category_seq.NEXTVAL, 1, 1, '홈인테리어', '주방');
-INSERT INTO tbl_category(category_no, category, category_datail, category_name, cd_name)
+INSERT INTO tbl_category(category_no, category, category_detail, category_name, cd_name)
 VALUES (category_seq.NEXTVAL, 1, 2, '홈인테리어', '욕실');
-INSERT INTO tbl_category(category_no, category, category_datail, category_name, cd_name)
+INSERT INTO tbl_category(category_no, category, category_detail, category_name, cd_name)
 VALUES (category_seq.NEXTVAL, 1, 3, '홈인테리어', '거실');
-INSERT INTO tbl_category(category_no, category, category_datail, category_name, cd_name)
+INSERT INTO tbl_category(category_no, category, category_detail, category_name, cd_name)
 VALUES (category_seq.NEXTVAL, 2, 1, '유아용품', '아동잡화');
-INSERT INTO tbl_category(category_no, category, category_datail, category_name, cd_name)
+INSERT INTO tbl_category(category_no, category, category_detail, category_name, cd_name)
 VALUES (category_seq.NEXTVAL, 2, 2, '유아용품', '아동의류');
 
 SELECT *
