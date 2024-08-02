@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import sangjo.common.Control;
+import sangjo.control.CategoryControl;
 import sangjo.control.IndexControl;
 import sangjo.control.OrderControl;
+import sangjo.control.ProductInfoControl;
+import sangjo.control.ProductListControl;
 import sangjo.control.TestPageControl;
 import sangjo.control.MyPageControl;
 
@@ -29,6 +32,10 @@ public class FrontController extends HttpServlet {
 		map.put("/myPage.do", new MyPageControl());// 마이페이지
 		map.put("/index.do", new IndexControl());// 메인페이지 오픈
 		map.put("/order.do", new OrderControl()); // 주문
+		map.put("/category.do", new CategoryControl()); // 카테고리
+		map.put("/productList.do", new ProductListControl()); // 상품목록
+		map.put("/productInfo.do", new ProductInfoControl()); // 상품상세
+		
 		
 		
 	}
