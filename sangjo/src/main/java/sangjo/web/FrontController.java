@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import sangjo.common.Control;
+import sangjo.control.IndexControl;
 import sangjo.control.TestPageControl;
 
 public class FrontController extends HttpServlet {
@@ -21,6 +22,7 @@ public class FrontController extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		map.put("/testPage.do", new TestPageControl());
+		map.put("/index.do", new IndexControl());// 메인페이지 오픈
 	}
 	
 	@Override

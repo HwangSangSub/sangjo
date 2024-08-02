@@ -1,17 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>boardWeb</display-name>
-  <welcome-file-list>
-  	<!-- 기본 첫페이지 경로를 지정해준다. -->
-    <welcome-file>index.html</welcome-file>
-  </welcome-file-list>
-  <!-- 프론트 컨트롤러 매핑 -->
-  <servlet>
-  	<servlet-name>front</servlet-name>
-  	<servlet-class>sangjo.web.FrontController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>front</servlet-name>
-  	<url-pattern>*.do</url-pattern>
-  </servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>boardWeb</display-name>
+
+	<!-- 아파치 타일즈를 위한 리스너 등록 -->
+
+	<listener>
+		<listener-class>org.apache.tiles.extras.complete.CompleteAutoloadTilesListener</listener-class>
+	</listener>
+	
+	<!-- 아파치 타일즈를 위한 서블릿 등록 -->
+	<servlet>
+		<servlet-name>Tiles Dispatch Servlet</servlet-name>
+		<servlet-class>org.apache.tiles.web.util.TilesDispatchServlet</servlet-class>
+	</servlet>
+	<servlet-mapping><!-- .tiles 라는 url 요청이오면 실행된다. -->
+		<servlet-name>Tiles Dispatch Servlet</servlet-name>
+		<url-pattern>*.tiles</url-pattern>
+	</servlet-mapping>
+
+	<!-- 기본페이지 지정 -->
+	<welcome-file-list>
+		<!-- 기본 첫페이지 경로를 지정해준다. -->
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- 프론트 컨트롤러 매핑 -->
+	<servlet>
+		<servlet-name>front</servlet-name>
+		<servlet-class>sangjo.web.FrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>front</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
 </web-app>

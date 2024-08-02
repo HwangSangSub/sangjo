@@ -21,7 +21,7 @@ public class TestPageControl implements Control {
 		// 이방법은 임시로 페이지를 여는 방법이지
 		// 실제 프로젝트에서는
 		// 메인 화면 완료된뒤 타일즈를 적용한뒤에 하나씩 해나가자
-		req.getRequestDispatcher("/WEB-INF/jsp/testPage.jsp")
+		req.getRequestDispatcher("sangjo/testPage.tiles")
 			.forward(req, resp);
 
 	}
