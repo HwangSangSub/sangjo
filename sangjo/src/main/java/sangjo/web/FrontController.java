@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import sangjo.common.Control;
 import sangjo.control.IndexControl;
 import sangjo.control.TestPageControl;
+import sangjo.control.MyPageControl;
 
 public class FrontController extends HttpServlet {
 	Map<String, Control> map;
@@ -22,7 +23,12 @@ public class FrontController extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		map.put("/testPage.do", new TestPageControl());
+		// 템플릿 가져온 부분을 화면에 보이게 처리
+		
+		map.put("/myPage.do", new MyPageControl());// 마이페이지
 		map.put("/index.do", new IndexControl());// 메인페이지 오픈
+		
+		
 	}
 	
 	@Override
