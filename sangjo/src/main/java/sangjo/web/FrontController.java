@@ -10,21 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import sangjo.common.Control;
-<<<<<<< HEAD
 import sangjo.control.CategoryControl;
-=======
 import sangjo.control.FindMemberIdControl;
->>>>>>> refs/remotes/origin/pjw
 import sangjo.control.IndexControl;
-<<<<<<< HEAD
 import sangjo.control.OrderControl;
 import sangjo.control.ProductInfoControl;
 import sangjo.control.ProductListControl;
-=======
 import sangjo.control.JoinControl;
 import sangjo.control.LoginControl;
 import sangjo.control.MemberIdCheckControl;
->>>>>>> refs/remotes/origin/pjw
 import sangjo.control.TestPageControl;
 import sangjo.control.MyPageControl;
 
@@ -37,7 +31,6 @@ public class FrontController extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		map.put("/testPage.do", new TestPageControl());
-<<<<<<< HEAD
 		// 템플릿 가져온 부분을 화면에 보이게 처리
 		
 		map.put("/myPage.do", new MyPageControl());// 마이페이지
@@ -49,7 +42,6 @@ public class FrontController extends HttpServlet {
 		
 		
 		
-=======
 		map.put("/index.do", new IndexControl());// 메인페이지 오픈
 	
 		/*회원 파트*/
@@ -57,7 +49,6 @@ public class FrontController extends HttpServlet {
 		map.put("/join.do", new JoinControl());
 		map.put("/login.do", new LoginControl());
 		map.put("/findMemberId.do", new FindMemberIdControl());
->>>>>>> refs/remotes/origin/pjw
 	}
 	
 	@Override
