@@ -6,6 +6,6 @@ public interface MemberService {
 
 	MemberVO getMemberById(String memberId);
 
-	MemberVO getMemberByIdPw(String memberId, String memberPw);
+	MemberVO getMemberByLogin(String memberId, String memberPw);
 
 }

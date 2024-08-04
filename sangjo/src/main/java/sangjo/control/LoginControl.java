@@ -29,7 +29,7 @@ public class LoginControl implements Control {
 		MemberService memberService = new MemberServiceImpl();
 		HttpSession session = req.getSession();
 		
-		MemberVO memberVO = memberService.getMemberByIdPw(memberId, memberPw);
+		MemberVO memberVO = memberService.getMemberByLogin(memberId, memberPw);
 		
 		String json;
 		if(memberVO !=null) {

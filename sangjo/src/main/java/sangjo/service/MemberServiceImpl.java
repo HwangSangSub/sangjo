@@ -19,7 +19,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVO getMemberByIdPw(String memberId, String memberPw) {
+	public MemberVO getMemberByLogin(String memberId, String memberPw) {
 		return mapper.selectMemberByIdPw(memberId,memberPw);
 	}
 	
