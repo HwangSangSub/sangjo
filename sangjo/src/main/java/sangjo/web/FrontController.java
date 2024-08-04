@@ -18,6 +18,7 @@ import sangjo.control.ProductInfoControl;
 import sangjo.control.ProductListControl;
 import sangjo.control.JoinControl;
 import sangjo.control.LoginControl;
+import sangjo.control.LogoutControl;
 import sangjo.control.MemberIdCheckControl;
 import sangjo.control.TestPageControl;
 import sangjo.control.MyPageControl;
@@ -48,6 +49,7 @@ public class FrontController extends HttpServlet {
 		map.put("/memberIdCheck.do", new MemberIdCheckControl());
 		map.put("/join.do", new JoinControl());
 		map.put("/login.do", new LoginControl());
+		map.put("/logout.do", new LogoutControl());
 		map.put("/findMemberId.do", new FindMemberIdControl());
 	}
 	

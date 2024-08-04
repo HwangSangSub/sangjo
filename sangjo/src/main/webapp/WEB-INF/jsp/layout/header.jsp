@@ -34,13 +34,16 @@
                     	<c:when test="${empty member}">
 	                    	<!-- 로그인 모달 창을 띄어준다. -->
 		                    <a data-bs-toggle="modal" data-bs-target="#loginModel"  class="my-auto">
-		                        <i class="fas fa-user fa-2x"></i>로그인
+		                        로그인
 		                    </a>
                     	</c:when>
                     	<c:otherwise>
                     		<!-- 마이페이지가 완성되면 링크를 연결해주자 -->
                     		<a class="my-auto">
-		                        <i class="fas fa-user fa-2x"></i>마이페이지
+		                        <i class="fas fa-user fa-2x"></i>
+		                    </a>
+		                    <a href="logout.do" class="my-auto">
+		                    	로그아웃
 		                    </a>
                     	</c:otherwise>
                     </c:choose>
