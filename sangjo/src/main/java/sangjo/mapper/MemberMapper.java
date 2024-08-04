@@ -9,6 +9,6 @@ public interface MemberMapper {
 	MemberVO selectMemberById(String memberId);
 
 	MemberVO selectMemberByIdPw(@Param("id") String memberId,@Param("pw") String memberPw);
-	
-	
+
+	int insertMember(MemberVO memberVO);
 }

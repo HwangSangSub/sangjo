@@ -22,5 +22,10 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO getMemberByLogin(String memberId, String memberPw) {
 		return mapper.selectMemberByIdPw(memberId,memberPw);
 	}
+
+	@Override
+	public boolean join(MemberVO memberVO) {
+		return mapper.insertMember(memberVO) == 1;
+	}
 	
 }

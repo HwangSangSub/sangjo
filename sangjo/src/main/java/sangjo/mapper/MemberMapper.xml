@@ -8,10 +8,17 @@
 		from tbl_member
 		where member_id = #{memberId}
 	</select>
+	
+	<!-- 로그인 -->
 	<select id="selectMemberByIdPw" resultType="sangjo.vo.MemberVO">
 		select * 
 		from tbl_member
 		where member_id = #{id}
 		and member_pw = #{pw}
 	</select>
+	
+	<insert id="insertMember" parameterType="sangjo.vo.MemberVO">
+		INSERT INTO tbl_member (member_id, member_pw, member_name, member_phone, member_email)
+		VALUES(#{memberId}, #{memberPw}, #{memberName}, #{memberPhone}, #{memberEmail})
+	</insert>
 </mapper>

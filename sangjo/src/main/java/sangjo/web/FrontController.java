@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import sangjo.common.Control;
 import sangjo.control.CategoryControl;
-import sangjo.control.FindMemberIdControl;
+import sangjo.control.FindIdControl;
 import sangjo.control.IndexControl;
 import sangjo.control.OrderControl;
 import sangjo.control.ProductInfoControl;
@@ -19,7 +19,7 @@ import sangjo.control.ProductListControl;
 import sangjo.control.JoinControl;
 import sangjo.control.LoginControl;
 import sangjo.control.LogoutControl;
-import sangjo.control.MemberIdCheckControl;
+import sangjo.control.IdCheckControl;
 import sangjo.control.TestPageControl;
 import sangjo.control.MyPageControl;
 
@@ -46,11 +46,11 @@ public class FrontController extends HttpServlet {
 		map.put("/index.do", new IndexControl());// 메인페이지 오픈
 	
 		/*회원 파트*/
-		map.put("/memberIdCheck.do", new MemberIdCheckControl());
+		map.put("/idCheck.do", new IdCheckControl());
 		map.put("/join.do", new JoinControl());
 		map.put("/login.do", new LoginControl());
 		map.put("/logout.do", new LogoutControl());
-		map.put("/findMemberId.do", new FindMemberIdControl());
+		map.put("/findId.do", new FindIdControl());
 	}
 	
 	@Override
