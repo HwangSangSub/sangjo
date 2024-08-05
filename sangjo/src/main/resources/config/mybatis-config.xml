@@ -21,6 +21,6 @@
   </environments>
   <mappers>
     <!-- 페키지를 통해 해당 페키지의 Mapper.xml 을 자동으로 등록할 수 있다 -->
-	<package name="sangjo.mapper"/>
+	<package name="com.sangjo.mapper"/>
   </mappers>
 </configuration>
