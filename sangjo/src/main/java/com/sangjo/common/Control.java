@@ -1,4 +1,4 @@
-package sangjo.common;
+package com.sangjo.common;
 
 import java.io.IOException;
 

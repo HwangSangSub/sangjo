@@ -1,4 +1,4 @@
-package sangjo.vo;
+package com.sangjo.vo;
 
 import java.util.Date;
 
@@ -10,6 +10,6 @@ public class BoardVO {
 	String boardTitle;
 	String boardContent;
 	String boardType;
-	int memberId;
+	String memberId;
 	Date regDate;
 }

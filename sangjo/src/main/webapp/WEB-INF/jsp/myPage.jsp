@@ -15,59 +15,80 @@
 <div class="container-fluid contact py-5">
 	<div class="container py-5">
 		<div class="p-5 bg-light rounded">
-			<div class="row g-4">
-				<div class="col-12">
-					<div class="text-center mx-auto" style="max-width: 700px;">
-						<h1 class="text-primary">Get in touch</h1>
-						<p class="mb-4">
-							The contact form is currently inactive. Get a functional and
-							working contact form with Ajax & PHP in a few minutes. Just copy
-							and paste the files, add a little code and you're done. <a
-								href="https://htmlcodex.com/contact-form">Download Now</a>.
-						</p>
+
+			<!-- 탭 메뉴 -->
+			<ul class="nav nav-tabs" id="myTab" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button class="nav-link active" id="userinfo-tab"
+						data-bs-toggle="tab" data-bs-target="#userinfo" type="button"
+						role="tab" aria-controls="userinfo" aria-selected="true">회원정보</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" id="myreview-tab" data-bs-toggle="tab"
+						data-bs-target="#myreview" type="button" role="tab"
+						aria-controls="myreview" aria-selected="false">내리뷰목록</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" id="wishlist-tab" data-bs-toggle="tab"
+						data-bs-target="#wishlist" type="button" role="tab"
+						aria-controls="wishlist" aria-selected="false">위시리스트</button>
+				</li>
+			</ul>
+
+			<!-- 내용 -->
+			<div class="tab-content" id="myTabContent">
+				<div class="tab-pane fade show active" id="userinfo" role="tabpanel" aria-labelledby="userinfo-tab">
+					<!-- 헤더 부분 -->
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">회원가입</h5>
 					</div>
-				</div>
-				<div class="col-lg-12">
-					<div class="h-100 rounded">
-						<iframe class="rounded w-100" style="height: 400px;"
-							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387191.33750346623!2d-73.97968099999999!3d40.6974881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1694259649153!5m2!1sen!2sbd"
-							loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-					</div>
-				</div>
-				<div class="col-lg-7">
-					<form action="" class="">
-						<input type="text" class="w-100 form-control border-0 py-3 mb-4"
-							placeholder="Your Name"> <input type="email"
-							class="w-100 form-control border-0 py-3 mb-4"
-							placeholder="Enter Your Email">
-						<textarea class="w-100 form-control border-0 mb-4" rows="5"
-							cols="10" placeholder="Your Message"></textarea>
-						<button
-							class="w-100 btn form-control border-secondary py-3 bg-white text-primary "
-							type="submit">Submit</button>
-					</form>
-				</div>
-				<div class="col-lg-5">
-					<div class="d-flex p-4 rounded mb-4 bg-white">
-						<i class="fas fa-map-marker-alt fa-2x text-primary me-4"></i>
-						<div>
-							<h4>Address</h4>
-							<p class="mb-2">123 Street New York.USA</p>
+					<!--  몸통 부분 -->
+					<div class="modal-body d-flex align-items-center">
+						<div class="input-group w-50 mx-auto d-flex">
+							<label for="memberPw" class="col-form-label">비밀번호</label> <input
+								type="text" class="form-control" id="memberPw"
+								placeholder="비밀번호 (20자)">
 						</div>
 					</div>
-					<div class="d-flex p-4 rounded mb-4 bg-white">
-						<i class="fas fa-envelope fa-2x text-primary me-4"></i>
-						<div>
-							<h4>Mail Us</h4>
-							<p class="mb-2">info@example.com</p>
+					<div class="modal-body d-flex align-items-center">
+						<div class="input-group w-50 mx-auto d-flex">
+							<label for="memberName" class="col-form-label">이름</label> <input
+								type="text" class="form-control" id="memberName"
+								placeholder="이름 (8자)">
 						</div>
 					</div>
-					<div class="d-flex p-4 rounded bg-white">
-						<i class="fa fa-phone-alt fa-2x text-primary me-4"></i>
-						<div>
-							<h4>Telephone</h4>
-							<p class="mb-2">(+012) 3456 7890</p>
+					<div class="modal-body d-flex align-items-center">
+						<div class="input-group w-50 mx-auto d-flex">
+							<label for="memberPhone" class="col-form-label">전화번호</label> <input
+								type="text" class="form-control" id="memberPhone"
+								placeholder="전화번호 (11자)">
 						</div>
+					</div>
+					<div class="modal-body d-flex align-items-center">
+						<div class="input-group w-50 mx-auto d-flex">
+							<label for="memberEmail" class="col-form-label">이메일</label> <input
+								type="text" class="form-control" id="memberEmail"
+								placeholder="이메일 작성">
+						</div>
+					</div>
+					<!-- 주소는 향후에 추가 -->
+					<div class="modal-body d-flex align-items-center">
+						<div class="input-group w-50 mx-auto d-flex">
+							<input type="reset" class="btn btn-secondary" value="초기화"></input>
+							<input type="button" id="joinBtn" class="btn btn-primary" value="회원가입" disabled></input>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="myreview" role="tabpanel" aria-labelledby="myreview-tab">
+					<!-- 헤더 부분 -->
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">내리뷰리스트 탭</h5>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="wishlist" role="tabpanel" aria-labelledby="wishlist-tab">
+					<!-- 헤더 부분 -->
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">위시리스트 탭</h5>
 					</div>
 				</div>
 			</div>
