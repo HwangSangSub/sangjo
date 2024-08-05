@@ -75,7 +75,7 @@
 								<p class="mb-0 mt-4">${itemTotal}원</p>
 							</td>
 							<td>
-								<button class="btn btn-md rounded-circle bg-light border mt-4"
+								<button onclick='remove_proNo(event)' class="btn btn-md rounded-circle bg-light border mt-4"
 									data-product-id="${item.productNo}">
 									<i class="fa fa-times text-danger"></i>
 								</button>
