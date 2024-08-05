@@ -20,6 +20,4 @@ public class CartListVO {
 	private String ProductContent; //상품내용
 	private int quantity; //수량
 	
-	
-	
 }
