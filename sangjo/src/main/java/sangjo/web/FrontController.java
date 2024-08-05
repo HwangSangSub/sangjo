@@ -17,6 +17,7 @@ import sangjo.control.IndexControl;
 import sangjo.control.OrderControl;
 import sangjo.control.OrderListControl;
 import sangjo.control.ProductInfoControl;
+import sangjo.control.ProductListControl;
 import sangjo.control.TestPageControl;
 import sangjo.control.MyPageControl;
 
@@ -32,8 +33,10 @@ public class FrontController extends HttpServlet {
 		// 템플릿 가져온 부분을 화면에 보이게 처리
 		
 		map.put("/index.do", new IndexControl());// 메인페이지-상품목록 (화면)
+		map.put("/productList.do", new ProductListControl()); // 상품목록조회 - (기능)
 		
 		map.put("/productInfo.do", new ProductInfoControl()); // 상품상세 - (화면)
+		
 		map.put("/category.do", new CategoryControl()); // 카테고리 (기능)
 		
 		map.put("/cartList.do", new CartListControl()); // 장바구니 (화면)
