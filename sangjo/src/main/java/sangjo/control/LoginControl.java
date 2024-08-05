@@ -1,16 +1,17 @@
 package sangjo.control;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import sangjo.common.Control;
 import sangjo.service.MemberService;
@@ -24,10 +25,20 @@ public class LoginControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String memberId = req.getParameter("memberId");
-		String memberPw = req.getParameter("memberPw");
 		MemberService memberService = new MemberServiceImpl();
 		HttpSession session = req.getSession();
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		// http body에서 데이터 가져오기
+		ServletInputStream inputStream 
+			= req.getInputStream();
+		Map<String,String> map
+		= objectMapper.readValue(inputStream, 
+				new TypeReference<Map<String,String>>(){
+		});
+		
+		String memberId = map.get("memberId");
+		String memberPw = map.get("memberPw");
 		
 		MemberVO memberVO = memberService.getMemberByLogin(memberId, memberPw);
 		

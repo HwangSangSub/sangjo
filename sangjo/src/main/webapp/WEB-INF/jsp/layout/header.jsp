@@ -69,39 +69,34 @@
             <!--  몸통 부분 -->
             <div class="modal-body d-flex align-items-center">
                 <div class="input-group w-50 mx-auto d-flex">
-                    <label for="memberId" class="col-form-label">아이디 (20자)</label>
-                    <input type="text" class="form-control" id="memberId">
+                    <label for="memberId" class="col-form-label">아이디</label>
+                    <input type="text" class="form-control" id="memberId" placeholder="아이디 (20자)">
                 </div>
+                <input type="button" class="btn" id="cleanIdCheckBtn" value="재입력"></input>
                 <input type="button" class="btn" id="idCheckBtn" value="아이디 체크"></input>
             </div>
             <div class="modal-body d-flex align-items-center">
                 <div class="input-group w-50 mx-auto d-flex">
-                    <label for="checkedMemberId" class="col-form-label">적용될 아이디</label>
-                    <input type="text" class="form-control" id="checkedMemberId" readonly>
+                    <label for="memberPw" class="col-form-label">비밀번호</label>
+                    <input type="text" class="form-control" id="memberPw" placeholder="비밀번호 (20자)">
                 </div>
             </div>
             <div class="modal-body d-flex align-items-center">
                 <div class="input-group w-50 mx-auto d-flex">
-                    <label for="memberPw" class="col-form-label">비밀번호 (20자)</label>
-                    <input type="text" class="form-control" id="memberPw">
+                    <label for="memberName" class="col-form-label">이름</label>
+                    <input type="text" class="form-control" id="memberName" placeholder="이름 (8자)">
                 </div>
             </div>
             <div class="modal-body d-flex align-items-center">
                 <div class="input-group w-50 mx-auto d-flex">
-                    <label for="memberName" class="col-form-label">이름 (8자)</label>
-                    <input type="text" class="form-control" id="memberName">
-                </div>
-            </div>
-            <div class="modal-body d-flex align-items-center">
-                <div class="input-group w-50 mx-auto d-flex">
-                    <label for="memberPhone" class="col-form-label">전화번호 (11자)</label>
-                    <input type="text" class="form-control" id="memberPhone">
+                    <label for="memberPhone" class="col-form-label">전화번호</label>
+                    <input type="text" class="form-control" id="memberPhone" placeholder="전화번호 (11자)">
                 </div> 
             </div>
             <div class="modal-body d-flex align-items-center">
                 <div class="input-group w-50 mx-auto d-flex">
                     <label for="memberEmail" class="col-form-label">이메일</label>
-                    <input type="text" class="form-control" id="memberEmail">
+                    <input type="text" class="form-control" id="memberEmail" placeholder="이메일 작성">
                 </div>
             </div>
             <!-- 주소는 향후에 추가 -->
@@ -120,11 +115,17 @@
     let joinModal = document.querySelector('#joinModal');
 
     let idCheckBtn = joinModal.querySelector('#idCheckBtn');
+    let cleanIdCheckBtn = joinModal.querySelector("#cleanIdCheckBtn");
 
     idCheckBtn.addEventListener('click',function(e){
         let memberIdInput = joinModal.querySelector("#memberId");
-        let checkedMemberIdInput = joinModal.querySelector("#checkedMemberId");
-    	memberService.idCheck(memberIdInput.value,checkedMemberIdInput,joinValueCheck);
+    	memberService.idCheck(memberIdInput,joinValueCheck);
+    })
+
+    cleanIdCheckBtn.addEventListener('click',function(e){
+        let memberIdInput = joinModal.querySelector("#memberId");
+        memberIdInput.readOnly = false;
+        memberIdInput.value = '';
     })
 	
     /* 회원 가입 입력값 확인과 중복 체크 여부 확인 */
@@ -133,14 +134,14 @@
     })
 
     function joinValueCheck(){
-        let checkedMemberIdInput = joinModal.querySelector("#checkedMemberId");
+        let memberIdInput = joinModal.querySelector("#memberId");
         let memberPwInput = joinModal.querySelector("#memberPw");
         let memberNameInput = joinModal.querySelector("#memberName");
         let memberPhoneInput = joinModal.querySelector("#memberPhone");
         let memberEmailInput = joinModal.querySelector("#memberEmail");
 
         // 위 5개의 인풋테그의 내용이 모두 1글자 이상일경우 회원가입 버튼을 활성화 시킨다.
-        if(checkedMemberIdInput.value.length > 0 &&
+        if(memberIdInput.value.length > 0 &&
         memberPwInput.value.length > 0 &&
         memberNameInput.value.length > 0 &&
         memberPhoneInput.value.length > 0 &&
@@ -156,13 +157,14 @@
     let joinBtn = joinModal.querySelector('#joinBtn');
 
     joinBtn.addEventListener('click',function(e){
-        let checkedMemberId = joinModal.querySelector("#checkedMemberId").value;
+        let memberId = joinModal.querySelector("#memberId").value;
         let memberPw = joinModal.querySelector("#memberPw").value;
         let memberName = joinModal.querySelector("#memberName").value;
         let memberPhone = joinModal.querySelector("#memberPhone").value;
         let memberEmail = joinModal.querySelector("#memberEmail").value;
-        member = {checkedMemberId ,memberPw ,memberName, memberPhone, memberEmail}
-        memberService.join(member);
+        member = {memberId ,memberPw ,memberName, memberPhone, memberEmail}
+        joinBtn.disabled = false;
+        memberService.join(member,joinBtn);
     })
 </script>
 <!--로그인 모달 창 -->
@@ -213,11 +215,23 @@
 <script>
     const memberService = {
    		login(memberId,memberPw){
-   			let url = "login.do?" + 
-                   "memberId="+memberId+
-                   "&memberPw="+memberPw;
-   			console.log(url);
-   			fetch(url)
+            let url = "login.do";
+            let optionObj = {
+                // http 의 header 파트
+                method: 'post',
+                headers: {
+                    // 기본값 : application/x-www-form-urlencoded  일명 form 방식
+                    
+                    // 지금은 json 방식으로 한다.
+                    'Content-Type': 'application/json'
+                },
+                // http 의 body 파트 전달할 내용을 입력한다.
+                body: JSON.stringify({
+                    memberId: memberId,
+                    memberPw: memberPw,
+                })
+            }
+            fetch(url, optionObj)
    			.then(result => {
    				return result.json();
    			})
@@ -229,14 +243,14 @@
    				}
    			})
    		},
-   		idCheck(memberId,checkedMemberIdInput,joinValueCheck){
-   			if(memberId.length < 1  ){
+   		idCheck(memberIdInput,joinValueCheck){
+   			if(memberIdInput.value.length < 1  ){
                 alert("입력된 값이 없습니다.");
                 return;
             }
    			
    			let url = "idCheck.do?"+
-   					"memberId=" + memberId;
+   					"memberId=" + memberIdInput.value;
    			console.log(url);
    			
    			fetch(url)
@@ -248,7 +262,7 @@
    					alert("이미 사용되고 있는 아이디입니다.");
    				}else{
    					alert("사용가능한 아이디 입니다.");
-                    checkedMemberIdInput.value = memberId;
+                    memberIdInput.readOnly = true;
                     // 자바스크립트 코드로 값을 넣는 방식은 input 이벤트로 
                     // 취급되지 않아 여기서 회원 가입 값 체크하는 메서드를 
                     // 실행시켰다.
@@ -256,23 +270,30 @@
    				}
    			})
    		},
-   		join(member={}){
+   		join(member={},joinBtn){
             console.log(member);
-	        let url = "join.do?" + 
-	            "memberId="+member.checkedMemberId+
-	            "&memberPw="+member.memberPw+
-	            "&memberName="+member.memberName+
-	            "&memberPhone="+member.memberPhone+
-	            "&memberEmail="+member.memberEmail;
-	            
-			console.log(url);
-			fetch(url)
+	        let url = "join.do";
+	        let optionObj = {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    memberId: member.memberId,
+                    memberPw: member.memberPw,
+                    memberName: member.memberName,
+                    memberPhone: member.memberPhone,
+                    memberEmail: member.memberEmail
+                })
+            }
+            fetch(url, optionObj)
 			.then(result => {
 				return result.json();
 			})
 			.then(function(result){
 				if(result.joinResult == "Faild"){
 					alert("서버 오류로 회원가입이 실패하였습니다.");
+                    joinBtn.disabled = true;
 				}else{
 					alert("회원가입이 성공하였습니다.");
 					let answerUrl = "login.do?" + 
