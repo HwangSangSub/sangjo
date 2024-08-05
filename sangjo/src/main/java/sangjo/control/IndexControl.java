@@ -15,6 +15,7 @@ public class IndexControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getParameter("productNo");		
 		req.getRequestDispatcher("sangjo/indexBody.tiles").forward(req, resp);
 	}
 
