@@ -30,7 +30,6 @@
                         <i class="fa fa-shopping-bag fa-2x"></i>
                         <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
                     </a>
-<<<<<<< HEAD
                     <c:choose>
                         <c:when test="${empty member}">
                             <!-- 로그인 모달 창을 띄어준다. -->
@@ -44,19 +43,14 @@
                         </c:when>
                         <c:otherwise>
                             <!-- 마이페이지가 완성되면 링크를 연결해주자 -->
-                            <a class="my-auto">
-                                <i class="fas fa-user fa-2x"></i>
-                            </a>
+                            <a href="myPage.do" class="my-auto">
+		                        <i class="fas fa-user fa-2x"></i>
+		                    </a>
                             <a href="logout.do" class="my-auto">
                                 로그아웃
                             </a>
                         </c:otherwise>
                     </c:choose>
-=======
-                    <a href="myPage.do" class="my-auto">
-                        <i class="fas fa-user fa-2x"></i>
-                    </a>
->>>>>>> refs/heads/master
                 </div>
             </div>
         </nav>
