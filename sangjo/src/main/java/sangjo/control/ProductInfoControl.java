@@ -12,8 +12,8 @@ public class ProductInfoControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		req.getRequestDispatcher("sangjo/productInfo.tiles").forward(req, resp);
+		
+	}// end exec()
 
-	}
-
-}
+}// end class
