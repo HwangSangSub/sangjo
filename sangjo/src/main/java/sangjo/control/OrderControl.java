@@ -44,16 +44,16 @@ public class OrderControl implements Control {
             req.setAttribute("errorMessage", "로그인 후 장바구니에 담을 수 있습니다.");
             return;
         }
-
+        
         int productNo = Integer.parseInt(req.getParameter("productNo"));
         int quantity = Integer.parseInt(req.getParameter("quantity"));
-
+        
         OrderVO ovo = new OrderVO();
         ovo.setMemberId(memberId);
         ovo.setProductNo(productNo);
         ovo.setOdCnt(quantity);
         ovo.setOdPrice(10000); // 실제 가격은 상품 정보를 통해 받아야 함
-
+        
         osv.addOrderToCart(ovo); // 장바구니에 추가하는 서비스 메서드 호출
     }
 }
