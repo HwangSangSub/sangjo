@@ -24,44 +24,44 @@ import com.sangjo.control.TestPageControl;
 
 public class FrontController extends HttpServlet {
 	Map<String, Control> map;
+
 	public FrontController() {
 		map = new HashMap<String, Control>();
 	}
+
 	// 여러 요청들 등록하기
 	@Override
 	public void init() throws ServletException {
 		map.put("/testPage.do", new TestPageControl());
 		// 템플릿 가져온 부분을 화면에 보이게 처리
-		
+
 		map.put("/index.do", new IndexControl());// 메인페이지-상품목록 (화면)
 		map.put("/productList.do", new ProductListControl()); // 상품목록조회 - (기능)
-		
 		map.put("/productInfo.do", new ProductInfoControl()); // 상품상세 - (화면)
-		
+
 		map.put("/category.do", new CategoryControl()); // 카테고리 (기능)
-		
+
 		map.put("/cartList.do", new CartListControl()); // 장바구니 (화면)
-		
+
 		map.put("/orderList.do", new OrderListControl()); // 주문 (화면)
 		map.put("/order.do", new OrderControl()); // 주문 (기능)
-		
+
 		map.put("/helpDesk.do", new HelpDeskControl()); // 고객센터
 		map.put("/boardList.do", new BoardListControl()); // 게시판 가져오기(기능)
-		
 
 		map.put("/myPage.do", new MyPageControl());// 마이페이지(화면)
-		
 	}
-	
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String uri = request.getRequestURI(); // uri 가져옴
-		String context = request.getContextPath();// 프로젝트명 /BoardWeb 
+		String context = request.getContextPath();// 프로젝트명 /BoardWeb
 		String path = uri.substring(context.length()); // "/*.do"
-		
+
 		System.out.println(path);
 		Control sub = map.get(path);
-		
+
 		try {
 			sub.exec(request, response);
 		} catch (ServletException e) {

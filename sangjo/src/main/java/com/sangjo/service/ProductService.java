@@ -2,8 +2,8 @@ package com.sangjo.service;
 
 import java.util.List;
 
-import sangjo.vo.ProductVO;
+import com.sangjo.vo.ProductVO;
 
-public interface productService {
+public interface ProductService {
 	List<ProductVO> productList();
 }
