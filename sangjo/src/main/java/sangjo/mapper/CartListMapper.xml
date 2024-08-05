@@ -5,17 +5,18 @@
 
 <mapper namespace="sangjo.mapper.CartListMapper">
 
-    <select id="selectCartList" resultType="sangjo.VO.CartListVO">
-        SELECT c.cart_no AS cartNo, 
-               c.product_no AS productNo, 
-               c.member_id AS memberId, 
-               c.reg_date AS regDate, 
-               p.product_name AS productName, 
-               p.product_price AS productPrice, 
-               p.product_img AS productImg
+    <select id="selectCartList" resultType="sangjo.vo.CartListVO" parameterType="String">
+        SELECT c.cart_no ,
+               c.product_no ,
+               c.member_id ,
+               c.reg_date ,
+               p.product_name ,
+               p.product_price  ,
+               p.product_img 
         FROM tbl_cart c
-        JOIN tbl_product p ON c.product_no = p.product_no
-        WHERE c.member_id = #{memberId}
+        JOIN tbl_product p 
+        ON c.product_no = p.product_no
+        WHERE c.member_id = #{MemberId}
     </select>
 
 </mapper>

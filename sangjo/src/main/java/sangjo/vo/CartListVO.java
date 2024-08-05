@@ -16,8 +16,9 @@ public class CartListVO {
 	private String ProductName; // 상품명
 	private String ProductPrice; // 상품가격
 	private String ProductImg; // 상품이미지
-	private String ProductTthumbnailImg; // 상품이미지(썸네일)
+	private String ProductTthumbnai_lImg; // 상품이미지(썸네일)
 	private String ProductContent; //상품내용
+	private int quantity; //수량
 	
 	
 	

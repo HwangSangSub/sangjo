@@ -26,14 +26,18 @@
                         <th scope="col">합계</th>
                         <th scope="col">처리</th>
                     </tr>
+                    
                 </thead>
+               
                 <tbody>
+             
+                 
                     <c:forEach var="item" items="${cartList}">
                         <c:set var="itemTotal" value="${item.productPrice * item.quantity}" />
                         <tr>
                             <th scope="row">
                                 <div class="d-flex align-items-center">
-                                    <img src="${item.productImg}"
+                                    <img src="img/${item.productImg}"
                                         class="img-fluid me-5 rounded-circle"
                                         style="width: 80px; height: 80px;" alt="">
                                 </div>
@@ -47,7 +51,7 @@
                             <td>
                                 <div class="input-group quantity mt-4" style="width: 100px;">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-minus rounded-circle bg-light border" data-product-id="${item.productId}">
+                                        <button class="btn btn-sm btn-minus rounded-circle bg-light border" data-product-id="${item.productNo}">
                                             <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
@@ -56,7 +60,7 @@
                                         value="${item.quantity}"
                                         readonly> <!-- 수량은 수정할 수 없도록 설정 -->
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-plus rounded-circle bg-light border" data-product-id="${item.productId}">
+                                        <button class="btn btn-sm btn-plus rounded-circle bg-light border" data-product-id="${item.productNo}">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
@@ -66,7 +70,7 @@
                                 <p class="mb-0 mt-4">${itemTotal} 원</p>
                             </td>
                             <td>
-                                <button class="btn btn-md rounded-circle bg-light border mt-4" data-product-id="${item.productId}">
+                                <button class="btn btn-md rounded-circle bg-light border mt-4" data-product-id="${item.productNo}">
                                     <i class="fa fa-times text-danger"></i>
                                 </button>
                             </td>
@@ -79,6 +83,7 @@
                     </c:forEach>
                     <c:set var="shippingCost" value="3000" />
                     <c:set var="totalAmount" value="${grandTotal + shippingCost}" />
+                   
                 </tbody>
             </table>
         </div>
@@ -117,6 +122,7 @@
                     <button
                         class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
                         type="button">결제 진행</button>
+                    
                 </div>
             </div>
         </div>
