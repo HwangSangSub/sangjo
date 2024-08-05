@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sangjo.mapper.CartListMapper">
+
+    <select id="selectCartList" resultType="sangjo.VO.CartListVO">
+        SELECT c.cart_no AS cartNo, 
+               c.product_no AS productNo, 
+               c.member_id AS memberId, 
+               c.reg_date AS regDate, 
+               p.product_name AS productName, 
+               p.product_price AS productPrice, 
+               p.product_img AS productImg
+        FROM tbl_cart c
+        JOIN tbl_product p ON c.product_no = p.product_no
+        WHERE c.member_id = #{memberId}
+    </select>
+
+</mapper>
