@@ -1,4 +1,4 @@
-package sangjo.control;
+package com.sangjo.control;
 
 import java.io.IOException;
 
@@ -6,9 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sangjo.common.Control;
-import sangjo.service.BoardService;
-import sangjo.service.BoardServiceImpl;
+import com.sangjo.common.Control;
+import com.sangjo.service.BoardService;
+import com.sangjo.service.BoardServiceImpl;
 
 public class TestPageControl implements Control {
 

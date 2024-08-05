@@ -30,7 +30,7 @@
 	<!-- 프론트 컨트롤러 매핑 -->
 	<servlet>
 		<servlet-name>front</servlet-name>
-		<servlet-class>sangjo.web.FrontController</servlet-class>
+		<servlet-class>com.sangjo.web.FrontController</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>front</servlet-name>

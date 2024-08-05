@@ -8,7 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sangjo.common.Control;
+import com.sangjo.common.Control;
+
 import sangjo.service.CartListService;
 import sangjo.service.CartListServiceImpl;
 import sangjo.vo.CartListVO;

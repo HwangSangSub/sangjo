@@ -1,12 +1,12 @@
-package sangjo.service;
+package com.sangjo.service;
 
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import sangjo.common.DataSource;
-import sangjo.mapper.BoardMapper;
-import sangjo.vo.BoardVO;
+import com.sangjo.common.DataSource;
+import com.sangjo.mapper.BoardMapper;
+import com.sangjo.vo.BoardVO;
 
 public class BoardServiceImpl implements BoardService{
 

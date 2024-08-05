@@ -1,4 +1,4 @@
-package sangjo.control;
+package com.sangjo.control;
 
 import java.io.IOException;
 
@@ -6,14 +6,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sangjo.common.Control;
+import com.sangjo.common.Control;
 
-public class MyPageControl implements Control {
+public class CategoryControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("sangjo/myPage.tiles").forward(req, resp);
+		// TODO Auto-generated method stub
 
-	}// end exec()
+	}
 
-}// end class
+}
