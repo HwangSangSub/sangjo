@@ -1,4 +1,4 @@
-package sangjo.control;
+package com.sangjo.control;
 
 import java.io.IOException;
 import java.util.List;
@@ -7,10 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sangjo.common.Control;
-import sangjo.service.OrderService;
-import sangjo.service.OrderServiceImpl;
-import sangjo.vo.OrderVO;
+import com.sangjo.common.Control;
+import com.sangjo.service.OrderService;
+import com.sangjo.service.OrderServiceImpl;
+import com.sangjo.vo.OrderVO;
 
 public class OrderControl implements Control {
 
