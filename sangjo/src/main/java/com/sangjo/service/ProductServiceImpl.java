@@ -1,4 +1,4 @@
-package sangjo.service;
+package com.sangjo.service;
 
 import org.apache.ibatis.session.SqlSession;
 

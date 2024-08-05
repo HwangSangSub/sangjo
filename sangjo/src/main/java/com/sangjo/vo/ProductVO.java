@@ -1,4 +1,4 @@
-package sangjo.vo;
+package com.sangjo.vo;
 
 import java.util.Date;
 

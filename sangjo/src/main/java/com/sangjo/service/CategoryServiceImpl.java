@@ -1,4 +1,4 @@
-package sangjo.service;
+package com.sangjo.service;
 
 import java.util.List;
 

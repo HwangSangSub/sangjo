@@ -1,4 +1,4 @@
-package sangjo.mapper;
+package com.sangjo.mapper;
 
 import java.util.List;
 
