@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sangjo.mapper.OrderMapper">
-	<select id="selectOrderList" parameterType= "sangjo.vo.OrderVO" resultType="sangjo.vo.OrderVO">
+	<select id="selectOrderList" parameterType= "com.sangjo.vo.OrderVO" resultType="com.sangjo.vo.OrderVO">
 		SELECT
 		o.order_no,
 		o.order_price,

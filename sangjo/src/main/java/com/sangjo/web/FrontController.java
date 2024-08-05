@@ -1,4 +1,4 @@
-package sangjo.web;
+package com.sangjo.web;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -9,17 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sangjo.common.Control;
-import sangjo.control.CartListControl;
-import sangjo.control.CategoryControl;
-import sangjo.control.HelpDeskControl;
-import sangjo.control.IndexControl;
-import sangjo.control.OrderControl;
-import sangjo.control.OrderListControl;
-import sangjo.control.ProductInfoControl;
-import sangjo.control.ProductListControl;
-import sangjo.control.TestPageControl;
-import sangjo.control.MyPageControl;
+import com.sangjo.common.Control;
+import com.sangjo.control.BoardListControl;
+import com.sangjo.control.CartListControl;
+import com.sangjo.control.CategoryControl;
+import com.sangjo.control.HelpDeskControl;
+import com.sangjo.control.IndexControl;
+import com.sangjo.control.MyPageControl;
+import com.sangjo.control.OrderControl;
+import com.sangjo.control.OrderListControl;
+import com.sangjo.control.ProductInfoControl;
+import com.sangjo.control.ProductListControl;
+import com.sangjo.control.TestPageControl;
 
 public class FrontController extends HttpServlet {
 	Map<String, Control> map;
@@ -45,6 +46,8 @@ public class FrontController extends HttpServlet {
 		map.put("/order.do", new OrderControl()); // 주문 (기능)
 		
 		map.put("/helpDesk.do", new HelpDeskControl()); // 고객센터
+		map.put("/boardList.do", new BoardListControl()); // 게시판 가져오기(기능)
+		
 
 		map.put("/myPage.do", new MyPageControl());// 마이페이지(화면)
 		

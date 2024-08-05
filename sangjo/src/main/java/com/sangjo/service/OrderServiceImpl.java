@@ -1,12 +1,12 @@
-package sangjo.service;
+package com.sangjo.service;
 
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import sangjo.common.DataSource;
-import sangjo.mapper.OrderMapper;
-import sangjo.vo.OrderVO;
+import com.sangjo.common.DataSource;
+import com.sangjo.mapper.OrderMapper;
+import com.sangjo.vo.OrderVO;
 
 public class OrderServiceImpl implements OrderService {
 	SqlSession sqlSession = DataSource.getInstance().openSession(true);

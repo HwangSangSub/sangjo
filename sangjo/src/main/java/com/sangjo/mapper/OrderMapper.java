@@ -1,8 +1,8 @@
-package sangjo.mapper;
+package com.sangjo.mapper;
 
 import java.util.List;
 
-import sangjo.vo.OrderVO;
+import com.sangjo.vo.OrderVO;
 
 public interface OrderMapper {
 	List<OrderVO> selectOrderList(OrderVO ovo);
