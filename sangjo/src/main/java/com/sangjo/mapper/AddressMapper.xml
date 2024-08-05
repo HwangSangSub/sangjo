@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.sangjo.mapper.AddressMapper">
+	<insert id="insertAddress" parameterType="com.sangjo.vo.AddressVO">
+		INSERT INTO tbl_address(address_no, member_id, address_code, address_main, address_detail, is_default)
+		VALUES(address_seq.NEXTVAL, #{memberId}, #{addressCode}, #{addressMain}, #{addressDetail}, #{idDefault})
+	</insert>
+</mapper>
