@@ -120,7 +120,7 @@
 								<p class="mb-0">정액 배송비: ${shippingCost} 원</p>
 							</div>
 						</div>
-						<p class="mb-0 text-end">우크라이나로 배송합니다.</p>
+						<p class="mb-0 text-end">민수네 집으로 배송합니다.</p>
 					</div>
 					<div
 						class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
