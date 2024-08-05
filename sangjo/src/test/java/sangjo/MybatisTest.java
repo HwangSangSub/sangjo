@@ -2,8 +2,8 @@ package sangjo;
 
 import org.apache.ibatis.session.SqlSession;
 
-import sangjo.common.DataSource;
-import sangjo.mapper.BoardMapper;
+import com.sangjo.common.DataSource;
+import com.sangjo.mapper.BoardMapper;
 
 public class MybatisTest {
 	public static void main(String[] args) {
