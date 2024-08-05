@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="sangjo.mapper.BoardMapper">
-	<select id="selectBoardList" resultType="sangjo.vo.BoardVO">
+<mapper namespace="com.sangjo.mapper.BoardMapper">
+	<select id="selectBoardList" resultType="com.sangjo.vo.BoardVO">
 		SELECT *
 		FROM tbl_board
 	</select>
