@@ -7,7 +7,7 @@ public class AddressVO {
 	int addressNo;
 	String memberId;
 	int addressCode;
-	String addressMAin;
+	String addressMain;
 	String addressDetail;
-	int idDefault;
+	int idDefault;// 1이면 매인 주소 0이면 서브 주소이다.
 }

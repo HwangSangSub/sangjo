@@ -12,8 +12,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import sangjo.common.Control;
+import sangjo.service.AddressService;
+import sangjo.service.AddressServiceImpl;
 import sangjo.service.MemberService;
 import sangjo.service.MemberServiceImpl;
+import sangjo.vo.AddressVO;
 import sangjo.vo.MemberVO;
 
 /**
@@ -23,6 +26,7 @@ public class JoinControl implements Control{
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		MemberService memberService = new MemberServiceImpl();
+		AddressService addressService = new AddressServiceImpl();
 		ObjectMapper objectMapper = new ObjectMapper();
 		
 		// http body에서 데이터 가져오기
@@ -40,8 +44,15 @@ public class JoinControl implements Control{
 		memberVO.setMemberPhone(map.get("memberPhone"));
 		memberVO.setMemberEmail(map.get("memberEmail"));
 		
+		AddressVO addressVO = new AddressVO();
+		addressVO.setAddressCode(Integer.parseInt(map.get("addressCode")));
+		addressVO.setMemberId(map.get("memberId"));
+		addressVO.setAddressMain(map.get("addressMain"));
+		addressVO.setAddressDetail(map.get("addressDetail"));
+		addressVO.setIdDefault(1);// 회원 가입시 처음 입력하는 주소값은 매인으로 고정한다.
+		
 		String json;
-		if(memberService.join(memberVO)) {// 회원 가입 동작 시작
+		if(memberService.join(memberVO) && addressService.addAddress(addressVO)) {// 회원 가입 동작 시작
 			json= String.format("{\"%s\":\"%s\"}", "joinResult","Success");
 			resp.getWriter().print(json);
 			return;
