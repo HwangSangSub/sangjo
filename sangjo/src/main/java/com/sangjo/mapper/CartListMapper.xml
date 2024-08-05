@@ -3,9 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="sangjo.mapper.CartListMapper">
+<mapper namespace="com.sangjo.mapper.CartListMapper">
 
-    <select id="selectCartList" resultType="sangjo.vo.CartListVO" parameterType="String">
+    <select id="selectCartList" resultType="com.sangjo.vo.CartListVO" parameterType="String">
         SELECT c.cart_no ,
                c.product_no ,
                c.member_id ,
