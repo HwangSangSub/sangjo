@@ -3,7 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sangjo.mapper.OrderMapper">
-	<select id="selectOrderList" parameterType= "com.sangjo.vo.OrderVO" resultType="com.sangjo.vo.OrderVO">
+	<select id="selectOrderList"
+		parameterType="com.sangjo.vo.OrderVO"
+		resultType="com.sangjo.vo.OrderVO">
 		SELECT
 		o.order_no,
 		o.order_price,
@@ -25,18 +27,16 @@
 		ON
 		o.order_no = d.order_no
 	</select>
-<<<<<<< HEAD:sangjo/src/main/java/com/sangjo/mapper/OrderMapper.xml
+
+	<insert id="insertOrder" parameterType="sangjo.vo.OrderVO">
+		INSERT INTO tbl_order (order_no, order_price, delivery_price, order_status,
+		address_no, member_id, order_date, delivery_date, cancle_date)
+		VALUES (#{orderNo}, #{orderPrice}, #{deliveryPrice}, #{orderStatus},
+		#{addressNo}, #{memberId}, #{orderDate}, #{deliveryDate},
+		#{cancleDate})
+
+		INSERT INTO tbl_order_detail (od_no, order_no, product_no, od_price, od_cnt)
+		VALUES (#{odNo}, #{orderNo}, #{productNo}, #{odPrice}, #{odCnt})
+	</insert>
 
 </mapper>
-=======
-	
-	<insert id="insertOrder" parameterType="sangjo.vo.OrderVO">
-        INSERT INTO tbl_order (order_no, order_price, delivery_price, order_status, address_no, member_id, order_date, delivery_date, cancle_date)
-        VALUES (#{orderNo}, #{orderPrice}, #{deliveryPrice}, #{orderStatus}, #{addressNo}, #{memberId}, #{orderDate}, #{deliveryDate}, #{cancleDate})
-        
-        INSERT INTO tbl_order_detail (od_no, order_no, product_no, od_price, od_cnt)
-        VALUES (#{odNo}, #{orderNo}, #{productNo}, #{odPrice}, #{odCnt})
-    </insert>
-    
-</mapper>
->>>>>>> origin/LSC:sangjo/src/main/java/sangjo/mapper/OrderMapper.xml

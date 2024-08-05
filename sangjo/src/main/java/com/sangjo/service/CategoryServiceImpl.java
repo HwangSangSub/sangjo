@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import sangjo.common.DataSource;
-import sangjo.mapper.CategoryMapper;
-import sangjo.vo.CategoryVO;
+import com.sangjo.common.DataSource;
+import com.sangjo.mapper.CategoryMapper;
+import com.sangjo.vo.CategoryVO;
 
 public class CategoryServiceImpl implements CategoryService {
 	SqlSession sqlSession = DataSource.getInstance().openSession(true);

@@ -8,14 +8,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-<<<<<<< HEAD:sangjo/src/main/java/com/sangjo/control/CartListControl.java
 import com.sangjo.common.Control;
-=======
-import sangjo.common.Control;
-import sangjo.service.CartListService;
-import sangjo.service.CartListServiceImpl;
-import sangjo.vo.CartListVO;
->>>>>>> origin/LSC:sangjo/src/main/java/sangjo/control/CartListControl.java
+import com.sangjo.service.CartListService;
+import com.sangjo.service.CartListServiceImpl;
+import com.sangjo.vo.CartListVO;
 
 public class CartListControl implements Control {
 

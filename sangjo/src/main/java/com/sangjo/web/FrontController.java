@@ -36,16 +36,9 @@ public class FrontController extends HttpServlet {
 		// 템플릿 가져온 부분을 화면에 보이게 처리
 
 		map.put("/index.do", new IndexControl());// 메인페이지-상품목록 (화면)
-<<<<<<< HEAD:sangjo/src/main/java/com/sangjo/web/FrontController.java
 		map.put("/productList.do", new ProductListControl()); // 상품목록조회 - (기능)
-		
-		map.put("/productInfo.do", new ProductInfoControl()); // 상품상세 - (화면)
-		
-=======
-
 		map.put("/productInfo.do", new ProductInfoControl()); // 상품상세 - (화면)
 
->>>>>>> origin/LSC:sangjo/src/main/java/sangjo/web/FrontController.java
 		map.put("/category.do", new CategoryControl()); // 카테고리 (기능)
 
 		map.put("/cartList.do", new CartListControl()); // 장바구니 (화면)
@@ -55,7 +48,6 @@ public class FrontController extends HttpServlet {
 
 		map.put("/helpDesk.do", new HelpDeskControl()); // 고객센터
 		map.put("/boardList.do", new BoardListControl()); // 게시판 가져오기(기능)
-		
 
 		map.put("/myPage.do", new MyPageControl());// 마이페이지(화면)
 	}

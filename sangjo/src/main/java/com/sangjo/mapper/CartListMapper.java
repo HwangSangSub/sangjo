@@ -1,8 +1,8 @@
-package sangjo.mapper;
+package com.sangjo.mapper;
 
 import java.util.List;
 
-import sangjo.vo.CartListVO;
+import com.sangjo.vo.CartListVO;
 
 public interface CartListMapper {
 

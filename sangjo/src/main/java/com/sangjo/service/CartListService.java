@@ -1,8 +1,8 @@
-package sangjo.service;
+package com.sangjo.service;
 
 import java.util.List;
 
-import sangjo.vo.CartListVO;
+import com.sangjo.vo.CartListVO;
 
 
 public interface CartListService {
