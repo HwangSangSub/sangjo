@@ -9,9 +9,9 @@
     <table border="1">
         <thead>
             <tr>
-                <th>상품 번호</th>
-                <th>상품 가격</th>
-                <th>주문 수량</th>
+                <th>상품번호</th>
+                <th>상품가격</th>
+                <th>주문수량</th>
                 <th>총 금액</th>
             </tr>
         </thead>

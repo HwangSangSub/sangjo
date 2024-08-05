@@ -31,13 +31,10 @@ public class FrontController extends HttpServlet {
 		
 		map.put("/myPage.do", new MyPageControl());// 마이페이지
 		map.put("/index.do", new IndexControl());// 메인페이지 오픈
-		map.put("/order.do", new OrderControl()); // 주문
+		map.put("/Order.do", new OrderControl()); // 카트
 		map.put("/category.do", new CategoryControl()); // 카테고리
 		map.put("/productList.do", new ProductListControl()); // 상품목록
-		map.put("/productInfo.do", new ProductInfoControl()); // 상품상세
-		
-		
-		
+		map.put("/productInfo.do", new ProductInfoControl()); // 상품상세		
 	}
 	
 	@Override
