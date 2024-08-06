@@ -61,8 +61,22 @@ function remove_proNo(e) {
 		console.dir(e.target.dataset.productId);
 		e.target.parentElement.parentElement.remove();
 	}
+	
+	let url = "cartRemove.do";
 
-
+	document.querySelector('#uploadBtn').onclick = function(e) {
+		fetch(url) // promise객체, then(), catch()
+			.then(function(result) {
+				console.log(result);
+				result.json();
+			})
+			.then(function(result) {
+				console.log(result);
+			})
+			.catch(function(err) {
+				console.error(err);
+			})
+	}
 }
 
 

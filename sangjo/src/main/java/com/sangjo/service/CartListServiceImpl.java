@@ -18,4 +18,12 @@ public class CartListServiceImpl implements CartListService {
 		return mapper.selectCartList(memberId);
 	}
 
+	@Override
+	public void removeCartLIst(String cartNo) {
+		// TODO Auto-generated method stub
+		mapper.removeCartLIst(cartNo);
+	}
+	
+	
+	
 }

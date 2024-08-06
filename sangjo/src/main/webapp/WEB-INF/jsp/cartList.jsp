@@ -12,7 +12,6 @@
 	</ol>
 </div>
 <!-- Single Page Header 끝 -->
-
 <div class="container-fluid py-5">
 	<div class="container py-5">
 		<div class="table-responsive">
@@ -30,7 +29,6 @@
 				</thead>
 
 				<tbody>
-
 
 					<c:forEach var="item" items="${cartList}">
 						<c:set var="itemTotal"
@@ -77,7 +75,7 @@
 							<td>
 								<button onclick='remove_proNo(event)'
 									class="btn btn-md rounded-circle bg-light border mt-4"
-									data-product-id="${item.productNo}">
+									data-product-id="${item.productNo}" data-cart-no="${item.cartNo}">
 									<i class="fa fa-times text-danger"></i>
 								</button>
 							</td>

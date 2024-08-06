@@ -7,4 +7,6 @@ import com.sangjo.vo.CartListVO;
 public interface CartListMapper {
 
     List<CartListVO> selectCartList(String memberId);
+    
+    void removeCartLIst(String cartNo); 
 }
