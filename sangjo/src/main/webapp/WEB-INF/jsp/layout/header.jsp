@@ -266,7 +266,7 @@
                 <input type="text" class="form-control" id="memberPw">
             </div>
             <div class="mb-3">
-            	<a href="findIdForm.do">아이디 찾기</a> / <a href="#">비밀번호 재설정</a> 
+            	<a href="findIdForm.do">아이디 찾기</a> / <a href="findPwForm.do">비밀번호 찾기</a> 
             </div>
         </div>
         <div class="modal-footer">

@@ -42,4 +42,13 @@ public interface MemberMapper {
 	 * @param memberId
 	 */
 	int updateLoginDateByMemberId(String memberId);
+
+	/**
+	 * 비밀번호 수정
+	 * @param newMemberPw
+	 * @param memberEmail 
+	 * @return 변경 개수
+	 */
+	int updateMemberPw(@Param("pw") String newMemberPw, @Param("email") String memberEmail);
+
 }

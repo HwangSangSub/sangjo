@@ -14,4 +14,6 @@ public interface MemberService {
 
 	boolean loginLog(String memberId);
 
+	boolean changePassword(String newMemberPw, String memberEmail);
+
 }

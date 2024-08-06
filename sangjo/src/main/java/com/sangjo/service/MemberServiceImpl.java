@@ -72,4 +72,14 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.updateLoginDateByMemberId(memberId) == 1;
 	}
 	
+	/**
+	 * 비밀번호 변경
+	 */
+	@Override
+	public boolean changePassword(String newMemberPw, String memberEmail) {
+		// 비밀번호 암호화 
+		String encodingPw = encoder.encode(newMemberPw);
+		return mapper.updateMemberPw(encodingPw, memberEmail) == 1;
+	}
+	
 }

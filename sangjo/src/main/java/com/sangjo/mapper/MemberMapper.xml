@@ -32,4 +32,10 @@
 		set login_date = sysdate
 		where member_id = #{memberId}
 	</update>
+	
+	<update id="updateMemberPw" parameterType="string">
+		update tbl_member 
+		set member_pw = #{pw}
+		where member_email = #{email}
+	</update>
 </mapper>

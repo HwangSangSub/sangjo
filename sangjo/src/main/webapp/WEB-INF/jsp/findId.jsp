@@ -35,8 +35,8 @@
 <!-- findId End -->
 <script>
   let fundIdInputBox = document.querySelector('#findIdInputBox');
+  let findIdBtn = fundIdInputBox.querySelector('#findIdBtn');
   findIdBtn.addEventListener('click',function(e){
-    let findIdBtn = fundIdInputBox.querySelector('#findIdBtn');
     let emailInput = fundIdInputBox.querySelector('#emailInput');
     let idInput = fundIdInputBox.querySelector('#idInput');
     let url = 'findId.do?memberEmail='+emailInput.value;

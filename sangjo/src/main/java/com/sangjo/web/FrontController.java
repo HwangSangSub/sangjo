@@ -13,9 +13,12 @@ import com.sangjo.common.Control;
 import com.sangjo.control.BoardListControl;
 import com.sangjo.control.CartListControl;
 import com.sangjo.control.CategoryControl;
+import com.sangjo.control.ChangePwControl;
 import com.sangjo.control.EmailCheckControl;
 import com.sangjo.control.FindIdControl;
 import com.sangjo.control.FindIdForm;
+import com.sangjo.control.FindPwControl;
+import com.sangjo.control.FindPwForm;
 import com.sangjo.control.HelpDeskControl;
 import com.sangjo.control.IdCheckControl;
 import com.sangjo.control.IndexControl;
@@ -65,7 +68,10 @@ public class FrontController extends HttpServlet {
 		map.put("/login.do", new LoginControl());// 로그인 (기능)
 		map.put("/logout.do", new LogoutControl());// 로그아웃 (기능)
 		map.put("/findIdForm.do", new FindIdForm()); // 아이디 찾기 폼이동(화면)
-		map.put("/findId.do", new FindIdControl());// 미완성 
+		map.put("/findId.do", new FindIdControl());// 아이디 찾기 (기능)
+		map.put("/findPwForm.do", new FindPwForm());// 비밀번호 찾기 폼이동(화면)
+		map.put("/findPw.do", new FindPwControl());// 비밀번호 찾기 이메일 가전송(기능)
+		map.put("/changePw.do", new ChangePwControl());// 비밀번호 수정
 	}
 
 	@Override
