@@ -100,5 +100,26 @@
 	    <!-- 버전은 안정성을 위해 해당 버전으로한다. -->
 	    <version>2.16.1</version>
 	</dependency>
+    <!-- security -->
+    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-core</artifactId>
+        <version>5.0.0.RELEASE</version>
+    </dependency>
+    
+    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-web</artifactId>
+        <version>5.0.0.RELEASE</version>
+    </dependency>
+    
+    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-config</artifactId>
+        <version>5.0.0.RELEASE</version>
+    </dependency> 
   </dependencies>
 </project>
