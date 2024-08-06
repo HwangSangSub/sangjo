@@ -56,4 +56,10 @@
 		set member_pw = #{pw}
 		where member_email = #{email}
 	</update>
+	
+	<update id="updateVerificationCode" parameterType="string">
+		update tbl_member 
+		set verification_code = #{code}
+		where member_id = #{id}
+	</update>
 </mapper>

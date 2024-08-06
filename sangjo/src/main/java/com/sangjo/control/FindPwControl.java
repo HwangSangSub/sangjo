@@ -27,10 +27,9 @@ public class FindPwControl implements Control {
 		MemberService memberService = new MemberServiceImpl();
 		
 		MemberVO memberVO = memberService.getMemberByEmail(memberEmail);
-		
 		String json = null;
 		if(memberVO != null) {
-			int verificationCode = randomNumMake(memberService,memberVO.getMemberId());
+			int verificationCode = saveRandomNum(memberService,memberVO.getMemberId());
 			json= String.format("{\"%s\":\"%s\"}", "sendEmail", verificationCode);
 			resp.getWriter().print(json);
 			return;
@@ -40,14 +39,13 @@ public class FindPwControl implements Control {
 	}
 	/**
 	 * 서버에 이메일 확인 코드를 저장하기위한 메서드이다.
-	 * 여기서는 실제로 확인코드를 저장하지않고 있는 척하는 코드이므로
-	 * 실사용하고자 하자면 수정해야한다.
+	 * 이후 랜덤 숫자를 반환한다.
 	 * @param memberService
 	 */
-	private int randomNumMake(MemberService memberService, String memberId) {
+	private int saveRandomNum(MemberService memberService, String memberId) {
 		Random random = new Random();
 		int randomNum = random.nextInt(8999999)+1000000;
-		System.out.println("랜덤 숫자가 서버에 저장되었습니다."+randomNum);
+		memberService.saveVerificationCode(memberId,String.format("%d", randomNum));
 		return randomNum;
 	}
 

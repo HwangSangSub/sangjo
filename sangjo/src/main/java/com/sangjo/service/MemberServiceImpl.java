@@ -87,4 +87,12 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.updateMemberPw(encodingPw, memberEmail) == 1;
 	}
 	
+	/**
+	 * 서버에 이메일 인증 코드를 저장한다.
+	 */
+	@Override
+	public boolean saveVerificationCode(String memberId, String randomNum) {
+		return mapper.updateVerificationCode(memberId,randomNum) == 1;
+	}
+	
 }

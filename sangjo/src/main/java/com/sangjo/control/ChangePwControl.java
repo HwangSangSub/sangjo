@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sangjo.common.Control;
 import com.sangjo.service.MemberService;
 import com.sangjo.service.MemberServiceImpl;
+import com.sangjo.vo.MemberVO;
 
 public class ChangePwControl implements Control {
 
@@ -35,7 +36,7 @@ public class ChangePwControl implements Control {
 		
 		String json;
 		// 인증 코드 확인하고 맞으면 비밀번호 수정 실행하기
-		if(checkVerificationCode(verificationCode)) {
+		if(checkVerificationCode(verificationCode, memberEmail,memberService)) {
 			if(memberService.changePassword(newMemberPw,memberEmail)) {
 				json= String.format("{\"%s\":\"%s\"}", "changePassword", "Success");
 				resp.getWriter().print(json);
@@ -54,13 +55,14 @@ public class ChangePwControl implements Control {
 	 * @param verificationCode
 	 * @return 인증 코드 확인결과
 	 */
-	private boolean checkVerificationCode(String verificationCode) {
-		String serverVerificationCode = "서버에서의 인증코드";
+	private boolean checkVerificationCode(String verificationCode,String memberEmail, MemberService memberService) {
+		MemberVO memberVO = memberService.getMemberByEmail(memberEmail);
+		String serverVerificationCode = memberVO.getVerificationCode();
 		if(serverVerificationCode.equals(verificationCode))
 		{
 			return true;
 		}
-		return true;
+		return false;
 	}
 	
 	
