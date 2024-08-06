@@ -32,16 +32,22 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO getMemberByLogin(String memberId, String memberPw) {
 		MemberVO memberVO = mapper.selectMemberById(memberId);
-		
+		// 아이디가 틀린경우
+		if(memberVO == null) {
+			return null;
+		}
 		// 입력한대상과 비밀번호 복호화로 비교하기 
 		if(encoder.matches(memberPw, memberVO.getMemberPw())) {
-			// 로그인 성공했으니 객체를 반환한다.
+			// 객체를 반환한다.
 			return memberVO;
 		}
 		// 로그인 실패
 		return null;
 	}
 
+	/**
+	 * 회원가입 서비스
+	 */
 	@Override
 	public boolean join(MemberVO memberVO) {
 		// 비밀번호 암호화 
@@ -53,6 +59,32 @@ public class MemberServiceImpl implements MemberService{
 	public boolean modMember(MemberVO member) {
 		// 회원정보수정
 		return mapper.updateMember(member) == 1;
+	}
+	
+	/**
+	 * 이메일로 회원 정보 가져오기
+	 */
+	@Override
+	public MemberVO getMemberByEmail(String memberEmail) {
+		return mapper.selectMemberByEamil(memberEmail);
+	}
+	
+	/**
+	 * 최신 로그인 기록
+	 */
+	@Override
+	public boolean loginLog(String memberId) {
+		return mapper.updateLoginDateByMemberId(memberId) == 1;
+	}
+	
+	/**
+	 * 비밀번호 변경
+	 */
+	@Override
+	public boolean changePassword(String newMemberPw, String memberEmail) {
+		// 비밀번호 암호화 
+		String encodingPw = encoder.encode(newMemberPw);
+		return mapper.updateMemberPw(encodingPw, memberEmail) == 1;
 	}
 	
 }

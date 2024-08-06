@@ -12,4 +12,10 @@ public interface MemberService {
 	
 	boolean modMember(MemberVO member);
 
+	MemberVO getMemberByEmail(String memberEmail);
+
+	boolean loginLog(String memberId);
+
+	boolean changePassword(String newMemberPw, String memberEmail);
+
 }

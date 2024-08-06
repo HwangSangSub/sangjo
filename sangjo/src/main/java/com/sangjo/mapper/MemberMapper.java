@@ -31,4 +31,27 @@ public interface MemberMapper {
 	int insertMember(MemberVO memberVO);
 	
 	int updateMember(MemberVO member);
+
+	/**
+	 * 이메일을 통해 회원객체를 반환한다.
+	 * @param memberEmail
+	 * @return 회원 객체
+	 */
+	MemberVO selectMemberByEamil(String memberEmail);
+
+	/**
+	 * 아이디 값을 통해 login_date를 수정한다.
+	 * @param memberId
+	 */
+	int updateLoginDateByMemberId(String memberId);
+
+	/**
+	 * 비밀번호 수정
+	 * @param newMemberPw
+	 * @param memberEmail 
+	 * @return 변경 개수
+	 */
+	int updateMemberPw(@Param("pw") String newMemberPw, @Param("email") String memberEmail);
+
+>>>>>>> branch 'master' of https://github.com/HwangSangSub/sangjo.git
 }

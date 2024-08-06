@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="container px-0">
         <nav class="navbar navbar-light bg-white navbar-expand-xl">
-            <a href="index.html" class="navbar-brand"><h1 class="text-primary display-6">상조쇼핑몰</h1></a>
+            <a href="index.do" class="navbar-brand"><h1 class="text-primary display-6">상조쇼핑몰</h1></a>
             <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars text-primary"></span>
             </button>
@@ -97,6 +97,8 @@
                 <div class="input-group w-50 mx-auto d-flex">
                     <label for="memberEmail" class="col-form-label">이메일</label>
                     <input type="text" class="form-control" id="memberEmail" placeholder="이메일 작성">
+                    <input type="button" class="btn" id="cleanEmailCheckBtn" value="재입력"></input>
+                    <input type="button" class="btn" id="emailCheckBtn" value="이메일 체크"></input>
                 </div>
             </div>
             <!-- 주소 입력란 -->
@@ -153,6 +155,7 @@
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('addressCode').value = data.zonecode;
                 document.getElementById("addressMain").value = roadAddr;
+                joinValueCheck();
             }
         }).open();
     }
@@ -164,6 +167,8 @@
     // 버튼 
     let idCheckBtn = joinModal.querySelector('#idCheckBtn');
     let cleanIdCheckBtn = joinModal.querySelector("#cleanIdCheckBtn");
+    let emailCheckBtn = joinModal.querySelector('#emailCheckBtn');
+    let cleanEmailCheckBtn = joinModal.querySelector("#cleanEmailCheckBtn");
     // Input 테그 회원
     let memberIdInput = joinModal.querySelector("#memberId");
     let memberPwInput = joinModal.querySelector("#memberPw");
@@ -184,6 +189,20 @@
         let memberIdInput = joinModal.querySelector("#memberId");
         memberIdInput.readOnly = false;
         memberIdInput.value = '';
+        joinValueCheck();
+    })
+    
+    /* 이메일 중복 체크 */
+    emailCheckBtn.addEventListener('click',function(e){
+        let memberEmailInput = joinModal.querySelector("#memberEmail");
+        memberService.emailCheck(memberEmailInput,joinValueCheck);
+    })
+
+    cleanEmailCheckBtn.addEventListener('click',function(e){
+        let memberEmailInput = joinModal.querySelector("#memberEmail");
+        memberEmailInput.readOnly = false;
+        memberEmailInput.value = '';
+        joinValueCheck();
     })
     
     /* 회원 가입 입력값 확인과 중복 체크 여부 확인 */
@@ -198,7 +217,7 @@
             memberPwInput.value.length > 0 &&
             memberNameInput.value.length > 0 &&
             memberPhoneInput.value.length > 0 &&
-            memberEmailInput.value.length > 0 &&
+            memberEmailInput.readOnly &&
             addressCodeInput.value.length > 0 &&
             addressMainInput.value.length > 0 &&
             addressDetailInput.value.length > 0 
@@ -238,7 +257,6 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form>
             <div class="mb-3">
                 <label for="memberId" class="col-form-label">아이디</label>
                 <input type="text" class="form-control" id="memberId">
@@ -246,8 +264,10 @@
             <div class="mb-3">
                 <label for="memberPw" class="col-form-label">비밀번호</label>
                 <input type="text" class="form-control" id="memberPw">
-                </div>
-            </form>
+            </div>
+            <div class="mb-3">
+            	<a href="findIdForm.do">아이디 찾기</a> / <a href="findPwForm.do">비밀번호 찾기</a> 
+            </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -324,11 +344,38 @@
                         alert("이미 사용되고 있는 아이디입니다.");
                     }else{
                         alert("사용가능한 아이디 입니다.");
-                    memberIdInput.readOnly = true;
-                    // 자바스크립트 코드로 값을 넣는 방식은 input 이벤트로 
-                    // 취급되지 않아 여기서 회원 가입 값 체크하는 메서드를 
-                    // 실행시켰다.
-                    joinValueCheck();
+                        memberIdInput.readOnly = true;
+                        // 자바스크립트 코드로 값을 넣는 방식은 input 이벤트로 
+                        // 취급되지 않아 여기서 회원 가입 값 체크하는 메서드를 
+                        // 실행시켰다.
+                        joinValueCheck();
+                    }
+                })
+            },
+            emailCheck(memberEmailInput,joinValueCheck){
+                if(memberEmailInput.value.length < 1  ){
+                    alert("입력된 값이 없습니다.");
+                    return;
+                }
+                
+                let url = "emailCheck.do?"+
+                        "memberEmail=" + memberEmailInput.value;
+                console.log(url);
+                
+                fetch(url)
+                .then(result => {
+                    return result.json();
+                })
+                .then(function(result){
+                    if(result.emailCheckResult == "Faild"){
+                        alert("이미 사용되고 있는 이메일입니다.");
+                    }else{
+                        alert("사용가능한 이메일 입니다.");
+                        memberEmailInput.readOnly = true;
+                        // 자바스크립트 코드로 값을 넣는 방식은 input 이벤트로 
+                        // 취급되지 않아 여기서 회원 가입 값 체크하는 메서드를 
+                        // 실행시켰다.
+                        joinValueCheck();
                     }
                 })
             },
