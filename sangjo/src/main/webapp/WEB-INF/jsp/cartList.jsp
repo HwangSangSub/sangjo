@@ -113,7 +113,24 @@
                         <h5 class="mb-0 ps-4 me-4">총 합계</h5>
                         <p class="mb-0 pe-4">${totalAmount}원</p>
                     </div>
-                    <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">결제 진행</button>
+                     <!-- 결제 진행 버튼을 포함한 form 추가 -->
+                    <form action="orderList.jsp" method="post">
+                        <!-- 장바구니 항목 데이터 전송 -->
+                        <input type="hidden" name="grandTotal" value="${grandTotal}">
+                        <input type="hidden" name="shippingCost" value="${shippingCost}">
+                        <input type="hidden" name="totalAmount" value="${totalAmount}">
+                        <c:forEach var="item" items="${cartList}">
+                            <input type="hidden" name="cartNos" value="${item.cartNo}">
+                            <input type="hidden" name="productNos" value="${item.productNo}">
+                            <input type="hidden" name="productNames" value="${item.productName}">
+                            <input type="hidden" name="productPrices" value="${item.productPrice}">
+                            <input type="hidden" name="quantities" value="${item.quantity}">
+                            <input type="hidden" name="productImgs" value="${item.productImg}">
+                        </c:forEach>
+                        <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="submit">
+                        <a href="orderList.do">결제 진행</a></button>
+                    </form>
+                    
                 </div>
             </div>
         </div>

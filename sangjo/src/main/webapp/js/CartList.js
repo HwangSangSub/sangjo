@@ -63,12 +63,13 @@ function remove_proNo(e) {
 		removeCart(e);
 		e.target.parentElement.parentElement.remove();
 	}
+	
 }
 function removeCart(e) {
 
-	
+
 	let cartNo = e.target.dataset.cartNo;
-	
+
 
 	let url = "cartRemove.do?cartNo=" + cartNo;
 
