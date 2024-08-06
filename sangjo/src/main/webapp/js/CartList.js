@@ -55,31 +55,30 @@ function remove_proNo(e) {
 	if (e.target.tagName == 'I') {
 
 		console.dir(e.target.parentElement.dataset.productId);
+		removeCart(e);
 		e.target.parentElement.parentElement.parentElement.remove();
 	}
 	else if (e.target.tagName == 'BUTTON') {
 		console.dir(e.target.dataset.productId);
+		removeCart(e);
 		e.target.parentElement.parentElement.remove();
 	}
-	
-	let url = "cartRemove.do";
-
-	document.querySelector('#uploadBtn').onclick = function(e) {
-		fetch(url) // promise객체, then(), catch()
-			.then(function(result) {
-				console.log(result);
-				result.json();
-			})
-			.then(function(result) {
-				console.log(result);
-			})
-			.catch(function(err) {
-				console.error(err);
-			})
-	}
 }
+function removeCart(e) {
+
+	
+	let cartNo = e.target.dataset.cartNo;
+	
+
+	let url = "cartRemove.do?cartNo=" + cartNo;
 
 
+	fetch(url) // promise객체, then(), catch()
 
-
-
+		.then(function(result) {
+			console.log(result);
+		})
+		.catch(function(err) {
+			console.error(err);
+		})
+}

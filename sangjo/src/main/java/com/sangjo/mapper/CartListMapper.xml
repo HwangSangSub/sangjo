@@ -5,6 +5,12 @@
 
 <mapper namespace="com.sangjo.mapper.CartListMapper">
 
+
+    <delete id="deleteCartItem" parameterType="String">
+        DELETE FROM tbl_cart 
+        WHERE cart_no = #{cartNo}
+    </delete>
+
 	<select id="selectCartList"
 		resultType="com.sangjo.vo.CartListVO" parameterType="String">
 		SELECT c.cart_no ,
@@ -19,8 +25,6 @@
 		ON c.product_no = p.product_no
 		WHERE c.member_id = #{MemberId}
 	</select>
-	    <delete id="removeCartLIst" parameterType="int" >
-        DELETE FROM tbl_cart
-        WHERE cart_no = #{cartNo}
-    </delete>
+
+
 </mapper>
