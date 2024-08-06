@@ -13,8 +13,13 @@ import com.sangjo.common.Control;
 import com.sangjo.control.BoardListControl;
 import com.sangjo.control.CartListControl;
 import com.sangjo.control.CategoryControl;
+import com.sangjo.control.FindIdControl;
 import com.sangjo.control.HelpDeskControl;
+import com.sangjo.control.IdCheckControl;
 import com.sangjo.control.IndexControl;
+import com.sangjo.control.JoinControl;
+import com.sangjo.control.LoginControl;
+import com.sangjo.control.LogoutControl;
 import com.sangjo.control.MyPageControl;
 import com.sangjo.control.OrderControl;
 import com.sangjo.control.OrderListControl;
@@ -50,6 +55,13 @@ public class FrontController extends HttpServlet {
 		map.put("/boardList.do", new BoardListControl()); // 게시판 가져오기(기능)
 
 		map.put("/myPage.do", new MyPageControl());// 마이페이지(화면)
+		
+		/*회원 파트*/
+		map.put("/idCheck.do", new IdCheckControl());// 아이디 중복체크 (기능)
+		map.put("/join.do", new JoinControl());// 회원가입 (기능)
+		map.put("/login.do", new LoginControl());// 로그인 (기능)
+		map.put("/logout.do", new LogoutControl());// 로그아웃 (기능)
+		map.put("/findId.do", new FindIdControl());// 미완성 
 	}
 
 	@Override
