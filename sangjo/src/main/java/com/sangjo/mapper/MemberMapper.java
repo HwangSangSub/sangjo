@@ -53,5 +53,4 @@ public interface MemberMapper {
 	 */
 	int updateMemberPw(@Param("pw") String newMemberPw, @Param("email") String memberEmail);
 
->>>>>>> branch 'master' of https://github.com/HwangSangSub/sangjo.git
 }
