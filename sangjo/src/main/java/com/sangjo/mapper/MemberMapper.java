@@ -29,4 +29,6 @@ public interface MemberMapper {
 	 * @return 추가된 숫자
 	 */
 	int insertMember(MemberVO memberVO);
+	
+	int updateMember(MemberVO member);
 }

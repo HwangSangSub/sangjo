@@ -22,6 +22,7 @@ import com.sangjo.control.IndexControl;
 import com.sangjo.control.JoinControl;
 import com.sangjo.control.LoginControl;
 import com.sangjo.control.LogoutControl;
+import com.sangjo.control.MemberModControl;
 import com.sangjo.control.MyPageControl;
 import com.sangjo.control.OrderControl;
 import com.sangjo.control.OrderListControl;
@@ -66,6 +67,7 @@ public class FrontController extends HttpServlet {
 
 		/* 마이페이지 */
 		map.put("/myPage.do", new MyPageControl());// 마이페이지(화면)
+		map.put("/memberMod.do", new MemberModControl());// 마이페이지-회원정보수정(기능)
 		
 		/*회원 파트*/
 		map.put("/idCheck.do", new IdCheckControl());// 아이디 중복체크 (기능)

@@ -49,5 +49,10 @@ public class MemberServiceImpl implements MemberService{
 		memberVO.setMemberPw(encodingPw);
 		return mapper.insertMember(memberVO) == 1;
 	}
+	@Override
+	public boolean modMember(MemberVO member) {
+		// 회원정보수정
+		return mapper.updateMember(member) == 1;
+	}
 	
 }

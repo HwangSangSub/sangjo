@@ -21,4 +21,23 @@
 		INSERT INTO tbl_member (member_id, member_pw, member_name, member_phone, member_email)
 		VALUES(#{memberId}, #{memberPw}, #{memberName}, #{memberPhone}, #{memberEmail})
 	</insert>
+	
+	<update id="updateMember" parameterType="com.sangjo.vo.MemberVO">
+		UPDATE tbl_member
+		<set>
+			<if test="memberName != null">
+				member_name = #{memberName}
+			</if>
+			<if test="memberPhone != null">
+				, member_phone = #{memberPhone}
+			</if>
+			<if test="memberEmail != null">
+				, member_email = #{memberEmail}
+			</if>
+			<if test="memberPw != ''">
+				, member_pw = #{memberPw}
+			</if>
+		</set>
+		WHERE member_id = #{memberId}
+	</update>
 </mapper>
