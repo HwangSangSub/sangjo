@@ -52,7 +52,7 @@
 							<td>
 								<div class="input-group quantity mt-4" style="width: 100px;">
 									<div class="input-group-btn">
-										<button 
+										<button
 											class="btn btn-sm btn-minus rounded-circle bg-light border"
 											data-product-id="${item.productNo}">
 											<i class="fa fa-minus"></i>
@@ -63,7 +63,7 @@
 										value="${item.quantity}" readonly>
 									<!-- 수량은 수정할 수 없도록 설정 -->
 									<div class="input-group-btn">
-										<button 
+										<button
 											class="btn btn-sm btn-plus rounded-circle bg-light border"
 											data-product-id="${item.productNo}">
 											<i class="fa fa-plus"></i>
@@ -75,7 +75,8 @@
 								<p class="mb-0 mt-4">${itemTotal}원</p>
 							</td>
 							<td>
-								<button onclick='remove_proNo(event)' class="btn btn-md rounded-circle bg-light border mt-4"
+								<button onclick='remove_proNo(event)'
+									class="btn btn-md rounded-circle bg-light border mt-4"
 									data-product-id="${item.productNo}">
 									<i class="fa fa-times text-danger"></i>
 								</button>
@@ -90,7 +91,6 @@
 					</c:forEach>
 					<c:set var="shippingCost" value="3000" />
 					<c:set var="totalAmount" value="${grandTotal + shippingCost}" />
-
 				</tbody>
 			</table>
 		</div>
@@ -130,7 +130,6 @@
 					<button
 						class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
 						type="button">결제 진행</button>
-
 				</div>
 			</div>
 		</div>

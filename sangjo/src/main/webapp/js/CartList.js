@@ -51,20 +51,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-	function remove_proNo(e) {
-		if (e.target.tagName == 'I'){
-			
+function remove_proNo(e) {
+	if (e.target.tagName == 'I') {
+
 		console.dir(e.target.parentElement.dataset.productId);
 		e.target.parentElement.parentElement.parentElement.remove();
-		}
-		else if (e.target.tagName == 'BUTTON') {
+	}
+	else if (e.target.tagName == 'BUTTON') {
 		console.dir(e.target.dataset.productId);
 		e.target.parentElement.parentElement.remove();
-			
-		}
-		
-		
 	}
+
+
+}
 
 
 
