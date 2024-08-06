@@ -10,4 +10,10 @@ public interface MemberService {
 
 	boolean join(MemberVO memberVO);
 
+	MemberVO getMemberByEmail(String memberEmail);
+
+	boolean loginLog(String memberId);
+
+	boolean changePassword(String newMemberPw, String memberEmail);
+
 }

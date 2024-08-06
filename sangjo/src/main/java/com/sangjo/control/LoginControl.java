@@ -42,6 +42,9 @@ public class LoginControl implements Control {
 		
 		String json;
 		if(memberVO !=null) {
+			// 로그인이 성공 했으니 로그인 로그기록도 남긴다.
+			memberService.loginLog(memberVO.getMemberId());
+			
 			session.setAttribute("member", memberVO);
 			session.setMaxInactiveInterval(60 * 60);// 1시간 동안 유지됨
 			
