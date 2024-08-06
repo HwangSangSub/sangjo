@@ -19,7 +19,7 @@
 		ON c.product_no = p.product_no
 		WHERE c.member_id = #{MemberId}
 	</select>
-	    <delete id="removeCartLIst" parameterType="String" >
+	    <delete id="removeCartLIst" parameterType="int" >
         DELETE FROM tbl_cart
         WHERE cart_no = #{cartNo}
     </delete>
