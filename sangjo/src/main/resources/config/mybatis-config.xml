@@ -3,24 +3,27 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-  <settings>
-	<setting name="mapUnderscoreToCamelCase" value = "true"/>
-  </settings>
-  <environments default="development">
-    <environment id="development">
-      <transactionManager type="JDBC"/>
-      <dataSource type="POOLED">
-        <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-        <!-- DB 대상 컴퓨터 지정 (내컴퓨터DB를 쓸거라면 냅두자) -->
-        <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-        <!-- DB 사용자의 아이디와 비번 -->
-        <property name="username" value="sangjo"/>
-        <property name="password" value="sangjo"/>
-      </dataSource>
-    </environment>
-  </environments>
-  <mappers>
-    <!-- 페키지를 통해 해당 페키지의 Mapper.xml 을 자동으로 등록할 수 있다 -->
-	<package name="com.sangjo.mapper"/>
-  </mappers>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver"
+					value="oracle.jdbc.driver.OracleDriver" />
+				<!-- DB 대상 컴퓨터 지정 (내컴퓨터DB를 쓸거라면 냅두자) -->
+				<property name="url"
+					value="jdbc:oracle:thin:@localhost:1521:xe" />
+				<!-- DB 사용자의 아이디와 비번 -->
+				<property name="username" value="sangjo" />
+				<property name="password" value="sangjo" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<!-- 페키지를 통해 해당 페키지의 Mapper.xml 을 자동으로 등록할 수 있다 -->
+		<package name="com.sangjo.mapper" />
+	</mappers>
 </configuration>

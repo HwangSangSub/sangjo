@@ -30,7 +30,7 @@ DROP SEQUENCE cart_seq;
 ------------------------- 테이블 생성(tbl_member)
 CREATE TABLE tbl_member (
 	member_id	VARCHAR2(20)		NOT NULL,
-	member_pw	VARCHAR2(20)		NOT NULL,
+	member_pw	VARCHAR2(100)		NOT NULL,
 	member_name	VARCHAR2(20)		NOT NULL,
 	member_phone	VARCHAR2(20)		NOT NULL,
 	member_email	VARCHAR2(30)		NOT NULL,
@@ -304,14 +304,15 @@ CREATE SEQUENCE cart_seq;
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
 ------------------------------ 샘플데이터 넣기(tbl_member)
+-- 비밀번호는 1111로 통일하였다.
 INSERT INTO tbl_member (member_id, member_pw, member_name, member_phone, member_email)
-VALUES('admin', '1111', '상주', '010-1111-1111', 'admin@sangjo.com');
+VALUES('admin', '$2a$10$I4eM/h.cd4C1QXWm2XVjPurdOmKE50EvNJtaGXfQkfB.h6EMrFMOC', '상주', '010-1111-1111', 'admin@sangjo.com');
 INSERT INTO tbl_member (member_id, member_pw, member_name, member_phone, member_email)
-VALUES('user01', '1111', '김꽃님', '010-1111-1111', 'user01@sangjo.com');
+VALUES('user01', '$2a$10$I4eM/h.cd4C1QXWm2XVjPurdOmKE50EvNJtaGXfQkfB.h6EMrFMOC', '김꽃님', '010-1111-1111', 'user01@sangjo.com');
 INSERT INTO tbl_member (member_id, member_pw, member_name, member_phone, member_email)
-VALUES('user02', '1111', '김햇님', '010-1111-1111', 'user02@sangjo.com');
+VALUES('user02', '$2a$10$I4eM/h.cd4C1QXWm2XVjPurdOmKE50EvNJtaGXfQkfB.h6EMrFMOC', '김햇님', '010-1111-1111', 'user02@sangjo.com');
 INSERT INTO tbl_member (member_id, member_pw, member_name, member_phone, member_email)
-VALUES('user03', '1111', '김달님', '010-1111-1111', 'user03@sangjo.com');
+VALUES('user03', '$2a$10$I4eM/h.cd4C1QXWm2XVjPurdOmKE50EvNJtaGXfQkfB.h6EMrFMOC', '김달님', '010-1111-1111', 'user03@sangjo.com');
 
 SELECT *
 FROM tbl_member;

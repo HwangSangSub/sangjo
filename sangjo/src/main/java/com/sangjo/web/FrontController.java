@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sangjo.common.Control;
 import com.sangjo.control.BoardListControl;
 import com.sangjo.control.CartListControl;
+import com.sangjo.control.CartRemoveControl;
 import com.sangjo.control.CategoryControl;
 import com.sangjo.control.FindIdControl;
 import com.sangjo.control.HelpDeskControl;
@@ -47,6 +48,7 @@ public class FrontController extends HttpServlet {
 		map.put("/category.do", new CategoryControl()); // 카테고리 (기능)
 
 		map.put("/cartList.do", new CartListControl()); // 장바구니 (화면)
+		map.put("/cartRemove.do", new CartRemoveControl()); // 장바구니 (삭제)
 
 		map.put("/orderList.do", new OrderListControl()); // 주문 (화면)
 		map.put("/order.do", new OrderControl()); // 주문 (기능)
