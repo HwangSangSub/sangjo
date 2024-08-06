@@ -13,6 +13,7 @@ import com.sangjo.common.Control;
 import com.sangjo.control.BoardListControl;
 import com.sangjo.control.CartListControl;
 import com.sangjo.control.CategoryControl;
+import com.sangjo.control.EmailCheckControl;
 import com.sangjo.control.FindIdControl;
 import com.sangjo.control.FindIdForm;
 import com.sangjo.control.HelpDeskControl;
@@ -59,6 +60,7 @@ public class FrontController extends HttpServlet {
 		
 		/*회원 파트*/
 		map.put("/idCheck.do", new IdCheckControl());// 아이디 중복체크 (기능)
+		map.put("/emailCheck.do", new EmailCheckControl());
 		map.put("/join.do", new JoinControl());// 회원가입 (기능)
 		map.put("/login.do", new LoginControl());// 로그인 (기능)
 		map.put("/logout.do", new LogoutControl());// 로그아웃 (기능)
