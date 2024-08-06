@@ -26,8 +26,6 @@
 	</div>
 </div>
 <!-- Modal Search End -->
-
-
 <!-- Single Page Header start -->
 <div class="container-fluid page-header py-5">
 	<h1 class="text-center text-white display-6">Shop</h1>
@@ -42,6 +40,7 @@
 
 <!-- Fruits Shop Start-->
 <div class="container-fluid fruite py-5">
+
 	<div class="container py-5">
 		<h1 class="mb-4">Fresh fruits shop</h1>
 		<div class="row g-4">

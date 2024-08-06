@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.sangjo.common.Control;
 import com.sangjo.control.BoardListControl;
 import com.sangjo.control.CartListControl;
+import com.sangjo.control.CartRemoveControl;
 import com.sangjo.control.CategoryControl;
 import com.sangjo.control.ChangePwControl;
 import com.sangjo.control.EmailCheckControl;
+import com.sangjo.control.ErrorControl;
 import com.sangjo.control.FindIdControl;
 import com.sangjo.control.FindIdForm;
 import com.sangjo.control.FindPwControl;
@@ -45,20 +47,29 @@ public class FrontController extends HttpServlet {
 		map.put("/testPage.do", new TestPageControl());
 		// 템플릿 가져온 부분을 화면에 보이게 처리
 
+		/* 메인 */
 		map.put("/index.do", new IndexControl());// 메인페이지-상품목록 (화면)
+		
+		/* 상품 */
 		map.put("/productList.do", new ProductListControl()); // 상품목록조회 - (기능)
 		map.put("/productInfo.do", new ProductInfoControl()); // 상품상세 - (화면)
 
+		/* 카테고리 */
 		map.put("/category.do", new CategoryControl()); // 카테고리 (기능)
 
+		/* 장바구니 */
 		map.put("/cartList.do", new CartListControl()); // 장바구니 (화면)
+		map.put("/cartRemove.do", new CartRemoveControl()); // 장바구니 (삭제)
 
+		/* 주문 */
 		map.put("/orderList.do", new OrderListControl()); // 주문 (화면)
 		map.put("/order.do", new OrderControl()); // 주문 (기능)
 
+		/* 고객센터 */
 		map.put("/helpDesk.do", new HelpDeskControl()); // 고객센터
 		map.put("/boardList.do", new BoardListControl()); // 게시판 가져오기(기능)
 
+		/* 마이페이지 */
 		map.put("/myPage.do", new MyPageControl());// 마이페이지(화면)
 		
 		/*회원 파트*/
@@ -72,6 +83,10 @@ public class FrontController extends HttpServlet {
 		map.put("/findPwForm.do", new FindPwForm());// 비밀번호 찾기 폼이동(화면)
 		map.put("/findPw.do", new FindPwControl());// 비밀번호 찾기 이메일 가전송(기능)
 		map.put("/changePw.do", new ChangePwControl());// 비밀번호 수정
+		map.put("/findId.do", new FindIdControl());// 미완성 
+		
+		/* 오류 */
+		map.put("/errorPage.do", new ErrorControl());// 미완성 
 	}
 
 	@Override
