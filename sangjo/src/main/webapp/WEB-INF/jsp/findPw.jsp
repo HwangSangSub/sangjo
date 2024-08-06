@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<head>
+  <style>
+    #changePwInputBox{
+      display: none;
+    }
+  </style>
+</head>
+
 <!-- Single Page Header start -->
 <div class="container-fluid page-header py-5">
     <h1 class="text-center text-white display-6">비밀번호 찾기</h1>
@@ -52,6 +61,8 @@
         alert("해당 이메일에대한 회원은 없습니다.");
       }else{
         alert("인증코드는 " + result.sendEmail + "입니다.");
+        findPwInputBox.style.display = "none";
+        changePwInputBox.style.display = "block";
       }
     })
   })
