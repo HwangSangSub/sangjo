@@ -99,7 +99,7 @@
                         </h1>
                         <div class="d-flex justify-content-between mb-4">
                             <h5 class="mb-0 me-4">소계:</h5>
-                            <p class="mb-0">${grandTotal}원</p>
+                            <p id="grandTotal"class="mb-0">${grandTotal}원</p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h5 class="mb-0 me-4">배송비</h5>

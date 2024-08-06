@@ -29,7 +29,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	});
 
-	function updateGrandTotal() {
+	
+
+
+});
+function updateGrandTotal() {
 		let grandTotal = 0;
 
 		// 각 아이템의 총액을 계산하여 grandTotal에 추가
@@ -44,15 +48,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		const totalAmount = grandTotal + shippingCost;
 
 		// 소계와 총합 업데이트
-		document.querySelector('.bg-light .display-6.mb-4').textContent = grandTotal + ' 원';
+		document.querySelector('#grandTotal').textContent = grandTotal + ' 원';
 		document.querySelector('.bg-light .py-4.mb-4.border-top.border-bottom.d-flex.justify-content-between p').textContent = totalAmount + ' 원';
 	}
-
-
-});
-
 function remove_proNo(e) {
-	if (e.target.tagName == 'I') {
+	if (e.target.tagName == 'I' ) {
 
 		console.dir(e.target.parentElement.dataset.productId);
 		removeCart(e);
@@ -63,6 +63,7 @@ function remove_proNo(e) {
 		removeCart(e);
 		e.target.parentElement.parentElement.remove();
 	}
+	updateGrandTotal();
 	
 }
 function removeCart(e) {
@@ -83,3 +84,5 @@ function removeCart(e) {
 			console.error(err);
 		})
 }
+	
+// 총 계산하는 함수를 만들어서 삭제 후 남은 것들 계산하기 

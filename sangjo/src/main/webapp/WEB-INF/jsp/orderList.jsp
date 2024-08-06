@@ -81,8 +81,8 @@
 												style="width: 90px; height: 90px;" alt="">
 										</div>
 									</th>
-									<td class="py-5">멋진 브로콜리</td>
-									<td class="py-5">$69.00</td>
+									<td class="py-5">멋쟁이 토마토</td>
+									<td class="py-5">$999.00</td>
 									<td class="py-5">2</td>
 									<td class="py-5">$138.00</td>
 								</tr>
@@ -94,7 +94,7 @@
 												style="width: 90px; height: 90px;" alt="">
 										</div>
 									</th>
-									<td class="py-5">감자</td>
+									<td class="py-5">나는야 감자</td>
 									<td class="py-5">$69.00</td>
 									<td class="py-5">2</td>
 									<td class="py-5">$138.00</td>
@@ -107,7 +107,7 @@
 												style="width: 90px; height: 90px;" alt="">
 										</div>
 									</th>
-									<td class="py-5">큰 바나나</td>
+									<td class="py-5">원숭이 밥</td>
 									<td class="py-5">$69.00</td>
 									<td class="py-5">2</td>
 									<td class="py-5">$138.00</td>
