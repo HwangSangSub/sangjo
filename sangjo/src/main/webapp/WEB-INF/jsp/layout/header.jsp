@@ -238,7 +238,6 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form>
             <div class="mb-3">
                 <label for="memberId" class="col-form-label">아이디</label>
                 <input type="text" class="form-control" id="memberId">
@@ -246,8 +245,10 @@
             <div class="mb-3">
                 <label for="memberPw" class="col-form-label">비밀번호</label>
                 <input type="text" class="form-control" id="memberPw">
-                </div>
-            </form>
+            </div>
+            <div class="mb-3">
+            	<a href="findIdForm.do">아이디 찾기</a> / <a href="#">비밀번호 재설정</a> 
+            </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

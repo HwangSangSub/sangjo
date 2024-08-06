@@ -14,6 +14,7 @@ import com.sangjo.control.BoardListControl;
 import com.sangjo.control.CartListControl;
 import com.sangjo.control.CategoryControl;
 import com.sangjo.control.FindIdControl;
+import com.sangjo.control.FindIdForm;
 import com.sangjo.control.HelpDeskControl;
 import com.sangjo.control.IdCheckControl;
 import com.sangjo.control.IndexControl;
@@ -61,6 +62,7 @@ public class FrontController extends HttpServlet {
 		map.put("/join.do", new JoinControl());// 회원가입 (기능)
 		map.put("/login.do", new LoginControl());// 로그인 (기능)
 		map.put("/logout.do", new LogoutControl());// 로그아웃 (기능)
+		map.put("/findIdForm.do", new FindIdForm()); // 아이디 찾기 폼이동(화면)
 		map.put("/findId.do", new FindIdControl());// 미완성 
 	}
 

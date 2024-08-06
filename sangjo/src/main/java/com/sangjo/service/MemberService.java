@@ -10,4 +10,6 @@ public interface MemberService {
 
 	boolean join(MemberVO memberVO);
 
+	MemberVO getMemberByEmail(String memberEmail);
+
 }

@@ -42,12 +42,23 @@ public class MemberServiceImpl implements MemberService{
 		return null;
 	}
 
+	/**
+	 * 회원가입 서비스
+	 */
 	@Override
 	public boolean join(MemberVO memberVO) {
 		// 비밀번호 암호화 
 		String encodingPw = encoder.encode(memberVO.getMemberPw());
 		memberVO.setMemberPw(encodingPw);
 		return mapper.insertMember(memberVO) == 1;
+	}
+	
+	/**
+	 * 이메일로 회원 정보 가져오기
+	 */
+	@Override
+	public MemberVO getMemberByEmail(String memberEmail) {
+		return mapper.selectMemberByEamil(memberEmail);
 	}
 	
 }

@@ -29,4 +29,11 @@ public interface MemberMapper {
 	 * @return 추가된 숫자
 	 */
 	int insertMember(MemberVO memberVO);
+
+	/**
+	 * 이메일을 통해 회원객체를 반환한다.
+	 * @param memberEmail
+	 * @return 회원 객체
+	 */
+	MemberVO selectMemberByEamil(String memberEmail);
 }

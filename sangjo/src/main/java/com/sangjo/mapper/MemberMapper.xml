@@ -9,12 +9,17 @@
 		where member_id = #{memberId}
 	</select>
 	
-	<!-- 로그인 -->
 	<select id="selectMemberByIdPw" resultType="com.sangjo.vo.MemberVO">
 		select * 
 		from tbl_member
 		where member_id = #{id}
 		and member_pw = #{pw}
+	</select>
+	
+	<select id="selectMemberByEamil" parameterType="string" resultType="com.sangjo.vo.MemberVO">
+		select * 
+		from tbl_member
+		where member_email = #{memberEmail}
 	</select>
 	
 	<insert id="insertMember" parameterType="com.sangjo.vo.MemberVO">
