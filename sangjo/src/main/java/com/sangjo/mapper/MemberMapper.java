@@ -36,4 +36,10 @@ public interface MemberMapper {
 	 * @return 회원 객체
 	 */
 	MemberVO selectMemberByEamil(String memberEmail);
+
+	/**
+	 * 아이디 값을 통해 login_date를 수정한다.
+	 * @param memberId
+	 */
+	int updateLoginDateByMemberId(String memberId);
 }

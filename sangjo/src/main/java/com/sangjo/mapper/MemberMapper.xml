@@ -26,4 +26,10 @@
 		INSERT INTO tbl_member (member_id, member_pw, member_name, member_phone, member_email)
 		VALUES(#{memberId}, #{memberPw}, #{memberName}, #{memberPhone}, #{memberEmail})
 	</insert>
+	
+	<update id="updateLoginDateByMemberId" parameterType="string">
+		update tbl_member 
+		set login_date = sysdate
+		where member_id = #{memberId}
+	</update>
 </mapper>

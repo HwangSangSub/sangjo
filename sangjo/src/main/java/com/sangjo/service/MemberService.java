@@ -12,4 +12,6 @@ public interface MemberService {
 
 	MemberVO getMemberByEmail(String memberEmail);
 
+	boolean loginLog(String memberId);
+
 }

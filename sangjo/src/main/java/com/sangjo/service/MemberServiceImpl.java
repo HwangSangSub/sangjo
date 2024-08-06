@@ -32,10 +32,13 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO getMemberByLogin(String memberId, String memberPw) {
 		MemberVO memberVO = mapper.selectMemberById(memberId);
-		
+		// 아이디가 틀린경우
+		if(memberVO == null) {
+			return null;
+		}
 		// 입력한대상과 비밀번호 복호화로 비교하기 
 		if(encoder.matches(memberPw, memberVO.getMemberPw())) {
-			// 로그인 성공했으니 객체를 반환한다.
+			// 객체를 반환한다.
 			return memberVO;
 		}
 		// 로그인 실패
@@ -59,6 +62,14 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO getMemberByEmail(String memberEmail) {
 		return mapper.selectMemberByEamil(memberEmail);
+	}
+	
+	/**
+	 * 최신 로그인 기록
+	 */
+	@Override
+	public boolean loginLog(String memberId) {
+		return mapper.updateLoginDateByMemberId(memberId) == 1;
 	}
 	
 }
