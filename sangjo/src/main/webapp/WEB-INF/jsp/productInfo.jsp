@@ -162,12 +162,13 @@
 		<h1 class="fw-bold mb-0">Related products</h1>
 		<div class="vesitable">
 			<div class="owl-carousel vegetable-carousel justify-content-center">
+				
 				<!-- 아이템 하나 시작-->
-				<c:forEach var="product" items="{$productList}">
+				<c:forEach var="product" items="${productLsit}">
 					<div
 						class="border border-primary rounded position-relative vesitable-item">
 						<div class="vesitable-img">
-							<img src=${product.productImg}
+							<img src="img/featur-2.jpg"
 								class="img-fluid w-100 rounded-top" alt="">
 						</div>
 						<div
@@ -185,6 +186,7 @@
 						</div>
 					</div>
 				</c:forEach>
+				
 			</div>
 		</div>
 	</div>

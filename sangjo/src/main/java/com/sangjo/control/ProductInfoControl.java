@@ -27,12 +27,16 @@ public class ProductInfoControl implements Control {
 		
 		ProductVO productMain = productService.getProductByNo(productNo);
 		List<ProductVO> productList = productService.productListByCategoryNo(productMain.getCategoryNo());
+
 		for (ProductVO productVO : productList) {
 			if(productVO.getProductNo() == productMain.getProductNo()){
 				productList.remove(productVO);
 				// 브레이크를 안하면 ConcurrentModificationException 오류가 발생한다.
 				break;
 			}
+		}
+		for (ProductVO productVO : productList) {
+			System.out.println(productVO.toString());
 		}
 		
 		req.setAttribute("productMain", productMain);
