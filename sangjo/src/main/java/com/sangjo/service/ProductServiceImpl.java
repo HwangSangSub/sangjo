@@ -16,5 +16,10 @@ public class ProductServiceImpl implements ProductService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public ProductVO getProductByNo(String productNo) {
+		return mapper.selectProduct(productNo);
+	}
 
 }
