@@ -85,7 +85,6 @@ public class FrontController extends HttpServlet {
 		map.put("/findPwForm.do", new FindPwForm());// 비밀번호 찾기 폼이동(화면)
 		map.put("/findPw.do", new FindPwControl());// 비밀번호 찾기 이메일 가전송(기능)
 		map.put("/changePw.do", new ChangePwControl());// 비밀번호 수정
-		map.put("/findId.do", new FindIdControl());// 미완성 
 		
 		/* 오류 */
 		map.put("/errorPage.do", new ErrorControl());// 미완성 
