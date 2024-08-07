@@ -37,7 +37,8 @@ CREATE TABLE tbl_member (
 	member_rank	VARCHAR2(10)	DEFAULT 'User'	NOT NULL,
 	reg_date	DATE	DEFAULT sysdate	NOT NULL,
 	login_date	DATE		NULL,
-	mod_date	DATE		NULL
+	mod_date	DATE		NULL,
+	verification_code VARCHAR2(10)
 );
 
 COMMENT ON COLUMN tbl_member.member_id IS '회원 아이디';
@@ -57,6 +58,8 @@ COMMENT ON COLUMN tbl_member.reg_date IS '회원등록일';
 COMMENT ON COLUMN tbl_member.login_date IS '마지막로그인일';
 
 COMMENT ON COLUMN tbl_member.mod_date IS '마지막수정일';
+
+COMMENT ON COLUMN tbl_member.verification_code IS '이메일 인증코드';
 
 ------------------------- 테이블 생성(tbl_address)
 CREATE TABLE tbl_address (

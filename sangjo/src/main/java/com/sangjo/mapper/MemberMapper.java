@@ -53,5 +53,12 @@ public interface MemberMapper {
 	 */
 	int updateMemberPw(@Param("pw") String newMemberPw, @Param("email") String memberEmail);
 
->>>>>>> branch 'master' of https://github.com/HwangSangSub/sangjo.git
+	/**
+	 * 인증 코드 값 수정
+	 * @param memberId
+	 * @param randomNum
+	 * @return 변경 개수
+	 */
+	int updateVerificationCode(@Param("id") String memberId, @Param("code") String randomNum);
+
 }
