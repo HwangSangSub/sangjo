@@ -18,4 +18,6 @@ public interface MemberService {
 
 	boolean changePassword(String newMemberPw, String memberEmail);
 
+	boolean saveVerificationCode(String memberId, String randomNum);
+
 }

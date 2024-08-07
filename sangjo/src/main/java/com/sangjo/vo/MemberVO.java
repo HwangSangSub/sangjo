@@ -15,4 +15,5 @@ public class MemberVO {
 	Date regDate;
 	Date loginDate;
 	Date modDate;
+	String verificationCode;
 }

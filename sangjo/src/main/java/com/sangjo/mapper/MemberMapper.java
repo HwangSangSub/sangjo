@@ -57,4 +57,13 @@ public interface MemberMapper {
 	 * @return 변경 개수
 	 */
 	int updateMemberPw(@Param("pw") String newMemberPw, @Param("email") String memberEmail);
+
+	/**
+	 * 인증 코드 값 수정
+	 * @param memberId
+	 * @param randomNum
+	 * @return 변경 개수
+	 */
+	int updateVerificationCode(@Param("id") String memberId, @Param("code") String randomNum);
+
 }
