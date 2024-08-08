@@ -42,9 +42,11 @@
 							${productMain.regDate}
 						</p>
 						<!-- 장바구니에 값추가 -->
-						<a id="cartAdd"
+						<c:if test="${not empty member.memberId }">
+							<a id="cartAdd"
 							class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
 							class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+						</c:if>
 					</div>
 					<div class="col-lg-12">
 						<nav>
@@ -161,14 +163,16 @@
 		</div>
 		<h1 class="fw-bold mb-0">Related products</h1>
 		<div class="vesitable">
+			<!-- 밑의 div의 클래스들은 아래의 div 객체의 개수를 통해 특정개수이상이되면
+			좌우 이동버튼을 만들어준다. -->
 			<div class="owl-carousel vegetable-carousel justify-content-center">
 				
-				<!-- 아이템 하나 시작-->
+				<!-- 아이템 반복문 -->
 				<c:forEach var="product" items="${productLsit}">
 					<div
 						class="border border-primary rounded position-relative vesitable-item">
 						<div class="vesitable-img">
-							<img src="img/featur-2.jpg"
+							<img src="${product.productImg }"
 								class="img-fluid w-100 rounded-top" alt="">
 						</div>
 						<div
@@ -179,9 +183,9 @@
 							<p>${product.productContent}</p>
 							<div class="d-flex justify-content-between flex-lg-wrap">
 								<p class="text-dark fs-5 fw-bold">${product.productPrice}</p>
-								<a href="#"
+								<a href="productInfo.do?productNo=${product.productNo }"
 									class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i
-									class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+									class="fa fa-shopping-bag me-2 text-primary"></i>상품화면으로 이동</a>
 							</div>
 						</div>
 					</div>
@@ -194,36 +198,39 @@
 <!-- 카트 (장바구니)에 값 추가하기 -->
 <script>
 	// 제품 변수
-	let productNo = "${product.productNo}";
+	let productNo = "${productMain.productNo}";
 	// 회원 변수
 	let memberId = "${member.memberId}";
 
 	let cartAddBtn = document.querySelector('#cartAdd');
-	cartAddBtn.addEventListener("click",function(e){
-		let cartListVO = {
-			productNo : productNo,
-			memberId : memberId,
-		}
-		let url = "cartAdd.do";
-		let optionObj = {
-			method: 'post',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(
-				cartListVO
-			)
-		}
-		fetch(url,optionObj)
-		.then(result => {
-			return result.json();
-		})
-		.then(function(result){
-			if(result.addCart == "Faild"){
-				alert("장바구니에 추가가 실패하였습니다.");
-			}else{
-				alert("장바구니에 추가가 완료되었습니다.")
+	if(cartAddBtn != null){
+		// 버튼에 이벤트추가는 null 이 아닐경우에만 해주자 
+		cartAddBtn.addEventListener("click",function(e){
+			let cartListVO = {
+				productNo : productNo,
+				memberId : memberId,
 			}
+			let url = "cartAdd.do";
+			let optionObj = {
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(
+					cartListVO
+				)
+			}
+			fetch(url,optionObj)
+			.then(result => {
+				return result.json();
+			})
+			.then(function(result){
+				if(result.addCart == "Faild"){
+					alert("장바구니에 추가가 실패하였습니다.");
+				}else{
+					alert("장바구니에 추가가 완료되었습니다.")
+				}
+			});
 		});
-	});
+	}
 </script>
