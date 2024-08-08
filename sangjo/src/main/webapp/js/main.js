@@ -22,9 +22,9 @@
             }
         } else {
             if ($(this).scrollTop() > 55) {
-                $('.fixed-top').addClass('shadow');
+                $('.fixed-top').addClass('shadow').css('top', -100);
             } else {
-                $('.fixed-top').removeClass('shadow');
+                $('.fixed-top').removeClass('shadow').css('top', 0);
             }
         } 
     });
