@@ -7,8 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
-
 import com.sangjo.common.Control;
 import com.sangjo.service.CategoryService;
 import com.sangjo.service.CategoryServiceImpl;
@@ -35,9 +33,10 @@ public class ProductInfoControl implements Control {
 				break;
 			}
 		}
-		for (ProductVO productVO : productList) {
-			System.out.println(productVO.toString());
-		}
+		// 데이터를 가져와쓴지 확인하기위한 출력문이다. (필요할떄 주석을 제거하자!)
+//		for (ProductVO productVO : productList) {
+//			System.out.println(productVO.toString());
+//		}
 		
 		req.setAttribute("productMain", productMain);
 		req.setAttribute("productLsit", productList);
