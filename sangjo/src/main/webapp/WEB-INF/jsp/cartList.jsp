@@ -30,7 +30,7 @@
 						<th scope="col">가격</th>
 						<th scope="col">수량</th>
 						<th scope="col">합계</th>
-						<th scope="col">처리</th>
+						<th scope="col">순삭</th>
 					</tr>
 				</thead>
 				<tbody id="cart">
@@ -102,7 +102,6 @@
 				</tbody>
 			</table>
 		</div>
-
 		<div class="row g-4 justify-content-end">
 			<div class="col-8"></div>
 			<div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
@@ -128,13 +127,11 @@
 						<h5 class="mb-0 ps-4 me-4">총 합계</h5>
 						<p class="mb-0 pe-4">${totalAmount}원</p>
 					</div>
+					
+					
 					<!-- 결제 진행 버튼을 포함한 form 추가 -->
-
-				
-
-
 					<form action="orderList.do" method="post" id="cartForm">
-						<!-- 장바구니 항목 데이터 전송 -->
+						
 						<input type="hidden" name="grandTotal" value="${grandTotal}">
 						
 						<input type="hidden" name="shippingCost" value="${shippingCost}">
@@ -142,17 +139,17 @@
 						<input type="hidden" name="totalAmount" value="${totalAmount}">
 
 						<input type="hidden" name="productImgs" value="${productImgs}">
-						<!-- value 추가 -->
+						
 						<input type="hidden" name="cartNos" value="${cartNos}">
-						<!-- value 추가 -->
+						
 						<input type="hidden" name="productNos" value="${productNos}">
-						<!-- value 추가 -->
+						
 						<input type="hidden" name="productNames" value="${productNames}">
-						<!-- value 추가 -->
+						
 						<input type="hidden" name="productPrices" value="${productPrices}">
-						<!-- value 추가 -->
+						
 						<input type="hidden" name="quantities" value="${quantities}">
-						<!-- value 추가 -->
+						
 										
 						<button
 							class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
