@@ -32,17 +32,16 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="form-item">
 						<label class="form-label my-3">주소 <sup>*</sup></label> <input
-							type="text" class="form-control"
-							placeholder="집 번호 거리 이름">
+							type="text" class="form-control" placeholder="집 번호 거리 이름">
 					</div>
 					<div class="form-item">
 						<label class="form-label my-3">도시/구<sup>*</sup></label> <input
 							type="text" class="form-control">
 					</div>
-					
+
 					<div class="form-item">
 						<label class="form-label my-3">우편번호<sup>*</sup></label> <input
 							type="text" class="form-control">
@@ -51,10 +50,10 @@
 						<label class="form-label my-3">휴대폰<sup>*</sup></label> <input
 							type="tel" class="form-control">
 					</div>
-					
-					
+
+
 					<hr>
-					
+
 					<div class="form-item">
 						<textarea name="text" class="form-control" spellcheck="false"
 							cols="30" rows="11" placeholder="주문 메모 (선택 사항)"></textarea>
@@ -131,7 +130,7 @@
 										<p class="mb-0 text-dark py-4">배송비</p>
 									</td>
 									<td colspan="3" class="py-5">
-										
+
 										<div class="form-check text-start">
 											<input type="checkbox"
 												class="form-check-input bg-primary border-0" id="Shipping-2"
@@ -139,7 +138,7 @@
 												class="form-check-label" for="Shipping-2">고정 요금:
 												3,000원 </label>
 										</div>
-										
+
 									</td>
 								</tr>
 								<tr>
@@ -167,13 +166,12 @@
 									name="Transfer" value="Transfer"> <label
 									class="form-check-label" for="Transfer-1">직접 은행 이체</label>
 							</div>
-							<p class="text-start text-dark">주문 ID를 결제 참조로 사용해
-								저희 은행 계좌로 직접 결제해 주세요. 자금이 계좌에 입금된 후에만
-								주문이 발송됩니다.</p>
+							<p class="text-start text-dark">주문 ID를 결제 참조로 사용해 저희 은행 계좌로
+								직접 결제해 주세요. 자금이 계좌에 입금된 후에만 주문이 발송됩니다.</p>
 						</div>
 					</div>
-					
-					
+
+
 					<div
 						class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
 						<div class="col-12">
