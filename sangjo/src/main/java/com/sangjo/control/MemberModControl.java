@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sangjo.common.Control;
 import com.sangjo.service.MemberService;
@@ -16,6 +17,7 @@ public class MemberModControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		MemberService mvc = new MemberServiceImpl();
+		HttpSession session = req.getSession();
 
 		String memberId = req.getParameter("memberId");
 		String memberPw = req.getParameter("memberPw");
@@ -43,6 +45,10 @@ public class MemberModControl implements Control {
 		if (mvc.modMember(mvo)) {
 			json = String.format("{\"%s\":\"%s\"}", "retCode", "Success");
 			resp.getWriter().print(json);
+			
+			session.setAttribute("member", mvo);
+			session.setMaxInactiveInterval(60 * 60);// 1시간 동안 유지됨
+			
 			return;
 		}
 		json = String.format("{\"%s\":\"%s\"}", "retCode", "Faild");

@@ -29,6 +29,8 @@ import com.sangjo.control.LoginControl;
 import com.sangjo.control.LogoutControl;
 import com.sangjo.control.MemberModControl;
 import com.sangjo.control.MyPageControl;
+import com.sangjo.control.MyPageInquiryControl;
+import com.sangjo.control.MyPageOrderControl;
 import com.sangjo.control.OrderControl;
 import com.sangjo.control.OrderListControl;
 import com.sangjo.control.ProductInfoControl;
@@ -73,6 +75,8 @@ public class FrontController extends HttpServlet {
 		/* 마이페이지 */
 		map.put("/myPage.do", new MyPageControl());// 마이페이지(화면)
 		map.put("/memberMod.do", new MemberModControl());// 마이페이지-회원정보수정(기능)
+		map.put("/myPageOrder.do", new MyPageOrderControl());// 마이페이지- 주문내역(기능)
+		map.put("/myPageInquiry.do", new MyPageInquiryControl());// 마이페이지- 문의내역(기능)
 		
 		/*회원 파트*/
 		map.put("/idCheck.do", new IdCheckControl());// 아이디 중복체크 (기능)
@@ -87,7 +91,7 @@ public class FrontController extends HttpServlet {
 		map.put("/changePw.do", new ChangePwControl());// 비밀번호 수정
 		
 		/* 오류 */
-		map.put("/errorPage.do", new ErrorControl());// 미완성 
+		map.put("/errorPage.do", new ErrorControl()); // 오류페이지 
 	}
 
 	@Override
