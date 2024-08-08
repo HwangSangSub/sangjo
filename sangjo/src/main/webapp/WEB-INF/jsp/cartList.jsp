@@ -37,7 +37,11 @@
 					<c:forEach var="item" items="${cartList}">
 						<c:set var="itemTotal"
 							value="${item.productPrice * item.quantity}" />
-						<tr data-cart-no="${item.cartNo}" data-product-no="${item.productNo}" data-product-price="${item.productPrice}" data-product-name="${item.productName}" data-product-img="${item.productImg}">
+						<tr data-cart-no="${item.cartNo}"
+							data-product-no="${item.productNo}"
+							data-product-price="${item.productPrice}"
+							data-product-name="${item.productName}"
+							data-product-img="${item.productImg}">
 							<th scope="row">
 								<div class="d-flex align-items-center">
 									<img src="img/${item.productImg}"
@@ -98,14 +102,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="mt-5">
-			<input type="text"
-				class="border-0 border-bottom rounded me-5 py-3 mb-4"
-				placeholder="쿠폰 코드">
-			<button
-				class="btn border-secondary rounded-pill px-4 py-3 text-primary"
-				type="button">쿠폰 적용</button>
-		</div>
+
 		<div class="row g-4 justify-content-end">
 			<div class="col-8"></div>
 			<div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
@@ -132,25 +129,35 @@
 						<p class="mb-0 pe-4">${totalAmount}원</p>
 					</div>
 					<!-- 결제 진행 버튼을 포함한 form 추가 -->
+
+				
+
+
 					<form action="orderList.do" method="post" id="cartForm">
 						<!-- 장바구니 항목 데이터 전송 -->
 						<input type="hidden" name="grandTotal" value="${grandTotal}">
-						<input type="hidden" name="shippingCost" value="${shippingCost}">
-						<input type="hidden" name="totalAmount" value="${totalAmount}">
 						
-						<input type="hidden" name="productImgs">
-						<input type="hidden" name="cartNos" >
-						<input type="hidden" name="productNos" >
-						<input type="hidden" name="productNames">
-						<input type="hidden" name="productPrices">
-						<input type="hidden" name="quantities" >						
+						<input type="hidden" name="shippingCost" value="${shippingCost}">
+						
+						<input type="hidden" name="totalAmount" value="${totalAmount}">
+
+						<input type="hidden" name="productImgs" value="${productImgs}">
+						<!-- value 추가 -->
+						<input type="hidden" name="cartNos" value="${cartNos}">
+						<!-- value 추가 -->
+						<input type="hidden" name="productNos" value="${productNos}">
+						<!-- value 추가 -->
+						<input type="hidden" name="productNames" value="${productNames}">
+						<!-- value 추가 -->
+						<input type="hidden" name="productPrices" value="${productPrices}">
+						<!-- value 추가 -->
+						<input type="hidden" name="quantities" value="${quantities}">
+						<!-- value 추가 -->
+										
 						<button
 							class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
-							type="submit">
-							결제 진행
-						</button>						
+							type="submit">결제 진행</button>
 					</form>
-
 				</div>
 			</div>
 		</div>

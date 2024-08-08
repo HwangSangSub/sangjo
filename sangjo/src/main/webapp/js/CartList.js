@@ -57,21 +57,24 @@ document.addEventListener('DOMContentLoaded', function() {
 					quantities.push(quantity);
 				}
 			});
-			// 4. 반복문 끝난 다음에 1번의 변수명을 form안에 input에 해당하는 값 넣기 value = 배열명
-			
-			 document.querySelector('#cartForm input[name="cartNos"]').value = cart_Nos.join(',');
-        document.querySelector('#cartForm input[name="productNos"]').value = product_Nos.join(',');
-        document.querySelector('#cartForm input[name="quantities"]').value = quantities.join(',');
-        document.querySelector('#cartForm input[name="productPrices"]').value = product_Prices.join(',');
-        document.querySelector('#cartForm input[name="productImgs"]').value = product_Imgs.join(',');
-        document.querySelector('#cartForm input[name="productNames"]').value = product_Names.join(',');
-			
-			
-			
-     
-		});
-	});
+	          // 숨겨진 입력 필드에 값 설정
+            document.querySelector('#cartForm input[name="cartNos"]').value = cart_Nos.join(',');
+            document.querySelector('#cartForm input[name="productNos"]').value = product_Nos.join(',');
+            document.querySelector('#cartForm input[name="quantities"]').value = quantities.join(',');
+            document.querySelector('#cartForm input[name="productPrices"]').value = product_Prices.join(',');
+            document.querySelector('#cartForm input[name="productImgs"]').value = product_Imgs.join(',');
+            document.querySelector('#cartForm input[name="productNames"]').value = product_Names.join(',');
+        });
+    });
+
+    document.querySelector('#cartForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // 기본 제출 방지
+        this.submit(); // 폼 제출
+    });
 });
+		
+	
+
 function updateGrandTotal() {
 		let grandTotal = 0;
 
