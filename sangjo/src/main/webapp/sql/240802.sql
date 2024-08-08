@@ -343,6 +343,30 @@ COMMIT;
 INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
 VALUES (product_seq.NEXTVAL, '1', '국자', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
 INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '숟가락', 1000, '단단하고 깨끗하다. 깔끔하고 저렴하다. 숟가락 여러분의 국과 밥을 책임집니다.');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '와우 국자', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '숟가락1', 1000, '단단하고 깨끗하다. 깔끔하고 저렴하다. 숟가락 여러분의 국과 밥을 책임집니다.');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '와우 국자1', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '숟가락2', 1000, '단단하고 깨끗하다. 깔끔하고 저렴하다. 숟가락 여러분의 국과 밥을 책임집니다.');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '와우 국자2', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '숟가락3', 1000, '단단하고 깨끗하다. 깔끔하고 저렴하다. 숟가락 여러분의 국과 밥을 책임집니다.');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '와우 국자3', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '숟가락4', 1000, '단단하고 깨끗하다. 깔끔하고 저렴하다. 숟가락 여러분의 국과 밥을 책임집니다.');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '와우 국자4', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '숟가락5', 1000, '단단하고 깨끗하다. 깔끔하고 저렴하다. 숟가락 여러분의 국과 밥을 책임집니다.');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '와우 국자5', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
 VALUES (product_seq.NEXTVAL, '2', '욕실화', 4000, '비눗물 위에서도 미끄러지지 않습니다. 만수가 적극 추천하는 욕실화 일본인 우상상도 좋아하는 색감, 사시죠.');
 INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
 VALUES (product_seq.NEXTVAL, '3', '쇼파', 170000000, '수성구에 살고 있는 정모씨 적극추천하는 쇼파입니다.');
