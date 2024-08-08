@@ -7,15 +7,15 @@ import lombok.Data;
 @Data
 public class CartListVO {
 
-	private int CartNo; // 장바구니번호
-	private int ProductNo; // 상품번호
-	private String MemberId; //회원,아이디
-	private Date RegDate;//장바구니등록일
+	private int cartNo; // 장바구니번호
+	private int productNo; // 상품번호
+	private String memberId; //회원,아이디
+	private Date regDate;//장바구니등록일
 	
-	private int CategoryNo; // 상품카테고리번호
-	private String ProductName; // 상품명
-	private String ProductPrice; // 상품가격
-	private String ProductImg; // 상품이미지
+	private int categoryNo; // 상품카테고리번호
+	private String productName; // 상품명
+	private String productPrice; // 상품가격
+	private String productImg; // 상품이미지
 	private String ProductTthumbnai_lImg; // 상품이미지(썸네일)
 	private String ProductContent; //상품내용
 	private int quantity; //수량
