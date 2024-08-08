@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	// 수량 조절 버튼에 대한 이벤트 리스너 추가
 	document.querySelectorAll('.btn-minus, .btn-plus').forEach(button => {
 		button.addEventListener('click', function(e) {
+			
 			const button = e.currentTarget;
 			const row = button.closest('tr');
 			const quantityInput = row.querySelector('input[type="text"]');
@@ -9,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			// 상품 가격을 가져옴
 			const productPrice = parseFloat(row.querySelector('td:nth-child(3) p').textContent.replace('원', '').trim());
-
 			// 수량 증가 또는 감소
 			if (button.classList.contains('btn-minus')) {
 				quantity - 1; // 수량을 0으로 제한
@@ -26,12 +26,51 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			// 전체 합계 업데이트
 			updateGrandTotal();
+			
+			// 1. 상품번호넣는 배열 빈값 만들기 [] =>    (장바구니번호, 수량, 금액 총 4개 빈배열 만들기)
+			let product_Nos=[];
+			let cart_Nos=[];
+			let quantities=[];
+			let product_Prices=[];
+			let product_Imgs=[];
+			let product_Names=[];
+			// 2. 전체 tr 가져와서 반복문 만들기
+			document.querySelectorAll('#cart>tr')
+			.forEach(tr =>{ 
+				// 3. 반복문안에서 해당 하는 tr에 상품번호, 장바구니번호, 수량, 금액을 가져와서 해당하는 빈배열에 값 너기배열명.push(값)
+	
+				// tr 안에서 값 가져오기
+				let cartNo = tr.dataset.cartNo;
+				let productNo = tr.dataset.productNo;
+				let productPrice = tr.dataset.productPrice;
+				let productName = tr.dataset.productName;
+				let productImg = tr.dataset.productImg;
+				let quantity = tr.querySelector('#quantity').value;
+				
+				// 빈배열에 값 넣기
+				if(quantity > 0){
+					cart_Nos.push(cartNo);
+					product_Nos.push(productNo);							
+					product_Prices.push(productPrice);	
+					product_Names.push(productName);
+					product_Imgs.push(productImg);					
+					quantities.push(quantity);
+				}
+			});
+			// 4. 반복문 끝난 다음에 1번의 변수명을 form안에 input에 해당하는 값 넣기 value = 배열명
+			
+			 document.querySelector('#cartForm input[name="cartNos"]').value = cart_Nos.join(',');
+        document.querySelector('#cartForm input[name="productNos"]').value = product_Nos.join(',');
+        document.querySelector('#cartForm input[name="quantities"]').value = quantities.join(',');
+        document.querySelector('#cartForm input[name="productPrices"]').value = product_Prices.join(',');
+        document.querySelector('#cartForm input[name="productImgs"]').value = product_Imgs.join(',');
+        document.querySelector('#cartForm input[name="productNames"]').value = product_Names.join(',');
+			
+			
+			
+     
 		});
 	});
-
-	
-
-
 });
 function updateGrandTotal() {
 		let grandTotal = 0;
@@ -84,5 +123,3 @@ function removeCart(e) {
 			console.error(err);
 		})
 }
-	
-// 총 계산하는 함수를 만들어서 삭제 후 남은 것들 계산하기 
