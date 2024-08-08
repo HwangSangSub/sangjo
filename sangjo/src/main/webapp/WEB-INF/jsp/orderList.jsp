@@ -175,13 +175,14 @@
 						</div>
 					</div>
 
-					<div
-						class="row g-4 text-center align-items-center justify-content-center pt-4">
-						<button type="submit"
-							class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary"><a herf="">다음</button>
-					</div>
+					
 				</div>
 			</div>
 		</form>
+		<div
+						class="row g-4 text-center align-items-center justify-content-center pt-4">
+						<button type="submit"
+							class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary"><a href="orderCheck.do">다음</a></button>
+					</div>
 	</div>
 </div>

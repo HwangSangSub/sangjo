@@ -1,134 +1,152 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>주문 확인 및 결제</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="css/all.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="css/custom.css" rel="stylesheet">
-</head>
-<body>
 
-<!-- Single Page Header 시작 -->
+<!-- Single Page Header start -->
 <div class="container-fluid page-header py-5">
-    <h1 class="text-center text-white display-6">주문 확인 및 결제</h1>
-    <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="#">홈</a></li>
-        <li class="breadcrumb-item"><a href="#">상품 선택</a></li>
-        <li class="breadcrumb-item active text-white">주문 확인 및 결제</li>
-    </ol>
+	<h1 class="text-center text-white display-6">주문 확인</h1>
+	<ol class="breadcrumb justify-content-center mb-0">
+		<li class="breadcrumb-item"><a href="#">홈</a></li>
+		<li class="breadcrumb-item"><a href="#">페이지</a></li>
+		<li class="breadcrumb-item active text-white">주문 확인</li>
+	</ol>
 </div>
-<!-- Single Page Header 끝 -->
+<!-- Single Page Header End -->
 
-<div class="container py-5">
-    <div class="row">
-        <div class="col-md-8">
-            <h2 class="mb-4">주문 정보</h2>
-            <form action="processOrder.do" method="post">
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <label for="firstName" class="form-label">이름</label>
-                        <input type="text" class="form-control" id="firstName" name="firstName" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="lastName" class="form-label">성</label>
-                        <input type="text" class="form-control" id="lastName" name="lastName" required>
-                    </div>
-                </div>
-                <div class="row g-3 mt-3">
-                    <div class="col-md-12">
-                        <label for="address" class="form-label">주소</label>
-                        <input type="text" class="form-control" id="address" name="address" required>
-                    </div>
-                </div>
-                <div class="row g-3 mt-3">
-                    <div class="col-md-6">
-                        <label for="city" class="form-label">도시/구</label>
-                        <input type="text" class="form-control" id="city" name="city" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="postalCode" class="form-label">우편번호</label>
-                        <input type="text" class="form-control" id="postalCode" name="postalCode" required>
-                    </div>
-                </div>
-                <div class="row g-3 mt-3">
-                    <div class="col-md-6">
-                        <label for="phone" class="form-label">휴대폰 번호</label>
-                        <input type="tel" class="form-control" id="phone" name="phone" required>
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col">
-                        <label for="orderMemo" class="form-label">주문 메모 (선택 사항)</label>
-                        <textarea class="form-control" id="orderMemo" name="orderMemo" rows="3"></textarea>
-                    </div>
-                </div>
-
-                <!-- Hidden fields for order details -->
-                <c:forEach var="i" begin="0" end="${fn:length(fn:split(productNos, ','))-1}">
-                    <input type="hidden" name="productNos" value="${fn:split(productNos, ',')[i]}">
-                    <input type="hidden" name="productNames" value="${fn:split(productNames, ',')[i]}">
-                    <input type="hidden" name="productPrices" value="${fn:split(productPrices, ',')[i]}">
-                    <input type="hidden" name="quantities" value="${fn:split(quantities, ',')[i]}">
-                </c:forEach>
-                
-                <div class="mt-4">
-                    <button type="submit" class="btn btn-primary">주문 결제</button>
-                </div>
-            </form>
-        </div>
-
-        <div class="col-md-4">
-            <h2 class="mb-4">주문 내역</h2>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">상품명</th>
-                        <th scope="col">가격</th>
-                        <th scope="col">수량</th>
-                        <th scope="col">합계</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach var="i" begin="0" end="${fn:length(fn:split(productNos, ','))-1}">
-                        <tr>
-                            <td>${fn:split(productNames, ',')[i]}</td>
-                            <td>${fn:split(productPrices, ',')[i]}원</td>
-                            <td>${fn:split(quantities, ',')[i]}</td>
-                            <td>${fn:split(productPrices, ',')[i] * fn:split(quantities, ',')[i]}원</td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                    <tfoot>
-                    <tr>
-                        <td colspan="3" class="text-end">소계:</td>
-                        <td>${grandTotal}원</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" class="text-end">배송비:</td>
-                        <td>${shippingCost}원</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" class="text-end">총 합계:</td>
-                        <td>${totalAmount}원</td>
-                    </tr>
-                    </tfoot>
-                </table>
-            </div>
-        </div>
-    </div>
+<div class="container-fluid py-5">
+	<div class="container py-5">
+		<h1 class="mb-4">주문 정보 확인</h1>
+		<form action="orderCheck.do" method="post">
+			<div class="row g-5">
+				<div class="col-md-12 col-lg-6 col-xl-7">
+					<div class="form-item w-100">
+						<label class="form-label my-3">이름</label> <input type="text"
+							class="form-control" name="fullName" value="${param.fullName}"
+							readonly>
+					</div>
+					<div class="form-item">
+						<label class="form-label my-3">휴대폰</label> <input type="tel"
+							class="form-control" name="phone" value="${param.phone}" readonly>
+					</div>
+					<div class="form-item">
+						<label class="form-label my-3">주소</label> <input type="text"
+							class="form-control" name="address" value="${param.address}"
+							readonly>
+					</div>
+					<div class="form-item">
+						<label class="form-label my-3">상세주소</label> <input type="text"
+							class="form-control" name="detailAddress"
+							value="${param.detailAddress}" readonly>
+					</div>
+					<hr>
+				</div>
+				<div class="col-md-12 col-lg-6 col-xl-5">
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">제품</th>
+									<th scope="col">이름</th>
+									<th scope="col">가격</th>
+									<th scope="col">수량</th>
+									<th scope="col">합계</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="i" begin="0"
+									end="${fn:length(fn:split(param.productNos, ','))-1}">
+									<tr>
+										<th scope="row">
+											<div class="d-flex align-items-center mt-2">
+												<img
+													src="${pageContext.request.contextPath}/img/${fn:split(param.productImgs, ',')[i]}"
+													class="img-fluid rounded-circle"
+													style="width: 90px; height: 90px;" alt="">
+											</div>
+										</th>
+										<td class="py-5">${fn:split(param.productNames, ',')[i]}</td>
+										<td class="py-5">${fn:split(param.productPrices, ',')[i]}원</td>
+										<td class="py-5">${fn:split(param.quantities, ',')[i]}</td>
+										<td class="py-5">${fn:split(param.productPrices, ',')[i] * fn:split(param.quantities, ',')[i]}원</td>
+									</tr>
+								</c:forEach>
+								<tr>
+									<th scope="row"></th>
+									<td class="py-5"></td>
+									<td class="py-5"></td>
+									<td class="py-5">
+										<p class="mb-0 text-dark py-3">소계</p>
+									</td>
+									<td class="py-5">
+										<div class="py-3 border-bottom border-top">
+											<p class="mb-0 text-dark">${param.subtotal}원</p>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row"></th>
+									<td class="py-5">
+										<p class="mb-0 text-dark py-4">배송비</p>
+									</td>
+									<td colspan="3" class="py-5">
+										<div class="form-check text-start">
+											<input type="checkbox"
+												class="form-check-input bg-primary border-0" id="Shipping-2"
+												name="shippingCost" value="3000" checked> <label
+												class="form-check-label" for="Shipping-2">고정 요금:
+												3,000원</label>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row"></th>
+									<td class="py-5">
+										<p class="mb-0 text-dark text-uppercase py-3">총합</p>
+									</td>
+									<td class="py-5"></td>
+									<td class="py-5"></td>
+									<td class="py-5">
+										<div class="py-3 border-bottom border-top">
+											<p class="mb-0 text-dark">${param.totalAmount}원</p>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div
+						class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
+						<div class="col-12">
+							<div class="form-check text-start my-3">
+								<input type="checkbox"
+									class="form-check-input bg-primary border-0" id="Transfer-1"
+									name="Transfer" value="Transfer" checked> <label
+									class="form-check-label" for="Transfer-1">직접 은행 이체</label>
+							</div>
+							<p class="text-start text-dark">주문 ID를 결제 참조로 사용해 저희 은행 계좌로
+								직접 결제해 주세요. 자금이 계좌에 입금된 후에만 주문이 발송됩니다.</p>
+							<p>입금계좌 : 61870104241940 국민은행 (예금주 : 이성철)</p>
+						</div>
+					</div>
+					<div
+						class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
+						<div class="col-12">
+							<div class="form-check text-start my-3">
+								<input type="checkbox"
+									class="form-check-input bg-primary border-0" id="Paypal-1"
+									name="Paypal" value="Paypal"> <label
+									class="form-check-label" for="Paypal-1">Paypal</label>
+							</div>
+						</div>
+					</div>
+					<div
+						class="row g-4 text-center align-items-center justify-content-center pt-4">
+						<button type="submit"
+							class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">주문하기</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
 </div>
-
-<!-- Bootstrap JS Bundle -->
-<script src="js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

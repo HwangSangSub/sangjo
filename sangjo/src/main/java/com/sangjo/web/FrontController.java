@@ -29,6 +29,7 @@ import com.sangjo.control.LoginControl;
 import com.sangjo.control.LogoutControl;
 import com.sangjo.control.MemberModControl;
 import com.sangjo.control.MyPageControl;
+import com.sangjo.control.OrderCheckControl;
 import com.sangjo.control.OrderControl;
 import com.sangjo.control.OrderListControl;
 import com.sangjo.control.ProductInfoControl;
@@ -65,6 +66,7 @@ public class FrontController extends HttpServlet {
 		/* 주문 */
 		map.put("/orderList.do", new OrderListControl()); // 주문 (화면)
 		map.put("/order.do", new OrderControl()); // 주문 (기능)
+		map.put("/orderCheck.do", new OrderCheckControl());// 주문확인(기능)
 
 		/* 고객센터 */
 		map.put("/helpDesk.do", new HelpDeskControl()); // 고객센터

@@ -117,7 +117,7 @@
 						<div class="d-flex justify-content-between">
 							<h5 class="mb-0 me-4">배송비</h5>
 							<div class="">
-								<p class="mb-0">정액 배송비: ${shippingCost} 원</p>
+								<p class="mb-0">${shippingCost} 원</p>
 							</div>
 						</div>
 						<p class="mb-0 text-end">민수네 집으로 배송합니다.</p>
@@ -148,9 +148,7 @@
 						
 						<input type="hidden" name="productPrices" value="${productPrices}">
 						
-						<input type="hidden" name="quantities" value="${quantities}">
-						
-										
+						<input type="hidden" name="quantities" value="${quantities}">																
 						<button
 							class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
 							type="submit">결제 진행</button>
