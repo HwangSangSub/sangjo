@@ -1,10 +1,13 @@
 package com.sangjo.control;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
 import com.sangjo.common.Control;
 import com.sangjo.service.CategoryService;
@@ -21,9 +24,25 @@ public class ProductInfoControl implements Control {
 		ProductService productService = new ProductServiceImpl();
 		CategoryService categoryService = new CategoryServiceImpl();
 		String productNo = req.getParameter("productNo");
-		ProductVO productVO = productService.getProductByNo(productNo);
-		CategoryVO categoryVO = categoryService.getCategoryName(productVO.getCategoryNo());
-		req.setAttribute("product", productVO);
+		
+		ProductVO productMain = productService.getProductByNo(productNo);
+		List<ProductVO> productList = productService.productListByCategoryNo(productMain.getCategoryNo());
+
+		for (ProductVO productVO : productList) {
+			if(productVO.getProductNo() == productMain.getProductNo()){
+				productList.remove(productVO);
+				// 브레이크를 안하면 ConcurrentModificationException 오류가 발생한다.
+				break;
+			}
+		}
+		for (ProductVO productVO : productList) {
+			System.out.println(productVO.toString());
+		}
+		
+		req.setAttribute("productMain", productMain);
+		req.setAttribute("productLsit", productList);
+		
+		CategoryVO categoryVO = categoryService.getCategoryName(productMain.getCategoryNo());
 		req.setAttribute("category", categoryVO);
 		
 		req.getRequestDispatcher("sangjo/productInfo.tiles").forward(req, resp);

@@ -26,5 +26,8 @@
 		WHERE c.member_id = #{MemberId}
 	</select>
 
-
+	<insert id="insertCartItem" parameterType="com.sangjo.vo.CartListVO">
+		INSERT INTO tbl_cart(cart_no, product_no, member_id)
+		VALUES(cart_seq.NEXTVAL, #{productNo}, #{memberId})
+	</insert>
 </mapper>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix = "c" %>
 <!-- Single Page Header start -->
 <div class="container-fluid page-header py-5">
 	<h1 class="text-center text-white display-6">Shop Detail</h1>
@@ -19,15 +19,15 @@
 					<div class="col-lg-6">
 						<div class="border rounded">
 							<a href="#"> 
-								<img src="${product.productImg}"
-									class="img-fluid rounded" alt="${product.productImg}">
+								<img src="${productMain.productImg}"
+									class="img-fluid rounded" alt="${productMain.productImg}">
 							</a>
 						</div>
 					</div>
 					<div class="col-lg-6">
-						<h4 class="fw-bold mb-3">${product.productName}</h4>
+						<h4 class="fw-bold mb-3">${productMain.productName}</h4>
 						<p class="mb-3">Category: ${category.cdName}</p>
-						<h5 class="fw-bold mb-3">${product.productPrice}원</h5>
+						<h5 class="fw-bold mb-3">${productMain.productPrice}원</h5>
 						<!-- 리뷰 파트가 생기면 적용하자.-->
 						<div class="d-flex mb-4">
 							<i class="fa fa-star text-secondary"></i> <i
@@ -36,29 +36,13 @@
 								class="fa fa-star text-secondary"></i> <i class="fa fa-star"></i>
 						</div>
 						<p class="mb-4">
-							${product.productContent}
+							${productMain.productContent}
 						</p>
 						<p class="mb-4">
-							${product.regDate}
+							${productMain.regDate}
 						</p>
-						<div class="input-group quantity mb-5" style="width: 100px;">
-							<div class="input-group-btn">
-								<button
-									class="btn btn-sm btn-minus rounded-circle bg-light border">
-									<i class="fa fa-minus"></i>
-								</button>
-							</div>
-							<input type="text"
-								class="form-control form-control-sm text-center border-0"
-								value="1">
-							<div class="input-group-btn">
-								<button
-									class="btn btn-sm btn-plus rounded-circle bg-light border">
-									<i class="fa fa-plus"></i>
-								</button>
-							</div>
-						</div>
-						<a href="#"
+						<!-- 장바구니에 값추가 -->
+						<a id="cartAdd"
 							class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
 							class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
 					</div>
@@ -78,8 +62,8 @@
 						<div class="tab-content mb-5">
 							<div class="tab-pane active" id="nav-about" role="tabpanel"
 								aria-labelledby="nav-about-tab">
-								<p>${product.productContent}</p>
-								<p>${product.regDate}</p>
+								<p>${productMain.productContent}</p>
+								<p>${productMain.regDate}</p>
 							</div>
 							<div class="tab-pane" id="nav-mission" role="tabpanel"
 								aria-labelledby="nav-mission-tab">
@@ -178,175 +162,68 @@
 		<h1 class="fw-bold mb-0">Related products</h1>
 		<div class="vesitable">
 			<div class="owl-carousel vegetable-carousel justify-content-center">
-				<div
-					class="border border-primary rounded position-relative vesitable-item">
-					<div class="vesitable-img">
-						<img src="img/vegetable-item-6.jpg"
-							class="img-fluid w-100 rounded-top" alt="">
-					</div>
+				
+				<!-- 아이템 하나 시작-->
+				<c:forEach var="product" items="${productLsit}">
 					<div
-						class="text-white bg-primary px-3 py-1 rounded position-absolute"
-						style="top: 10px; right: 10px;">Vegetable</div>
-					<div class="p-4 pb-0 rounded-bottom">
-						<h4>Parsely</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed
-							do eiusmod te incididunt</p>
-						<div class="d-flex justify-content-between flex-lg-wrap">
-							<p class="text-dark fs-5 fw-bold">$4.99 / kg</p>
-							<a href="#"
-								class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i
-								class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+						class="border border-primary rounded position-relative vesitable-item">
+						<div class="vesitable-img">
+							<img src="img/featur-2.jpg"
+								class="img-fluid w-100 rounded-top" alt="">
+						</div>
+						<div
+							class="text-white bg-primary px-3 py-1 rounded position-absolute"
+							style="top: 10px; right: 10px;">${category.cdName}</div>
+						<div class="p-4 pb-0 rounded-bottom">
+							<h4>${product.productName}</h4>
+							<p>${product.productContent}</p>
+							<div class="d-flex justify-content-between flex-lg-wrap">
+								<p class="text-dark fs-5 fw-bold">${product.productPrice}</p>
+								<a href="#"
+									class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i
+									class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div
-					class="border border-primary rounded position-relative vesitable-item">
-					<div class="vesitable-img">
-						<img src="img/vegetable-item-1.jpg"
-							class="img-fluid w-100 rounded-top" alt="">
-					</div>
-					<div
-						class="text-white bg-primary px-3 py-1 rounded position-absolute"
-						style="top: 10px; right: 10px;">Vegetable</div>
-					<div class="p-4 pb-0 rounded-bottom">
-						<h4>Parsely</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed
-							do eiusmod te incididunt</p>
-						<div class="d-flex justify-content-between flex-lg-wrap">
-							<p class="text-dark fs-5 fw-bold">$4.99 / kg</p>
-							<a href="#"
-								class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i
-								class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-						</div>
-					</div>
-				</div>
-				<div
-					class="border border-primary rounded position-relative vesitable-item">
-					<div class="vesitable-img">
-						<img src="img/vegetable-item-3.png"
-							class="img-fluid w-100 rounded-top bg-light" alt="">
-					</div>
-					<div
-						class="text-white bg-primary px-3 py-1 rounded position-absolute"
-						style="top: 10px; right: 10px;">Vegetable</div>
-					<div class="p-4 pb-0 rounded-bottom">
-						<h4>Banana</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed
-							do eiusmod te incididunt</p>
-						<div class="d-flex justify-content-between flex-lg-wrap">
-							<p class="text-dark fs-5 fw-bold">$7.99 / kg</p>
-							<a href="#"
-								class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i
-								class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-						</div>
-					</div>
-				</div>
-				<div
-					class="border border-primary rounded position-relative vesitable-item">
-					<div class="vesitable-img">
-						<img src="img/vegetable-item-4.jpg"
-							class="img-fluid w-100 rounded-top" alt="">
-					</div>
-					<div
-						class="text-white bg-primary px-3 py-1 rounded position-absolute"
-						style="top: 10px; right: 10px;">Vegetable</div>
-					<div class="p-4 pb-0 rounded-bottom">
-						<h4>Bell Papper</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed
-							do eiusmod te incididunt</p>
-						<div class="d-flex justify-content-between flex-lg-wrap">
-							<p class="text-dark fs-5 fw-bold">$7.99 / kg</p>
-							<a href="#"
-								class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i
-								class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-						</div>
-					</div>
-				</div>
-				<div
-					class="border border-primary rounded position-relative vesitable-item">
-					<div class="vesitable-img">
-						<img src="img/vegetable-item-5.jpg"
-							class="img-fluid w-100 rounded-top" alt="">
-					</div>
-					<div
-						class="text-white bg-primary px-3 py-1 rounded position-absolute"
-						style="top: 10px; right: 10px;">Vegetable</div>
-					<div class="p-4 pb-0 rounded-bottom">
-						<h4>Potatoes</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed
-							do eiusmod te incididunt</p>
-						<div class="d-flex justify-content-between flex-lg-wrap">
-							<p class="text-dark fs-5 fw-bold">$7.99 / kg</p>
-							<a href="#"
-								class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i
-								class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-						</div>
-					</div>
-				</div>
-				<div
-					class="border border-primary rounded position-relative vesitable-item">
-					<div class="vesitable-img">
-						<img src="img/vegetable-item-6.jpg"
-							class="img-fluid w-100 rounded-top" alt="">
-					</div>
-					<div
-						class="text-white bg-primary px-3 py-1 rounded position-absolute"
-						style="top: 10px; right: 10px;">Vegetable</div>
-					<div class="p-4 pb-0 rounded-bottom">
-						<h4>Parsely</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed
-							do eiusmod te incididunt</p>
-						<div class="d-flex justify-content-between flex-lg-wrap">
-							<p class="text-dark fs-5 fw-bold">$7.99 / kg</p>
-							<a href="#"
-								class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i
-								class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-						</div>
-					</div>
-				</div>
-				<div
-					class="border border-primary rounded position-relative vesitable-item">
-					<div class="vesitable-img">
-						<img src="img/vegetable-item-5.jpg"
-							class="img-fluid w-100 rounded-top" alt="">
-					</div>
-					<div
-						class="text-white bg-primary px-3 py-1 rounded position-absolute"
-						style="top: 10px; right: 10px;">Vegetable</div>
-					<div class="p-4 pb-0 rounded-bottom">
-						<h4>Potatoes</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed
-							do eiusmod te incididunt</p>
-						<div class="d-flex justify-content-between flex-lg-wrap">
-							<p class="text-dark fs-5 fw-bold">$7.99 / kg</p>
-							<a href="#"
-								class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i
-								class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-						</div>
-					</div>
-				</div>
-				<div
-					class="border border-primary rounded position-relative vesitable-item">
-					<div class="vesitable-img">
-						<img src="img/vegetable-item-6.jpg"
-							class="img-fluid w-100 rounded-top" alt="">
-					</div>
-					<div
-						class="text-white bg-primary px-3 py-1 rounded position-absolute"
-						style="top: 10px; right: 10px;">Vegetable</div>
-					<div class="p-4 pb-0 rounded-bottom">
-						<h4>Parsely</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed
-							do eiusmod te incididunt</p>
-						<div class="d-flex justify-content-between flex-lg-wrap">
-							<p class="text-dark fs-5 fw-bold">$7.99 / kg</p>
-							<a href="#"
-								class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i
-								class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-						</div>
-					</div>
-				</div>
+				</c:forEach>
+				
 			</div>
 		</div>
 	</div>
 </div>
+<!-- 카트 (장바구니)에 값 추가하기 -->
+<script>
+	// 제품 변수
+	let productNo = "${product.productNo}";
+	// 회원 변수
+	let memberId = "${member.memberId}";
+
+	let cartAddBtn = document.querySelector('#cartAdd');
+	cartAddBtn.addEventListener("click",function(e){
+		let cartListVO = {
+			productNo : productNo,
+			memberId : memberId,
+		}
+		let url = "cartAdd.do";
+		let optionObj = {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(
+				cartListVO
+			)
+		}
+		fetch(url,optionObj)
+		.then(result => {
+			return result.json();
+		})
+		.then(function(result){
+			if(result.addCart == "Faild"){
+				alert("장바구니에 추가가 실패하였습니다.");
+			}else{
+				alert("장바구니에 추가가 완료되었습니다.")
+			}
+		});
+	});
+</script>
