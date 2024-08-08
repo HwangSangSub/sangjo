@@ -203,31 +203,34 @@
 	let memberId = "${member.memberId}";
 
 	let cartAddBtn = document.querySelector('#cartAdd');
-	cartAddBtn.addEventListener("click",function(e){
-		let cartListVO = {
-			productNo : productNo,
-			memberId : memberId,
-		}
-		let url = "cartAdd.do";
-		let optionObj = {
-			method: 'post',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(
-				cartListVO
-			)
-		}
-		fetch(url,optionObj)
-		.then(result => {
-			return result.json();
-		})
-		.then(function(result){
-			if(result.addCart == "Faild"){
-				alert("장바구니에 추가가 실패하였습니다.");
-			}else{
-				alert("장바구니에 추가가 완료되었습니다.")
+	if(cartAddBtn != null){
+		// 버튼에 이벤트추가는 null 이 아닐경우에만 해주자 
+		cartAddBtn.addEventListener("click",function(e){
+			let cartListVO = {
+				productNo : productNo,
+				memberId : memberId,
 			}
+			let url = "cartAdd.do";
+			let optionObj = {
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(
+					cartListVO
+				)
+			}
+			fetch(url,optionObj)
+			.then(result => {
+				return result.json();
+			})
+			.then(function(result){
+				if(result.addCart == "Faild"){
+					alert("장바구니에 추가가 실패하였습니다.");
+				}else{
+					alert("장바구니에 추가가 완료되었습니다.")
+				}
+			});
 		});
-	});
+	}
 </script>
