@@ -6,5 +6,8 @@ import com.sangjo.vo.OrderVO;
 
 public interface OrderService {
     List<OrderVO> getOrderList(OrderVO ovo);
-    void addOrderToCart(OrderVO ovo); // 장바구니에 상품 추가
+    //주문 넣는 것 
+    int addOrder(OrderVO ovo);
+    //주문 상세   
+    int addOrderDetail(OrderVO ovo);
 }

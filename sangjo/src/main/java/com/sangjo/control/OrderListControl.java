@@ -17,8 +17,7 @@ public class OrderListControl implements Control {
 		String cartNos = req.getParameter("cartNos");
 		String productNos = req.getParameter("productNos");
 		String productPrices = req.getParameter("productPrices");
-		String productNames = req.getParameter("productNames");
-		System.out.println(productNames);
+		String productNames = req.getParameter("productNames");		
 		String productImgs = req.getParameter("productImgs");
 		String quantities = req.getParameter("quantities");
 		

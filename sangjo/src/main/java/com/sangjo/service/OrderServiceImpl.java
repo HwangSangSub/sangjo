@@ -17,8 +17,17 @@ public class OrderServiceImpl implements OrderService {
         return mapper.selectOrderList(ovo);
     }
 
-    @Override
-    public void addOrderToCart(OrderVO ovo) {
-        mapper.insertOrder(ovo);
-    }
+	@Override
+	public int addOrder(OrderVO ovo) {
+		// TODO Auto-generated method stub
+		return mapper.insertOrder(ovo);
+	}
+
+	@Override
+	public int addOrderDetail(OrderVO ovo) {
+		// TODO Auto-generated method stub
+		return mapper.insertOrderDetail(ovo);
+	}
+
+
 }
