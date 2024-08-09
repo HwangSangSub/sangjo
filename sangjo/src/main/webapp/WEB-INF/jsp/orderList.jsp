@@ -17,15 +17,15 @@
 <div class="container-fluid py-5">
 	<div class="container py-5">
 		<h1 class="mb-4">주문 정보</h1>
-		<form action="orderList.do" method="post">
+		<form action="orderList.do" method="post" id="orderInfo">
 			<div class="row g-5">
 				<div class="col-md-12 col-lg-6 col-xl-7">
 					<div class="row">
 
 						<div class="col-md-12 col-lg-6">
 							<div class="form-item w-100">
-								<label class="form-label my-3">이름<sup>*</sup></label> <input
-									type="text" class="form-control" name="fullName" required>
+								<label class="form-label my-3">이름<sup>*</sup></label> 
+								<input type="text" class="form-control" name="fullName" required>
 							</div>
 						</div>
 					</div>
@@ -175,14 +175,37 @@
 						</div>
 					</div>
 
-					
+
 				</div>
 			</div>
 		</form>
-		<div
-						class="row g-4 text-center align-items-center justify-content-center pt-4">
-						<button type="submit"
-							class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary"><a href="orderCheck.do">다음</a></button>
-					</div>
+		<form action="orderCheck.do" method="post" id="checkForm">
+		
+			<input type="hidden" name="send_fullName">
+			<input type="hidden" name="send_phone">
+			<input type="hidden" name="send_address">
+			<input type="hidden" name="send_detailAdress">
+			<input type="hidden" name="send_orderMemo">
+			
+			<input type="hidden" name="grandTotal" value="${grandTotal}">
+			<input type="hidden" name="shippingCost" value="${shippingCost}">
+			<input type="hidden" name="totalAmount" value="${totalAmount}">
+			<input type="hidden" name="productImgs" value="${productImgs}">
+			<input type="hidden" name="cartNos" value="${cartNos}"> <input
+				type="hidden" name="productNos" value="${productNos}"> <input
+				type="hidden" name="productNames" value="${productNames}"> <input
+				type="hidden" name="productPrices" value="${productPrices}">
+			<input type="hidden" name="quantities" value="${quantities}">
+
+			<div
+				class="row g-4 text-center align-items-center justify-content-center pt-4">
+				<a href="orderCheck.do">
+					<button type="submit"
+						class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">다음</button>
+				</a>
+			</div>
+		</form>
+
 	</div>
 </div>
+<script src="js/CartList.js"></script>

@@ -56,6 +56,6 @@ public class OrderControl implements Control {
         ovo.setOdCnt(odCnt);
         ovo.setOdPrice(10000); // 실제 가격은 상품 정보를 통해 받아야 함
         
-        osv.addOrderToCart(ovo); // 장바구니에 추가하는 서비스 메서드 호출
+       
     }
 }
