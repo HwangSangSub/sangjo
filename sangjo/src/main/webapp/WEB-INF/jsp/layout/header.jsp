@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix = "c" %>
-<div class="container-fluid">
-    <div class="container px-0">
+<div class="container-fluid fixed-top">
+    <div class="container">
         <nav class="navbar navbar-light bg-white navbar-expand-xl">
             <a href="index.do" class="navbar-brand"><h1 class="text-primary display-6">상조쇼핑몰</h1></a>
             <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -26,28 +26,28 @@
                 </div>
                 <div class="d-flex m-3 me-0">
                     <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
-                    <a href="cartList.do" class="position-relative me-4 my-auto">
-                        <i class="fa fa-shopping-bag fa-2x"></i>
+                    <a href="cartList.do" class="position-relative me-2 my-auto">
+                        <i class="bi bi-cart4 fa-2x"></i>
                         <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
                     </a>
                     <c:choose>
                         <c:when test="${empty member}">
-                            <!-- 로그인 모달 창을 띄어준다. -->
-                            <a data-bs-toggle="modal" data-bs-target="#loginModel"  class="my-auto">
-                                로그인
-                            </a>
                             <!-- 회원가입 모달창을 띄어준다. -->
                             <a data-bs-toggle="modal" data-bs-target="#joinModal"  class="my-auto">
-                                회원가입
+                                <i class="bi bi-person-fill-add me-2 fa-2x"></i>
+                            </a>
+                            <!-- 로그인 모달 창을 띄어준다. -->
+                            <a data-bs-toggle="modal" data-bs-target="#loginModel"  class="my-auto">
+                                <i class="bi bi-person-fill-check me-2 fa-2x"></i>
                             </a>
                         </c:when>
                         <c:otherwise>
                             <!-- 마이페이지가 완성되면 링크를 연결해주자 -->
                             <a href="myPage.do" class="my-auto">
-		                        <i class="fas fa-user fa-2x"></i>
+		                        <i class="bi bi-person-fill-gear me-2 fa-2x"></i>
 		                    </a>
                             <a href="logout.do" class="my-auto">
-                                로그아웃
+                                <i class="bi bi-person-fill-x me-2 fa-2x"></i>
                             </a>
                         </c:otherwise>
                     </c:choose>

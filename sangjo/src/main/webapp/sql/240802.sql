@@ -309,13 +309,13 @@ CREATE SEQUENCE cart_seq;
 ------------------------------ 샘플데이터 넣기(tbl_member)
 -- 비밀번호는 1111로 통일하였다.
 INSERT INTO tbl_member (member_id, member_pw, member_name, member_phone, member_email)
-VALUES('admin', '$2a$10$I4eM/h.cd4C1QXWm2XVjPurdOmKE50EvNJtaGXfQkfB.h6EMrFMOC', '상주', '010-1111-1111', 'admin@sangjo.com');
+VALUES('admin', '1111', '상주', '010-1111-1111', 'admin@sangjo.com');
 INSERT INTO tbl_member (member_id, member_pw, member_name, member_phone, member_email)
-VALUES('user01', '$2a$10$I4eM/h.cd4C1QXWm2XVjPurdOmKE50EvNJtaGXfQkfB.h6EMrFMOC', '김꽃님', '010-1111-1111', 'user01@sangjo.com');
+VALUES('user01', '1111', '김꽃님', '010-1111-1111', 'user01@sangjo.com');
 INSERT INTO tbl_member (member_id, member_pw, member_name, member_phone, member_email)
-VALUES('user02', '$2a$10$I4eM/h.cd4C1QXWm2XVjPurdOmKE50EvNJtaGXfQkfB.h6EMrFMOC', '김햇님', '010-1111-1111', 'user02@sangjo.com');
+VALUES('user02', '1111', '김햇님', '010-1111-1111', 'user02@sangjo.com');
 INSERT INTO tbl_member (member_id, member_pw, member_name, member_phone, member_email)
-VALUES('user03', '$2a$10$I4eM/h.cd4C1QXWm2XVjPurdOmKE50EvNJtaGXfQkfB.h6EMrFMOC', '김달님', '010-1111-1111', 'user03@sangjo.com');
+VALUES('user03', '1111', '김달님', '010-1111-1111', 'user03@sangjo.com');
 
 SELECT *
 FROM tbl_member;
@@ -342,6 +342,30 @@ COMMIT;
 ------------------------------ 샘플데이터 넣기(tbl_product)
 INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
 VALUES (product_seq.NEXTVAL, '1', '국자', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '숟가락', 1000, '단단하고 깨끗하다. 깔끔하고 저렴하다. 숟가락 여러분의 국과 밥을 책임집니다.');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '와우 국자', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '숟가락1', 1000, '단단하고 깨끗하다. 깔끔하고 저렴하다. 숟가락 여러분의 국과 밥을 책임집니다.');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '와우 국자1', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '숟가락2', 1000, '단단하고 깨끗하다. 깔끔하고 저렴하다. 숟가락 여러분의 국과 밥을 책임집니다.');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '와우 국자2', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '숟가락3', 1000, '단단하고 깨끗하다. 깔끔하고 저렴하다. 숟가락 여러분의 국과 밥을 책임집니다.');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '와우 국자3', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '숟가락4', 1000, '단단하고 깨끗하다. 깔끔하고 저렴하다. 숟가락 여러분의 국과 밥을 책임집니다.');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '와우 국자4', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '숟가락5', 1000, '단단하고 깨끗하다. 깔끔하고 저렴하다. 숟가락 여러분의 국과 밥을 책임집니다.');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '와우 국자5', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
 INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
 VALUES (product_seq.NEXTVAL, '2', '욕실화', 4000, '비눗물 위에서도 미끄러지지 않습니다. 만수가 적극 추천하는 욕실화 일본인 우상상도 좋아하는 색감, 사시죠.');
 INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)

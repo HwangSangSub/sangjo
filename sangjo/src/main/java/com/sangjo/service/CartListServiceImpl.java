@@ -19,4 +19,9 @@ public class CartListServiceImpl implements CartListService {
     public boolean deleteCartList(String cartNo) {
         return mapper.deleteCartItem(cartNo) == 1; // 삭제 성공 여부 확인
     }
+
+	@Override
+	public boolean insertCartList(CartListVO cartListVO) {
+		return mapper.insertCartItem(cartListVO) == 1;
+	}
 }

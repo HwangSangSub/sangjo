@@ -19,13 +19,13 @@ div.input-group>label.col-form-label {
 <div class="container-fluid contact py-5">
 	<div class="container py-5">
 		<div class="p-5 bg-light rounded">
-
+			<input type="hidden" id="logid" value="${member.memberId }" />
 			<!-- 탭 메뉴 -->
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				<li class="nav-item" role="presentation">
-					<button class="nav-link active" id="userinfo-tab"
-						data-bs-toggle="tab" data-bs-target="#userinfo" type="button"
-						role="tab" aria-controls="userinfo" aria-selected="true">회원정보</button>
+					<button class="nav-link active" id="userModInfo-tab"
+						data-bs-toggle="tab" data-bs-target="#userModInfo" type="button"
+						role="tab" aria-controls="userModInfo" aria-selected="true">회원정보</button>
 				</li>
 				<li class="nav-item" role="presentation">
 					<button class="nav-link" id="myorder-tab" data-bs-toggle="tab"
@@ -41,12 +41,11 @@ div.input-group>label.col-form-label {
 
 			<!-- 내용 -->
 			<div class="tab-content" id="myTabContent">
-				<div class="tab-pane fade show active" id="userModInfo" role="tabpanel"
-					aria-labelledby="userinfo-tab">
+				<div class="tab-pane fade show active" id="userModInfo"
+					role="tabpanel" aria-labelledby="userinfo-tab">
 					<!-- 헤더 부분 -->
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">회원가입</h5>
-						${member }
+						<h5 class="modal-title" id="exampleModalLabel">회원정보</h5>
 					</div>
 					<div class="modal-body d-flex align-items-center">
 						<div class="input-group mx-auto d-flex">
@@ -87,7 +86,7 @@ div.input-group>label.col-form-label {
 					<div class="modal-body d-flex align-items-center">
 						<div class="input-group mx-auto d-flex">
 							<input type="button" id="modBtn" class="btn btn-primary"
-								value="변경">
+								value="수정">
 						</div>
 					</div>
 				</div>
@@ -97,6 +96,33 @@ div.input-group>label.col-form-label {
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLabel">주문내역</h5>
 					</div>
+					<table class="table table-striped table-bordered" id="myOrdList">
+						<thead>
+							<tr>
+								<th>주문번호</th>
+								<th>주문금액</th>
+								<th>배송비</th>
+								<th>배송지정보</th>
+								<th>주문일시</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>20000원</td>
+								<td>0원</td>
+								<td>배송지보기</td>
+								<td>2024-08-08</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>50000원</td>
+								<td>2000원</td>
+								<td>배송지보기</td>
+								<td>2024-08-08</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 				<div class="tab-pane fade" id="myinquiry" role="tabpanel"
 					aria-labelledby="myinquiry-tab">
@@ -104,6 +130,26 @@ div.input-group>label.col-form-label {
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLabel">문의내역</h5>
 					</div>
+					<table class="table table-striped table-bordered" id="myInqList">
+						<thead>
+							<tr>
+								<th>주문번호</th>
+								<th>주문금액</th>
+								<th>배송비</th>
+								<th>배송지정보</th>
+								<th>주문일시</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>20000원</td>
+								<td>0원</td>
+								<td>배송지보기</td>
+								<td>2024-08-08</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>

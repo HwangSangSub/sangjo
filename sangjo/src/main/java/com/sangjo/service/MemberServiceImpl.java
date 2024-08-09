@@ -1,7 +1,6 @@
 package com.sangjo.service;
 
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.sangjo.common.DataSource;
 import com.sangjo.mapper.MemberMapper;
@@ -14,13 +13,10 @@ public class MemberServiceImpl implements MemberService{
 	MemberMapper mapper 
 		= sqlSession.getMapper(MemberMapper.class);
 	
-	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-	
 	/**
-	 * 아이디 찾기용 아직 사용처 X
+	 * 아이디 찾기용 
 	 */
 	@Override
-	@Deprecated
 	public MemberVO getMemberById(String memberId) {
 		return mapper.selectMemberById(memberId);
 	}
@@ -37,7 +33,7 @@ public class MemberServiceImpl implements MemberService{
 			return null;
 		}
 		// 입력한대상과 비밀번호 복호화로 비교하기 
-		if(encoder.matches(memberPw, memberVO.getMemberPw())) {
+		if(memberVO.getMemberPw().equals(memberPw)){
 			// 객체를 반환한다.
 			return memberVO;
 		}
@@ -50,9 +46,6 @@ public class MemberServiceImpl implements MemberService{
 	 */
 	@Override
 	public boolean join(MemberVO memberVO) {
-		// 비밀번호 암호화 
-		String encodingPw = encoder.encode(memberVO.getMemberPw());
-		memberVO.setMemberPw(encodingPw);
 		return mapper.insertMember(memberVO) == 1;
 	}
 	@Override
@@ -82,9 +75,7 @@ public class MemberServiceImpl implements MemberService{
 	 */
 	@Override
 	public boolean changePassword(String newMemberPw, String memberEmail) {
-		// 비밀번호 암호화 
-		String encodingPw = encoder.encode(newMemberPw);
-		return mapper.updateMemberPw(encodingPw, memberEmail) == 1;
+		return mapper.updateMemberPw(newMemberPw, memberEmail) == 1;
 	}
 	
 	/**

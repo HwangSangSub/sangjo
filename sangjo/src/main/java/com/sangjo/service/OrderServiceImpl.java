@@ -21,4 +21,14 @@ public class OrderServiceImpl implements OrderService {
     public void addOrderToCart(OrderVO ovo) {
         mapper.insertOrder(ovo);
     }
+
+	@Override
+	public List<OrderVO> myOrderList(String memberId) {
+		return mapper.getMyOrderList(memberId);
+	}
+
+	@Override
+	public List<OrderVO> myOrderDetailList(int orderNo) {
+		return mapper.getMyOrderDetailList(orderNo);
+	}
 }

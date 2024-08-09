@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sangjo.mapper.InquiryMapper">
+	<select id="getMyInquiryList" parameterType="string" resultType="com.sangjo.vo.InquiryVO">
+		SELECT *
+		FROM tbl_inquiry
+		WHERE inquiry_inquirer = #{memberId}
+	</select>
+</mapper>
