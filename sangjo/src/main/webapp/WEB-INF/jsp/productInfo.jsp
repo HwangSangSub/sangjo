@@ -194,7 +194,7 @@
 						</div>
 						<div class="p-4 pb-0 rounded-bottom">
 							<h4>${product.productName}</h4>
-							<p>${product.productContent}</p>
+							<p class="productListContents">${product.productContent}</p>
 							<div class="d-flex justify-content-between flex-lg-wrap">
 								<p class="text-dark fs-5 fw-bold price">${product.productPrice}</p>
 								<c:if test="${not empty member.memberId }">
@@ -286,4 +286,22 @@
 		}
 		return newPrice.join('');
 	}
+</script>
+<!-- 글짜 제한하기 -->
+<script>
+	let contentTexts = document.querySelectorAll('.productListContents');
+	contentTexts.forEach(function(content){
+		let contentText = content.innerText;
+		if(contentText.length >= 50 ){
+			content.innerText = contentText.substring(contentText, 50) + "...";
+		}else{
+			let needCount = 50 - contentText.length;
+			contentText += "<span style='color:white'>"
+			for(let i = 0; i<needCount; i++){
+				contentText += "아";
+			}
+			contentText += "</span>"
+			content.innerHTML = contentText;
+		}
+	})
 </script>
