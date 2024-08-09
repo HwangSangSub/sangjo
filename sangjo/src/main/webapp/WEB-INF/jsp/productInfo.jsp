@@ -44,7 +44,7 @@
 					<div class="col-lg-6">
 						<h4 class="fw-bold mb-3">${productMain.productName}</h4>
 						<p class="mb-3">Category: ${category.cdName}</p>
-						<h5 class="fw-bold mb-3">${productMain.productPrice}원</h5>
+						<h5 class="fw-bold mb-3 price">${productMain.productPrice}</h5>
 						<!-- 리뷰 파트가 생기면 적용하자.-->
 						<div class="d-flex mb-4">
 							<i class="fa fa-star text-secondary"></i> <i
@@ -54,9 +54,6 @@
 						</div>
 						<p class="mb-4">
 							${productMain.productContent}
-						</p>
-						<p class="mb-4">
-							${productMain.regDate}
 						</p>
 						<!-- 장바구니에 값추가 -->
 						<c:if test="${not empty member.memberId }">
@@ -82,7 +79,6 @@
 							<div class="tab-pane active" id="nav-about" role="tabpanel"
 								aria-labelledby="nav-about-tab">
 								<p>${productMain.productContent}</p>
-								<p>${productMain.regDate}</p>
 							</div>
 							<div class="tab-pane" id="nav-mission" role="tabpanel"
 								aria-labelledby="nav-mission-tab">
@@ -200,7 +196,7 @@
 							<h4>${product.productName}</h4>
 							<p>${product.productContent}</p>
 							<div class="d-flex justify-content-between flex-lg-wrap">
-								<p class="text-dark fs-5 fw-bold">${product.productPrice}</p>
+								<p class="text-dark fs-5 fw-bold price">${product.productPrice}</p>
 								<c:if test="${not empty member.memberId }">
 									<button onclick="addCartEvent('${product.productNo}','${product.productName}')" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary inner">
 										<i class="fa fa-shopping-bag me-2 text-primary"></i>Add to cart
@@ -270,5 +266,24 @@
 				alert("장바구니에 "+cartListVO.productName+"추가가 완료되었습니다.")
 			}
 		});
+	}
+</script>
+<!-- 가격 표시하기 -->
+<script>
+	let priceTexts = document.querySelectorAll('.price');
+	priceTexts.forEach(function(price){
+		price.innerText = numberToPrice(price.innerText) + "원";
+	})
+	function numberToPrice(number){
+		let count = 0;
+		let newPrice =[];
+		for(let i = number.length; i >= 0; i--){
+			newPrice.unshift(number[i]);
+			if(count % 3 == 0 && count != 0){
+				newPrice.unshift(',');
+			}
+			count++;
+		}
+		return newPrice.join('');
 	}
 </script>
