@@ -16,6 +16,10 @@
 			right: 0;
 			bottom: 0;
 		}
+
+		#selectStar .fa-star:hover{
+			color :rgb(255,181,36);
+		}
 	</style>
 </head>
 <!-- Single Page Header start -->
@@ -47,10 +51,11 @@
 						<h5 class="fw-bold mb-3 price">${productMain.productPrice}</h5>
 						<!-- 리뷰 파트가 생기면 적용하자.-->
 						<div class="d-flex mb-4">
-							<i class="fa fa-star text-secondary"></i> <i
-								class="fa fa-star text-secondary"></i> <i
-								class="fa fa-star text-secondary"></i> <i
-								class="fa fa-star text-secondary"></i> <i class="fa fa-star"></i>
+							<i class="fa fa-star text-secondary"></i> 
+							<i class="fa fa-star text-secondary"></i> 
+							<i class="fa fa-star text-secondary"></i> 
+							<i class="fa fa-star text-secondary"></i> 
+							<i class="fa fa-star"></i>
 						</div>
 						<p class="mb-4">
 							${productMain.productContent}
@@ -133,20 +138,8 @@
 						</div>
 					</div>
 					<form action="#">
-						<h4 class="mb-5 fw-bold">Leave a Reply</h4>
+						<h4 class="mb-1 fw-bold">Leave a Reply</h4>
 						<div class="row g-4">
-							<div class="col-lg-6">
-								<div class="border-bottom rounded">
-									<input type="text" class="form-control border-0 me-4"
-										placeholder="Yur Name *">
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="border-bottom rounded">
-									<input type="email" class="form-control border-0"
-										placeholder="Your Email *">
-								</div>
-							</div>
 							<div class="col-lg-12">
 								<div class="border-bottom rounded my-4">
 									<textarea name="" id="" class="form-control border-0" cols="30"
@@ -157,11 +150,15 @@
 								<div class="d-flex justify-content-between py-3 mb-5">
 									<div class="d-flex align-items-center">
 										<p class="mb-0 me-3">Please rate:</p>
-										<div class="d-flex align-items-center"
-											style="font-size: 12px;">
-											<i class="fa fa-star text-muted"></i> <i class="fa fa-star"></i>
-											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i>
+										<div id="selectStar" class="d-flex align-items-center"
+											style="font-size: 30px;">
+											<input type="hidden" value="0">
+											<!-- 별점 주기 -->
+											<i class="fa fa-star" onclick="starClickEvent(1)"></i> 
+											<i class="fa fa-star" onclick="starClickEvent(2)"></i>
+											<i class="fa fa-star" onclick="starClickEvent(3)"></i> 
+											<i class="fa fa-star" onclick="starClickEvent(4)"></i> 
+											<i class="fa fa-star" onclick="starClickEvent(5)"></i>
 										</div>
 									</div>
 									<a href="#"
@@ -304,4 +301,14 @@
 			content.innerHTML = contentText;
 		}
 	})
+</script>
+<!-- 별점 입력하기 -->
+<script>
+	let selectStarDiv = document.querySelector('#selectStar');
+	let selectStarInput = selectStarDiv.querySelector('input');
+	let selectStarStars = selectStarDiv.querySelectorAll('.fa-star');
+	function starClickEvent(starPoint){
+		selectStarInput.value = starPoint;
+		selectStarStars.forEach();
+	}
 </script>
