@@ -14,6 +14,7 @@ DROP TABLE tbl_product_option PURGE;
 DROP TABLE tbl_inquiry PURGE;
 DROP TABLE tbl_board PURGE;
 DROP TABLE tbl_cart PURGE;
+DROP TABLE tbl_review PURGE;
 
 ------------------------------ 생성된 시퀀스 삭제
 DROP SEQUENCE order_seq;
@@ -25,6 +26,7 @@ DROP SEQUENCE category_seq;
 DROP SEQUENCE board_seq;
 DROP SEQUENCE inquiry_seq;
 DROP SEQUENCE cart_seq;
+DROP SEQUENCE review_seq;
 
 ------------------------- 테이블 생성 쿼리
 ------------------------- 테이블 생성(tbl_member)
@@ -262,6 +264,28 @@ COMMENT ON COLUMN tbl_cart.member_id IS '회원 아이디';
 
 COMMENT ON COLUMN tbl_cart.reg_date IS '장바구니등록일';
 
+------------------------- 테이블 생성(tbl_review)
+CREATE TABLE tbl_review (
+	review_no	NUMBER		NOT NULL,
+	product_no 	NUMBER		NOT NULL,
+	member_id	VARCHAR2(20)		NOT NULL,
+	review_content	VARCHAR2(1000)		NOT NULL,
+    review_point	NUMBER		NOT NULL,
+	reg_date	 DATE	DEFAULT sysdate	NOT NULL
+);
+
+COMMENT ON COLUMN tbl_review.review_no IS '리뷰번호';
+
+COMMENT ON COLUMN tbl_review.product_no IS '상품번호';
+
+COMMENT ON COLUMN tbl_review.member_id IS '회원 아이디';
+
+COMMENT ON COLUMN tbl_review.review_content IS '리뷰내용';
+
+COMMENT ON COLUMN tbl_review.reg_date IS '등록일';
+
+COMMENT ON COLUMN tbl_review.review_point IS '리뷰점수>1~5점';
+
 ------------------------- 테이블 pk 등록
 ALTER TABLE tbl_member ADD CONSTRAINT PK_TBL_MEMBER PRIMARY KEY (
 	member_id
@@ -294,6 +318,9 @@ ALTER TABLE tbl_cart ADD CONSTRAINT PK_TBL_CART PRIMARY KEY (
 	cart_no
 );
 
+ALTER TABLE tbl_review ADD CONSTRAINT PK_TBL_REVIEW PRIMARY KEY (
+	review_no
+);
 ------------------------------ 시퀀스 생성
 CREATE SEQUENCE order_seq;
 CREATE SEQUENCE od_seq;
@@ -304,7 +331,7 @@ CREATE SEQUENCE category_seq;
 CREATE SEQUENCE board_seq;
 CREATE SEQUENCE inquiry_seq;
 CREATE SEQUENCE cart_seq;
-
+CREATE SEQUENCE review_seq;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
 ------------------------------ 샘플데이터 넣기(tbl_member)
 -- 비밀번호는 1111로 통일하였다.
@@ -498,5 +525,16 @@ VALUES(cart_seq.NEXTVAL, 5, 'user03');
 
 SELECT *
 FROM tbl_cart;
+
+------------------------------ 샘플데이터 넣기(tbl_review)
+INSERT INTO tbl_review ( review_no, product_no, member_id, review_content, review_point)
+VALUES( review_seq.NEXTVAL, 1, 'user01', '국자가 깨끗하고 단단해요!', 5 );
+INSERT INTO tbl_review ( review_no, product_no, member_id, review_content, review_point)
+VALUES( review_seq.NEXTVAL, 1, 'user02', '국자가 깨끗하기만해요', 3 );
+INSERT INTO tbl_review ( review_no, product_no, member_id, review_content, review_point)
+VALUES( review_seq.NEXTVAL, 1, 'user03', '내가 뭘 받은거지?', 1 );
+
+SELECT * 
+FROM tbl_review;
 
 COMMIT;
