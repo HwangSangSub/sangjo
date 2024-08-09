@@ -22,8 +22,7 @@
 				<div class="col-md-12 col-lg-6 col-xl-7">
 					<div class="form-item w-100">
 						<label class="form-label my-3">이름</label> <input type="text"
-							class="form-control" name="fullName" value="${fullName}"
-							readonly>
+							class="form-control" name="fullName" value="${fullName}" readonly>
 					</div>
 					<div class="form-item">
 						<label class="form-label my-3">휴대폰</label> <input type="tel"
@@ -31,8 +30,7 @@
 					</div>
 					<div class="form-item">
 						<label class="form-label my-3">주소</label> <input type="text"
-							class="form-control" name="address" value="${address}"
-							readonly>
+							class="form-control" name="address" value="${address}" readonly>
 					</div>
 					<div class="form-item">
 						<label class="form-label my-3">상세주소</label> <input type="text"
@@ -71,9 +69,9 @@
 										<td class="py-5">${fn:split(quantities, ',')[i]}</td>
 										<td class="py-5"><c:set var="price"
 												value="${fn:split(param.productPrices, ',')[i]}" /> <c:set
-												var="quantity" value="${fn:split(quantities, ',')[i]}" />
-											<c:set var="total" value="${price * quantity}" /> ${total}원
-											<c:set var="subtotal" value="${subtotal + total}" /></td>
+												var="quantity" value="${fn:split(quantities, ',')[i]}" /> <c:set
+												var="total" value="${price * quantity}" /> ${total}원 <c:set
+												var="subtotal" value="${subtotal + total}" /></td>
 									</tr>
 								</c:forEach>
 								<tr>
@@ -182,6 +180,7 @@
 					</div>
 					<div
 						class="row g-4 text-center align-items-center justify-content-center pt-4">
+						<input type="hidden" name="memberId" value="${member.memberId}">
 						<button type="submit"
 							class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">주문하기</button>
 					</div>
@@ -190,3 +189,4 @@
 		</form>
 	</div>
 </div>
+
