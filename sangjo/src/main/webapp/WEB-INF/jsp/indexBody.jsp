@@ -239,7 +239,7 @@
 									<div class="position-absolute"
 										style="top: 50%; right: 10px; transform: translateY(-50%);">
 										<h3 class="text-secondary fw-bold">
-											Fresh <br> Fruits <br> Banner
+											Fresh <br> 과일 <br> Banner
 										</h3>
 									</div>
 								</div>
@@ -256,7 +256,7 @@
 									</div>
 									<div
 										class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-										style="top: 10px; left: 10px;">Fruits</div>
+										style="top: 10px; left: 10px;">과일</div>
 									<div
 										class="p-4 border border-secondary border-top-0 rounded-bottom">
 										<h4>${productName}</h4>
@@ -266,8 +266,7 @@
 											<p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
 											<a href="#"
 												class="btn border border-secondary rounded-pill px-3 text-primary"><i
-												class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-												cart</a>
+												class="fa fa-shopping-bag me-2 text-primary"></i> 카트에 넣어라</a>
 										</div>
 									</div>
 								</div>
@@ -290,8 +289,7 @@
 											<p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
 											<a href="#"
 												class="btn border border-secondary rounded-pill px-3 text-primary"><i
-												class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-												cart</a>
+												class="fa fa-shopping-bag me-2 text-primary"></i> 카트에 넣어라</a>
 										</div>
 									</div>
 								</div>
@@ -314,8 +312,7 @@
 											<p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
 											<a href="#"
 												class="btn border border-secondary rounded-pill px-3 text-primary"><i
-												class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-												cart</a>
+												class="fa fa-shopping-bag me-2 text-primary"></i> 카트에 넣어라</a>
 										</div>
 									</div>
 								</div>
@@ -338,8 +335,7 @@
 											<p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
 											<a href="#"
 												class="btn border border-secondary rounded-pill px-3 text-primary"><i
-												class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-												cart</a>
+												class="fa fa-shopping-bag me-2 text-primary"></i>카트에 넣어라</a>
 										</div>
 									</div>
 								</div>
@@ -362,8 +358,7 @@
 											<p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
 											<a href="#"
 												class="btn border border-secondary rounded-pill px-3 text-primary"><i
-												class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-												cart</a>
+												class="fa fa-shopping-bag me-2 text-primary"></i> 카트에 넣어라</a>
 										</div>
 									</div>
 								</div>
@@ -386,8 +381,7 @@
 											<p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
 											<a href="#"
 												class="btn border border-secondary rounded-pill px-3 text-primary"><i
-												class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-												cart</a>
+												class="fa fa-shopping-bag me-2 text-primary"></i> 카트에 넣어라</a>
 										</div>
 									</div>
 								</div>
@@ -410,8 +404,7 @@
 											<p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
 											<a href="#"
 												class="btn border border-secondary rounded-pill px-3 text-primary"><i
-												class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-												cart</a>
+												class="fa fa-shopping-bag me-2 text-primary"></i> 카트에 넣어라</a>
 										</div>
 									</div>
 								</div>
@@ -424,7 +417,7 @@
 									</div>
 									<div
 										class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-										style="top: 10px; left: 10px;">Fruits</div>
+										style="top: 10px; left: 10px;">과일</div>
 									<div
 										class="p-4 border border-secondary border-top-0 rounded-bottom">
 										<h4>Grapes</h4>
@@ -434,8 +427,7 @@
 											<p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
 											<a href="#"
 												class="btn border border-secondary rounded-pill px-3 text-primary"><i
-												class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-												cart</a>
+												class="fa fa-shopping-bag me-2 text-primary"></i> 카트에 넣어라 </a>
 										</div>
 									</div>
 								</div>
@@ -448,7 +440,7 @@
 									</div>
 									<div
 										class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-										style="top: 10px; left: 10px;">Fruits</div>
+										style="top: 10px; left: 10px;">과일</div>
 									<div
 										class="p-4 border border-secondary border-top-0 rounded-bottom">
 										<h4>Oranges</h4>

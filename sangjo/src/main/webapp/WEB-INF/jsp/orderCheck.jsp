@@ -37,6 +37,10 @@
 							class="form-control" name="detailAddress"
 							value="${detailAddress}" readonly>
 					</div>
+					<div class="form-item">
+						<input name="orderMemo" value="${orderMemo}" class="form-control"
+							spellcheck="false" readonly></input>
+					</div>
 					<hr>
 				</div>
 				<div class="col-md-12 col-lg-6 col-xl-5">
