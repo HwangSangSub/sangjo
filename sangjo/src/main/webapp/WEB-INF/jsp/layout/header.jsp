@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix = "c" %>
-<div class="container-fluid">
-    <div class="container px-0">
+<div class="container-fluid fixed-top">
+    <div class="container">
         <nav class="navbar navbar-light bg-white navbar-expand-xl">
             <a href="index.do" class="navbar-brand"><h1 class="text-primary display-6">상조쇼핑몰</h1></a>
             <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -26,28 +26,28 @@
                 </div>
                 <div class="d-flex m-3 me-0">
                     <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
-                    <a href="cartList.do" class="position-relative me-4 my-auto">
-                        <i class="fa fa-shopping-bag fa-2x"></i>
+                    <a href="cartList.do" class="position-relative me-2 my-auto">
+                        <i class="bi bi-cart4 fa-2x"></i>
                         <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
                     </a>
                     <c:choose>
                         <c:when test="${empty member}">
-                            <!-- 로그인 모달 창을 띄어준다. -->
-                            <a data-bs-toggle="modal" data-bs-target="#loginModel"  class="my-auto">
-                                로그인
-                            </a>
                             <!-- 회원가입 모달창을 띄어준다. -->
                             <a data-bs-toggle="modal" data-bs-target="#joinModal"  class="my-auto">
-                                회원가입
+                                <i class="bi bi-person-fill-add me-2 fa-2x"></i>
+                            </a>
+                            <!-- 로그인 모달 창을 띄어준다. -->
+                            <a data-bs-toggle="modal" data-bs-target="#loginModel"  class="my-auto">
+                                <i class="bi bi-person-fill-check me-2 fa-2x"></i>
                             </a>
                         </c:when>
                         <c:otherwise>
                             <!-- 마이페이지가 완성되면 링크를 연결해주자 -->
                             <a href="myPage.do" class="my-auto">
-		                        <i class="fas fa-user fa-2x"></i>
+		                        <i class="bi bi-person-fill-gear me-2 fa-2x"></i>
 		                    </a>
                             <a href="logout.do" class="my-auto">
-                                로그아웃
+                                <i class="bi bi-person-fill-x me-2 fa-2x"></i>
                             </a>
                         </c:otherwise>
                     </c:choose>
@@ -58,67 +58,59 @@
 </div>
 <!-- 회원가입 모달창 -->
 <div class="modal fade" id="joinModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen">
-        <div class="modal-content rounded-0">
-            <!-- 헤더 부분 -->
+    <div class="modal-dialog modal-fullscreen modal-content">
+        <div class="rounded-0 style='height = 80%;'">
+        	<!-- 헤더 부분 -->
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">회원가입</h5>
                 <!-- 닫기 버튼-->
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <!--  몸통 부분 -->
-            <div class="modal-body d-flex align-items-center">
+            <div class="modal-body d-flex align-items-center" >
                 <div class="input-group w-50 mx-auto d-flex">
-                    <label for="memberId" class="col-form-label">아이디</label>
-                    <input type="text" class="form-control" id="memberId" placeholder="아이디 (20자)">
-                    <input type="button" class="btn" id="cleanIdCheckBtn" value="재입력"></input>
-                    <input type="button" class="btn" id="idCheckBtn" value="아이디 체크"></input>
+                    <input type="text" class="form-control" id="memberId" placeholder="아이디 (20자)" style="width: 50%;">
+                    <input type="button" class="form-control" id="cleanIdCheckBtn" value="재입력">
                 </div>
             </div>
-            <div class="modal-body d-flex align-items-center">
+            <div class="modal-body d-flex align-items-center" >
                 <div class="input-group w-50 mx-auto d-flex">
-                    <label for="memberPw" class="col-form-label">비밀번호</label>
-                    <input type="text" class="form-control" id="memberPw" placeholder="비밀번호 (20자)">
+                    <input type="password" class="form-control" id="memberPw" placeholder="비밀번호 (20자)">
                 </div>
             </div>
-            <div class="modal-body d-flex align-items-center">
+            <div class="modal-body d-flex align-items-center" >
                 <div class="input-group w-50 mx-auto d-flex">
-                    <label for="memberName" class="col-form-label">이름</label>
                     <input type="text" class="form-control" id="memberName" placeholder="이름 (8자)">
                 </div>
             </div>
-            <div class="modal-body d-flex align-items-center">
+            <div class="modal-body d-flex align-items-center" >
                 <div class="input-group w-50 mx-auto d-flex">
-                    <label for="memberPhone" class="col-form-label">전화번호</label>
                     <input type="text" class="form-control" id="memberPhone" placeholder="전화번호 (11자)">
                 </div> 
             </div>
-            <div class="modal-body d-flex align-items-center">
+            <div class="modal-body d-flex align-items-center" >
                 <div class="input-group w-50 mx-auto d-flex">
-                    <label for="memberEmail" class="col-form-label">이메일</label>
-                    <input type="text" class="form-control" id="memberEmail" placeholder="이메일 작성">
-                    <input type="button" class="btn" id="cleanEmailCheckBtn" value="재입력"></input>
-                    <input type="button" class="btn" id="emailCheckBtn" value="이메일 체크"></input>
+                    <input type="text" class="form-control" id="memberEmail" placeholder="이메일 작성" style="width: 50%;">
+                    <input type="button" class="form-control" id="cleanEmailCheckBtn" value="재입력">
                 </div>
             </div>
             <!-- 주소 입력란 -->
-            <div class="modal-body d-flex align-items-center">
+            <input type="hidden" id="addressCode" class="form-control" placeholder="우편번호" readonly="">
+            <div class="modal-body d-flex align-items-center" >
                 <div class="input-group w-50 mx-auto d-flex">
-                    <input type="button" class="btn" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-                    <input type="text" id="addressCode" class="form-control" placeholder="우편번호" readonly>
+                    <input type="text" id="addressMain" class="form-control" placeholder="도로명주소" onclick="sample4_execDaumPostcode()" readonly="">
                 </div>
             </div>
             <div class="modal-body d-flex align-items-center">
                 <div class="input-group w-50 mx-auto d-flex">
-                    <input type="text" id="addressMain" class="form-control" placeholder="도로명주소" readonly>
                     <input type="text" id="addressDetail" class="form-control" placeholder="상세주소">
                 </div>
             </div>
             <!--주소 입력란 끝-->
             <div class="modal-body d-flex align-items-center">
                 <div class="input-group w-50 mx-auto d-flex">
-                    <input type="reset" class="btn btn-secondary" value="초기화"></input>
-                    <input type="button" id="joinBtn" class="btn btn-primary" value="회원가입" disabled></input>
+                    <input type="reset" class="btn btn-secondary" value="초기화">
+                    <input type="button" id="joinBtn" class="btn btn-primary" value="회원가입" disabled="">
                 </div>
             </div>
         </div>
@@ -136,21 +128,6 @@
                 // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
                 // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
                 var roadAddr = data.roadAddress; // 도로명 주소 변수
-                var extraRoadAddr = ''; // 참고 항목 변수
-
-                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                    extraRoadAddr += data.bname;
-                }
-                // 건물명이 있고, 공동주택일 경우 추가한다.
-                if(data.buildingName !== '' && data.apartment === 'Y'){
-                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                if(extraRoadAddr !== ''){
-                    extraRoadAddr = ' (' + extraRoadAddr + ')';
-                }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('addressCode').value = data.zonecode;
@@ -165,9 +142,7 @@
     // 회원 가입 모달
     let joinModal = document.querySelector('#joinModal');
     // 버튼 
-    let idCheckBtn = joinModal.querySelector('#idCheckBtn');
     let cleanIdCheckBtn = joinModal.querySelector("#cleanIdCheckBtn");
-    let emailCheckBtn = joinModal.querySelector('#emailCheckBtn');
     let cleanEmailCheckBtn = joinModal.querySelector("#cleanEmailCheckBtn");
     // Input 테그 회원
     let memberIdInput = joinModal.querySelector("#memberId");
@@ -180,9 +155,11 @@
     let addressMainInput = joinModal.querySelector("#addressMain");
     let addressDetailInput = joinModal.querySelector("#addressDetail");
     /* 아이디 중복 체크 */
-    idCheckBtn.addEventListener('click',function(e){
-        let memberIdInput = joinModal.querySelector("#memberId");
-        memberService.idCheck(memberIdInput,joinValueCheck);
+    memberIdInput.addEventListener('keydown',function(e){
+        if(e.keyCode==13){
+            let memberIdInput = joinModal.querySelector("#memberId");
+            memberService.idCheck(memberIdInput,joinValueCheck);
+        }
     })
 
     cleanIdCheckBtn.addEventListener('click',function(e){
@@ -193,9 +170,11 @@
     })
     
     /* 이메일 중복 체크 */
-    emailCheckBtn.addEventListener('click',function(e){
-        let memberEmailInput = joinModal.querySelector("#memberEmail");
-        memberService.emailCheck(memberEmailInput,joinValueCheck);
+    memberEmailInput.addEventListener('keydown',function(e){
+        if(e.keyCode==13){
+            let memberEmailInput = joinModal.querySelector("#memberEmail");
+            memberService.emailCheck(memberEmailInput,joinValueCheck);
+        }
     })
 
     cleanEmailCheckBtn.addEventListener('click',function(e){
@@ -263,7 +242,7 @@
             </div>
             <div class="mb-3">
                 <label for="memberPw" class="col-form-label">비밀번호</label>
-                <input type="text" class="form-control" id="memberPw">
+                <input type="password" class="form-control" id="memberPw">
             </div>
             <div class="mb-3">
             	<a href="findIdForm.do">아이디 찾기</a> / <a href="findPwForm.do">비밀번호 찾기</a> 

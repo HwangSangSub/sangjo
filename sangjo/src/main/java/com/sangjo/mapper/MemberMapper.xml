@@ -9,13 +9,6 @@
 		where member_id = #{memberId}
 	</select>
 	
-	<select id="selectMemberByIdPw" resultType="com.sangjo.vo.MemberVO">
-		select * 
-		from tbl_member
-		where member_id = #{id}
-		and member_pw = #{pw}
-	</select>
-	
 	<select id="selectMemberByEamil" parameterType="string" resultType="com.sangjo.vo.MemberVO">
 		select * 
 		from tbl_member

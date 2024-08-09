@@ -10,4 +10,7 @@ public interface OrderService {
     int addOrder(OrderVO ovo);
     //주문 상세   
     int addOrderDetail(OrderVO ovo);
+    
+    List<OrderVO> myOrderList(String memberId);
+    List<OrderVO> myOrderDetailList(int orderNo);
 }

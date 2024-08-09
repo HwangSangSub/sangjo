@@ -6,4 +6,6 @@ import com.sangjo.vo.CategoryVO;
 
 public interface CategoryMapper {
 	List<CategoryVO> selectList();
+
+	CategoryVO selectCategory(int categoryNo);
 }

@@ -13,4 +13,14 @@
 		from tbl_category
 		order by category_no
 	</select>
+	
+	<select id="selectCategory" resultType="com.sangjo.vo.CategoryVO" parameterType="int">
+		select category_no,
+		category,
+		category_detail,
+		category_name,
+		cd_name
+		from tbl_category
+		where category_no = #{categoryNo}
+	</select>
 </mapper>

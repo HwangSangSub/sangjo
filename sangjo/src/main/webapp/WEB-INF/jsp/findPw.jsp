@@ -37,7 +37,7 @@
       </div>
       <div id="changePwInputBox">
         <div class="input-form-box"><span>인증 코드 </span><input id="verificationCode" type="text" class="form-control"></div>
-        <div class="input-form-box"><span>새로운 비밀번호 </span><input id="newMemberPw" type="text" class="form-control"></div>
+        <div class="input-form-box"><span>새로운 비밀번호 </span><input id="newMemberPw" type="password" class="form-control"></div>
         <br>
         <div class="button-login-box" >
           <button type="button" id="changePwBtn" class="btn btn-primary btn-xs" style="width:100%">비밀번호 변경하기</button>

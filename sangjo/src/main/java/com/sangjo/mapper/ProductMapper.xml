@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sangjo.mapper.ProductMapper">
+	<select id="selectProduct" parameterType="string" resultType="com.sangjo.vo.ProductVO">
+		select product_no,
+			category_no,
+			product_name,
+			product_price,
+			product_img,
+			product_thumbnail_img,
+			product_content,
+			reg_date
+		from tbl_product
+		where product_no = #{productNo}
+	</select>
+	
+	<select id="selectProductListByCategoryNo" parameterType="int" resultType="com.sangjo.vo.ProductVO">
+		select product_no,
+			category_no,
+			product_name,
+			product_price,
+			product_img,
+			product_thumbnail_img,
+			product_content,
+			reg_date
+		from tbl_product
+		where category_no = #{categoryNo}
+	</select>
+</mapper>
