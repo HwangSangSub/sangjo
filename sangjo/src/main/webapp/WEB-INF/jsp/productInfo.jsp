@@ -307,8 +307,16 @@
 	let selectStarDiv = document.querySelector('#selectStar');
 	let selectStarInput = selectStarDiv.querySelector('input');
 	let selectStarStars = selectStarDiv.querySelectorAll('.fa-star');
+
 	function starClickEvent(starPoint){
 		selectStarInput.value = starPoint;
-		selectStarStars.forEach();
+		selectStarStars.forEach(function(element){
+			if(--starPoint >= 0){
+				element.style.color = "rgb(255,181,36)";
+			}else{
+				element.style.color = "rgb(116, 125, 136)";
+			}
+		});
 	}
+
 </script>
