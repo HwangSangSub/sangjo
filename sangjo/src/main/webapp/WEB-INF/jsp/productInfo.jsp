@@ -137,12 +137,16 @@
 							</div>
 						</div>
 					</div>
-					<form action="#">
+					<!-- 리뷰 추가파트 로그인 했을 때만 보이게한다. -->
+					<c:if test="${not empty member.memberId }">
+					<form action="addReview.do">
+						<input type="hidden" name="memberId" value="${member.memberId}">
+						<input type="hidden" name="productNo" value="${productMain.productNo}">
 						<h4 class="mb-1 fw-bold">Leave a Reply</h4>
 						<div class="row g-4">
 							<div class="col-lg-12">
 								<div class="border-bottom rounded my-4">
-									<textarea name="" id="" class="form-control border-0" cols="30"
+									<textarea name="reviewContent" class="form-control border-0" cols="30"
 										rows="8" placeholder="Your Review *" spellcheck="false"></textarea>
 								</div>
 							</div>
@@ -152,7 +156,7 @@
 										<p class="mb-0 me-3">Please rate:</p>
 										<div id="selectStar" class="d-flex align-items-center"
 											style="font-size: 30px;">
-											<input type="hidden" value="0">
+											<input name="reviewPoint" type="hidden" value="0">
 											<!-- 별점 주기 -->
 											<i class="fa fa-star" onclick="starClickEvent(1)"></i> 
 											<i class="fa fa-star" onclick="starClickEvent(2)"></i>
@@ -161,13 +165,15 @@
 											<i class="fa fa-star" onclick="starClickEvent(5)"></i>
 										</div>
 									</div>
-									<a href="#"
-										class="btn border border-secondary text-primary rounded-pill px-4 py-3">
-										Post Comment</a>
+									<input type="submit"
+										class="btn border border-secondary text-primary rounded-pill px-4 py-3"
+										value="Post Comment">
+										</input>
 								</div>
 							</div>
 						</div>
 					</form>
+					</c:if>
 				</div>
 			</div>
 		</div>
@@ -318,5 +324,15 @@
 			}
 		});
 	}
-
+</script>
+<!-- 리뷰 추가 결과 출력하기 -->
+<script>
+	// url 에서 자료를 가져와 출력한다.
+	let query = window.location.search;
+	let urlParams = new URLSearchParams(query);
+	let addReviewResult = urlParams.get('addReviewResult');
+	console.log(addReviewResult);
+	if(addReviewResult != null){
+		alert(addReviewResult)
+	}
 </script>
