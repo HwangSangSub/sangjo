@@ -105,10 +105,10 @@
 								<p>${productMain.productContent}</p>
 							</div>
 							<!-- 리뷰 리스트 보여주기 -->
-							<div class="tab-pane" id="review-list" role="tabpanel"
+							<div class="tab-pane" id="nav-mission" role="tabpanel"
 								aria-labelledby="nav-mission-tab">
 								<!-- 밑의 부분을 복사해서 자바스크립트로 그려줄 것이다.-->
-								<div class="d-flex" style="display: none;">
+								<div class="d-flex" style="display: none !important; ">
 									<img src="img/avatar.jpg" class="img-fluid rounded-circle p-3"
 										style="width: 100px; height: 100px;" alt="">
 									<div class="">
@@ -116,16 +116,17 @@
 										<div class="d-flex justify-content-between">
 											<h5>Jason Smith</h5>
 											<div class="d-flex mb-3">
-												<i class="fa fa-star text-secondary"></i> <i
-													class="fa fa-star text-secondary"></i> <i
-													class="fa fa-star text-secondary"></i> <i
-													class="fa fa-star text-secondary"></i> <i
-													class="fa fa-star"></i>
+												<i class="fa fa-star text-secondary"></i> 
+												<i class="fa fa-star text-secondary"></i> 
+												<i class="fa fa-star text-secondary"></i> 
+												<i class="fa fa-star text-secondary"></i> 
+												<i class="fa fa-star"></i>
 											</div>
 										</div>
 										<p>The generated Lorem Ipsum is therefore always free from
 											repetition injected humour, or non-characteristic words etc.
 											Susp endisse ultricies nisi vel quam suscipit</p>
+											<br>
 									</div>
 								</div>
 							</div>
@@ -339,13 +340,11 @@
 <script>
 	const reviewService = {
 		getReviewList({productMainNo,reviewPage},loadCallback){
-			fetch("reivewList.do?productMainNo="+productMainNo+
-				"&reviewPage="+reviewPage
-			).then(result => {
-				return result.json();
-			}).then(function(result){
-				loadCallback(result);
-			})
+			const xhtp = new XMLHttpRequest();
+			xhtp.open('get',"reivewList.do?productMainNo="+productMainNo+
+				"&reviewPage="+reviewPage);
+			xhtp.send();
+			xhtp.onload = loadCallback;
 		},
 	}
 </script>
@@ -353,29 +352,43 @@
 <script>
 	const productMainNo = "${productMain.productNo}";// el 테그를 사용하기 때문에 jsp 파일과 한곳에 있어야한다.
 	let reviewPage=1;
-	let reviewDiv = document.querySelector('#review-list');
+	let reviewDiv = document.querySelector('#nav-mission');
 	
 	showReviewList();
 	// 리뷰 리스트 보여주기
 	function showReviewList(){
-		reviewDiv.querySelectorAll('.d-flex').forEach((div,idx) => {
+		reviewDiv.querySelectorAll('tab-pane > .d-flex').forEach((div,idx) => {
 			// 첫번째 자료는 복제를 위해 필요하므로 제거하지 않는다.
 			if(idx != 0){
 				div.remove();
 			}
 		})
-		reviewService.getReviewList({productMainNo,reviewPage},function(result){
+		reviewService.getReviewList({productMainNo,reviewPage},function(){
+			let result = JSON.parse(this.responseText);
 			result.forEach(review => {
-				reviewDiv.appendChild(makeRos(review));
+				reviewDiv.appendChild(makeRow(review));
 			})
 		})
 	}
 
 	function makeRow(review = {}){
-		let cloned = document.querySelector('#review-list > .d-flex')
+		let cloned = document.querySelector('#nav-mission > .d-flex')
 			.cloneNode(true);
 		cloned.style.display='block';
-		cloned.querySelector('h5').innerText = review.review.memberId;
+		console.log(review);
+		cloned.querySelector('h5').innerText = review.memberId;
+		cloned.querySelector('div > p:nth-of-type(1)').innerText= review.regDate;
+		cloned.querySelector('div > p:nth-of-type(2)').innerText= review.reviewContent;
+		let starsHTMLString="";
+		for(let i = 1; i <= 5; i++){
+			if( i <= review.reviewPoint){
+				starsHTMLString += "<i class='fa fa-star text-secondary'></i>"
+			}else{
+				starsHTMLString += "<i class='fa fa-star '></i>"
+			}
+		}
+		let starsDiv = cloned.querySelector('div > div > div >div').innerHTML = starsHTMLString;
+
 		return cloned;
 	}
 
