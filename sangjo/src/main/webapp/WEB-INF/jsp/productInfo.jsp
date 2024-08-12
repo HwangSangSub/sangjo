@@ -1,6 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix = "c" %>
+<head>
+	<style>
+		.outer{
+			display: flex;
+		}
+		.inner{
+			z-index: 10;
+		}
+		.link{
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+		}
+	</style>
+</head>
 <!-- Single Page Header start -->
 <div class="container-fluid page-header py-5">
 	<h1 class="text-center text-white display-6">Shop Detail</h1>
@@ -168,69 +185,90 @@
 			<div class="owl-carousel vegetable-carousel justify-content-center">
 				
 				<!-- 아이템 반복문 -->
-				<c:forEach var="product" items="${productLsit}">
-					<div
-						class="border border-primary rounded position-relative vesitable-item">
+				<c:forEach var="product" items="${productLsit}">	
+					<div class="border border-primary rounded position-relative vesitable-item outer">				
+						<a href="productInfo.do?productNo=${product.productNo }" class="link"></a>
 						<div class="vesitable-img">
 							<img src="${product.productImg }"
-								class="img-fluid w-100 rounded-top" alt="">
+								class="img-fluid w-100 rounded-top" alt=""/>
 						</div>
 						<div
 							class="text-white bg-primary px-3 py-1 rounded position-absolute"
-							style="top: 10px; right: 10px;">${category.cdName}</div>
+							style="top: 10px; right: 10px;">${category.cdName}
+						</div>
 						<div class="p-4 pb-0 rounded-bottom">
 							<h4>${product.productName}</h4>
 							<p>${product.productContent}</p>
 							<div class="d-flex justify-content-between flex-lg-wrap">
 								<p class="text-dark fs-5 fw-bold">${product.productPrice}</p>
-								<a href="productInfo.do?productNo=${product.productNo }"
-									class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i
-									class="fa fa-shopping-bag me-2 text-primary"></i>상품화면으로 이동</a>
+								<c:if test="${not empty member.memberId }">
+									<button onclick="addCartEvent('${product.productNo}','${product.productName}')" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary inner">
+										<i class="fa fa-shopping-bag me-2 text-primary"></i>Add to cart
+									</button>
+								</c:if>
 							</div>
 						</div>
 					</div>
 				</c:forEach>
-				
+
 			</div>
 		</div>
 	</div>
 </div>
 <!-- 카트 (장바구니)에 값 추가하기 -->
 <script>
-	// 제품 변수
-	let productNo = "${productMain.productNo}";
-	// 회원 변수
+	// 회원 변수(공통 사용)
 	let memberId = "${member.memberId}";
 
+	// 매인 제품에서의 카트에 값 추가
+	let productNo = "${productMain.productNo}";
+	let productName = "${productMain.productName}"
 	let cartAddBtn = document.querySelector('#cartAdd');
 	if(cartAddBtn != null){
 		// 버튼에 이벤트추가는 null 이 아닐경우에만 해주자 
 		cartAddBtn.addEventListener("click",function(e){
 			let cartListVO = {
 				productNo : productNo,
+				productName : productName,
 				memberId : memberId,
 			}
-			let url = "cartAdd.do";
-			let optionObj = {
-				method: 'post',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(
-					cartListVO
-				)
+			addCart(cartListVO);
+		});
+	}
+
+	// 같은 카테고리 상품에서의 카트에 값 추가
+	function addCartEvent(productNo, productName){
+		let cartListVO = {
+			productNo : productNo,
+			productName : productName,
+			memberId : memberId,
+		}
+		addCart(cartListVO);
+	}
+</script>
+<!-- 상품 추가하는 요청 -->
+<script>
+	function addCart(cartListVO){
+		let url = "cartAdd.do";
+		let optionObj = {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(
+				cartListVO
+			)
+		}
+		fetch(url,optionObj)
+		.then(result => {
+			return result.json();
+		})
+		.then(function(result){
+			if(result.addCart == "Faild"){
+				alert("장바구니에 "+cartListVO.productName+"추가가 실패하였습니다.");
+			}else{
+				alert("장바구니에 "+cartListVO.productName+"추가가 완료되었습니다.")
 			}
-			fetch(url,optionObj)
-			.then(result => {
-				return result.json();
-			})
-			.then(function(result){
-				if(result.addCart == "Faild"){
-					alert("장바구니에 추가가 실패하였습니다.");
-				}else{
-					alert("장바구니에 추가가 완료되었습니다.")
-				}
-			});
 		});
 	}
 </script>
