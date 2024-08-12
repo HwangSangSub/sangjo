@@ -105,30 +105,29 @@
 								<p>${productMain.productContent}</p>
 							</div>
 							<!-- 리뷰 리스트 보여주기 -->
-							<div class="tab-pane" id="nav-mission" role="tabpanel"
+							<div class="tab-pane" id="review-list" role="tabpanel"
 								aria-labelledby="nav-mission-tab">
-								<c:forEach var="reivew" items="${reviewList}">
-									<div class="d-flex">
-										<img src="img/avatar.jpg" class="img-fluid rounded-circle p-3"
-											style="width: 100px; height: 100px;" alt="">
-										<div class="">
-											<p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-											<div class="d-flex justify-content-between">
-												<h5>Jason Smith</h5>
-												<div class="d-flex mb-3">
-													<i class="fa fa-star text-secondary"></i> <i
-														class="fa fa-star text-secondary"></i> <i
-														class="fa fa-star text-secondary"></i> <i
-														class="fa fa-star text-secondary"></i> <i
-														class="fa fa-star"></i>
-												</div>
+								<!-- 밑의 부분을 복사해서 자바스크립트로 그려줄 것이다.-->
+								<div class="d-flex" style="display: none;">
+									<img src="img/avatar.jpg" class="img-fluid rounded-circle p-3"
+										style="width: 100px; height: 100px;" alt="">
+									<div class="">
+										<p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
+										<div class="d-flex justify-content-between">
+											<h5>Jason Smith</h5>
+											<div class="d-flex mb-3">
+												<i class="fa fa-star text-secondary"></i> <i
+													class="fa fa-star text-secondary"></i> <i
+													class="fa fa-star text-secondary"></i> <i
+													class="fa fa-star text-secondary"></i> <i
+													class="fa fa-star"></i>
 											</div>
-											<p>The generated Lorem Ipsum is therefore always free from
-												repetition injected humour, or non-characteristic words etc.
-												Susp endisse ultricies nisi vel quam suscipit</p>
 										</div>
+										<p>The generated Lorem Ipsum is therefore always free from
+											repetition injected humour, or non-characteristic words etc.
+											Susp endisse ultricies nisi vel quam suscipit</p>
 									</div>
-								</c:forEach>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -335,4 +334,49 @@
 			alert("리뷰추가가 완료되었습니다.");
 		}
 	}
+</script>
+<!-- 리뷰 서비스 -->
+<script>
+	const reviewService = {
+		getReviewList({productMainNo,reviewPage},loadCallback){
+			fetch("reivewList.do?productMainNo="+productMainNo+
+				"&reviewPage="+reviewPage
+			).then(result => {
+				return result.json();
+			}).then(function(result){
+				loadCallback(result);
+			})
+		},
+	}
+</script>
+<!-- 리뷰 리스트 그리기 -->
+<script>
+	const productMainNo = "${productMain.productNo}";// el 테그를 사용하기 때문에 jsp 파일과 한곳에 있어야한다.
+	let reviewPage=1;
+	let reviewDiv = document.querySelector('#review-list');
+	
+	showReviewList();
+	// 리뷰 리스트 보여주기
+	function showReviewList(){
+		reviewDiv.querySelectorAll('.d-flex').forEach((div,idx) => {
+			// 첫번째 자료는 복제를 위해 필요하므로 제거하지 않는다.
+			if(idx != 0){
+				div.remove();
+			}
+		})
+		reviewService.getReviewList({productMainNo,reviewPage},function(result){
+			result.forEach(review => {
+				reviewDiv.appendChild(makeRos(review));
+			})
+		})
+	}
+
+	function makeRow(review = {}){
+		let cloned = document.querySelector('#review-list > .d-flex')
+			.cloneNode(true);
+		cloned.style.display='block';
+		cloned.querySelector('h5').innerText = review.review.memberId;
+		return cloned;
+	}
+
 </script>

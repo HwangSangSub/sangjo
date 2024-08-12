@@ -27,7 +27,6 @@ public class ReviewListControl implements Control {
 		
 		List<ReviewVO> reviewList
 			= reviewService.getReviewList(productMainNo,reviewPage);
-		reviewList.forEach(System.out::println);
 		
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(reviewList);
