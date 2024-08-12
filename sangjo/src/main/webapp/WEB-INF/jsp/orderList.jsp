@@ -104,32 +104,20 @@
 									<th scope="row"></th>
 									<td class="py-5">
 										<p class="mb-0 text-dark py-4">배송비</p>
-
 									</td>
 									<td colspan="3" class="py-5">
+										<!-- 배송비 선택 체크박스 -->
 										<div class="form-check text-start">
 											<input type="checkbox"
-												class="form-check-input bg-primary border-0" id="Shipping-2"
-												name="shippingCost" value="3000"> <label
-												class="form-check-label" for="Shipping-2">고정 요금:
-												3,000원</label>
-										</div>
-										<div class="form-check text-start">
-											<input type="checkbox"
-												class="form-check-input bg-primary border-0" id="Shipping-2"
-												name="shippingCost" value="3000"> <label
-												class="form-check-label" for="Shipping-2">고정 요금:
-												3,000원</label>
-										</div>
-										<div class="form-check text-start">
-											<input type="checkbox"
-												class="form-check-input bg-primary border-0" id="Shipping-2"
-												name="shippingCost" value="3000"> <label
-												class="form-check-label" for="Shipping-2">고정 요금:
-												3,000원</label>
+												class="form-check-input bg-primary border-0" id="Shipping-1"
+												name="shippingCost" value="3000"
+												<c:if test="${shippingCost == '3000'}">checked</c:if>>
+											<label class="form-check-label" for="Shipping-1">고정
+												요금: 3,000원</label>
 										</div>
 									</td>
 								</tr>
+								
 								<tr>
 									<th scope="row"></th>
 									<td class="py-5">
@@ -161,17 +149,7 @@
 						</div>
 					</div>
 
-					<div
-						class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
-						<div class="col-12">
-							<div class="form-check text-start my-3">
-								<input type="checkbox"
-									class="form-check-input bg-primary border-0" id="Paypal-1"
-									name="Paypal" value="Paypal"> <label
-									class="form-check-label" for="Paypal-1">Paypal</label>
-							</div>
-						</div>
-					</div>
+
 
 
 				</div>

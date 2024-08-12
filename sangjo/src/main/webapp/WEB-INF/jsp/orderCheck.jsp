@@ -17,7 +17,7 @@
 <div class="container-fluid py-5">
 	<div class="container py-5">
 		<h1 class="mb-4">주문 정보 확인</h1>
-		<form action="orderComplete.do" method="post">
+		<form action="order.do" method="post">
 			<div class="row g-5">
 				<div class="col-md-12 col-lg-6 col-xl-7">
 					<div class="form-item w-100">
@@ -72,7 +72,7 @@
 										<td class="py-5">${fn:split(productPrices, ',')[i]}원</td>
 										<td class="py-5">${fn:split(quantities, ',')[i]}</td>
 										<td class="py-5"><c:set var="price"
-												value="${fn:split(param.productPrices, ',')[i]}" /> <c:set
+												value="${fn:split(productPrices, ',')[i]}" /> <c:set
 												var="quantity" value="${fn:split(quantities, ',')[i]}" /> <c:set
 												var="total" value="${price * quantity}" /> ${total}원 <c:set
 												var="subtotal" value="${subtotal + total}" /></td>
@@ -159,38 +159,17 @@
 							</c:choose>
 						</div>
 					</div>
-					<div
-						class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
-						<div class="col-12">
-							<c:choose>
-								<c:when test="${Paypal != null}">
-									<div class="form-check text-start my-3">
-										<input type="checkbox"
-											class="form-check-input bg-primary border-0" id="Paypal-1"
-											name="Paypal" value="Paypal" checked> <label
-											class="form-check-label" for="Paypal-1">Paypal</label>
-									</div>
-								</c:when>
-								<c:otherwise>
-									<div class="form-check text-start my-3">
-										<input type="checkbox"
-											class="form-check-input bg-primary border-0" id="Paypal-1"
-											name="Paypal" value="Paypal"> <label
-											class="form-check-label" for="Paypal-1">Paypal</label>
-									</div>
-								</c:otherwise>
-							</c:choose>
-						</div>
-					</div>
-					<div
-						class="row g-4 text-center align-items-center justify-content-center pt-4">
-						<input type="hidden" name="memberId" value="${member.memberId}">
-						<button type="submit"
-							class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">주문하기</button>
-					</div>
+
 				</div>
+			</div>
+			<div
+				class="row g-4 text-center align-items-center justify-content-center pt-4">
+				<input type="hidden" name="memberId" value="${member.memberId}">
+				<button type="submit"
+					class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">주문하기</button>
 			</div>
 		</form>
 	</div>
 </div>
+
 
