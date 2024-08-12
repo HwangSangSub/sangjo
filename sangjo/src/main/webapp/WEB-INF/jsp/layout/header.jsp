@@ -69,13 +69,13 @@
             <!--  몸통 부분 -->
             <div class="modal-body d-flex align-items-center" >
                 <div class="input-group w-50 mx-auto d-flex">
-                    <input type="text" class="form-control" id="memberId" placeholder="아이디 (20자)" style="width: 50%;">
+                    <input type="text" class="form-control" id="joinMemberId" placeholder="아이디 (20자)" style="width: 50%;">
                     <input type="button" class="form-control" id="cleanIdCheckBtn" value="재입력">
                 </div>
             </div>
             <div class="modal-body d-flex align-items-center" >
                 <div class="input-group w-50 mx-auto d-flex">
-                    <input type="password" class="form-control" id="memberPw" placeholder="비밀번호 (20자)">
+                    <input type="password" class="form-control" id="joinMemberPw" placeholder="비밀번호 (20자)">
                 </div>
             </div>
             <div class="modal-body d-flex align-items-center" >
@@ -145,8 +145,8 @@
     let cleanIdCheckBtn = joinModal.querySelector("#cleanIdCheckBtn");
     let cleanEmailCheckBtn = joinModal.querySelector("#cleanEmailCheckBtn");
     // Input 테그 회원
-    let memberIdInput = joinModal.querySelector("#memberId");
-    let memberPwInput = joinModal.querySelector("#memberPw");
+    let memberIdInput = joinModal.querySelector("#joinMemberId");
+    let memberPwInput = joinModal.querySelector("#joinMemberPw");
     let memberNameInput = joinModal.querySelector("#memberName");
     let memberPhoneInput = joinModal.querySelector("#memberPhone");
     let memberEmailInput = joinModal.querySelector("#memberEmail");
@@ -157,13 +157,11 @@
     /* 아이디 중복 체크 */
     memberIdInput.addEventListener('keydown',function(e){
         if(e.keyCode==13){
-            let memberIdInput = joinModal.querySelector("#memberId");
             memberService.idCheck(memberIdInput,joinValueCheck);
         }
     })
 
     cleanIdCheckBtn.addEventListener('click',function(e){
-        let memberIdInput = joinModal.querySelector("#memberId");
         memberIdInput.readOnly = false;
         memberIdInput.value = '';
         joinValueCheck();
@@ -172,13 +170,11 @@
     /* 이메일 중복 체크 */
     memberEmailInput.addEventListener('keydown',function(e){
         if(e.keyCode==13){
-            let memberEmailInput = joinModal.querySelector("#memberEmail");
             memberService.emailCheck(memberEmailInput,joinValueCheck);
         }
     })
 
     cleanEmailCheckBtn.addEventListener('click',function(e){
-        let memberEmailInput = joinModal.querySelector("#memberEmail");
         memberEmailInput.readOnly = false;
         memberEmailInput.value = '';
         joinValueCheck();
@@ -237,12 +233,12 @@
         </div>
         <div class="modal-body">
             <div class="mb-3">
-                <label for="memberId" class="col-form-label">아이디</label>
-                <input type="text" class="form-control" id="memberId">
+                <label for="loginMemberId" class="col-form-label">아이디</label>
+                <input type="text" class="form-control" id="loginMemberId">
             </div>
             <div class="mb-3">
-                <label for="memberPw" class="col-form-label">비밀번호</label>
-                <input type="password" class="form-control" id="memberPw">
+                <label for="loginMemberPw" class="col-form-label">비밀번호</label>
+                <input type="password" class="form-control" id="loginMemberPw">
             </div>
             <div class="mb-3">
             	<a href="findIdForm.do">아이디 찾기</a> / <a href="findPwForm.do">비밀번호 찾기</a> 
@@ -261,8 +257,8 @@
     loginModel.addEventListener('show.bs.modal', function (event) {
         // 모달 제목 객체 얻어오기
         let modalTitle = loginModel.querySelector('.modal-title');
-        let memberIdInput = loginModel.querySelector('#memberId');
-        let memberPwInput = loginModel.querySelector('#memberPw');
+        let memberIdInput = loginModel.querySelector('#loginMemberId');
+        let memberPwInput = loginModel.querySelector('#loginMemberPw');
         let loginBtn = loginModel.querySelector('button.btn-primary')
         // 모달창 제목
         modalTitle.textContent = '로그인'

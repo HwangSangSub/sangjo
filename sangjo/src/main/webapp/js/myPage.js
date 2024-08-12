@@ -240,7 +240,11 @@ function makeInquiryRow(inquiry = {}) {
 	tr.setAttribute('data-ono', inquiry.inquiryNo);
 	fields.forEach(field => {
 		let td = document.createElement('td');
-		if (field == 'inquiryType') {
+
+		if (field == 'inquiryNo') {
+			td.innerHTML = inquiry[field];
+			tr.appendChild(td);
+		} else if (field == 'inquiryType') {
 			let statusName;
 			//주문상태 1: 결제완료(배송전), 2배송시작, 3.배송완료,4 :주문취소
 			switch (inquiry[field]) {
@@ -285,25 +289,41 @@ function makeInquiryRow(inquiry = {}) {
 	td = document.createElement('td');
 	let btn = document.createElement('button');
 	btn.setAttribute('data-bs-toggle', 'modal');
-	btn.setAttribute('data-bs-target', '#inqModel' + inquiry.inquiryNo);
+	btn.setAttribute('data-bs-target', '#inqModel_' + inquiry.inquiryNo);
 	btn.className = 'my-auto';
-	btn.classList.add('btn', 'btn-primary');
+	btn.classList.add('btn', 'btn-success');
 	btn.innerHTML = '상세보기';
-	console.log(btn);
-	console.log(inquiry);
-	btn.addEventListener('click', function(){
-		veiwInquiryInfo(inquiry);
+	btn.addEventListener('click', function() {
+		veiwInquiryInfo('inqModel_' + inquiry.inquiryNo);
 	});
 	td.appendChild(btn);
 	tr.appendChild(td);
-	
+	tr.appendChild(createInquiryInfo(inquiry));
+
 	return tr;
 }
-function veiwInquiryInfo(inquiry = {}) {
-	let cloneDiv = document.querySelector('.cloneDiv');
-	cloneDiv.style.display = 'block';
+
+// 모달창생성
+function createInquiryInfo(inquiry = {}) {
+	let cloneDiv = document.querySelector('#inqModel').cloneNode(true);
 	cloneDiv.id = 'inqModel_' + inquiry.inquiryNo;
-	cloneDiv.querySelector('#cloneUl>ul>li:nth-of-type(1)').innerText = inquiry.inquiryTitle;
-	cloneDiv.querySelector('#cloneUl>ul>li:nth-of-type(2)').innerText = inquiry.inquiryContent;
-	cloneDiv.querySelector('#cloneUl>ul>li:nth-of-type(3)').innerText = inquiry.inquiryAnswer;
+	cloneDiv.querySelector('#inquiryTitle').value = inquiry.inquiryTitle;
+	cloneDiv.querySelector('#inquiryContent').value = inquiry.inquiryContent;
+	let inquiryAnswer = "";
+	if(inquiry.inquiryAnswer == "" || inquiry.inquiryAnswer == undefined || inquiry.inquiryAnswer == null){
+		inquiryAnswer += "등록된 답변이 없습니다.";
+	}else{
+		inquiryAnswer += inquiry.inquiryAnswer;
+	}
+	cloneDiv.querySelector('#inquiryAnswer').value = inquiryAnswer;
+	return cloneDiv;
+}
+
+// 모달창 열기
+function veiwInquiryInfo(inquiryTagId) {
+	let viewDiv = document.querySelector("#" + inquiryTagId);
+	viewDiv.style.display = 'block';
+	viewDiv.classList.add('show');
+	viewDiv.removeAttribute('aria-hidden');
+	viewDiv.setAttribute('aria-modal', true);
 }

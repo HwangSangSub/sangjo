@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sangjo.common.Control;
+import com.sangjo.control.AddReviewControl;
 import com.sangjo.control.BoardListControl;
 import com.sangjo.control.CartAddControl;
 import com.sangjo.control.CartListControl;
@@ -33,11 +34,13 @@ import com.sangjo.control.MyPageControl;
 import com.sangjo.control.OrderCheckControl;
 import com.sangjo.control.MyPageInquiryControl;
 import com.sangjo.control.MyPageOrderControl;
+import com.sangjo.control.OrderCheckControl;
 import com.sangjo.control.OrderControl;
 import com.sangjo.control.OrderDetailListControl;
 import com.sangjo.control.OrderListControl;
 import com.sangjo.control.ProductInfoControl;
 import com.sangjo.control.ProductListControl;
+import com.sangjo.control.ReviewListControl;
 import com.sangjo.control.TestPageControl;
 
 public class FrontController extends HttpServlet {
@@ -60,6 +63,10 @@ public class FrontController extends HttpServlet {
 		map.put("/productList.do", new ProductListControl()); // 상품목록조회 - (기능)
 		map.put("/productInfo.do", new ProductInfoControl()); // 상품상세 - (화면)
 
+		/*상품리뷰 파트*/
+		map.put("/addReview.do", new AddReviewControl());	
+		map.put("/reivewList.do", new ReviewListControl());
+		
 		/* 카테고리 */
 		map.put("/category.do", new CategoryControl()); // 카테고리 (기능)
 

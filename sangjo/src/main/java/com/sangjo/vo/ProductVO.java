@@ -14,4 +14,5 @@ public class ProductVO {
 	private String productThumbnailImg;
 	private String productContent;
 	private Date regDate;
+	private String cdName;
 }
