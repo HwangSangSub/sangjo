@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix = "c" %>
 <head>
 	<style>
+		/* 내부 링크 관련 */
 		.outer{
 			display: flex;
 		}
@@ -16,11 +17,12 @@
 			right: 0;
 			bottom: 0;
 		}
-
+		/* 별점 클릭 */
 		#selectStar .fa-star:hover{
 			color :rgb(255,181,36);
 		}
 		
+		/*평균 별점 표시*/
 		.fa-star-half{
 			z-index: 10;
 		}
@@ -28,7 +30,19 @@
 		.behid-star{
 			margin-left: -18.1px;
 		}
-		
+
+		/* 리뷰 페이징 링크 */
+		.pagination{
+			display: flex !important;
+		}
+		.pagination span { 
+			color: var(--bs-dark);
+			padding: 10px 16px;
+			text-decoration: none;
+			transition: 0.5s;
+			border: 1px solid var(--bs-secondary);
+			margin: 0 4px;
+		}
 	</style>
 </head>
 <!-- Single Page Header start -->
@@ -107,28 +121,31 @@
 							<!-- 리뷰 리스트 보여주기 -->
 							<div class="tab-pane" id="nav-mission" role="tabpanel"
 								aria-labelledby="nav-mission-tab">
-								<!-- 밑의 부분을 복사해서 자바스크립트로 그려줄 것이다.-->
-								<div class="d-flex" style="display: none !important; ">
-									<img src="img/avatar.jpg" class="img-fluid rounded-circle p-3"
-										style="width: 100px; height: 100px;" alt="">
-									<div class="">
-										<p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-										<div class="d-flex justify-content-between">
-											<h5>Jason Smith</h5>
-											<div class="d-flex mb-3">
-												<i class="fa fa-star text-secondary"></i> 
-												<i class="fa fa-star text-secondary"></i> 
-												<i class="fa fa-star text-secondary"></i> 
-												<i class="fa fa-star text-secondary"></i> 
-												<i class="fa fa-star"></i>
+								<div id="review-list">
+									<!-- 밑의 부분을 복사해서 자바스크립트로 그려줄 것이다.-->
+									<div class="d-flex review-item" style="display: none !important; ">
+										<img src="img/avatar.jpg" class="img-fluid rounded-circle p-3"
+											style="width: 100px; height: 100px;" alt="">
+										<div class="">
+											<p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
+											<div class="d-flex">
+												<h5>Jason Smith</h5>
+												<div class="d-flex mb-3" style="margin-left: 20px;">
+													<i class="fa fa-star text-secondary"></i> 
+													<i class="fa fa-star text-secondary"></i> 
+													<i class="fa fa-star text-secondary"></i> 
+													<i class="fa fa-star text-secondary"></i> 
+													<i class="fa fa-star"></i>
+												</div>
 											</div>
+											<p>The generated Lorem Ipsum is therefore always free from
+												repetition injected humour, or non-characteristic words etc.
+												Susp endisse ultricies nisi vel quam suscipit</p>
+												<br>
 										</div>
-										<p>The generated Lorem Ipsum is therefore always free from
-											repetition injected humour, or non-characteristic words etc.
-											Susp endisse ultricies nisi vel quam suscipit</p>
-											<br>
 									</div>
 								</div>
+								<ul class="pagination"></ul>
 							</div>
 						</div>
 					</div>
@@ -346,18 +363,25 @@
 			xhtp.send();
 			xhtp.onload = loadCallback;
 		},
+		reviewCnt(productMainNo = 1, loadCallback){
+			const xhtp = new XMLHttpRequest();
+			xhtp.open('get','reviewCount.do?productMainNo='+productMainNo);
+			xhtp.send();
+			xhtp.onload = loadCallback;
+		}
 	}
 </script>
 <!-- 리뷰 리스트 그리기 -->
 <script>
 	const productMainNo = "${productMain.productNo}";// el 테그를 사용하기 때문에 jsp 파일과 한곳에 있어야한다.
 	let reviewPage=1;
-	let reviewDiv = document.querySelector('#nav-mission');
+	let reviewDiv = document.querySelector('#review-list');
 	
 	showReviewList();
 	// 리뷰 리스트 보여주기
 	function showReviewList(){
-		reviewDiv.querySelectorAll('tab-pane > .d-flex').forEach((div,idx) => {
+		reviewDiv.querySelectorAll('.review-item').forEach((div,idx) => {
+			console.log("제거작업");
 			// 첫번째 자료는 복제를 위해 필요하므로 제거하지 않는다.
 			if(idx != 0){
 				div.remove();
@@ -369,10 +393,12 @@
 				reviewDiv.appendChild(makeRow(review));
 			})
 		})
+		// 페이지 번호 부분 출력
+		reviewService.reviewCnt(productMainNo,createPageList);
 	}
-
+	// 리뷰 객체 만들기
 	function makeRow(review = {}){
-		let cloned = document.querySelector('#nav-mission > .d-flex')
+		let cloned = document.querySelector('#review-list > .d-flex')
 			.cloneNode(true);
 		cloned.style.display='block';
 		console.log(review);
@@ -384,7 +410,7 @@
 			if( i <= review.reviewPoint){
 				starsHTMLString += "<i class='fa fa-star text-secondary'></i>"
 			}else{
-				starsHTMLString += "<i class='fa fa-star '></i>"
+				starsHTMLString += "<i class='fa fa-star'></i>"
 			}
 		}
 		let starsDiv = cloned.querySelector('div > div > div >div').innerHTML = starsHTMLString;
@@ -392,4 +418,91 @@
 		return cloned;
 	}
 
+	// 페이지 링크 그리기
+	function createPageList(){
+		let result = JSON.parse(this.responseText);
+		let reviewCnt = result.reviewCnt;
+		let startPage, endPage;
+		let next, prev;
+		let realEnd = Math.ceil(reviewCnt/5);
+		let nowPage = reviewPage;
+
+		endPage = Math.ceil(nowPage/10) * 10;
+		startPage = endPage - 9;
+		endPage = endPage > realEnd ? realEnd : endPage;
+
+		prev = startPage > 1; // 이전 10개의 페이지를 구분.
+		next = endPage < realEnd ? true : false;
+
+		// 기존 html 지우기
+		document.querySelector('ul.pagination').innerHTML = '';
+
+		// prev 링크
+		let li = document.createElement('li');
+		li.className = 'page-item';
+		if(prev){
+			let aTag = document.createElement('a');
+			aTag.setAttribute('data-page',startPage -1);
+			aTag.className = 'page-link';
+			aTag.innerHTML = 'prev';
+			li.appendChild(aTag);
+		}else{
+			li.classList.add('disabled'); // li 요소의 클래스 추가.
+			let span = document.createElement('span');
+			span.className = 'page-link';
+			span.innerHTML = 'prev';
+			li.appendChild(span);
+		}
+		document.querySelector('ul.pagination').appendChild(li);
+
+		// 리뷰 페이지 링크 10개 출력
+		for(let i = startPage; i <= endPage; i++){
+			let li = document.createElement('li');
+			li.className = 'page-item';
+			if(nowPage == i){
+				li.classList.add('active');
+				let span = document.createElement('span');
+				span.className = 'page-link';
+				span.innerHTML = i;
+				li.appendChild(span);				
+			}else{
+				let aTag = document.createElement('a');
+				aTag.setAttribute('data-page',i);
+				aTag.className = 'page-link';
+				aTag.innerHTML = i;
+				li.appendChild(aTag);
+			}
+			document.querySelector('ul.pagination').appendChild(li);
+		}
+
+		// next 링크
+		li = document.createElement('li');
+		li.className = 'page-item';
+		if(next){ // next가 존재여부이다.
+			let aTag = document.createElement('a');
+			aTag.setAttribute('data-page',endPage + 1 );
+			aTag.className = 'page-link';
+			aTag.innerHTML = 'next';
+			li.appendChild(aTag);
+		}else{
+			li.classList.add('disabled'); 
+			let span = document.createElement('span');
+			span.className = 'page-link';
+			span.innerHTML = 'next';
+			li.appendChild(span);
+		}
+		document.querySelector('ul.pagination').appendChild(li);
+
+		pageMoveEvent();
+	}
+
+	function pageMoveEvent(){
+		document.querySelectorAll('ul.pagination a')
+			.forEach(item=>{
+				item.addEventListener('click', function(e){
+					reviewPage = item.dataset.page;
+					showReviewList();
+				})
+			})
+	}
 </script>
