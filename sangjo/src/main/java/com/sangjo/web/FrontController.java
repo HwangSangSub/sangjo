@@ -33,6 +33,7 @@ import com.sangjo.control.MyPageControl;
 import com.sangjo.control.MyPageInquiryControl;
 import com.sangjo.control.MyPageOrderControl;
 import com.sangjo.control.OrderControl;
+import com.sangjo.control.OrderDetailListControl;
 import com.sangjo.control.OrderListControl;
 import com.sangjo.control.ProductInfoControl;
 import com.sangjo.control.ProductListControl;
@@ -65,9 +66,12 @@ public class FrontController extends HttpServlet {
 		map.put("/cartList.do", new CartListControl()); // 장바구니 (화면)
 		map.put("/cartRemove.do", new CartRemoveControl()); // 장바구니 (삭제)
 		map.put("/cartAdd.do", new CartAddControl());// 장바구니 추가 (기능)
+		
 		/* 주문 */
 		map.put("/orderList.do", new OrderListControl()); // 주문 (화면)
 		map.put("/order.do", new OrderControl()); // 주문 (기능)
+		map.put("/orderDetailList.do", new OrderDetailListControl()); // 주문상세 (기능)
+		
 
 		/* 고객센터 */
 		map.put("/helpDesk.do", new HelpDeskControl()); // 고객센터

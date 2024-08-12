@@ -7,5 +7,6 @@
 		SELECT *
 		FROM tbl_inquiry
 		WHERE inquiry_inquirer = #{memberId}
+		ORDER BY inquiry_date DESC, inquiry_no DESC
 	</select>
 </mapper>

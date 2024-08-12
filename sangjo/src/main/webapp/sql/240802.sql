@@ -422,7 +422,21 @@ COMMIT;
 
 ------------------------------ 샘플데이터 넣기(tbl_inquiry)
 INSERT INTO tbl_inquiry(inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer)
-VALUES(inquiry_seq.NEXTVAL, 1, '일반문의 제목입니다', '일반문의 내용입니다', 'user01');
+VALUES(inquiry_seq.NEXTVAL, 1, '일반문의 제목입니다1', '일반문의 내용입니다1일반문의 내용입니다1일반문의 내용입니다1일반문의 내용입니다1일반문의 내용입니다1일반문의 내용입니다1일반문의 내용입니다1일반문의 내용입니다1일반문의 내용입니다1일반문의 내용입니다1일반문의 내용입니다1', 'user01');
+INSERT INTO tbl_inquiry(inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer)
+VALUES(inquiry_seq.NEXTVAL, 1, '일반문의 제목입니다2', '일반문의 내용입니다2', 'user01');
+INSERT INTO tbl_inquiry(inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer)
+VALUES(inquiry_seq.NEXTVAL, 2, '상품문의 제목입니다1', '상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1', 'user01');
+INSERT INTO tbl_inquiry(inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer)
+VALUES(inquiry_seq.NEXTVAL, 2, '상품문의 제목입니다2', '상품문의 내용입니다2', 'user01');
+INSERT INTO tbl_inquiry(inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer)
+VALUES(inquiry_seq.NEXTVAL, 2, '상품문의 제목입니다3', '상품문의 내용입니다3', 'user01');
+INSERT INTO tbl_inquiry(inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer)
+VALUES(inquiry_seq.NEXTVAL, 3, '주문문의 제목입니다1', '상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1', 'user01');
+INSERT INTO tbl_inquiry(inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer)
+VALUES(inquiry_seq.NEXTVAL, 3, '주문문의 제목입니다2', '주문문의 내용입니다2', 'user01');
+INSERT INTO tbl_inquiry(inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer)
+VALUES(inquiry_seq.NEXTVAL, 3, '주문문의 제목입니다3', '주문문의 내용입니다3', 'user01');
 INSERT INTO tbl_inquiry(inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer, ref_no)
 VALUES(inquiry_seq.NEXTVAL, 2, '상품문의 제목입니다', '상품문의 내용입니다', 'user02', 1);
 INSERT INTO tbl_inquiry(inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer, ref_no)
@@ -435,11 +449,16 @@ COMMIT;
 
 ------------------------------ 샘플데이터 넣기(tbl_order)
 INSERT INTO tbl_order(order_no, order_price, address_no, member_id)
-VALUES(order_seq.NEXTVAL, 170010000, 1, 'user01');
+VALUES(order_seq.NEXTVAL, 20000, 1, 'user01');
 INSERT INTO tbl_order(order_no, order_price, address_no, member_id)
-VALUES(order_seq.NEXTVAL, 10010000, 3, 'user02');
+VALUES(order_seq.NEXTVAL, 41000, 1, 'user01');
 INSERT INTO tbl_order(order_no, order_price, address_no, member_id)
-VALUES(order_seq.NEXTVAL, 10000, 5, 'user03');
+VALUES(order_seq.NEXTVAL, 110000, 1, 'user01');
+
+INSERT INTO tbl_order(order_no, order_price, address_no, member_id)
+VALUES(order_seq.NEXTVAL, 10100000, 3, 'user02');
+INSERT INTO tbl_order(order_no, order_price, address_no, member_id)
+VALUES(order_seq.NEXTVAL, 30000, 5, 'user03');
 
 SELECT *
 FROM tbl_order;
@@ -448,15 +467,21 @@ COMMIT;
 
 ------------------------------ 샘플데이터 넣기(tbl_order_detail)
 INSERT INTO tbl_order_detail(od_no, order_no, product_no, od_price, od_cnt)
-VALUES(od_seq.NEXTVAL, 1, 3, 170000000, 1);
+VALUES(od_seq.NEXTVAL, 1, 3, 10000, 1);
 INSERT INTO tbl_order_detail(od_no, order_no, product_no, od_price, od_cnt)
 VALUES(od_seq.NEXTVAL, 1, 1, 10000, 1);
 INSERT INTO tbl_order_detail(od_no, order_no, product_no, od_price, od_cnt)
-VALUES(od_seq.NEXTVAL, 2, 4, 10000000, 1);
+VALUES(od_seq.NEXTVAL, 2, 4, 1000, 1);
 INSERT INTO tbl_order_detail(od_no, order_no, product_no, od_price, od_cnt)
-VALUES(od_seq.NEXTVAL, 2, 5, 10000, 1);
+VALUES(od_seq.NEXTVAL, 2, 5, 10000, 4);
 INSERT INTO tbl_order_detail(od_no, order_no, product_no, od_price, od_cnt)
-VALUES(od_seq.NEXTVAL, 3, 1, 10000, 1);
+VALUES(od_seq.NEXTVAL, 3, 1, 10000, 11);
+INSERT INTO tbl_order_detail(od_no, order_no, product_no, od_price, od_cnt)
+VALUES(od_seq.NEXTVAL, 4, 4, 10000000, 1);
+INSERT INTO tbl_order_detail(od_no, order_no, product_no, od_price, od_cnt)
+VALUES(od_seq.NEXTVAL, 4, 5, 10000, 10);
+INSERT INTO tbl_order_detail(od_no, order_no, product_no, od_price, od_cnt)
+VALUES(od_seq.NEXTVAL, 5, 1, 10000, 3);
 
 
 SELECT *

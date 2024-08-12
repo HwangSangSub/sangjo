@@ -103,24 +103,11 @@ div.input-group>label.col-form-label {
 								<th>주문금액</th>
 								<th>배송비</th>
 								<th>배송지정보</th>
+								<th>주문상태</th>
 								<th>주문일시</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>20000원</td>
-								<td>0원</td>
-								<td>배송지보기</td>
-								<td>2024-08-08</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>50000원</td>
-								<td>2000원</td>
-								<td>배송지보기</td>
-								<td>2024-08-08</td>
-							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -133,23 +120,41 @@ div.input-group>label.col-form-label {
 					<table class="table table-striped table-bordered" id="myInqList">
 						<thead>
 							<tr>
-								<th>주문번호</th>
-								<th>주문금액</th>
-								<th>배송비</th>
-								<th>배송지정보</th>
-								<th>주문일시</th>
+								<th>문의번호</th>
+								<th>문의제목</th>
+								<th>문의타입</th>
+								<th>문의일시</th>
+								<th>상세보기</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>20000원</td>
-								<td>0원</td>
-								<td>배송지보기</td>
-								<td>2024-08-08</td>
-							</tr>
 						</tbody>
 					</table>
+					<button data-bs-toggle="modal" data-bs-target="#inqModel"
+						class="my-auto">상세보기</button>
+					<div class="modal fade cloneDiv" id="inqModel" tabindex="-1"
+						aria-labelledby="exampleModalLabel" aria-hidden="true"
+						style="display: none">
+						<div class="modal-dialog modal-fullscreen">
+							<div class="modal-content rounded-0">
+								<!-- 헤더 부분 -->
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">내 문의내역</h5>
+									<!-- 닫기 버튼-->
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<!--  몸통 부분 -->
+								<div id="cloneUl" class="modal-body d-flex align-items-center">
+									<ul>
+										<li></li>
+										<li></li>
+										<li></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

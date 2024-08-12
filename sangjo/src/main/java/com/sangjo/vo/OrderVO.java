@@ -21,5 +21,8 @@ public class OrderVO {
 	private int ProductNo; // 상품번호
 	private int OdPrice; // 주문상세가격
 	private int OdCnt; // 주문수량
+	private String ProductName; // 상품제목
+	private String ProductPrice; // 상품가격
+	private String ProductImg; // 상품이미지
 
 }
