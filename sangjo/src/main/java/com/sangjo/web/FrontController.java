@@ -109,7 +109,7 @@ public class FrontController extends HttpServlet {
 
 		System.out.println(path);
 		Control sub = map.get(path);
-
+		
 		try {
 			sub.exec(request, response);
 		} catch (ServletException e) {

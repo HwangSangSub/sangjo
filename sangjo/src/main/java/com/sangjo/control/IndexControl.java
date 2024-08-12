@@ -17,6 +17,8 @@ public class IndexControl implements Control {
 	
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+	
 		req.getRequestDispatcher("sangjo/indexBody.tiles").forward(req, resp);
 	}
 
