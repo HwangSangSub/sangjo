@@ -49,38 +49,28 @@ div.input-group>label.col-form-label {
 					</div>
 					<div class="modal-body d-flex align-items-center">
 						<div class="input-group mx-auto d-flex">
-							<label for="memberId" class="col-form-label">아이디</label> <input
-								type="text" class="form-control" id="memberId"
-								value="${member.memberId }" readonly>
+							<input type="text" class="form-control" id="memberIdMy" value="${member.memberId }" readonly>
 						</div>
 					</div>
 					<div class="modal-body d-flex align-items-center">
 						<div class="input-group mx-auto d-flex">
-							<label for="memberPw" class="col-form-label">비밀번호</label> <input
-								type="text" class="form-control" id="memberPw"
-								placeholder="변경할 비밀번호 (20자)"> <input type="hidden"
-								id="memberOldPw" value="${member.memberPw }">
+							<input type="text" class="form-control" id="memberPwMy" placeholder="변경할 비밀번호 (20자)"> 
+							<input type="hidden" id="memberOldPwMy" value="${member.memberPw }">
 						</div>
 					</div>
 					<div class="modal-body d-flex align-items-center">
 						<div class="input-group mx-auto d-flex">
-							<label for="memberName" class="col-form-label">이름</label> <input
-								type="text" class="form-control" id="memberName"
-								value="${member.memberName }">
+							<input type="text" class="form-control" id="memberNameMy" placeholder="변경할 비밀번호 (20자)" value="${member.memberName }">
 						</div>
 					</div>
 					<div class="modal-body d-flex align-items-center">
 						<div class="input-group mx-auto d-flex">
-							<label for="memberPhone" class="col-form-label">전화번호</label> <input
-								type="text" class="form-control" id="memberPhone"
-								value="${member.memberPhone }">
+							<input type="text" class="form-control" id="memberPhoneMy" placeholder="변경할 전화번호(-포함)" value="${member.memberPhone }">
 						</div>
 					</div>
 					<div class="modal-body d-flex align-items-center">
 						<div class="input-group mx-auto d-flex">
-							<label for="memberEmail" class="col-form-label">이메일</label> <input
-								type="text" class="form-control" id="memberEmail"
-								value="${member.memberEmail }">
+							<input type="text" class="form-control" id="memberEmailMy" placeholder="변경할 이메일"  value="${member.memberEmail }">
 						</div>
 					</div>
 					<div class="modal-body d-flex align-items-center">
@@ -130,13 +120,12 @@ div.input-group>label.col-form-label {
 						<tbody>
 						</tbody>
 					</table>
-					<button data-bs-toggle="modal" data-bs-target="#inqModel"
-						class="my-auto">상세보기</button>
 					<div class="modal fade cloneDiv" id="inqModel" tabindex="-1"
 						aria-labelledby="exampleModalLabel" aria-hidden="true"
-						style="display: none">
-						<div class="modal-dialog modal-fullscreen">
-							<div class="modal-content rounded-0">
+						style="display: none" style="width:500px;">
+						<div
+							class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+							<div class="modal-content">
 								<!-- 헤더 부분 -->
 								<div class="modal-header">
 									<h5 class="modal-title" id="exampleModalLabel">내 문의내역</h5>
@@ -145,12 +134,19 @@ div.input-group>label.col-form-label {
 										aria-label="Close"></button>
 								</div>
 								<!--  몸통 부분 -->
-								<div id="cloneUl" class="modal-body d-flex align-items-center">
-									<ul>
-										<li></li>
-										<li></li>
-										<li></li>
-									</ul>
+								<div id="cloneUl" class="modal-body">
+									<div class="mb-3">
+										<label for="inquiryTitle" class="col-form-label">문의제목</label>
+										<input type="text" class="form-control" id="inquiryTitle" disabled/>
+									</div>
+									<div class="mb-3">
+										<label for="inquiryContent" class="col-form-label">문의내용</label>
+										<textarea class="form-control" id="inquiryContent" cols="50" style="overflow: hidden;height:250px;" disabled></textarea>
+									</div>
+									<div class="mb-3">
+										<label for="inquiryAnswer" class="col-form-label">답변내용</label>
+										<textarea class="form-control" id="inquiryAnswer" cols="50" style="overflow: hidden;height:200px;" disabled></textarea>
+									</div>
 								</div>
 							</div>
 						</div>

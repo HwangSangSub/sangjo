@@ -19,12 +19,12 @@ public class MemberModControl implements Control {
 		MemberService mvc = new MemberServiceImpl();
 		HttpSession session = req.getSession();
 
-		String memberId = req.getParameter("memberId");
-		String memberPw = req.getParameter("memberPw");
-		String memberOldPw = req.getParameter("memberOldPw");
-		String memberName = req.getParameter("memberName");
-		String memberPhone = req.getParameter("memberPhone");
-		String memberEmail = req.getParameter("memberEmail");
+		String memberId = req.getParameter("memberIdMy");
+		String memberPw = req.getParameter("memberPwMy");
+		String memberOldPw = req.getParameter("memberOldPwMy");
+		String memberName = req.getParameter("memberNameMy");
+		String memberPhone = req.getParameter("memberPhoneMy");
+		String memberEmail = req.getParameter("memberEmailMy");
 		String memberModPw = "";
 
 		MemberVO mvo = new MemberVO();
