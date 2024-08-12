@@ -5,7 +5,8 @@ import java.util.List;
 import com.sangjo.vo.CategoryVO;
 
 public interface CategoryService {
-	List<CategoryVO> categoryList(CategoryVO category);
-
+	List<CategoryVO> categoryList();
+	List<CategoryVO> categorySelectList(String categoryName);
 	CategoryVO getCategoryName(int categoryNo);
+	
 }

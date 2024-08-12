@@ -76,160 +76,22 @@
 								<div class="mb-3">
 									<h4>Categories</h4>
 									<ul class="list-unstyled fruite-categorie">
-										<li>
-											<div class="d-flex justify-content-between fruite-name">
-												<a href="#" data-bs-toggle="collapse"
-													data-bs-target="#collapseHome"><i
-													class="fas fa-apple-alt me-2"></i>홈인테리어</a> <span>(3)</span>
-											</div>
-											<div class="collapse" id="collapseHome">
-												<div class="card card-body">
-												주방
+										<c:forEach var="item" items="${categoryList }">
+											<li>
+												<div class="d-flex justify-content-between fruite-name">
+													<a href="#" data-bs-toggle="collapse"
+														data-bs-target="#collapseBody_${item.categoryName }"><i
+														class="fas fa-apple-alt me-2"></i>${item.categoryName }</a> <span>(3)</span>
 												</div>
-												<div class="card card-body">
-												욕실
+												<div class="collapse"
+													id="collapseBody_${item.categoryName }">
+													<c:forEach var="item" items="${categorySelectList }">
+														<div class="card card-body">${item.cdName }</div>
+													</c:forEach>
 												</div>
-												<div class="card card-body">
-												거실
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="d-flex justify-content-between fruite-name">
-												<a href="#" data-bs-toggle="collapse"
-													data-bs-target="#collapseKids"><i class="fas fa-apple-alt me-2"></i>유아용품</a> <span>(5)</span>
-											</div>
-											<div class="collapse" id="collapseKids">
-												<div class="card card-body">
-												아동잡화
-												</div>
-												<div class="card card-body">
-												아동의류
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="d-flex justify-content-between fruite-name">
-												<a href="#"><i class="fas fa-apple-alt me-2"></i>뷰티/건강</a> <span>(2)</span>
-											</div>
-										</li>
-										<li>
-											<div class="d-flex justify-content-between fruite-name">
-												<a href="#"><i class="fas fa-apple-alt me-2"></i>장난감/놀이</a>
-												<span>(8)</span>
-											</div>
-										</li>
-										<li>
-											<div class="d-flex justify-content-between fruite-name">
-												<a href="#"><i class="fas fa-apple-alt me-2"></i>가구</a> <span>(5)</span>
-											</div>
-										</li>
+											</li>
+										</c:forEach>
 									</ul>
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<div class="mb-3">
-									<h4 class="mb-2">Price</h4>
-									<input type="range" class="form-range w-100" id="rangeInput"
-										name="rangeInput" min="0" max="500" value="0"
-										oninput="amount.value=rangeInput.value">
-									<output id="amount" name="amount" min-velue="0" max-value="500"
-										for="rangeInput">0</output>
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<div class="mb-3">
-									<h4>Additional</h4>
-									<div class="mb-2">
-										<input type="radio" class="me-2" id="Categories-1"
-											name="Categories-1" value="Beverages"> <label
-											for="Categories-1"> Organic</label>
-									</div>
-									<div class="mb-2">
-										<input type="radio" class="me-2" id="Categories-2"
-											name="Categories-1" value="Beverages"> <label
-											for="Categories-2"> Fresh</label>
-									</div>
-									<div class="mb-2">
-										<input type="radio" class="me-2" id="Categories-3"
-											name="Categories-1" value="Beverages"> <label
-											for="Categories-3"> Sales</label>
-									</div>
-									<div class="mb-2">
-										<input type="radio" class="me-2" id="Categories-4"
-											name="Categories-1" value="Beverages"> <label
-											for="Categories-4"> Discount</label>
-									</div>
-									<div class="mb-2">
-										<input type="radio" class="me-2" id="Categories-5"
-											name="Categories-1" value="Beverages"> <label
-											for="Categories-5"> Expired</label>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<h4 class="mb-3">Featured products</h4>
-								<div class="d-flex align-items-center justify-content-start">
-									<div class="rounded me-4" style="width: 100px; height: 100px;">
-										<img src="img/featur-1.jpg" class="img-fluid rounded" alt="">
-									</div>
-									<div>
-										<h6 class="mb-2">Big Banana</h6>
-										<div class="d-flex mb-2">
-											<i class="fa fa-star text-secondary"></i> <i
-												class="fa fa-star text-secondary"></i> <i
-												class="fa fa-star text-secondary"></i> <i
-												class="fa fa-star text-secondary"></i> <i class="fa fa-star"></i>
-										</div>
-										<div class="d-flex mb-2">
-											<h5 class="fw-bold me-2">2.99 $</h5>
-											<h5 class="text-danger text-decoration-line-through">4.11
-												$</h5>
-										</div>
-									</div>
-								</div>
-								<div class="d-flex align-items-center justify-content-start">
-									<div class="rounded me-4" style="width: 100px; height: 100px;">
-										<img src="img/featur-2.jpg" class="img-fluid rounded" alt="">
-									</div>
-									<div>
-										<h6 class="mb-2">Big Banana</h6>
-										<div class="d-flex mb-2">
-											<i class="fa fa-star text-secondary"></i> <i
-												class="fa fa-star text-secondary"></i> <i
-												class="fa fa-star text-secondary"></i> <i
-												class="fa fa-star text-secondary"></i> <i class="fa fa-star"></i>
-										</div>
-										<div class="d-flex mb-2">
-											<h5 class="fw-bold me-2">2.99 $</h5>
-											<h5 class="text-danger text-decoration-line-through">4.11
-												$</h5>
-										</div>
-									</div>
-								</div>
-								<div class="d-flex align-items-center justify-content-start">
-									<div class="rounded me-4" style="width: 100px; height: 100px;">
-										<img src="img/featur-3.jpg" class="img-fluid rounded" alt="">
-									</div>
-									<div>
-										<h6 class="mb-2">Big Banana</h6>
-										<div class="d-flex mb-2">
-											<i class="fa fa-star text-secondary"></i> <i
-												class="fa fa-star text-secondary"></i> <i
-												class="fa fa-star text-secondary"></i> <i
-												class="fa fa-star text-secondary"></i> <i class="fa fa-star"></i>
-										</div>
-										<div class="d-flex mb-2">
-											<h5 class="fw-bold me-2">2.99 $</h5>
-											<h5 class="text-danger text-decoration-line-through">4.11
-												$</h5>
-										</div>
-									</div>
-								</div>
-								<div class="d-flex justify-content-center my-4">
-									<a href="#"
-										class="btn border border-secondary px-4 py-3 rounded-pill text-primary w-100">Vew
-										More</a>
 								</div>
 							</div>
 							<div class="col-lg-12">
@@ -247,8 +109,8 @@
 						</div>
 					</div>
 					<div class="col-lg-9">
-						<div class="row g-4 justify-content-center">
-							<div class="col-md-6 col-lg-6 col-xl-4">
+						<div class="row g-4 justify-content-center" id="productList">
+							<div class="col-md-6 col-lg-6 col-xl-4" style="display: none;">
 								<div class="rounded position-relative fruite-item">
 									<div class="fruite-img">
 										<img src="img/fruite-item-5.jpg"
@@ -256,14 +118,13 @@
 									</div>
 									<div
 										class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-										style="top: 10px; left: 10px;">과일</div>
+										S style="top: 10px; left: 10px;">${item.cdName}</div>
 									<div
 										class="p-4 border border-secondary border-top-0 rounded-bottom">
-										<h4>${productName}</h4>
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-											sed do eiusmod te incididunt</p>
+										<h4>${item.productName}</h4>
+										<p>${item.productContent }</p>
 										<div class="d-flex justify-content-between flex-lg-wrap">
-											<p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+											<p class="text-dark fs-5 fw-bold mb-0">${item.productPrice }원</p>
 											<a href="#"
 												class="btn border border-secondary rounded-pill px-3 text-primary"><i
 												class="fa fa-shopping-bag me-2 text-primary"></i> 카트에 넣어라</a>
@@ -271,200 +132,40 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-6 col-lg-6 col-xl-4">
-								<div class="rounded position-relative fruite-item">
-									<div class="fruite-img">
-										<img src="img/fruite-item-5.jpg"
-											class="img-fluid w-100 rounded-top" alt="">
-									</div>
-									<div
-										class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-										style="top: 10px; left: 10px;">Fruits</div>
-									<div
-										class="p-4 border border-secondary border-top-0 rounded-bottom">
-										<h4>Grapes</h4>
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-											sed do eiusmod te incididunt</p>
-										<div class="d-flex justify-content-between flex-lg-wrap">
-											<p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-											<a href="#"
-												class="btn border border-secondary rounded-pill px-3 text-primary"><i
-												class="fa fa-shopping-bag me-2 text-primary"></i> 카트에 넣어라</a>
+							<c:forEach var="item" items="${productList }">
+								<div class="col-md-6 col-lg-6 col-xl-4">
+									<div class="rounded position-relative fruite-item">
+										<div class="fruite-img">
+											<img src="img/fruite-item-5.jpg"
+												class="img-fluid w-100 rounded-top" alt="">
+										</div>
+										<div
+											class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+											style="top: 10px; left: 10px;">${item.cdName }</div>
+										<div
+											class="p-4 border border-secondary border-top-0 rounded-bottom">
+											<h4>${item.productName}</h4>
+											<p>${item.productContent }</p>
+											<div class="d-flex justify-content-between flex-lg-wrap">
+												<p class="text-dark fs-5 fw-bold mb-0">${item.productPrice }원</p>
+												<a href="#"
+													class="btn border border-secondary rounded-pill px-3 text-primary"><i
+													class="fa fa-shopping-bag me-2 text-primary"></i> Add to
+													cart</a>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-md-6 col-lg-6 col-xl-4">
-								<div class="rounded position-relative fruite-item">
-									<div class="fruite-img">
-										<img src="img/fruite-item-2.jpg"
-											class="img-fluid w-100 rounded-top" alt="">
-									</div>
-									<div
-										class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-										style="top: 10px; left: 10px;">Fruits</div>
-									<div
-										class="p-4 border border-secondary border-top-0 rounded-bottom">
-										<h4>Raspberries</h4>
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-											sed do eiusmod te incididunt</p>
-										<div class="d-flex justify-content-between flex-lg-wrap">
-											<p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-											<a href="#"
-												class="btn border border-secondary rounded-pill px-3 text-primary"><i
-												class="fa fa-shopping-bag me-2 text-primary"></i> 카트에 넣어라</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 col-lg-6 col-xl-4">
-								<div class="rounded position-relative fruite-item">
-									<div class="fruite-img">
-										<img src="img/fruite-item-4.jpg"
-											class="img-fluid w-100 rounded-top" alt="">
-									</div>
-									<div
-										class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-										style="top: 10px; left: 10px;">Fruits</div>
-									<div
-										class="p-4 border border-secondary border-top-0 rounded-bottom">
-										<h4>Apricots</h4>
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-											sed do eiusmod te incididunt</p>
-										<div class="d-flex justify-content-between flex-lg-wrap">
-											<p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-											<a href="#"
-												class="btn border border-secondary rounded-pill px-3 text-primary"><i
-												class="fa fa-shopping-bag me-2 text-primary"></i>카트에 넣어라</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 col-lg-6 col-xl-4">
-								<div class="rounded position-relative fruite-item">
-									<div class="fruite-img">
-										<img src="img/fruite-item-3.jpg"
-											class="img-fluid w-100 rounded-top" alt="">
-									</div>
-									<div
-										class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-										style="top: 10px; left: 10px;">Fruits</div>
-									<div
-										class="p-4 border border-secondary border-top-0 rounded-bottom">
-										<h4>Banana</h4>
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-											sed do eiusmod te incididunt</p>
-										<div class="d-flex justify-content-between flex-lg-wrap">
-											<p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-											<a href="#"
-												class="btn border border-secondary rounded-pill px-3 text-primary"><i
-												class="fa fa-shopping-bag me-2 text-primary"></i> 카트에 넣어라</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 col-lg-6 col-xl-4">
-								<div class="rounded position-relative fruite-item">
-									<div class="fruite-img">
-										<img src="img/fruite-item-1.jpg"
-											class="img-fluid w-100 rounded-top" alt="">
-									</div>
-									<div
-										class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-										style="top: 10px; left: 10px;">Fruits</div>
-									<div
-										class="p-4 border border-secondary border-top-0 rounded-bottom">
-										<h4>Oranges</h4>
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-											sed do eiusmod te incididunt</p>
-										<div class="d-flex justify-content-between flex-lg-wrap">
-											<p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-											<a href="#"
-												class="btn border border-secondary rounded-pill px-3 text-primary"><i
-												class="fa fa-shopping-bag me-2 text-primary"></i> 카트에 넣어라</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 col-lg-6 col-xl-4">
-								<div class="rounded position-relative fruite-item">
-									<div class="fruite-img">
-										<img src="img/fruite-item-2.jpg"
-											class="img-fluid w-100 rounded-top" alt="">
-									</div>
-									<div
-										class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-										style="top: 10px; left: 10px;">Fruits</div>
-									<div
-										class="p-4 border border-secondary border-top-0 rounded-bottom">
-										<h4>Raspberries</h4>
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-											sed do eiusmod te incididunt</p>
-										<div class="d-flex justify-content-between flex-lg-wrap">
-											<p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-											<a href="#"
-												class="btn border border-secondary rounded-pill px-3 text-primary"><i
-												class="fa fa-shopping-bag me-2 text-primary"></i> 카트에 넣어라</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 col-lg-6 col-xl-4">
-								<div class="rounded position-relative fruite-item">
-									<div class="fruite-img">
-										<img src="img/fruite-item-5.jpg"
-											class="img-fluid w-100 rounded-top" alt="">
-									</div>
-									<div
-										class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-										style="top: 10px; left: 10px;">과일</div>
-									<div
-										class="p-4 border border-secondary border-top-0 rounded-bottom">
-										<h4>Grapes</h4>
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-											sed do eiusmod te incididunt</p>
-										<div class="d-flex justify-content-between flex-lg-wrap">
-											<p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-											<a href="#"
-												class="btn border border-secondary rounded-pill px-3 text-primary"><i
-												class="fa fa-shopping-bag me-2 text-primary"></i> 카트에 넣어라 </a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 col-lg-6 col-xl-4">
-								<div class="rounded position-relative fruite-item">
-									<div class="fruite-img">
-										<img src="img/fruite-item-1.jpg"
-											class="img-fluid w-100 rounded-top" alt="">
-									</div>
-									<div
-										class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-										style="top: 10px; left: 10px;">과일</div>
-									<div
-										class="p-4 border border-secondary border-top-0 rounded-bottom">
-										<h4>Oranges</h4>
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-											sed do eiusmod te incididunt</p>
-										<div class="d-flex justify-content-between flex-lg-wrap">
-											<p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-											<a href="#"
-												class="btn border border-secondary rounded-pill px-3 text-primary"><i
-												class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-												cart</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-12">
-								<div class="pagination d-flex justify-content-center mt-5">
-									<a href="#" class="rounded">&laquo;</a> <a href="#"
-										class="active rounded">1</a> <a href="#" class="rounded">2</a>
-									<a href="#" class="rounded">3</a> <a href="#" class="rounded">4</a>
-									<a href="#" class="rounded">5</a> <a href="#" class="rounded">6</a>
-									<a href="#" class="rounded">&raquo;</a>
-								</div>
-							</div>
+							</c:forEach>
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="pagination d-flex justify-content-center mt-5">
+							<a href="#" class="rounded">&laquo;</a> <a href="#"
+								class="active rounded">1</a> <a href="#" class="rounded">2</a> <a
+								href="#" class="rounded">3</a> <a href="#" class="rounded">4</a>
+							<a href="#" class="rounded">5</a> <a href="#" class="rounded">6</a>
+							<a href="#" class="rounded">&raquo;</a>
 						</div>
 					</div>
 				</div>
@@ -473,3 +174,6 @@
 	</div>
 </div>
 <!-- Fruits Shop End-->
+
+<script src="js/product.js"></script>
+<script src="js/category.js"></script>
