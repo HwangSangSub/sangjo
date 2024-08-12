@@ -31,10 +31,12 @@ import com.sangjo.control.LoginControl;
 import com.sangjo.control.LogoutControl;
 import com.sangjo.control.MemberModControl;
 import com.sangjo.control.MyPageControl;
+import com.sangjo.control.OrderCheckControl;
 import com.sangjo.control.MyPageInquiryControl;
 import com.sangjo.control.MyPageOrderControl;
 import com.sangjo.control.OrderCheckControl;
 import com.sangjo.control.OrderControl;
+import com.sangjo.control.OrderDetailListControl;
 import com.sangjo.control.OrderListControl;
 import com.sangjo.control.ProductInfoControl;
 import com.sangjo.control.ProductListControl;
@@ -56,7 +58,7 @@ public class FrontController extends HttpServlet {
 
 		/* 메인 */
 		map.put("/index.do", new IndexControl());// 메인페이지-상품목록 (화면)
-		
+
 		/* 상품 */
 		map.put("/productList.do", new ProductListControl()); // 상품목록조회 - (기능)
 		map.put("/productInfo.do", new ProductInfoControl()); // 상품상세 - (화면)
@@ -72,9 +74,11 @@ public class FrontController extends HttpServlet {
 		map.put("/cartList.do", new CartListControl()); // 장바구니 (화면)
 		map.put("/cartRemove.do", new CartRemoveControl()); // 장바구니 (삭제)
 		map.put("/cartAdd.do", new CartAddControl());// 장바구니 추가 (기능)
+
 		/* 주문 */
 		map.put("/orderList.do", new OrderListControl()); // 주문 (화면)
 		map.put("/order.do", new OrderControl()); // 주문 (기능)
+		map.put("/orderDetailList.do", new OrderDetailListControl()); // 주문상세 (기능)
 		map.put("/orderCheck.do", new OrderCheckControl());// 주문확인(기능)
 
 		/* 고객센터 */
@@ -86,8 +90,8 @@ public class FrontController extends HttpServlet {
 		map.put("/memberMod.do", new MemberModControl());// 마이페이지-회원정보수정(기능)
 		map.put("/myPageOrder.do", new MyPageOrderControl());// 마이페이지- 주문내역(기능)
 		map.put("/myPageInquiry.do", new MyPageInquiryControl());// 마이페이지- 문의내역(기능)
-		
-		/*회원 파트*/
+
+		/* 회원 파트 */
 		map.put("/idCheck.do", new IdCheckControl());// 아이디 중복체크 (기능)
 		map.put("/emailCheck.do", new EmailCheckControl());
 		map.put("/join.do", new JoinControl());// 회원가입 (기능)
@@ -98,9 +102,9 @@ public class FrontController extends HttpServlet {
 		map.put("/findPwForm.do", new FindPwForm());// 비밀번호 찾기 폼이동(화면)
 		map.put("/findPw.do", new FindPwControl());// 비밀번호 찾기 이메일 가전송(기능)
 		map.put("/changePw.do", new ChangePwControl());// 비밀번호 수정
-		
+
 		/* 오류 */
-		map.put("/errorPage.do", new ErrorControl()); // 오류페이지 
+		map.put("/errorPage.do", new ErrorControl()); // 오류페이지
 	}
 
 	@Override
@@ -112,7 +116,7 @@ public class FrontController extends HttpServlet {
 
 		System.out.println(path);
 		Control sub = map.get(path);
-
+		
 		try {
 			sub.exec(request, response);
 		} catch (ServletException e) {

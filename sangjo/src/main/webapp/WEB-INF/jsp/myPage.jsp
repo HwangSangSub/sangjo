@@ -49,38 +49,28 @@ div.input-group>label.col-form-label {
 					</div>
 					<div class="modal-body d-flex align-items-center">
 						<div class="input-group mx-auto d-flex">
-							<label for="memberId" class="col-form-label">아이디</label> <input
-								type="text" class="form-control" id="memberId"
-								value="${member.memberId }" readonly>
+							<input type="text" class="form-control" id="memberIdMy" value="${member.memberId }" readonly>
 						</div>
 					</div>
 					<div class="modal-body d-flex align-items-center">
 						<div class="input-group mx-auto d-flex">
-							<label for="memberPw" class="col-form-label">비밀번호</label> <input
-								type="text" class="form-control" id="memberPw"
-								placeholder="변경할 비밀번호 (20자)"> <input type="hidden"
-								id="memberOldPw" value="${member.memberPw }">
+							<input type="text" class="form-control" id="memberPwMy" placeholder="변경할 비밀번호 (20자)"> 
+							<input type="hidden" id="memberOldPwMy" value="${member.memberPw }">
 						</div>
 					</div>
 					<div class="modal-body d-flex align-items-center">
 						<div class="input-group mx-auto d-flex">
-							<label for="memberName" class="col-form-label">이름</label> <input
-								type="text" class="form-control" id="memberName"
-								value="${member.memberName }">
+							<input type="text" class="form-control" id="memberNameMy" placeholder="변경할 비밀번호 (20자)" value="${member.memberName }">
 						</div>
 					</div>
 					<div class="modal-body d-flex align-items-center">
 						<div class="input-group mx-auto d-flex">
-							<label for="memberPhone" class="col-form-label">전화번호</label> <input
-								type="text" class="form-control" id="memberPhone"
-								value="${member.memberPhone }">
+							<input type="text" class="form-control" id="memberPhoneMy" placeholder="변경할 전화번호(-포함)" value="${member.memberPhone }">
 						</div>
 					</div>
 					<div class="modal-body d-flex align-items-center">
 						<div class="input-group mx-auto d-flex">
-							<label for="memberEmail" class="col-form-label">이메일</label> <input
-								type="text" class="form-control" id="memberEmail"
-								value="${member.memberEmail }">
+							<input type="text" class="form-control" id="memberEmailMy" placeholder="변경할 이메일"  value="${member.memberEmail }">
 						</div>
 					</div>
 					<div class="modal-body d-flex align-items-center">
@@ -103,24 +93,11 @@ div.input-group>label.col-form-label {
 								<th>주문금액</th>
 								<th>배송비</th>
 								<th>배송지정보</th>
+								<th>주문상태</th>
 								<th>주문일시</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>20000원</td>
-								<td>0원</td>
-								<td>배송지보기</td>
-								<td>2024-08-08</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>50000원</td>
-								<td>2000원</td>
-								<td>배송지보기</td>
-								<td>2024-08-08</td>
-							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -133,23 +110,47 @@ div.input-group>label.col-form-label {
 					<table class="table table-striped table-bordered" id="myInqList">
 						<thead>
 							<tr>
-								<th>주문번호</th>
-								<th>주문금액</th>
-								<th>배송비</th>
-								<th>배송지정보</th>
-								<th>주문일시</th>
+								<th>문의번호</th>
+								<th>문의제목</th>
+								<th>문의타입</th>
+								<th>문의일시</th>
+								<th>상세보기</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>20000원</td>
-								<td>0원</td>
-								<td>배송지보기</td>
-								<td>2024-08-08</td>
-							</tr>
 						</tbody>
 					</table>
+					<div class="modal fade cloneDiv" id="inqModel" tabindex="-1"
+						aria-labelledby="exampleModalLabel" aria-hidden="true"
+						style="display: none" style="width:500px;">
+						<div
+							class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+							<div class="modal-content">
+								<!-- 헤더 부분 -->
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">내 문의내역</h5>
+									<!-- 닫기 버튼-->
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<!--  몸통 부분 -->
+								<div id="cloneUl" class="modal-body">
+									<div class="mb-3">
+										<label for="inquiryTitle" class="col-form-label">문의제목</label>
+										<input type="text" class="form-control" id="inquiryTitle" disabled/>
+									</div>
+									<div class="mb-3">
+										<label for="inquiryContent" class="col-form-label">문의내용</label>
+										<textarea class="form-control" id="inquiryContent" cols="50" style="overflow: hidden;height:250px;" disabled></textarea>
+									</div>
+									<div class="mb-3">
+										<label for="inquiryAnswer" class="col-form-label">답변내용</label>
+										<textarea class="form-control" id="inquiryAnswer" cols="50" style="overflow: hidden;height:200px;" disabled></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

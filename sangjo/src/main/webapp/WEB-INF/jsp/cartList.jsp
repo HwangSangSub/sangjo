@@ -117,7 +117,7 @@
 						<div class="d-flex justify-content-between">
 							<h5 class="mb-0 me-4">배송비</h5>
 							<div class="">
-								<p class="mb-0">${shippingCost} 원</p>
+								<p class="mb-0">${shippingCost}원</p>
 							</div>
 						</div>
 						<p class="mb-0 text-end">민수네 집으로 배송합니다.</p>
@@ -127,28 +127,17 @@
 						<h5 class="mb-0 ps-4 me-4">총 합계</h5>
 						<p class="mb-0 pe-4">${totalAmount}원</p>
 					</div>
-					
-					
 					<!-- 결제 진행 버튼을 포함한 form 추가 -->
 					<form action="orderList.do" method="post" id="cartForm">
-						
 						<input type="hidden" name="grandTotal" value="${grandTotal}">
-						
 						<input type="hidden" name="shippingCost" value="${shippingCost}">
-						
 						<input type="hidden" name="totalAmount" value="${totalAmount}">
-
 						<input type="hidden" name="productImgs" value="${productImgs}">
-						
-						<input type="hidden" name="cartNos" value="${cartNos}">
-						
-						<input type="hidden" name="productNos" value="${productNos}">
-						
-						<input type="hidden" name="productNames" value="${productNames}">
-						
+						<input type="hidden" name="cartNos" value="${cartNos}"> <input
+							type="hidden" name="productNos" value="${productNos}"> <input
+							type="hidden" name="productNames" value="${productNames}">
 						<input type="hidden" name="productPrices" value="${productPrices}">
-						
-						<input type="hidden" name="quantities" value="${quantities}">																
+						<input type="hidden" name="quantities" value="${quantities}">
 						<button
 							class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
 							type="submit">결제 진행</button>

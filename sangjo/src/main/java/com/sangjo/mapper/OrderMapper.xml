@@ -45,12 +45,22 @@
 		SELECT *
 		FROM tbl_order
 		WHERE member_id = #{memberId}
+		ORDER BY order_date DESC, order_no DESC
 	</select>
 	
 	<select id="getMyOrderDetailList" parameterType="int" resultType="com.sangjo.vo.OrderVO">
-		SELECT *
-		FROM tbl_order_detail
+		SELECT od.od_no
+		    ,od.order_no
+		    ,od.product_no
+		    ,od.od_price
+		    ,od.od_cnt
+		    ,p.product_name
+		    ,p.product_price
+		    ,p.product_img
+		FROM tbl_order_detail od
+		    JOIN tbl_product p ON od.product_no = p.product_no
 		WHERE order_no = #{orderNo}
+		ORDER BY od_no
 	</select>
 
 </mapper>
