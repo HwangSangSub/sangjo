@@ -38,4 +38,9 @@ public class ReviewServiceImpl implements ReviewService{
 		return mapper.selectReviewCnt(productMainNo);
 	}
 
+	@Override
+	public boolean removeReview(String productNo, String memberId) {
+		return mapper.deleteReview(productNo,memberId) == 1;
+	}
+
 }

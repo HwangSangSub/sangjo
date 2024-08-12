@@ -16,4 +16,6 @@ public interface ReviewService {
 
 	int getReviewCnt(String productMainNo);
 
+	boolean removeReview(String productNo, String memberId);
+
 }

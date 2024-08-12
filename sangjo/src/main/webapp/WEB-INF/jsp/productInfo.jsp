@@ -185,6 +185,7 @@
 							</div>
 						</div>
 					</form>
+					<button onclick="removeReviewClick()"></button>
 					</c:if>
 				</div>
 			</div>
@@ -322,11 +323,13 @@
 </script>
 <!-- 별점 입력하기 -->
 <script>
-	let selectStarDiv = document.querySelector('#selectStar');
-	let selectStarInput = selectStarDiv.querySelector('input');
-	let selectStarStars = selectStarDiv.querySelectorAll('.fa-star');
-
 	function starClickEvent(starPoint){
+		// jsp 에의하여 해당 변수들이 가리키는 테그가 사라지기때문에
+		// 메서드 안으로 집어넣었다.
+		let selectStarDiv = document.querySelector('#selectStar');
+		let selectStarInput = selectStarDiv.querySelector('input');
+		let selectStarStars = selectStarDiv.querySelectorAll('.fa-star');
+
 		selectStarInput.value = starPoint;
 		selectStarStars.forEach(function(element){
 			if(--starPoint >= 0){
@@ -368,6 +371,13 @@
 			xhtp.open('get','reviewCount.do?productMainNo='+productMainNo);
 			xhtp.send();
 			xhtp.onload = loadCallback;
+		},
+		removeReview({productMainNo,memberId},loadCallback){
+			const xhtp = new XMLHttpRequest();
+			xhtp.open('get',"removeReview.do?productMainNo="+productMainNo+
+				"&memberId="+memberId);
+			xhtp.send();
+			xhtp.onload = loadCallback;
 		}
 	}
 </script>
@@ -381,7 +391,7 @@
 	// 리뷰 리스트 보여주기
 	function showReviewList(){
 		reviewDiv.querySelectorAll('.review-item').forEach((div,idx) => {
-			console.log("제거작업");
+			//console.log("제거작업");
 			// 첫번째 자료는 복제를 위해 필요하므로 제거하지 않는다.
 			if(idx != 0){
 				div.remove();
@@ -401,7 +411,7 @@
 		let cloned = document.querySelector('#review-list > .d-flex')
 			.cloneNode(true);
 		cloned.style.display='block';
-		console.log(review);
+		//console.log(review);
 		cloned.querySelector('h5').innerText = review.memberId;
 		cloned.querySelector('div > p:nth-of-type(1)').innerText= review.regDate;
 		cloned.querySelector('div > p:nth-of-type(2)').innerText= review.reviewContent;
@@ -504,5 +514,18 @@
 					showReviewList();
 				})
 			})
+	}
+</script>
+<!-- 리뷰 삭제하기 -->
+<script>
+	function removeReviewClick(){
+		reviewService.removeReview({productMainNo,memberId},function(e){
+			let result = JSON.parse(this.responseText);
+			if(result.removeReview == "Success"){
+				alert("삭제 성공");
+			}else{
+				alert("삭제 실패");
+			}
+		})
 	}
 </script>

@@ -38,4 +38,10 @@
 		from tbl_review
 		where product_no = #{productNo}
 	</select>
+	
+	<delete id="deleteReview" parameterType="string">
+		delete from tbl_review
+		where product_no = #{no}
+		and member_id = #{id}
+	</delete>
 </mapper>
