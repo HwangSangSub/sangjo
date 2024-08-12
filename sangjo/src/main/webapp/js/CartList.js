@@ -159,6 +159,5 @@ document.querySelectorAll('#orderInfo input').forEach(input => {
 document.querySelector('#orderInfo textarea').addEventListener('change', function() {
 	console.log(this.value);
 	let inputVal = this.value;
-	document.querySelector('input[name=send_orderMemo]').value = inputVal;
-		
+	document.querySelector('input[name=send_orderMemo]').value = inputVal;		
 });
