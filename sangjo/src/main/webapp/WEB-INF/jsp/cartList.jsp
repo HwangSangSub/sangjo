@@ -127,8 +127,6 @@
 						<h5 class="mb-0 ps-4 me-4">총 합계</h5>
 						<p class="mb-0 pe-4">${totalAmount}원</p>
 					</div>
-
-
 					<!-- 결제 진행 버튼을 포함한 form 추가 -->
 					<form action="orderList.do" method="post" id="cartForm">
 						<input type="hidden" name="grandTotal" value="${grandTotal}">

@@ -96,7 +96,6 @@
 									<td class="py-5">
 										<div class="py-3 border-bottom border-top">
 											<p class="mb-0 text-dark">${subtotal}원</p>
-
 										</div>
 									</td>
 								</tr>
@@ -117,7 +116,6 @@
 										</div>
 									</td>
 								</tr>
-								
 								<tr>
 									<th scope="row"></th>
 									<td class="py-5">
@@ -148,15 +146,10 @@
 							입금계좌 : 61870104241940 국민은행 (예금주 : 이성철)
 						</div>
 					</div>
-
-
-
-
 				</div>
 			</div>
 		</form>
 		<form action="orderCheck.do" method="post" id="checkForm">
-
 			<input type="hidden" name="send_fullName"> <input
 				type="hidden" name="send_phone"> <input type="hidden"
 				name="send_address"> <input type="hidden"

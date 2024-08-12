@@ -16,8 +16,13 @@ public class OrderControl implements Control {
 
     @Override
     public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    	
-    	  OrderService osv = new OrderServiceImpl();  // OrderServiceImpl 인스턴스 생성
+        String action = req.getParameter("action");
+        if (action == null) {
+            action = "viewCart"; // 기본적으로 장바구니 보기로 설정
+        }
+
+        OrderService osv = new OrderServiceImpl();
+        List<OrderVO> list;
         // 요청 파라미터 추출
         String fullName = req.getParameter("fullName");
         String phone = req.getParameter("phone");
@@ -47,5 +52,36 @@ public class OrderControl implements Control {
 
         // 결과 페이지로 포워딩
         req.getRequestDispatcher("sangjo/orderComplete.tiles").forward(req, resp);
+        switch (action) {
+            case "addToCart":
+                addToCart(req, osv);
+                req.getRequestDispatcher("sangjo/cart.tiles").forward(req, resp);
+                break;
+            case "viewCart":
+                list = osv.getOrderList(new OrderVO()); // 빈 OrderVO로 장바구니 목록 조회
+                req.setAttribute("OrderList", list);
+                req.getRequestDispatcher("sangjo/cart.tiles").forward(req, resp);
+                break;
+            default:
+                req.getRequestDispatcher("sangjo/error.tiles").forward(req, resp);
+                break;
+        }
+    }
+
+    private void addToCart(HttpServletRequest req, OrderService osv) throws ServletException, IOException {
+        String memberId = (String) req.getSession().getAttribute("memberId");
+        if (memberId == null) {
+            req.setAttribute("errorMessage", "로그인 후 장바구니에 담을 수 있습니다.");
+            return;
+        }
+        
+        int productNo = Integer.parseInt(req.getParameter("productNo"));
+        int odCnt = Integer.parseInt(req.getParameter("odCnt"));
+        
+        OrderVO ovo = new OrderVO();
+        ovo.setMemberId(memberId);
+        ovo.setProductNo(productNo);
+        ovo.setOdCnt(odCnt);
+        ovo.setOdPrice(10000); // 실제 가격은 상품 정보를 통해 받아야 함
     }
 }
