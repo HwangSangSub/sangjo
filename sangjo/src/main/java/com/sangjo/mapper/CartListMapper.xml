@@ -5,18 +5,29 @@
 
 <mapper namespace="com.sangjo.mapper.CartListMapper">
 
-    <select id="selectCartList" resultType="com.sangjo.vo.CartListVO" parameterType="String">
-        SELECT c.cart_no ,
-               c.product_no ,
-               c.member_id ,
-               c.reg_date ,
-               p.product_name ,
-               p.product_price  ,
-               p.product_img 
-        FROM tbl_cart c
-        JOIN tbl_product p 
-        ON c.product_no = p.product_no
-        WHERE c.member_id = #{MemberId}
-    </select>
 
+    <delete id="deleteCartItem" parameterType="String">
+        DELETE FROM tbl_cart 
+        WHERE cart_no = #{cartNo}
+    </delete>
+
+	<select id="selectCartList"
+		resultType="com.sangjo.vo.CartListVO" parameterType="String">
+		SELECT c.cart_no ,
+		c.product_no ,
+		c.member_id ,
+		c.reg_date ,
+		p.product_name ,
+		p.product_price ,
+		p.product_img
+		FROM tbl_cart c
+		JOIN tbl_product p
+		ON c.product_no = p.product_no
+		WHERE c.member_id = #{MemberId}
+	</select>
+
+	<insert id="insertCartItem" parameterType="com.sangjo.vo.CartListVO">
+		INSERT INTO tbl_cart(cart_no, product_no, member_id)
+		VALUES(cart_seq.NEXTVAL, #{productNo}, #{memberId})
+	</insert>
 </mapper>

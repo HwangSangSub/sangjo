@@ -22,4 +22,13 @@ public class ProductServiceImpl implements ProductService{
 	public List<ProductVO> selectProductList(String cdName) {
 	    return mapper.selectProductList(cdName);
 	}
+	public ProductVO getProductByNo(String productNo) {
+		return mapper.selectProduct(productNo);
+	}
+
+	@Override
+	public List<ProductVO> productListByCategoryNo(int categoryNo) {
+		return mapper.selectProductListByCategoryNo(categoryNo);
+	}
+
 }

@@ -24,6 +24,8 @@ public class IndexControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/json;charset=utf-8");
 		
+		String categoryName = req.getParameter("categoryName");
+		
 		ProductService psvc = new ProductServiceImpl();
 		
 		List<ProductVO> list = psvc.productList();
@@ -32,13 +34,9 @@ public class IndexControl implements Control {
 		
 		List<CategoryVO> category = csvc.categoryList();
 		
-		List<CategoryVO> name = csvc.categoryNameList();
-		
 		req.setAttribute("productList", list);
 		
 		req.setAttribute("categoryList", category);
-		
-		req.setAttribute("categoryNameList", name);
 		
 		req.getRequestDispatcher("sangjo/indexBody.tiles").forward(req, resp);
 	}

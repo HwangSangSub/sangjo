@@ -11,4 +11,8 @@ public interface ProductMapper {
 	List<ProductVO> selectProductList(String cdName);
 	
 	List<CategoryVO> categoryList();
+
+	ProductVO selectProduct(String productNo);
+
+	List<ProductVO> selectProductListByCategoryNo(int categoryNo);
 }

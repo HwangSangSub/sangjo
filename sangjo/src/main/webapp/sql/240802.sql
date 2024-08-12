@@ -14,6 +14,7 @@ DROP TABLE tbl_product_option PURGE;
 DROP TABLE tbl_inquiry PURGE;
 DROP TABLE tbl_board PURGE;
 DROP TABLE tbl_cart PURGE;
+DROP TABLE tbl_review PURGE;
 
 ------------------------------ 생성된 시퀀스 삭제
 DROP SEQUENCE order_seq;
@@ -25,19 +26,21 @@ DROP SEQUENCE category_seq;
 DROP SEQUENCE board_seq;
 DROP SEQUENCE inquiry_seq;
 DROP SEQUENCE cart_seq;
+DROP SEQUENCE review_seq;
 
 ------------------------- 테이블 생성 쿼리
 ------------------------- 테이블 생성(tbl_member)
 CREATE TABLE tbl_member (
 	member_id	VARCHAR2(20)		NOT NULL,
-	member_pw	VARCHAR2(20)		NOT NULL,
+	member_pw	VARCHAR2(100)		NOT NULL,
 	member_name	VARCHAR2(20)		NOT NULL,
 	member_phone	VARCHAR2(20)		NOT NULL,
 	member_email	VARCHAR2(30)		NOT NULL,
 	member_rank	VARCHAR2(10)	DEFAULT 'User'	NOT NULL,
 	reg_date	DATE	DEFAULT sysdate	NOT NULL,
 	login_date	DATE		NULL,
-	mod_date	DATE		NULL
+	mod_date	DATE		NULL,
+	verification_code VARCHAR2(10)
 );
 
 COMMENT ON COLUMN tbl_member.member_id IS '회원 아이디';
@@ -57,6 +60,8 @@ COMMENT ON COLUMN tbl_member.reg_date IS '회원등록일';
 COMMENT ON COLUMN tbl_member.login_date IS '마지막로그인일';
 
 COMMENT ON COLUMN tbl_member.mod_date IS '마지막수정일';
+
+COMMENT ON COLUMN tbl_member.verification_code IS '이메일 인증코드';
 
 ------------------------- 테이블 생성(tbl_address)
 CREATE TABLE tbl_address (
@@ -259,6 +264,28 @@ COMMENT ON COLUMN tbl_cart.member_id IS '회원 아이디';
 
 COMMENT ON COLUMN tbl_cart.reg_date IS '장바구니등록일';
 
+------------------------- 테이블 생성(tbl_review)
+CREATE TABLE tbl_review (
+	review_no	NUMBER		NOT NULL,
+	product_no 	NUMBER		NOT NULL,
+	member_id	VARCHAR2(20)		NOT NULL,
+	review_content	VARCHAR2(1000)		NOT NULL,
+    review_point	NUMBER		NOT NULL,
+	reg_date	 DATE	DEFAULT sysdate	NOT NULL
+);
+
+COMMENT ON COLUMN tbl_review.review_no IS '리뷰번호';
+
+COMMENT ON COLUMN tbl_review.product_no IS '상품번호';
+
+COMMENT ON COLUMN tbl_review.member_id IS '회원 아이디';
+
+COMMENT ON COLUMN tbl_review.review_content IS '리뷰내용';
+
+COMMENT ON COLUMN tbl_review.reg_date IS '등록일';
+
+COMMENT ON COLUMN tbl_review.review_point IS '리뷰점수>1~5점';
+
 ------------------------- 테이블 pk 등록
 ALTER TABLE tbl_member ADD CONSTRAINT PK_TBL_MEMBER PRIMARY KEY (
 	member_id
@@ -291,6 +318,9 @@ ALTER TABLE tbl_cart ADD CONSTRAINT PK_TBL_CART PRIMARY KEY (
 	cart_no
 );
 
+ALTER TABLE tbl_review ADD CONSTRAINT PK_TBL_REVIEW PRIMARY KEY (
+	review_no
+);
 ------------------------------ 시퀀스 생성
 CREATE SEQUENCE order_seq;
 CREATE SEQUENCE od_seq;
@@ -301,9 +331,10 @@ CREATE SEQUENCE category_seq;
 CREATE SEQUENCE board_seq;
 CREATE SEQUENCE inquiry_seq;
 CREATE SEQUENCE cart_seq;
-
+CREATE SEQUENCE review_seq;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
 ------------------------------ 샘플데이터 넣기(tbl_member)
+-- 비밀번호는 1111로 통일하였다.
 INSERT INTO tbl_member (member_id, member_pw, member_name, member_phone, member_email)
 VALUES('admin', '1111', '상주', '010-1111-1111', 'admin@sangjo.com');
 INSERT INTO tbl_member (member_id, member_pw, member_name, member_phone, member_email)
@@ -338,6 +369,30 @@ COMMIT;
 ------------------------------ 샘플데이터 넣기(tbl_product)
 INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
 VALUES (product_seq.NEXTVAL, '1', '국자', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '숟가락', 1000, '단단하고 깨끗하다. 깔끔하고 저렴하다. 숟가락 여러분의 국과 밥을 책임집니다.');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '와우 국자', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '숟가락1', 1000, '단단하고 깨끗하다. 깔끔하고 저렴하다. 숟가락 여러분의 국과 밥을 책임집니다.');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '와우 국자1', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '숟가락2', 1000, '단단하고 깨끗하다. 깔끔하고 저렴하다. 숟가락 여러분의 국과 밥을 책임집니다.');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '와우 국자2', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '숟가락3', 1000, '단단하고 깨끗하다. 깔끔하고 저렴하다. 숟가락 여러분의 국과 밥을 책임집니다.');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '와우 국자3', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '숟가락4', 1000, '단단하고 깨끗하다. 깔끔하고 저렴하다. 숟가락 여러분의 국과 밥을 책임집니다.');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '와우 국자4', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '숟가락5', 1000, '단단하고 깨끗하다. 깔끔하고 저렴하다. 숟가락 여러분의 국과 밥을 책임집니다.');
+INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
+VALUES (product_seq.NEXTVAL, '1', '와우 국자5', 10000, '겁나좋은 국자입니다. 너무 좋으니 제발 사주세요. 옆집 아줌마도 윗집 아저씨도 아랫집 학생도 좋아합니다 제발 사주세요');
 INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
 VALUES (product_seq.NEXTVAL, '2', '욕실화', 4000, '비눗물 위에서도 미끄러지지 않습니다. 만수가 적극 추천하는 욕실화 일본인 우상상도 좋아하는 색감, 사시죠.');
 INSERT INTO tbl_product(product_no, category_no, product_name, product_price, product_content)
@@ -394,7 +449,21 @@ COMMIT;
 
 ------------------------------ 샘플데이터 넣기(tbl_inquiry)
 INSERT INTO tbl_inquiry(inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer)
-VALUES(inquiry_seq.NEXTVAL, 1, '일반문의 제목입니다', '일반문의 내용입니다', 'user01');
+VALUES(inquiry_seq.NEXTVAL, 1, '일반문의 제목입니다1', '일반문의 내용입니다1일반문의 내용입니다1일반문의 내용입니다1일반문의 내용입니다1일반문의 내용입니다1일반문의 내용입니다1일반문의 내용입니다1일반문의 내용입니다1일반문의 내용입니다1일반문의 내용입니다1일반문의 내용입니다1', 'user01');
+INSERT INTO tbl_inquiry(inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer)
+VALUES(inquiry_seq.NEXTVAL, 1, '일반문의 제목입니다2', '일반문의 내용입니다2', 'user01');
+INSERT INTO tbl_inquiry(inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer)
+VALUES(inquiry_seq.NEXTVAL, 2, '상품문의 제목입니다1', '상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1', 'user01');
+INSERT INTO tbl_inquiry(inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer)
+VALUES(inquiry_seq.NEXTVAL, 2, '상품문의 제목입니다2', '상품문의 내용입니다2', 'user01');
+INSERT INTO tbl_inquiry(inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer)
+VALUES(inquiry_seq.NEXTVAL, 2, '상품문의 제목입니다3', '상품문의 내용입니다3', 'user01');
+INSERT INTO tbl_inquiry(inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer)
+VALUES(inquiry_seq.NEXTVAL, 3, '주문문의 제목입니다1', '상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1상품문의 내용입니다1', 'user01');
+INSERT INTO tbl_inquiry(inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer)
+VALUES(inquiry_seq.NEXTVAL, 3, '주문문의 제목입니다2', '주문문의 내용입니다2', 'user01');
+INSERT INTO tbl_inquiry(inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer)
+VALUES(inquiry_seq.NEXTVAL, 3, '주문문의 제목입니다3', '주문문의 내용입니다3', 'user01');
 INSERT INTO tbl_inquiry(inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer, ref_no)
 VALUES(inquiry_seq.NEXTVAL, 2, '상품문의 제목입니다', '상품문의 내용입니다', 'user02', 1);
 INSERT INTO tbl_inquiry(inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer, ref_no)
@@ -407,11 +476,16 @@ COMMIT;
 
 ------------------------------ 샘플데이터 넣기(tbl_order)
 INSERT INTO tbl_order(order_no, order_price, address_no, member_id)
-VALUES(order_seq.NEXTVAL, 170010000, 1, 'user01');
+VALUES(order_seq.NEXTVAL, 20000, 1, 'user01');
 INSERT INTO tbl_order(order_no, order_price, address_no, member_id)
-VALUES(order_seq.NEXTVAL, 10010000, 3, 'user02');
+VALUES(order_seq.NEXTVAL, 41000, 1, 'user01');
 INSERT INTO tbl_order(order_no, order_price, address_no, member_id)
-VALUES(order_seq.NEXTVAL, 10000, 5, 'user03');
+VALUES(order_seq.NEXTVAL, 110000, 1, 'user01');
+
+INSERT INTO tbl_order(order_no, order_price, address_no, member_id)
+VALUES(order_seq.NEXTVAL, 10100000, 3, 'user02');
+INSERT INTO tbl_order(order_no, order_price, address_no, member_id)
+VALUES(order_seq.NEXTVAL, 30000, 5, 'user03');
 
 SELECT *
 FROM tbl_order;
@@ -420,15 +494,21 @@ COMMIT;
 
 ------------------------------ 샘플데이터 넣기(tbl_order_detail)
 INSERT INTO tbl_order_detail(od_no, order_no, product_no, od_price, od_cnt)
-VALUES(od_seq.NEXTVAL, 1, 3, 170000000, 1);
+VALUES(od_seq.NEXTVAL, 1, 3, 10000, 1);
 INSERT INTO tbl_order_detail(od_no, order_no, product_no, od_price, od_cnt)
 VALUES(od_seq.NEXTVAL, 1, 1, 10000, 1);
 INSERT INTO tbl_order_detail(od_no, order_no, product_no, od_price, od_cnt)
-VALUES(od_seq.NEXTVAL, 2, 4, 10000000, 1);
+VALUES(od_seq.NEXTVAL, 2, 4, 1000, 1);
 INSERT INTO tbl_order_detail(od_no, order_no, product_no, od_price, od_cnt)
-VALUES(od_seq.NEXTVAL, 2, 5, 10000, 1);
+VALUES(od_seq.NEXTVAL, 2, 5, 10000, 4);
 INSERT INTO tbl_order_detail(od_no, order_no, product_no, od_price, od_cnt)
-VALUES(od_seq.NEXTVAL, 3, 1, 10000, 1);
+VALUES(od_seq.NEXTVAL, 3, 1, 10000, 11);
+INSERT INTO tbl_order_detail(od_no, order_no, product_no, od_price, od_cnt)
+VALUES(od_seq.NEXTVAL, 4, 4, 10000000, 1);
+INSERT INTO tbl_order_detail(od_no, order_no, product_no, od_price, od_cnt)
+VALUES(od_seq.NEXTVAL, 4, 5, 10000, 10);
+INSERT INTO tbl_order_detail(od_no, order_no, product_no, od_price, od_cnt)
+VALUES(od_seq.NEXTVAL, 5, 1, 10000, 3);
 
 
 SELECT *
@@ -470,5 +550,16 @@ VALUES(cart_seq.NEXTVAL, 5, 'user03');
 
 SELECT *
 FROM tbl_cart;
+
+------------------------------ 샘플데이터 넣기(tbl_review)
+INSERT INTO tbl_review ( review_no, product_no, member_id, review_content, review_point)
+VALUES( review_seq.NEXTVAL, 1, 'user01', '국자가 깨끗하고 단단해요!', 5 );
+INSERT INTO tbl_review ( review_no, product_no, member_id, review_content, review_point)
+VALUES( review_seq.NEXTVAL, 1, 'user02', '국자가 깨끗하기만해요', 3 );
+INSERT INTO tbl_review ( review_no, product_no, member_id, review_content, review_point)
+VALUES( review_seq.NEXTVAL, 1, 'user03', '내가 뭘 받은거지?', 1 );
+
+SELECT * 
+FROM tbl_review;
 
 COMMIT;

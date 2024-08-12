@@ -8,4 +8,8 @@ public interface ProductService {
 	List<ProductVO> productList();
 	
 	List<ProductVO> selectProductList(String cdName);
+
+	List<ProductVO> productListByCategoryNo(int categoryNo);
+
+	ProductVO getProductByNo(String productNo);
 }

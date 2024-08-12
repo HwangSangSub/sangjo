@@ -34,9 +34,33 @@
 		VALUES (#{orderNo}, #{orderPrice}, #{deliveryPrice}, #{orderStatus},
 		#{addressNo}, #{memberId}, #{orderDate}, #{deliveryDate},
 		#{cancleDate})
-
+	</insert>
+	
+	<insert id="insertOrderDetail" parameterType="com.sangjo.vo.OrderVO">
 		INSERT INTO tbl_order_detail (od_no, order_no, product_no, od_price, od_cnt)
 		VALUES (#{odNo}, #{orderNo}, #{productNo}, #{odPrice}, #{odCnt})
 	</insert>
+	
+	<select id="getMyOrderList" parameterType="string" resultType="com.sangjo.vo.OrderVO">
+		SELECT *
+		FROM tbl_order
+		WHERE member_id = #{memberId}
+		ORDER BY order_date DESC, order_no DESC
+	</select>
+	
+	<select id="getMyOrderDetailList" parameterType="int" resultType="com.sangjo.vo.OrderVO">
+		SELECT od.od_no
+		    ,od.order_no
+		    ,od.product_no
+		    ,od.od_price
+		    ,od.od_cnt
+		    ,p.product_name
+		    ,p.product_price
+		    ,p.product_img
+		FROM tbl_order_detail od
+		    JOIN tbl_product p ON od.product_no = p.product_no
+		WHERE order_no = #{orderNo}
+		ORDER BY od_no
+	</select>
 
 </mapper>

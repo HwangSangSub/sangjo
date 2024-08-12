@@ -86,7 +86,7 @@
 	    <artifactId>gson</artifactId>
 	    <version>2.10.1</version>
 	</dependency>
-	<!-- 스프링 프레임워크 https://mvnrepository.com/artifact/org.springframework/spring-core -->
+	<!-- 교수님 수업시간때 추가된 적이 있어서 추가하였다 향후 필요 없다면 제거하자! 스프링 프레임워크 https://mvnrepository.com/artifact/org.springframework/spring-core -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-core</artifactId>

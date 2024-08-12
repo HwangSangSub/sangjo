@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.sangjo.mapper.MemberMapper">
+	<select id="selectMemberById" parameterType="string" resultType="com.sangjo.vo.MemberVO">
+		select * 
+		from tbl_member
+		where member_id = #{memberId}
+	</select>
+	
+	<select id="selectMemberByEamil" parameterType="string" resultType="com.sangjo.vo.MemberVO">
+		select * 
+		from tbl_member
+		where member_email = #{memberEmail}
+	</select>
+	
+	<insert id="insertMember" parameterType="com.sangjo.vo.MemberVO">
+		INSERT INTO tbl_member (member_id, member_pw, member_name, member_phone, member_email)
+		VALUES(#{memberId}, #{memberPw}, #{memberName}, #{memberPhone}, #{memberEmail})
+	</insert>
+	
+	<update id="updateMember" parameterType="com.sangjo.vo.MemberVO">
+		UPDATE tbl_member
+		<set>
+			<if test="memberName != null">
+				member_name = #{memberName}
+			</if>
+			<if test="memberPhone != null">
+				, member_phone = #{memberPhone}
+			</if>
+			<if test="memberEmail != null">
+				, member_email = #{memberEmail}
+			</if>
+			<if test="memberPw != ''">
+				, member_pw = #{memberPw}
+			</if>
+		</set>
+		WHERE member_id = #{memberId}
+	</update>
+	<update id="updateLoginDateByMemberId" parameterType="string">
+		update tbl_member 
+		set login_date = sysdate
+		where member_id = #{memberId}
+	</update>
+	
+	<update id="updateMemberPw" parameterType="string">
+		update tbl_member 
+		set member_pw = #{pw}
+		where member_email = #{email}
+	</update>
+	
+	<update id="updateVerificationCode" parameterType="string">
+		update tbl_member 
+		set verification_code = #{code}
+		where member_id = #{id}
+	</update>
+</mapper>

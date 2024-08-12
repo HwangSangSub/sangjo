@@ -36,6 +36,4 @@
     		JOIN tbl_category c ON p.category_no = c.category_no 
     	WHERE   c.cd_name = #{cdName}
 	</select>
-	
-	
 </mapper>
