@@ -32,4 +32,10 @@
 	    and b.rn <= (#{page} * 5 )
 	    ]]>
 	</select>
+	
+	<select id="selectReviewCnt" parameterType="string" resultType="int">
+		select count(*)
+		from tbl_review
+		where product_no = #{productNo}
+	</select>
 </mapper>

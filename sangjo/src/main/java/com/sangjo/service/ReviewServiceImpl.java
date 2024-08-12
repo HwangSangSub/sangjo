@@ -33,4 +33,9 @@ public class ReviewServiceImpl implements ReviewService{
 		return mapper.selectReviewList(productNo, reviewPage);
 	}
 
+	@Override
+	public int getReviewCnt(String productMainNo) {
+		return mapper.selectReviewCnt(productMainNo);
+	}
+
 }
