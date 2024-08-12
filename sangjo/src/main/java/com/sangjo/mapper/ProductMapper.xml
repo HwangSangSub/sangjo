@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sangjo.mapper.ProductMapper">
+	
+	<select id="productTotalList" resultType="com.sangjo.vo.ProductVO">
+		<!--  SELECT *
+		FROM   tbl_product
+		ORDER  BY product_no-->
+		
+		SELECT  p.product_no
+		       ,p.category_no
+		       ,p.product_name
+		       ,p.product_price
+		       ,p.product_img
+		       ,p.product_thumbnail_img
+		       ,p.product_content
+		       ,p.reg_date
+		       ,c.cd_name
+		FROM    tbl_product p
+    		JOIN tbl_category c ON p.category_no = c.category_no 
+	</select>
+	
+	<select id="selectProductList" parameterType="string" resultType="com.sangjo.vo.ProductVO">
+		SELECT  p.product_no
+		       ,p.category_no
+		       ,p.product_name
+		       ,p.product_price
+		       ,p.product_img
+		       ,p.product_thumbnail_img
+		       ,p.product_content
+		       ,p.reg_date
+		       ,c.cd_name
+		FROM    tbl_product p
+    		JOIN tbl_category c ON p.category_no = c.category_no 
+    	WHERE   c.cd_name = #{cdName}
+	</select>
+	
+	
+</mapper>

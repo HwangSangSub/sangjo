@@ -3,14 +3,28 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sangjo.mapper.CategoryMapper">
-
-	<select id="selectList" resultType="com.sangjo.vo.CategoryVO">
-		select category_no,
-		category,
-		category_detail,
-		category_name,
-		cd_name
-		from tbl_category
-		order by category_no
+	
+	<select id="categoryNameList" resultType="com.sangjo.vo.CategoryVO">
+		SELECT DISTINCT category_name,
+       		   category
+	    FROM   tbl_category
+	    ORDER  BY category
 	</select>
+	
+	<select id="categoryList" resultType="com.sangjo.vo.CategoryVO">
+		SELECT  category_no,
+			    category,
+                category_detail,
+		        category_name,
+		        cd_name
+		FROM   tbl_category
+	</select>
+	
+	<select id="categorySelectList" parameterType="string" resultType="com.sangjo.vo.CategoryVO">
+		SELECT  *
+		FROM    tbl_category
+		WHERE   category_name = #{categoryName} 
+		ORDER   BY category_no
+	</select>
+	
 </mapper>

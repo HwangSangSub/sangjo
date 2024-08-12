@@ -2,4 +2,4 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<h3>카테고리(category.jsp)</h3>
+<h3>상품목록(productList.jsp)</h3>

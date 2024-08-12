@@ -6,15 +6,20 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.sangjo.common.DataSource;
 import com.sangjo.mapper.ProductMapper;
+import com.sangjo.vo.CategoryVO;
 import com.sangjo.vo.ProductVO;
 
 public class ProductServiceImpl implements ProductService{
 	SqlSession sqlSession = DataSource.getInstance().openSession(true);
 	ProductMapper mapper = sqlSession.getMapper(ProductMapper.class);
+	
 	@Override
 	public List<ProductVO> productList() {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.productTotalList();
 	}
-
+	
+	@Override
+	public List<ProductVO> selectProductList(String cdName) {
+	    return mapper.selectProductList(cdName);
+	}
 }

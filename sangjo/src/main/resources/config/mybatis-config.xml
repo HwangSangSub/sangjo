@@ -12,7 +12,7 @@
       <dataSource type="POOLED">
         <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
         <!-- DB 대상 컴퓨터 지정 (내컴퓨터DB를 쓸거라면 냅두자) -->
-        <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+        <property name="url" value="jdbc:oracle:thin:@192.168.0.40:1521:xe"/>
         <!-- DB 사용자의 아이디와 비번 -->
         <property name="username" value="sangjo"/>
         <property name="password" value="sangjo"/>

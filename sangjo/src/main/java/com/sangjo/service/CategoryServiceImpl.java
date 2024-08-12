@@ -12,8 +12,19 @@ public class CategoryServiceImpl implements CategoryService {
 	SqlSession sqlSession = DataSource.getInstance().openSession(true);
 	CategoryMapper mapper = sqlSession.getMapper(CategoryMapper.class);
 	
+	
 	@Override
-	public List<CategoryVO> categoryList(CategoryVO category) {
-		return mapper.selectList();
+	public List<CategoryVO> categoryNameList() {
+		return mapper.categoryNameList();
+	}
+	
+	@Override
+	public List<CategoryVO> categoryList() {
+		return mapper.categoryList();
+	}
+	
+	@Override
+	public List<CategoryVO> categorySelectList(String categoryName) {
+		return mapper.categorySelectList(categoryName);
 	}
 }

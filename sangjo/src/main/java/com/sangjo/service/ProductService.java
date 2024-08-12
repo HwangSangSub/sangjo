@@ -6,4 +6,6 @@ import com.sangjo.vo.ProductVO;
 
 public interface ProductService {
 	List<ProductVO> productList();
+	
+	List<ProductVO> selectProductList(String cdName);
 }
