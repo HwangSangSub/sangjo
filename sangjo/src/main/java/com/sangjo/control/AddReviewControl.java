@@ -16,11 +16,14 @@ public class AddReviewControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/plain;charset=utf-8");
 		ReviewService reviewService = new ReviewServiceImpl();
+		
 		String memberId = req.getParameter("memberId");
 		int productNo = Integer.parseInt(req.getParameter("productNo"));
 		String reviewContent = req.getParameter("reviewContent");
 		int reviewPoint = Integer.parseInt(req.getParameter("reviewPoint"));
+		
 		String addReviewResult = "Faild";
 		
 		ReviewVO reviewVO = new ReviewVO();
@@ -31,20 +34,20 @@ public class AddReviewControl implements Control {
 		
 		
 		// 리뷰 점수는 1~5 점까지기에 점수를 선택하지 않은 상태면 리뷰추가를 허용하지 않는다.
-		if(reviewPoint < 1 && reviewPoint >5 ) {
+		if(reviewPoint < 1 || reviewPoint >5 ) {
+			addReviewResult = "WrongPoint";
 			resp.sendRedirect("productInfo.do?productNo="+productNo+"&addReviewResult="+addReviewResult);
-			addReviewResult = "리뷰점수를 선택해주셔야합니다.";
 			return;
 		}
 		// 향후 수정으로 변경할지 고민한다.
 		if(reviewService.checkSameMember(reviewVO)) {
+			addReviewResult = "AlreadyReview";
 			resp.sendRedirect("productInfo.do?productNo="+productNo+"&addReviewResult="+addReviewResult);
-			addReviewResult = "해당 제품에 대한 리뷰가 이미 존재합니다.";
 			return;
 		}
 		
 		if(reviewService.addReview(reviewVO)) {
-			addReviewResult = "리뷰추가가 완료되었습니다.";
+			addReviewResult = "Success";
 		}
 		resp.sendRedirect("productInfo.do?productNo="+productNo+"&addReviewResult="+addReviewResult);
 	}

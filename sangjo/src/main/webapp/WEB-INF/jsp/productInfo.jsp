@@ -331,8 +331,13 @@
 	let query = window.location.search;
 	let urlParams = new URLSearchParams(query);
 	let addReviewResult = urlParams.get('addReviewResult');
-	console.log(addReviewResult);
 	if(addReviewResult != null){
-		alert(addReviewResult)
+		if(addReviewResult == "WrongPoint"){
+			alert("별을 찍어 점수를 선택해주시길 바랍니다.");
+		}else if(addReviewResult == "AlreadyReview"){
+			alert("이미 리뷰가 존재합니다.");
+		}else if(addReviewResult == "Success"){
+			alert("리뷰추가가 완료되었습니다.");
+		}
 	}
 </script>
