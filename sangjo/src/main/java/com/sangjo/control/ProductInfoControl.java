@@ -12,20 +12,38 @@ import com.sangjo.service.CategoryService;
 import com.sangjo.service.CategoryServiceImpl;
 import com.sangjo.service.ProductService;
 import com.sangjo.service.ProductServiceImpl;
+import com.sangjo.service.ReviewService;
+import com.sangjo.service.ReviewServiceImpl;
 import com.sangjo.vo.CategoryVO;
 import com.sangjo.vo.ProductVO;
+import com.sangjo.vo.ReviewVO;
 
 public class ProductInfoControl implements Control {
-
+	ProductService productService = new ProductServiceImpl();
+	CategoryService categoryService = new CategoryServiceImpl();
+	ReviewService reviewService = new ReviewServiceImpl();
+	
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ProductService productService = new ProductServiceImpl();
-		CategoryService categoryService = new CategoryServiceImpl();
-		String productNo = req.getParameter("productNo");
 		
-		ProductVO productMain = productService.getProductByNo(productNo);
-		List<ProductVO> productList = productService.productListByCategoryNo(productMain.getCategoryNo());
+		ProductVO productMain 
+			= productService.getProductByNo(req.getParameter("productNo"));
+		List<ProductVO> productList = getProductList(productMain);
+		CategoryVO categoryVO 
+			= categoryService.getCategoryName(productMain.getCategoryNo());
+		float avgPoint = reviewService.getAvgPoint(productMain.getProductNo());
+		
+		// setAttrivute 하기
+		req.setAttribute("productMain", productMain);
+		req.setAttribute("productLsit", productList);
+		req.setAttribute("category", categoryVO);
+		req.setAttribute("avgPoint", avgPoint);
+		// 타일즈를 활용하여 페이지 출력하기
+		req.getRequestDispatcher("sangjo/productInfo.tiles").forward(req, resp);
+	}// end exec()
 
+	private List<ProductVO> getProductList(ProductVO productMain) {
+		List<ProductVO> productList = productService.productListByCategoryNo(productMain.getCategoryNo());
 		for (ProductVO productVO : productList) {
 			if(productVO.getProductNo() == productMain.getProductNo()){
 				productList.remove(productVO);
@@ -33,18 +51,7 @@ public class ProductInfoControl implements Control {
 				break;
 			}
 		}
-		// 데이터를 가져와쓴지 확인하기위한 출력문이다. (필요할떄 주석을 제거하자!)
-//		for (ProductVO productVO : productList) {
-//			System.out.println(productVO.toString());
-//		}
-		
-		req.setAttribute("productMain", productMain);
-		req.setAttribute("productLsit", productList);
-		
-		CategoryVO categoryVO = categoryService.getCategoryName(productMain.getCategoryNo());
-		req.setAttribute("category", categoryVO);
-		
-		req.getRequestDispatcher("sangjo/productInfo.tiles").forward(req, resp);
-	}// end exec()
+		return productList;
+	}
 
 }// end class

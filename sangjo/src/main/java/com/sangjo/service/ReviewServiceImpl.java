@@ -1,5 +1,7 @@
 package com.sangjo.service;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.sangjo.common.DataSource;
@@ -19,6 +21,16 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public boolean checkSameMember(ReviewVO reviewVO) {
 		return mapper.selectReviewSameMemberId(reviewVO) > 0;
+	}
+
+	@Override
+	public float getAvgPoint(int productNo) {
+		return mapper.selectAvgPoint(productNo);
+	}
+
+	@Override
+	public List<ReviewVO> getReviewList(String productNo, String reviewPage) {
+		return mapper.selectReviewList(productNo, reviewPage);
 	}
 
 }

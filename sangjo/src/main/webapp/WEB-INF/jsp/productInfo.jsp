@@ -20,6 +20,15 @@
 		#selectStar .fa-star:hover{
 			color :rgb(255,181,36);
 		}
+		
+		.fa-star-half{
+			z-index: 10;
+		}
+
+		.behid-star{
+			margin-left: -18.1px;
+		}
+		
 	</style>
 </head>
 <!-- Single Page Header start -->
@@ -49,13 +58,23 @@
 						<h4 class="fw-bold mb-3">${productMain.productName}</h4>
 						<p class="mb-3">Category: ${category.cdName}</p>
 						<h5 class="fw-bold mb-3 price">${productMain.productPrice}</h5>
-						<!-- 리뷰 파트가 생기면 적용하자.-->
+						<!-- 상품에대한 전체 리뷰 평균.-->
 						<div class="d-flex mb-4">
-							<i class="fa fa-star text-secondary"></i> 
-							<i class="fa fa-star text-secondary"></i> 
-							<i class="fa fa-star text-secondary"></i> 
-							<i class="fa fa-star text-secondary"></i> 
-							<i class="fa fa-star"></i>
+							<c:forEach begin="1" end="5" varStatus="status">
+								<c:choose>
+									<c:when test="${status.count <= avgPoint}">
+										<i class="fa fa-star text-secondary"></i> 
+									</c:when>
+									<c:when test="${status.count - avgPoint <= 0.5 
+													&& status.count - avgPoint > 0 }">
+										<i class="fa fa-star-half text-secondary"></i> 
+										<i class="fa fa-star behid-star"></i>
+									</c:when>
+									<c:otherwise>
+										<i class="fa fa-star "></i> 
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
 						</div>
 						<p class="mb-4">
 							${productMain.productContent}
@@ -85,55 +104,31 @@
 								aria-labelledby="nav-about-tab">
 								<p>${productMain.productContent}</p>
 							</div>
+							<!-- 리뷰 리스트 보여주기 -->
 							<div class="tab-pane" id="nav-mission" role="tabpanel"
 								aria-labelledby="nav-mission-tab">
-								<div class="d-flex">
-									<img src="img/avatar.jpg" class="img-fluid rounded-circle p-3"
-										style="width: 100px; height: 100px;" alt="">
-									<div class="">
-										<p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-										<div class="d-flex justify-content-between">
-											<h5>Jason Smith</h5>
-											<div class="d-flex mb-3">
-												<i class="fa fa-star text-secondary"></i> <i
-													class="fa fa-star text-secondary"></i> <i
-													class="fa fa-star text-secondary"></i> <i
-													class="fa fa-star text-secondary"></i> <i
-													class="fa fa-star"></i>
+								<c:forEach var="reivew" items="${reviewList}">
+									<div class="d-flex">
+										<img src="img/avatar.jpg" class="img-fluid rounded-circle p-3"
+											style="width: 100px; height: 100px;" alt="">
+										<div class="">
+											<p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
+											<div class="d-flex justify-content-between">
+												<h5>Jason Smith</h5>
+												<div class="d-flex mb-3">
+													<i class="fa fa-star text-secondary"></i> <i
+														class="fa fa-star text-secondary"></i> <i
+														class="fa fa-star text-secondary"></i> <i
+														class="fa fa-star text-secondary"></i> <i
+														class="fa fa-star"></i>
+												</div>
 											</div>
+											<p>The generated Lorem Ipsum is therefore always free from
+												repetition injected humour, or non-characteristic words etc.
+												Susp endisse ultricies nisi vel quam suscipit</p>
 										</div>
-										<p>The generated Lorem Ipsum is therefore always free from
-											repetition injected humour, or non-characteristic words etc.
-											Susp endisse ultricies nisi vel quam suscipit</p>
 									</div>
-								</div>
-								<div class="d-flex">
-									<img src="img/avatar.jpg" class="img-fluid rounded-circle p-3"
-										style="width: 100px; height: 100px;" alt="">
-									<div class="">
-										<p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-										<div class="d-flex justify-content-between">
-											<h5>Sam Peters</h5>
-											<div class="d-flex mb-3">
-												<i class="fa fa-star text-secondary"></i> <i
-													class="fa fa-star text-secondary"></i> <i
-													class="fa fa-star text-secondary"></i> <i
-													class="fa fa-star"></i> <i class="fa fa-star"></i>
-											</div>
-										</div>
-										<p class="text-dark">The generated Lorem Ipsum is
-											therefore always free from repetition injected humour, or
-											non-characteristic words etc. Susp endisse ultricies nisi vel
-											quam suscipit</p>
-									</div>
-								</div>
-							</div>
-							<div class="tab-pane" id="nav-vision" role="tabpanel">
-								<p class="text-dark">Tempor erat elitr rebum at clita. Diam
-									dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos
-									labore. 3</p>
-								<p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu
-									diam amet diam et eos labore. Clita erat ipsum et lorem et sit</p>
+								</c:forEach>
 							</div>
 						</div>
 					</div>

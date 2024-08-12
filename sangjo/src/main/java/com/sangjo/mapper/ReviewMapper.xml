@@ -14,4 +14,22 @@
 		where member_id = #{memberId}
 		AND product_no = #{productNo}
 	</select>
+	
+	<select id="selectAvgPoint" parameterType="int" resultType="float">
+		select avg(review_point)
+		from tbl_review
+		where product_no = #{productNo}
+	</select>
+	
+	<!-- 수업때 배운 힌트 문장을 활용하였다. Order by 대신 사용 -->
+	<select id="selectReviewList" parameterType="string" resultType="com.sangjo.vo.ReviewVO">
+		select b.*
+		from(select /*+ INDEX_DESC (r PK_TBL_REVIEW) */ rownum rn, r.*
+			 from tbl_review r
+			 where r.product_no = #{no}) b
+		where b.rn > (#{page} - 1) *5
+		<![CDATA[
+	    and b.rn <= (#{page} * 5 )
+	    ]]>
+	</select>
 </mapper>
