@@ -32,6 +32,6 @@ public class CartListControl implements Control {
         req.setAttribute("cartList", cartList);
 
         // JSP 페이지로 포워딩
-        req.getRequestDispatcher("sangjo/cartList.tiles").forward(req, resp);
+        req.getRequestDispatcher("sangjo/cartList.tiles").forward(req, resp);       
     }
 }

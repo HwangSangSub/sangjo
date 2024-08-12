@@ -118,8 +118,7 @@ function removeCart(e) {
 			console.error(err);
 		})
 }
-
-//1건
+//단건
 document.querySelector('input[name=fullName]').addEventListener('change', function(e) {
 	//console.log(this.value);
 	let inputVal = this.value;
@@ -128,17 +127,15 @@ document.querySelector('input[name=fullName]').addEventListener('change', functi
 
 document.querySelectorAll('#orderInfo input').forEach(input => {
 	input.addEventListener('change', function() {
-		
 		let inputName = input.getAttribute('name');
 		let inputVal = this.value;
 		console.log(this.value);
 		document.querySelector('input[name=send_' + inputName + ']').value = inputVal;
 	});
 });
-
-
-document.querySelector('#orderInfo textarea').addEventListener('change', function() {	
-	console.log(this.value);	
+document.querySelector('#orderInfo textarea').addEventListener('change', function() {
+	console.log(this.value);
 	let inputVal = this.value;
 	document.querySelector('input[name=send_orderMemo]').value = inputVal;
+		
 });
