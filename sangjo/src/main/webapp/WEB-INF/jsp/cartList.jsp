@@ -3,18 +3,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!-- Single Page Header 시작 -->
-<div class="container-fluid page-header py-5">
-	<h1 class="text-center text-white display-6">장바구니</h1>
-	<ol class="breadcrumb justify-content-center mb-0">
-		<li class="breadcrumb-item"><a href="#">홈</a></li>
-		<li class="breadcrumb-item"><a href="#">페이지</a></li>
-		<li class="breadcrumb-item active text-white">장바구니</li>
-	</ol>
-</div>
-<!-- Single Page Header 끝 -->
-
 <div class="container-fluid py-5">
 	<div class="container py-5">
+		<!-- 로그인 상태 확인 -->
+		<c:if test="${sessionScope.member == null}">
+			<div class="alert alert-warning" role="alert">
+				로그인 후 장바구니를 확인할 수 있습니다. <a href="index.do">로그인</a>
+			</div>
+		</c:if>
+
+		<!-- 장바구니가 비어 있을 때 메시지 표시 -->
+		<c:if test="${not empty cartList}">
+			<c:if test="${empty cartList}">
+				<div class="alert alert-info" role="alert">장바구니가 비어 있습니다.
+					장바구니에 상품을 추가해 주세요.</div>
+			</c:if>
+		</c:if>
+
 		<!-- 에러 메시지 표시 -->
 		<c:if test="${not empty param.errorMessage}">
 			<div class="alert alert-danger" role="alert">
@@ -67,7 +72,6 @@
 									<input type="text" id="quantity"
 										class="form-control form-control-sm text-center border-0"
 										value="${item.quantity}" readonly>
-									<!-- 수량은 수정할 수 없도록 설정 -->
 									<div class="input-group-btn">
 										<button
 											class="btn btn-sm btn-plus rounded-circle bg-light border"
@@ -127,7 +131,6 @@
 						<h5 class="mb-0 ps-4 me-4">총 합계</h5>
 						<p class="mb-0 pe-4">${totalAmount}원</p>
 					</div>
-					<!-- 결제 진행 버튼을 포함한 form 추가 -->
 					<form action="orderList.do" method="post" id="cartForm">
 						<input type="hidden" name="grandTotal" value="${grandTotal}">
 						<input type="hidden" name="shippingCost" value="${shippingCost}">

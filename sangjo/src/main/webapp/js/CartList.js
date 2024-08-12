@@ -1,3 +1,26 @@
+function login() {
+    let memberId = document.getElementById('loginMemberId').value;
+    let memberPw = document.getElementById('loginMemberPw').value;
+
+    fetch('login.do', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ memberId, memberPw })
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.loginResult === 'Success') {
+            // 로그인 성공 후 장바구니 페이지로 리다이렉트
+            window.location.href = 'cartList.do';
+        } else {
+            alert('아이디 또는 비밀번호가 틀립니다.');
+        }
+    });
+}
+
+
 document.addEventListener('DOMContentLoaded', function() {
 	// 수량 조절 버튼에 대한 이벤트 리스너 추가
 	document.querySelectorAll('.btn-minus, .btn-plus').forEach(button => {
@@ -119,7 +142,7 @@ function removeCart(e) {
 		})
 }
 //단건
-document.querySelector('input[name=fullName]').addEventListener('change', function(e) {
+document.querySelector('input[name=fullName]').addEventListener('change', function() {
 	//console.log(this.value);
 	let inputVal = this.value;
 	//document.querySelector('input[name=send_fullName]').value = inputVal;
