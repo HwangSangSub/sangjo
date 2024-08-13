@@ -141,8 +141,10 @@
 											<p>The generated Lorem Ipsum is therefore always free from
 												repetition injected humour, or non-characteristic words etc.
 												Susp endisse ultricies nisi vel quam suscipit</p>
-												<br>
+											
 										</div>
+										<button class="text-white bg-primary rounded" onclick="removeReviewClick()"style="
+										    height: 50px;border: none;margin-left: 20px; display: none" >삭제 </button>
 									</div>
 								</div>
 								<ul class="pagination"></ul>
@@ -185,7 +187,6 @@
 							</div>
 						</div>
 					</form>
-					<button onclick="removeReviewClick()"></button>
 					</c:if>
 				</div>
 			</div>
@@ -412,7 +413,10 @@
 			.cloneNode(true);
 		cloned.style.display='block';
 		//console.log(review);
-		cloned.querySelector('h5').innerText = review.memberId;
+		cloned.querySelector('h5').innerText = review.reviewNo +" " + review.memberId;
+		if(review.memberId == memberId){
+			cloned.querySelector('button').style.display='block';
+		}
 		cloned.querySelector('div > p:nth-of-type(1)').innerText= review.regDate;
 		cloned.querySelector('div > p:nth-of-type(2)').innerText= review.reviewContent;
 		let starsHTMLString="";

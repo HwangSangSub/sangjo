@@ -18,9 +18,9 @@ public class RemoveReviewControl implements Control {
 		String memberId = req.getParameter("memberId");
 		
 		String json;
-		json = String.format("{\"removeReview\" : %s }", "Faild");
+		json = String.format("{\"removeReview\" : \"%s\" }", "Faild");
 		if(reviewService.removeReview(productNo,memberId)) {
-			json = String.format("{\"removeReview\" : %s }", "Success");
+			json = String.format("{\"removeReview\" : \"%s\" }", "Success");
 		}
 		resp.getWriter().print(json);
 	}

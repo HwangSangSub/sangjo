@@ -40,7 +40,7 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public boolean removeReview(String productNo, String memberId) {
-		return mapper.deleteReview(productNo,memberId) == 1;
+		return mapper.deleteReview(productNo,memberId) > 0;
 	}
 
 }

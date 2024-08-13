@@ -18,7 +18,7 @@ public class ReviewCountControl implements Control {
 		
 		int reviewCnt = reviewService.getReviewCnt(productMainNo);
 		
-		String json = String.format("{\"reviewCnt\" : %s }", reviewCnt);
+		String json = String.format("{\"reviewCnt\" : \"%s\" }", reviewCnt);
 		resp.getWriter().print(json);
 	}
 
