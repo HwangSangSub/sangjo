@@ -10,6 +10,10 @@
   <logger name="sangjo.BoardMapper">
     <level value="debug"/>
   </logger>
+  
+  <logger name="com.sangjo.mapper.ReviewMapper">
+    <level value="debug"/>
+  </logger>
   <root level="error">
     <appender-ref ref="stdout"/>
   </root>

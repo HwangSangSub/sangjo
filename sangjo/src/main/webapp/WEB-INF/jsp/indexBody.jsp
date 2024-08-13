@@ -116,7 +116,7 @@ let memberId = "${member.memberId}";
 							<div class="col-md-6 col-lg-6 col-xl-4" style="display: none;">
 								<div class="rounded position-relative fruite-item">
 									<div class="fruite-img">
-										<img src="img/fruite-item-5.jpg"
+										<img src="img/product/${item.productImg }"
 											class="img-fluid w-100 rounded-top" alt="">
 									</div>
 									<div
@@ -138,8 +138,8 @@ let memberId = "${member.memberId}";
 							<c:forEach var="item" items="${productList }">
 								<div class="col-md-6 col-lg-6 col-xl-4">
 									<div class="rounded position-relative fruite-item">
-										<div class="fruite-img">
-											<img src="img/fruite-item-5.jpg"
+										<div class="fruite-img" style="border-color: #ffb524 1px solid !important;">
+											<img src="img/product/${item.productImg }"
 												class="img-fluid w-100 rounded-top" alt="">
 										</div>
 										<div

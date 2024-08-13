@@ -105,15 +105,7 @@
 										<p class="mb-0 text-dark py-4">배송비</p>
 									</td>
 									<td colspan="3" class="py-5">
-										<!-- 배송비 선택 체크박스 -->
-										<div class="form-check text-start">
-											<input type="checkbox"
-												class="form-check-input bg-primary border-0" id="Shipping-1"
-												name="shippingCost" value="3000"
-												<c:if test="${shippingCost == '3000'}">checked</c:if>>
-											<label class="form-check-label" for="Shipping-1">고정
-												요금: 3,000원</label>
-										</div>
+										<p class="mb-0 text-dark py-3">고정 요금: 3,000원</p>
 									</td>
 								</tr>
 								<tr>
@@ -138,7 +130,7 @@
 							<div class="form-check text-start my-3">
 								<input type="checkbox"
 									class="form-check-input bg-primary border-0" id="Transfer-1"
-									name="Transfer" value="Transfer"> <label
+									name="Transfer" value="Transfer"  checked> <label
 									class="form-check-label" for="Transfer-1">직접 은행 이체</label>
 							</div>
 							<p class="text-start text-dark">주문 ID를 결제 참조로 사용해 저희 은행 계좌로

@@ -119,11 +119,11 @@ function removeCart(e) {
 		})
 }
 //단건
-document.querySelector('input[name=fullName]').addEventListener('change', function(e) {
+//document.querySelector('input[name=fullName]').addEventListener('change', function(e) {
 	//console.log(this.value);
-	let inputVal = this.value;
+	//let inputVal = this.value;
 	//document.querySelector('input[name=send_fullName]').value = inputVal;
-});
+//});
 
 document.querySelectorAll('#orderInfo input').forEach(input => {
 	input.addEventListener('change', function() {

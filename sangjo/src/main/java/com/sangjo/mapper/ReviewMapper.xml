@@ -16,7 +16,7 @@
 	</select>
 	
 	<select id="selectAvgPoint" parameterType="int" resultType="float">
-		select avg(review_point)
+		select NVL(avg(review_point),0)
 		from tbl_review
 		where product_no = #{productNo}
 	</select>
@@ -32,4 +32,16 @@
 	    and b.rn <= (#{page} * 5 )
 	    ]]>
 	</select>
+	
+	<select id="selectReviewCnt" parameterType="string" resultType="int">
+		select count(*)
+		from tbl_review
+		where product_no = #{productNo}
+	</select>
+	
+	<delete id="deleteReview" parameterType="string">
+		delete from tbl_review
+		where product_no = #{no}
+		and member_id = #{id}
+	</delete>
 </mapper>

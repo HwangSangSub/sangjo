@@ -25,6 +25,7 @@ import com.sangjo.control.FindPwControl;
 import com.sangjo.control.FindPwForm;
 import com.sangjo.control.HelpDeskControl;
 import com.sangjo.control.IdCheckControl;
+import com.sangjo.control.ImageDownLoad;
 import com.sangjo.control.IndexControl;
 import com.sangjo.control.JoinControl;
 import com.sangjo.control.LoginControl;
@@ -40,6 +41,8 @@ import com.sangjo.control.OrderDetailListControl;
 import com.sangjo.control.OrderListControl;
 import com.sangjo.control.ProductInfoControl;
 import com.sangjo.control.ProductListControl;
+import com.sangjo.control.RemoveReviewControl;
+import com.sangjo.control.ReviewCountControl;
 import com.sangjo.control.ReviewListControl;
 import com.sangjo.control.TestPageControl;
 
@@ -66,7 +69,8 @@ public class FrontController extends HttpServlet {
 		/*상품리뷰 파트*/
 		map.put("/addReview.do", new AddReviewControl());	
 		map.put("/reivewList.do", new ReviewListControl());
-		
+		map.put("/reviewCount.do", new ReviewCountControl());
+		map.put("/removeReview.do", new RemoveReviewControl());
 		/* 카테고리 */
 		map.put("/category.do", new CategoryControl()); // 카테고리 (기능)
 
@@ -105,6 +109,7 @@ public class FrontController extends HttpServlet {
 
 		/* 오류 */
 		map.put("/errorPage.do", new ErrorControl()); // 오류페이지
+		map.put("/imageDownload.do", new ImageDownLoad());
 	}
 
 	@Override

@@ -38,6 +38,7 @@
 							value="${detailAddress}" readonly>
 					</div>
 					<div class="form-item">
+					<label class="form-label my-3">요청사항</label>
 						<input name="orderMemo" value="${orderMemo}" class="form-control"
 							spellcheck="false" readonly></input>
 					</div>
@@ -96,26 +97,9 @@
 									<td class="py-5">
 										<p class="mb-0 text-dark py-4">배송비</p>
 									</td>
-									<td colspan="3" class="py-5"><c:choose>
-											<c:when test="${shippingCost == '3000'}">
-												<div class="form-check text-start">
-													<input type="checkbox"
-														class="form-check-input bg-primary border-0"
-														id="Shipping-2" name="shippingCost" value="3000" checked>
-													<label class="form-check-label" for="Shipping-2">고정
-														요금: 3,000원</label>
-												</div>
-											</c:when>
-											<c:otherwise>
-												<div class="form-check text-start">
-													<input type="checkbox"
-														class="form-check-input bg-primary border-0"
-														id="Shipping-2" name="shippingCost" value="3000">
-													<label class="form-check-label" for="Shipping-2">고정
-														요금: 3,000원</label>
-												</div>
-											</c:otherwise>
-										</c:choose></td>
+									<td colspan="3" class="py-5 text-end">
+										<p class="mb-0 text-dark py-3">고정 요금: 3,000원</p>
+									</td>
 								</tr>
 								<tr>
 									<th scope="row"></th>
@@ -136,37 +120,27 @@
 					<div
 						class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
 						<div class="col-12">
-							<c:choose>
-								<c:when test="${param.Transfer != null}">
-									<div class="form-check text-start my-3">
-										<input type="checkbox"
-											class="form-check-input bg-primary border-0" id="Transfer-1"
-											name="Transfer" value="Transfer" checked> <label
-											class="form-check-label" for="Transfer-1">직접 은행 이체</label>
-									</div>
-									<p class="text-start text-dark">주문 ID를 결제 참조로 사용해 저희 은행 계좌로
-										직접 결제해 주세요. 자금이 계좌에 입금된 후에만 주문이 발송됩니다.</p>
-									<p>입금계좌 : 61870104241940 국민은행 (예금주 : 이성철)</p>
-								</c:when>
-								<c:otherwise>
-									<div class="form-check text-start my-3">
-										<input type="checkbox"
-											class="form-check-input bg-primary border-0" id="Transfer-1"
-											name="Transfer" value="Transfer"> <label
-											class="form-check-label" for="Transfer-1">직접 은행 이체</label>
-									</div>
-								</c:otherwise>
-							</c:choose>
+							<div class="form-check text-start my-3">
+								<input type="checkbox"
+									class="form-check-input bg-primary border-0" id="Transfer-1"
+									name="Transfer" value="Transfer" checked> <label
+									class="form-check-label" for="Transfer-1">직접 은행 이체</label>
+							</div>
+							<p class="text-start text-dark">주문 ID를 결제 참조로 사용해 저희 은행 계좌로
+								직접 결제해 주세요. 자금이 계좌에 입금된 후에만 주문이 발송됩니다.</p>
+
 						</div>
 					</div>
 				</div>
+
 			</div>
-			<div
-				class="row g-4 text-center align-items-center justify-content-center pt-4">
-				<input type="hidden" name="memberId" value="${member.memberId}">
-				<button type="submit"
-					class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">주문하기</button>
-			</div>
-		</form>
 	</div>
+	<div
+		class="row g-4 text-center align-items-center justify-content-center pt-4">
+		<input type="hidden" name="memberId" value="${member.memberId}">
+		<button type="submit"
+			class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">주문하기</button>
+	</div>
+	</form>
+</div>
 </div>

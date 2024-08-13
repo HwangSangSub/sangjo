@@ -24,14 +24,14 @@
         .error {
             background-color: #f8d7da;
             color: #721c24;
-        }
-        
+        }               
     </style>
+    
 </head>
 <body>
     <div class="message-box">
         <div class="message success">
-            <h1>결제가 완료되었습니다.</h1>
+            <h1>경★주문이 접수되었습니다.★축 </h1>
             <p>국민은행 61870104241940 예금주 : 이성철</p>
             <a href="index.do">계속 쇼핑하기</a>
         </div>
