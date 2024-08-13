@@ -133,6 +133,7 @@ document.querySelectorAll('#orderInfo input').forEach(input => {
 		document.querySelector('input[name=send_' + inputName + ']').value = inputVal;
 	});
 });
+
 document.querySelector('#orderInfo textarea').addEventListener('change', function() {
 	console.log(this.value);
 	let inputVal = this.value;
