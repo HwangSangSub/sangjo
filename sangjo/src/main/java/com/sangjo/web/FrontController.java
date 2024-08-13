@@ -25,6 +25,7 @@ import com.sangjo.control.FindPwControl;
 import com.sangjo.control.FindPwForm;
 import com.sangjo.control.HelpDeskControl;
 import com.sangjo.control.IdCheckControl;
+import com.sangjo.control.ImageDownLoad;
 import com.sangjo.control.IndexControl;
 import com.sangjo.control.JoinControl;
 import com.sangjo.control.LoginControl;
@@ -105,6 +106,7 @@ public class FrontController extends HttpServlet {
 
 		/* 오류 */
 		map.put("/errorPage.do", new ErrorControl()); // 오류페이지
+		map.put("/imageDownload.do", new ImageDownLoad());
 	}
 
 	@Override
