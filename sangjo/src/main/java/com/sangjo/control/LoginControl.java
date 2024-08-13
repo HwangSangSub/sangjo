@@ -32,36 +32,29 @@ public class LoginControl implements Control {
 		ObjectMapper objectMapper = new ObjectMapper();
 
 		// http body에서 데이터 가져오기
-		ServletInputStream inputStream 
-			= req.getInputStream();
-		Map<String,String> map
-		= objectMapper.readValue(inputStream, 
-				new TypeReference<Map<String,String>>(){
+		ServletInputStream inputStream = req.getInputStream();
+
+		Map<String, String> map = objectMapper.readValue(inputStream, new TypeReference<Map<String, String>>() {
 		});
-		
+
 		String memberId = map.get("memberId");
 		String memberPw = map.get("memberPw");
-		CartListService csv = new CartListServiceImpl();
-        List<CartListVO> cartIn = csv.getCartList(memberId);
+
 		MemberVO memberVO = memberService.getMemberByLogin(memberId, memberPw);
-		
-		
-		session.setAttribute("logCart", cartIn);
-		
-		
+    
 		String json;
-		if(memberVO !=null) {
+		if (memberVO != null) {
 			// 로그인이 성공 했으니 로그인 로그기록도 남긴다.
 			memberService.loginLog(memberVO.getMemberId());
-			
+
 			session.setAttribute("member", memberVO);
 			session.setMaxInactiveInterval(60 * 60);// 1시간 동안 유지됨
-			
-			json= String.format("{\"%s\":\"%s\"}", "loginResult","Success");
+
+			json = String.format("{\"%s\":\"%s\"}", "loginResult", "Success");
 			resp.getWriter().print(json);
 			return;
 		}
-		json= String.format("{\"%s\":\"%s\"}", "loginResult","Faild");
+		json = String.format("{\"%s\":\"%s\"}", "loginResult", "Faild");
 		resp.setContentType("text/json;charset=utf-8");
 		resp.getWriter().print(json);
 	}

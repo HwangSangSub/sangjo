@@ -19,19 +19,19 @@ public class ReviewListControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/json;charset=utf-8");
+
 		String reviewPage = req.getParameter("reviewPage");
 		String productMainNo = req.getParameter("productMainNo");
-		if(reviewPage == null) {
+		if (reviewPage == null) {
 			reviewPage = "1";
 		}
-		
-		List<ReviewVO> reviewList
-			= reviewService.getReviewList(productMainNo,reviewPage);
-		reviewList.forEach(System.out::println);
-		
+
+		List<ReviewVO> reviewList = reviewService.getReviewList(productMainNo, reviewPage);
+//		reviewList.forEach(System.out::println);
+
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(reviewList);
-		resp.setContentType("test/json;charset=utf-8");
 		resp.getWriter().print(json);
 	}
 

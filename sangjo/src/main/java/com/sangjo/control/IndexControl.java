@@ -24,8 +24,6 @@ public class IndexControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/json;charset=utf-8");
 		
-		String categoryName = req.getParameter("categoryName");
-		
 		ProductService psvc = new ProductServiceImpl();
 		
 		List<ProductVO> list = psvc.productList();
