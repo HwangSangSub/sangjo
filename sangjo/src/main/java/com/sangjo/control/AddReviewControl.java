@@ -16,7 +16,7 @@ public class AddReviewControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/plain;charset=utf-8");
+		resp.setContentType("text/html;charset=utf-8");
 		ReviewService reviewService = new ReviewServiceImpl();
 		
 		String memberId = req.getParameter("memberId");
