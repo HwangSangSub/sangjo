@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class SearchVO {
-	private String cdName;
+	private String keyword;
 }

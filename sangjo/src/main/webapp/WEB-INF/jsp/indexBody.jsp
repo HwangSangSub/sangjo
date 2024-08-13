@@ -3,6 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 
+<script>
+//회원 변수(공통 사용) <-- el 테그를 사용하므로 jsp 파일내에 작성해야한다.
+let memberId = "${member.memberId}";
+</script>
+
 <!-- Modal Search Start -->
 <div class="modal fade" id="searchModal" tabindex="-1"
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
