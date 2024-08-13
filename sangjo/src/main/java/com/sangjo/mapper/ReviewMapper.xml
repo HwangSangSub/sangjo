@@ -16,7 +16,7 @@
 	</select>
 	
 	<select id="selectAvgPoint" parameterType="int" resultType="float">
-		select avg(review_point)
+		select NVL(avg(review_point),0)
 		from tbl_review
 		where product_no = #{productNo}
 	</select>

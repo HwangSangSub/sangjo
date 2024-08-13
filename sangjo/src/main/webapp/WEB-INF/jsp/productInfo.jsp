@@ -400,6 +400,7 @@
 		})
 		reviewService.getReviewList({productMainNo,reviewPage},function(){
 			let result = JSON.parse(this.responseText);
+			console.log(result);
 			result.forEach(review => {
 				reviewDiv.appendChild(makeRow(review));
 			})
@@ -527,6 +528,7 @@
 			let result = JSON.parse(this.responseText);
 			if(result.removeReview == "Success"){
 				alert("삭제 성공");
+				showReviewList();
 			}else{
 				alert("삭제 실패");
 			}

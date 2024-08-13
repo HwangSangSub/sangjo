@@ -28,9 +28,11 @@ public class ProductInfoControl implements Control {
 		
 		ProductVO productMain 
 			= productService.getProductByNo(req.getParameter("productNo"));
+		
 		List<ProductVO> productList = getProductList(productMain);
 		CategoryVO categoryVO 
 			= categoryService.getCategoryName(productMain.getCategoryNo());
+		// null 일경우도 존재하기 때문에 객체로 받는다.
 		float avgPoint = reviewService.getAvgPoint(productMain.getProductNo());
 		
 		// setAttrivute 하기
