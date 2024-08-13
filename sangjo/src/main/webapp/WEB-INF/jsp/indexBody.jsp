@@ -80,14 +80,12 @@
 											<li>
 												<div class="d-flex justify-content-between fruite-name">
 													<a href="#" data-bs-toggle="collapse"
-														data-bs-target="#collapseBody_${item.categoryName }"><i
-														class="fas fa-apple-alt me-2"></i>${item.categoryName }</a> <span>(3)</span>
+														data-bs-target="#collapseBody_${item.categoryName }" id="categorySelectList">
+														<i class="fas fa-apple-alt me-2"></i><span>${item.categoryName }</span></a> <span>(3)</span>
 												</div>
-												<div class="collapse"
+												<div class="collapse cloneapse"
 													id="collapseBody_${item.categoryName }">
-													<c:forEach var="item" items="${categorySelectList }">
-														<div class="card card-body">${item.cdName }</div>
-													</c:forEach>
+													<div class="card card-body" style="display:none;"></div>
 												</div>
 											</li>
 										</c:forEach>
@@ -175,5 +173,4 @@
 </div>
 <!-- Fruits Shop End-->
 
-<script src="js/product.js"></script>
 <script src="js/category.js"></script>
