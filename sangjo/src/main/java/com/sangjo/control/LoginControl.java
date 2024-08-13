@@ -1,6 +1,7 @@
 package com.sangjo.control;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -12,8 +13,11 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sangjo.common.Control;
+import com.sangjo.service.CartListService;
+import com.sangjo.service.CartListServiceImpl;
 import com.sangjo.service.MemberService;
 import com.sangjo.service.MemberServiceImpl;
+import com.sangjo.vo.CartListVO;
 import com.sangjo.vo.MemberVO;
 
 /**
@@ -37,8 +41,13 @@ public class LoginControl implements Control {
 		
 		String memberId = map.get("memberId");
 		String memberPw = map.get("memberPw");
-		
+		CartListService csv = new CartListServiceImpl();
+        List<CartListVO> cartIn = csv.getCartList(memberId);
 		MemberVO memberVO = memberService.getMemberByLogin(memberId, memberPw);
+		
+		
+		session.setAttribute("logCart", cartIn);
+		
 		
 		String json;
 		if(memberVO !=null) {
