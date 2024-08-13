@@ -415,7 +415,7 @@
 			.cloneNode(true);
 		cloned.style.display='block';
 		//console.log(review);
-		cloned.querySelector('h5').innerText = review.reviewNo +" " + review.memberId;
+		cloned.querySelector('h5').innerText = review.memberId;
 		if(review.memberId == memberId){
 			cloned.querySelector('button').style.display='block';
 		}
