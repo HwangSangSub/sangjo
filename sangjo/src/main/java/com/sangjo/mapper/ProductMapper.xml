@@ -36,4 +36,30 @@
     		JOIN tbl_category c ON p.category_no = c.category_no 
     	WHERE   c.cd_name = #{cdName}
 	</select>
+	
+	<select id="selectProduct" parameterType="string" resultType="com.sangjo.vo.ProductVO">
+		select product_no,
+			category_no,
+			product_name,
+			product_price,
+			product_img,
+			product_thumbnail_img,
+			product_content,
+			reg_date
+		from tbl_product
+		where product_no = #{productNo}
+	</select>
+	
+	<select id="selectProductListByCategoryNo" parameterType="int" resultType="com.sangjo.vo.ProductVO">
+		select product_no,
+			category_no,
+			product_name,
+			product_price,
+			product_img,
+			product_thumbnail_img,
+			product_content,
+			reg_date
+		from tbl_product
+		where category_no = #{categoryNo}
+	</select>
 </mapper>

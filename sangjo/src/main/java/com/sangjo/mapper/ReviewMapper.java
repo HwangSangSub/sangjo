@@ -15,5 +15,9 @@ public interface ReviewMapper {
 	float selectAvgPoint(int productNo);
 
 	List<ReviewVO> selectReviewList(@Param("no") String productNo,@Param("page") String reviewPage);
+
+	int selectReviewCnt(String productMainNo);
+
+	int deleteReview(@Param("no") String productNo,@Param("id") String memberId);
 	
 }

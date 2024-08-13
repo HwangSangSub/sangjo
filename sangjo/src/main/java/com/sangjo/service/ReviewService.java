@@ -14,4 +14,8 @@ public interface ReviewService {
 
 	List<ReviewVO> getReviewList(String productNo, String reviewPage);
 
+	int getReviewCnt(String productMainNo);
+
+	boolean removeReview(String productNo, String memberId);
+
 }
