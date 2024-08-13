@@ -23,7 +23,7 @@
 		FROM tbl_cart c
 		JOIN tbl_product p
 		ON c.product_no = p.product_no
-		WHERE c.member_id = #{MemberId}
+		WHERE c.member_id = #{memberId}
 	</select>
 
 	<insert id="insertCartItem" parameterType="com.sangjo.vo.CartListVO">

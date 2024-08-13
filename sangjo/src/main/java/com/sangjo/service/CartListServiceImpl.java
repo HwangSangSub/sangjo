@@ -24,4 +24,6 @@ public class CartListServiceImpl implements CartListService {
 	public boolean insertCartList(CartListVO cartListVO) {
 		return mapper.insertCartItem(cartListVO) == 1;
 	}
+	
+
 }

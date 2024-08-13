@@ -1,24 +1,3 @@
-function login() {
-	let memberId = document.getElementById('loginMemberId').value;
-	let memberPw = document.getElementById('loginMemberPw').value;
-
-	fetch('login.do', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({ memberId, memberPw })
-	})
-		.then(response => response.json())
-		.then(result => {
-			if (result.loginResult === 'Success') {
-				// 로그인 성공 후 장바구니 페이지로 리다이렉트
-				window.location.href = 'cartList.do';
-			} else {
-				alert('아이디 또는 비밀번호가 틀립니다.');
-			}
-		});
-}
 document.addEventListener('DOMContentLoaded', function() {
 	// 수량 조절 버튼에 대한 이벤트 리스너 추가
 	document.querySelectorAll('.btn-minus, .btn-plus').forEach(button => {
@@ -87,11 +66,15 @@ document.addEventListener('DOMContentLoaded', function() {
 			document.querySelector('#cartForm input[name="productNames"]').value = product_Names.join(',');
 		});
 	});
+
 	document.querySelector('#cartForm').addEventListener('submit', function(e) {
 		e.preventDefault(); // 기본 제출 방지
 		this.submit(); // 폼 제출
 	});
 });
+
+
+
 function updateGrandTotal() {
 	let grandTotal = 0;
 
@@ -111,23 +94,19 @@ function updateGrandTotal() {
 	document.querySelector('.bg-light .py-4.mb-4.border-top.border-bottom.d-flex.justify-content-between p').textContent = totalAmount + ' 원';
 }
 function remove_proNo(e) {
-
 	if (e.target.tagName == 'I') {
 
 		console.dir(e.target.parentElement.dataset.productId);
 		removeCart(e);
 		e.target.parentElement.parentElement.parentElement.remove();
 	}
-
 	else if (e.target.tagName == 'BUTTON') {
 		console.dir(e.target.dataset.productId);
 		removeCart(e);
 		e.target.parentElement.parentElement.remove();
 	}
-
 	updateGrandTotal();
 }
-
 function removeCart(e) {
 	let cartNo = e.target.dataset.cartNo;
 	let url = "cartRemove.do?cartNo=" + cartNo;
@@ -139,15 +118,12 @@ function removeCart(e) {
 			console.error(err);
 		})
 }
-
 //단건
-
-document.querySelector('input[name=fullName]').addEventListener('change', function() {
+//document.querySelector('input[name=fullName]').addEventListener('change', function(e) {
 	//console.log(this.value);
-	let inputVal = this.value;
+	//let inputVal = this.value;
 	//document.querySelector('input[name=send_fullName]').value = inputVal;
-
-});
+//});
 
 document.querySelectorAll('#orderInfo input').forEach(input => {
 	input.addEventListener('change', function() {
@@ -155,14 +131,11 @@ document.querySelectorAll('#orderInfo input').forEach(input => {
 		let inputVal = this.value;
 		console.log(this.value);
 		document.querySelector('input[name=send_' + inputName + ']').value = inputVal;
-		
 	});
-	
 });
-
 document.querySelector('#orderInfo textarea').addEventListener('change', function() {
 	console.log(this.value);
 	let inputVal = this.value;
 	document.querySelector('input[name=send_orderMemo]').value = inputVal;
-
+		
 });
