@@ -155,5 +155,4 @@
 		</c:if>
 	</div>
 </div>
-
 <script src="js/CartList.js"></script>
