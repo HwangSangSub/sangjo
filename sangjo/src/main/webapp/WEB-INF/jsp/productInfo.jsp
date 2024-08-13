@@ -355,6 +355,7 @@
 		}else if(addReviewResult == "Success"){
 			alert("리뷰추가가 완료되었습니다.");
 		}
+		window.location.search = 'productNo='+urlParams.get('productNo'); // 필요없어진 파라미터 값을 제거한다.
 	}
 </script>
 <!-- 리뷰 서비스 -->
