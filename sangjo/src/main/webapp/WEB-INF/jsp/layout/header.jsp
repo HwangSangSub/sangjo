@@ -1,123 +1,142 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix = "c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="container-fluid fixed-top">
-    <div class="container">
-        <nav class="navbar navbar-light bg-white navbar-expand-xl">
-            <a href="index.do" class="navbar-brand"><h1 class="text-primary display-6">상조쇼핑몰</h1></a>
-            <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars text-primary"></span>
-            </button>
-            <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
-                <div class="navbar-nav mx-auto">
-                    <a href="index.do" class="nav-item nav-link active">메인</a>
-                    <a href="index.do" class="nav-item nav-link">상품목록</a>
-                    <a href="productInfo.do" class="nav-item nav-link">상품상세</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">추가메뉴</a>
-                        <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                            <a href="cartList.do" class="dropdown-item">장바구니</a>
-                            <a href="orderList.do" class="dropdown-item">주문</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="404.html" class="dropdown-item">404 Page</a>
-                        </div>
-                    </div>
-                    <a href="helpDesk.do" class="nav-item nav-link">고객센터</a>
-                </div>
-                <div class="d-flex m-3 me-0">
-                    <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
-                    <a href="cartList.do" class="position-relative me-2 my-auto">
-                        <i class="bi bi-cart4 fa-2x"></i>
-                        <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
-                    </a>
-                    <c:choose>
-                        <c:when test="${empty member}">
-                            <!-- 회원가입 모달창을 띄어준다. -->
-                            <a data-bs-toggle="modal" data-bs-target="#joinModal"  class="my-auto">
-                                <i class="bi bi-person-fill-add me-2 fa-2x"></i>
-                            </a>
-                            <!-- 로그인 모달 창을 띄어준다. -->
-                            <a data-bs-toggle="modal" data-bs-target="#loginModel"  class="my-auto">
-                                <i class="bi bi-person-fill-check me-2 fa-2x"></i>
-                            </a>
-                        </c:when>
-                        <c:otherwise>
-                            <!-- 마이페이지가 완성되면 링크를 연결해주자 -->
-                            <a href="myPage.do" class="my-auto">
-		                        <i class="bi bi-person-fill-gear me-2 fa-2x"></i>
-		                    </a>
-                            <a href="logout.do" class="my-auto">
-                                <i class="bi bi-person-fill-x me-2 fa-2x"></i>
-                            </a>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
-            </div>
-        </nav>
-    </div>
+	<div class="container">
+		<nav class="navbar navbar-light bg-white navbar-expand-xl">
+			<a href="index.do" class="navbar-brand"><h1
+					class="text-primary display-6">상조쇼핑몰</h1></a>
+			<button class="navbar-toggler py-2 px-3" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+				<span class="fa fa-bars text-primary"></span>
+			</button>
+			<div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+				<div class="navbar-nav mx-auto">
+					<a href="index.do" class="nav-item nav-link active">메인</a> <a
+						href="index.do" class="nav-item nav-link">상품목록</a> <a
+						href="productInfo.do" class="nav-item nav-link">상품상세</a>
+					<div class="nav-item dropdown">
+						<a href="#" class="nav-link dropdown-toggle"
+							data-bs-toggle="dropdown">추가메뉴</a>
+						<div class="dropdown-menu m-0 bg-secondary rounded-0">
+							<a href="cartList.do?memberId=${member.memberId}" class="dropdown-item">장바구니</a> <a
+								href="orderList.do" class="dropdown-item">주문</a> <a
+								href="testimonial.html" class="dropdown-item">Testimonial</a> <a
+								href="404.html" class="dropdown-item">404 Page</a>
+						</div>
+					</div>
+					<a href="helpDesk.do" class="nav-item nav-link">고객센터</a>
+				</div>
+				<div class="d-flex m-3 me-0">
+					<c:choose>
+						<c:when test="${empty member}">
+							<!-- 회원가입 모달창을 띄어준다. -->
+							<a data-bs-toggle="modal" data-bs-target="#joinModal"
+								class="my-auto"> <i class="bi bi-person-fill-add me-2 fa-2x"></i>
+							</a>
+							<!-- 로그인 모달 창을 띄어준다. -->
+							<a data-bs-toggle="modal" data-bs-target="#loginModel"
+								class="my-auto"> <i
+								class="bi bi-person-fill-check me-2 fa-2x"></i>
+							</a>
+						</c:when>
+						<c:otherwise>
+							<a href="cartList.do?memberId=${member.memberId}" class="position-relative me-2 my-auto">
+								<i class="bi bi-cart4 fa-2x"></i> <span
+								class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
+								style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
+							</a>
+							<!-- 마이페이지가 완성되면 링크를 연결해주자 -->
+							<a href="myPage.do" class="my-auto"> <i
+								class="bi bi-person-fill-gear me-2 fa-2x"></i>
+							</a>
+							<a href="logout.do" class="my-auto"> <i
+								class="bi bi-person-fill-x me-2 fa-2x"></i>
+							</a>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</div>
+		</nav>
+	</div>
 </div>
 <!-- 회원가입 모달창 -->
-<div class="modal fade" id="joinModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen modal-content">
-        <div class="rounded-0 style='height = 80%;'">
-        	<!-- 헤더 부분 -->
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">회원가입</h5>
-                <!-- 닫기 버튼-->
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <!--  몸통 부분 -->
-            <div class="modal-body d-flex align-items-center" >
-                <div class="input-group w-50 mx-auto d-flex">
-                    <input type="text" class="form-control" id="joinMemberId" placeholder="아이디 (20자)" style="width: 50%;">
-                    <input type="button" class="form-control" id="cleanIdCheckBtn" value="재입력">
-                </div>
-            </div>
-            <div class="modal-body d-flex align-items-center" >
-                <div class="input-group w-50 mx-auto d-flex">
-                    <input type="password" class="form-control" id="joinMemberPw" placeholder="비밀번호 (20자)">
-                </div>
-            </div>
-            <div class="modal-body d-flex align-items-center" >
-                <div class="input-group w-50 mx-auto d-flex">
-                    <input type="text" class="form-control" id="memberName" placeholder="이름 (8자)">
-                </div>
-            </div>
-            <div class="modal-body d-flex align-items-center" >
-                <div class="input-group w-50 mx-auto d-flex">
-                    <input type="text" class="form-control" id="memberPhone" placeholder="전화번호 (11자)">
-                </div> 
-            </div>
-            <div class="modal-body d-flex align-items-center" >
-                <div class="input-group w-50 mx-auto d-flex">
-                    <input type="text" class="form-control" id="memberEmail" placeholder="이메일 작성" style="width: 50%;">
-                    <input type="button" class="form-control" id="cleanEmailCheckBtn" value="재입력">
-                </div>
-            </div>
-            <!-- 주소 입력란 -->
-            <input type="hidden" id="addressCode" class="form-control" placeholder="우편번호" readonly="">
-            <div class="modal-body d-flex align-items-center" >
-                <div class="input-group w-50 mx-auto d-flex">
-                    <input type="text" id="addressMain" class="form-control" placeholder="도로명주소" onclick="sample4_execDaumPostcode()" readonly="">
-                </div>
-            </div>
-            <div class="modal-body d-flex align-items-center">
-                <div class="input-group w-50 mx-auto d-flex">
-                    <input type="text" id="addressDetail" class="form-control" placeholder="상세주소">
-                </div>
-            </div>
-            <!--주소 입력란 끝-->
-            <div class="modal-body d-flex align-items-center">
-                <div class="input-group w-50 mx-auto d-flex">
-                    <input type="reset" class="btn btn-secondary" value="초기화">
-                    <input type="button" id="joinBtn" class="btn btn-primary" value="회원가입" disabled="">
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="modal fade" id="joinModal" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-fullscreen modal-content">
+		<div class="rounded-0 style='height = 80%;'">
+			<!-- 헤더 부분 -->
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">회원가입</h5>
+				<!-- 닫기 버튼-->
+				<button type="button" class="btn-close" data-bs-dismiss="modal"
+					aria-label="Close"></button>
+			</div>
+			<!--  몸통 부분 -->
+			<div class="modal-body d-flex align-items-center">
+				<div class="input-group w-50 mx-auto d-flex">
+					<input type="text" class="form-control" id="joinMemberId"
+						placeholder="아이디 (20자)" style="width: 50%;"> <input
+						type="button" class="form-control" id="cleanIdCheckBtn"
+						value="재입력">
+				</div>
+			</div>
+			<div class="modal-body d-flex align-items-center">
+				<div class="input-group w-50 mx-auto d-flex">
+					<input type="password" class="form-control" id="joinMemberPw"
+						placeholder="비밀번호 (20자)">
+				</div>
+			</div>
+			<div class="modal-body d-flex align-items-center">
+				<div class="input-group w-50 mx-auto d-flex">
+					<input type="text" class="form-control" id="memberName"
+						placeholder="이름 (8자)">
+				</div>
+			</div>
+			<div class="modal-body d-flex align-items-center">
+				<div class="input-group w-50 mx-auto d-flex">
+					<input type="text" class="form-control" id="memberPhone"
+						placeholder="전화번호 (11자)">
+				</div>
+			</div>
+			<div class="modal-body d-flex align-items-center">
+				<div class="input-group w-50 mx-auto d-flex">
+					<input type="text" class="form-control" id="memberEmail"
+						placeholder="이메일 작성" style="width: 50%;"> <input
+						type="button" class="form-control" id="cleanEmailCheckBtn"
+						value="재입력">
+				</div>
+			</div>
+			<!-- 주소 입력란 -->
+			<input type="hidden" id="addressCode" class="form-control"
+				placeholder="우편번호" readonly="">
+			<div class="modal-body d-flex align-items-center">
+				<div class="input-group w-50 mx-auto d-flex">
+					<input type="text" id="addressMain" class="form-control"
+						placeholder="도로명주소" onclick="sample4_execDaumPostcode()"
+						readonly="">
+				</div>
+			</div>
+			<div class="modal-body d-flex align-items-center">
+				<div class="input-group w-50 mx-auto d-flex">
+					<input type="text" id="addressDetail" class="form-control"
+						placeholder="상세주소">
+				</div>
+			</div>
+			<!--주소 입력란 끝-->
+			<div class="modal-body d-flex align-items-center">
+				<div class="input-group w-50 mx-auto d-flex">
+					<input type="reset" class="btn btn-secondary" value="초기화">
+					<input type="button" id="joinBtn" class="btn btn-primary"
+						value="회원가입" disabled="">
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- 주소 입력 관련 스크립트 -->
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
     function sample4_execDaumPostcode() {
@@ -224,32 +243,36 @@
     })
 </script>
 <!--로그인 모달 창 -->
-<div class="modal fade" id="loginModel" tabindex="-1" aria-labelledby="loginModelLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="loginModelLabel">New message</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="mb-3">
-                <label for="loginMemberId" class="col-form-label">아이디</label>
-                <input type="text" class="form-control" id="loginMemberId">
-            </div>
-            <div class="mb-3">
-                <label for="loginMemberPw" class="col-form-label">비밀번호</label>
-                <input type="password" class="form-control" id="loginMemberPw">
-            </div>
-            <div class="mb-3">
-            	<a href="findIdForm.do">아이디 찾기</a> / <a href="findPwForm.do">비밀번호 찾기</a> 
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">로그인</button>
-        </div>
-        </div>
-    </div>
+<div class="modal fade" id="loginModel" tabindex="-1"
+	aria-labelledby="loginModelLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="loginModelLabel">New message</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"
+					aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="mb-3">
+					<label for="loginMemberId" class="col-form-label">아이디</label> <input
+						type="text" class="form-control" id="loginMemberId">
+				</div>
+				<div class="mb-3">
+					<label for="loginMemberPw" class="col-form-label">비밀번호</label> <input
+						type="password" class="form-control" id="loginMemberPw">
+				</div>
+				<div class="mb-3">
+					<a href="findIdForm.do">아이디 찾기</a> / <a href="findPwForm.do">비밀번호
+						찾기</a>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary"
+					data-bs-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">로그인</button>
+			</div>
+		</div>
+	</div>
 </div>
 <!--로그인 모달용 스크립트 -->
 <script>
