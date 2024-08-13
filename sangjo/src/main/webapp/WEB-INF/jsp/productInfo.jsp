@@ -3,9 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix = "c" %>
 <head>
 	<style>
-		/* 내부 링크 관련 */
-		.outer{
-			display: flex;
+		.outer h4{
+			overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
 		}
 		.inner{
 			z-index: 10;
@@ -63,8 +64,9 @@
 					<div class="col-lg-6">
 						<div class="border rounded">
 							<a href="#"> 
-								<img src="${productMain.productImg}"
-									class="img-fluid rounded" alt="${productMain.productImg}">
+								<img src="img/product/${productMain.productImg}"
+									class="img-fluid rounded" alt="${productMain.productImg}"
+									style="width: 100%;">
 							</a>
 						</div>
 					</div>
@@ -202,7 +204,7 @@
 					<div class="border border-primary rounded position-relative vesitable-item outer">				
 						<a href="productInfo.do?productNo=${product.productNo }" class="link"></a>
 						<div class="vesitable-img">
-							<img src="${product.productImg }"
+							<img src="img/product/${product.productImg }"
 								class="img-fluid w-100 rounded-top" alt=""/>
 						</div>
 						<div
@@ -300,6 +302,9 @@
 				newPrice.unshift(',');
 			}
 			count++;
+		}
+		if(count == 4){
+			newPrice.shift();
 		}
 		return newPrice.join('');
 	}
@@ -401,7 +406,7 @@
 		})
 		reviewService.getReviewList({productMainNo,reviewPage},function(){
 			let result = JSON.parse(this.responseText);
-			console.log(result);
+			//console.log(result);
 			result.forEach(review => {
 				reviewDiv.appendChild(makeRow(review));
 			})
