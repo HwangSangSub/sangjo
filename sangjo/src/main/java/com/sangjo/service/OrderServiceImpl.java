@@ -44,12 +44,11 @@ public class OrderServiceImpl implements OrderService {
 	public boolean processOrder(String fullName, String phone, String address, String detailAddress, String orderMemo,
 			String productNos, String productImgs, String productNames, String productPrices, String quantities,
 			String shippingCost, String totalAmount) {
-		// 실제 결제 처리 로직을 구현합니다.
-		// 예를 들어, 결제 API 호출, 데이터베이스 업데이트 등을 수행합니다.
-		// 현재는 예시로 항상 결제가 성공한 것으로 가정합니다.
+		
+		
 
-		// 결제 성공 여부를 반환합니다.
-		return true; // 실제 로직에 맞게 true/false 값을 반환합니다.
+		
+		return true; 
 
 	}
 }

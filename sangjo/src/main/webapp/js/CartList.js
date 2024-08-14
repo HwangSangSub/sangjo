@@ -58,12 +58,12 @@ document.addEventListener('DOMContentLoaded', function() {
 					}
 				});
 			// 숨겨진 입력 필드에 값 설정
-			document.querySelector('#cartForm input[name="cartNos"]').value = cart_Nos.join(',');
-			document.querySelector('#cartForm input[name="productNos"]').value = product_Nos.join(',');
-			document.querySelector('#cartForm input[name="quantities"]').value = quantities.join(',');
-			document.querySelector('#cartForm input[name="productPrices"]').value = product_Prices.join(',');
-			document.querySelector('#cartForm input[name="productImgs"]').value = product_Imgs.join(',');
-			document.querySelector('#cartForm input[name="productNames"]').value = product_Names.join(',');
+			document.querySelector('#cartForm input[name="cartNos"]').value = cart_Nos.join('/');
+			document.querySelector('#cartForm input[name="productNos"]').value = product_Nos.join('/');
+			document.querySelector('#cartForm input[name="quantities"]').value = quantities.join('/');
+			document.querySelector('#cartForm input[name="productPrices"]').value = product_Prices.join('/');
+			document.querySelector('#cartForm input[name="productImgs"]').value = product_Imgs.join('/');
+			document.querySelector('#cartForm input[name="productNames"]').value = product_Names.join('/');
 		});
 	});
 
@@ -133,6 +133,7 @@ document.querySelectorAll('#orderInfo input').forEach(input => {
 		document.querySelector('input[name=send_' + inputName + ']').value = inputVal;
 	});
 });
+
 document.querySelector('#orderInfo textarea').addEventListener('change', function() {
 	console.log(this.value);
 	let inputVal = this.value;

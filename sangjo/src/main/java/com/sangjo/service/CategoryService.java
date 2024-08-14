@@ -8,5 +8,6 @@ public interface CategoryService {
 	List<CategoryVO> categoryList();
 	List<CategoryVO> categorySelectList(String categoryName);
 	CategoryVO getCategoryName(int categoryNo);
+	List<CategoryVO> categoryCountList();
 	
 }

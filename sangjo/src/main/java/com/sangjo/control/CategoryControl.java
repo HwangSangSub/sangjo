@@ -25,7 +25,7 @@ public class CategoryControl implements Control {
 
 		CategoryService csvc = new CategoryServiceImpl();
 		List<CategoryVO> list = csvc.categorySelectList(categoryName);
-
+		
 		// json 문자열
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(list);
