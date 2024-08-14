@@ -65,23 +65,30 @@
 								<c:set var="subtotal" value="0" />
 								<!-- Subtotal 초기화 -->
 								<c:forEach var="i" begin="0"
-									end="${fn:length(fn:split(productNos, ','))-1}">
+									end="${fn:length(fn:split(productNos, '/'))-1}">
 									<tr>
 										<th scope="row">
 											<div class="d-flex align-items-center mt-2">
-												<img
-													src="${pageContext.request.contextPath}/img/${fn:split(productImgs, ',')[i]}"
-													class="img-fluid rounded-circle"
-													style="width: 90px; height: 90px;" alt="">
+												<img src="img/product/${fn:split(productImgs, '/')[i]}"
+													class="img-fluid me-5 rounded-circle"
+													style="width: 80px; height: 80px;" alt="">
 											</div>
 										</th>
-										<td class="py-5">${fn:split(productNames, ',')[i]}</td>
+										<td class="py-5"><c:choose>
+												<c:when
+													test="${fn:length(fn:split(productNames, '/')[i]) > 5}">
+            ${fn:substring(fn:split(productNames, '/')[i], 0, 5)}...
+        </c:when>
+												<c:otherwise>
+            ${fn:split(productNames, '/')[i]}
+        </c:otherwise>
+											</c:choose></td>
 
-										<td class="py-5">${fn:split(productPrices, ',')[i]}원</td>
-										<td class="py-5">${fn:split(quantities, ',')[i]}</td>
+										<td class="py-5">${fn:split(productPrices, '/')[i]}원</td>
+										<td class="py-5">${fn:split(quantities, '/')[i]}</td>
 										<td class="py-5"><c:set var="price"
-												value="${fn:split(productPrices, ',')[i]}" /> <c:set
-												var="quantity" value="${fn:split(quantities, ',')[i]}" /> <c:set
+												value="${fn:split(productPrices, '/')[i]}" /> <c:set
+												var="quantity" value="${fn:split(quantities, '/')[i]}" /> <c:set
 												var="total" value="${price * quantity}" /> ${total}원 <c:set
 												var="subtotal" value="${subtotal + total}" /></td>
 									</tr>
@@ -130,7 +137,7 @@
 							<div class="form-check text-start my-3">
 								<input type="checkbox"
 									class="form-check-input bg-primary border-0" id="Transfer-1"
-									name="Transfer" value="Transfer"  checked> <label
+									name="Transfer" value="Transfer" checked> <label
 									class="form-check-label" for="Transfer-1">직접 은행 이체</label>
 							</div>
 							<p class="text-start text-dark">주문 ID를 결제 참조로 사용해 저희 은행 계좌로
@@ -142,20 +149,20 @@
 			</div>
 		</form>
 		<form action="orderCheck.do" method="post" id="checkForm">
-			<input type="hidden" name="send_fullName"> <input
-				type="hidden" name="send_phone"> <input type="hidden"
-				name="send_address"> <input type="hidden"
-				name="send_detailAdress"> <input type="hidden"
-				name="send_orderMemo"> <input type="hidden"
-				name="grandTotal" value="${grandTotal}"> <input
-				type="hidden" name="shippingCost" value="${shippingCost}"> <input
-				type="hidden" name="totalAmount" value="${totalAmount}"> <input
-				type="hidden" name="productImgs" value="${productImgs}"> <input
-				type="hidden" name="cartNos" value="${cartNos}"> <input
-				type="hidden" name="productNos" value="${productNos}"> <input
-				type="hidden" name="productNames" value="${productNames}"> <input
-				type="hidden" name="productPrices" value="${productPrices}">
-			<input type="hidden" name="quantities" value="${quantities}">
+				<input type="hidden" name="send_fullName"> 
+				<input type="hidden" name="send_phone"> 
+				<input type="hidden" name="send_address"> 
+				<input type="hidden" name="send_detailAdress"> 
+				<input type="hidden" name="send_orderMemo"> 
+				<input type="hidden" name="grandTotal" value="${grandTotal}"> 
+				<input type="hidden" name="shippingCost" value="${shippingCost}"> 
+				<input type="hidden" name="totalAmount" value="${totalAmount}"> 
+				<input type="hidden" name="productImgs" value="${productImgs}"> 
+				<input type="hidden" name="cartNos" value="${cartNos}"> 
+				<input type="hidden" name="productNos" value="${productNos}"> 
+				<input type="hidden" name="productNames" value="${productNames}"> 
+				<input type="hidden" name="productPrices" value="${productPrices}">
+				<input type="hidden" name="quantities" value="${quantities}">
 
 			<div
 				class="row g-4 text-center align-items-center justify-content-center pt-4">

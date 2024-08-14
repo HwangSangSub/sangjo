@@ -38,8 +38,8 @@
 							value="${detailAddress}" readonly>
 					</div>
 					<div class="form-item">
-					<label class="form-label my-3">요청사항</label>
-						<input name="orderMemo" value="${orderMemo}" class="form-control"
+						<label class="form-label my-3">요청사항</label> <input
+							name="orderMemo" value="${orderMemo}" class="form-control"
 							spellcheck="false" readonly></input>
 					</div>
 					<hr>
@@ -58,23 +58,32 @@
 							</thead>
 							<tbody>
 								<c:set var="subtotal" value="0" />
+								<!-- Subtotal 초기화 -->
 								<c:forEach var="i" begin="0"
-									end="${fn:length(fn:split(productNos, ','))-1}">
+									end="${fn:length(fn:split(productNos, '/'))-1}">
 									<tr>
 										<th scope="row">
 											<div class="d-flex align-items-center mt-2">
-												<img
-													src="${pageContext.request.contextPath}/img/${fn:split(productImgs, ',')[i]}"
-													class="img-fluid rounded-circle"
-													style="width: 90px; height: 90px;" alt="">
+												<img src="img/product/${fn:split(productImgs, '/')[i]}"
+													class="img-fluid me-5 rounded-circle"
+													style="width: 80px; height: 80px;" alt="">
 											</div>
 										</th>
-										<td class="py-5">${fn:split(productNames, ',')[i]}</td>
-										<td class="py-5">${fn:split(productPrices, ',')[i]}원</td>
-										<td class="py-5">${fn:split(quantities, ',')[i]}</td>
+										<td class="py-5"><c:choose>
+												<c:when
+													test="${fn:length(fn:split(productNames, '/')[i]) > 5}">
+            ${fn:substring(fn:split(productNames, '/')[i], 0, 5)}...
+        </c:when>
+												<c:otherwise>
+            ${fn:split(productNames, '/')[i]}
+        </c:otherwise>
+											</c:choose></td>
+
+										<td class="py-5">${fn:split(productPrices, '/')[i]}원</td>
+										<td class="py-5">${fn:split(quantities, '/')[i]}</td>
 										<td class="py-5"><c:set var="price"
-												value="${fn:split(productPrices, ',')[i]}" /> <c:set
-												var="quantity" value="${fn:split(quantities, ',')[i]}" /> <c:set
+												value="${fn:split(productPrices, '/')[i]}" /> <c:set
+												var="quantity" value="${fn:split(quantities, '/')[i]}" /> <c:set
 												var="total" value="${price * quantity}" /> ${total}원 <c:set
 												var="subtotal" value="${subtotal + total}" /></td>
 									</tr>
@@ -97,7 +106,7 @@
 									<td class="py-5">
 										<p class="mb-0 text-dark py-4">배송비</p>
 									</td>
-									<td colspan="3" class="py-5 text-end">
+									<td colspan="3" class="py-5">
 										<p class="mb-0 text-dark py-3">고정 요금: 3,000원</p>
 									</td>
 								</tr>
@@ -110,7 +119,7 @@
 									<td class="py-5"></td>
 									<td class="py-5">
 										<div class="py-3 border-bottom border-top">
-											<p class="mb-0 text-dark">${subtotal + 3000}원</p>
+											<p class="mb-0 text-dark">${subtotal +  3000 }원</p>
 										</div>
 									</td>
 								</tr>
@@ -128,19 +137,20 @@
 							</div>
 							<p class="text-start text-dark">주문 ID를 결제 참조로 사용해 저희 은행 계좌로
 								직접 결제해 주세요. 자금이 계좌에 입금된 후에만 주문이 발송됩니다.</p>
-
 						</div>
 					</div>
 				</div>
 
 			</div>
+			<div
+				class="row g-4 text-center align-items-center justify-content-center pt-4">
+				<input type="hidden" name="memberId" value="${member.memberId}">
+				<button type="submit"
+					class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">주문하기</button>
+			</div>
+			<c:set var="totalAmount" value="${subtotal + 3000}" />
+			<c:set var="sessionTotalAmount" value="${totalAmount}" scope="session" />
+		</form>
+
 	</div>
-	<div
-		class="row g-4 text-center align-items-center justify-content-center pt-4">
-		<input type="hidden" name="memberId" value="${member.memberId}">
-		<button type="submit"
-			class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">주문하기</button>
-	</div>
-	</form>
-</div>
 </div>
