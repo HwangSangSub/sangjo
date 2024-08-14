@@ -18,6 +18,7 @@
 	<div class="container py-5">
 		<h1 class="mb-4">주문 정보 확인</h1>
 		<form action="order.do" method="post">
+		<input type="hidden" name="memberId" value="${member.memberId}">
 			<div class="row g-5">
 				<div class="col-md-12 col-lg-6 col-xl-7">
 					<div class="form-item w-100">
@@ -151,6 +152,5 @@
 			<c:set var="totalAmount" value="${subtotal + 3000}" />
 			<c:set var="sessionTotalAmount" value="${totalAmount}" scope="session" />
 		</form>
-
 	</div>
 </div>
