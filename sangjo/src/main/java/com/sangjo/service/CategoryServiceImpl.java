@@ -26,4 +26,9 @@ public class CategoryServiceImpl implements CategoryService {
 	public CategoryVO getCategoryName(int categoryNo) {
 		return mapper.selectCategory(categoryNo);
 	}
+	
+	@Override
+	public List<CategoryVO> categoryCountList() {
+		return mapper.countCategory();
+	}
 }
