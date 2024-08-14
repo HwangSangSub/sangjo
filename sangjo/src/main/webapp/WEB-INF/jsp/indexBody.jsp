@@ -84,7 +84,7 @@ let memberId = "${member.memberId}";
 					</div>
 					<div class="col-lg-9">
 						<div class="row g-4 justify-content-center" id="productList">
-							<div class="col-md-6 col-lg-6 col-xl-4" style="display: none;">
+							<div class="col-md-6 col-lg-6 col-xl-4" id="orgProductList" style="display: none;">
 								<div class="rounded position-relative fruite-item">
 									<div class="fruite-img">
 										<img src="img/product/${item.productImg }"
@@ -99,9 +99,9 @@ let memberId = "${member.memberId}";
 										<p>${item.productContent }</p>
 										<div class="d-flex justify-content-between flex-lg-wrap">
 											<p class="text-dark fs-5 fw-bold mb-0">${item.productPrice }원</p>
-											<a href="#"
-												class="btn border border-secondary rounded-pill px-3 text-primary"><i
-												class="fa fa-shopping-bag me-2 text-primary"></i> 장바구니 추가</a>
+											<button type="button" onclick="addCartEvent(${item.productNo})"
+													class="btn border border-secondary rounded-pill px-3 text-primary"><i
+													class="fa fa-shopping-bag me-2 text-primary" onclick="addCartEvent(${item.productNo})"></i>장바구니 추가</button>
 										</div>
 									</div>
 								</div>
