@@ -77,11 +77,11 @@
 										<td class="py-5"><c:choose>
 												<c:when
 													test="${fn:length(fn:split(productNames, '/')[i]) > 5}">
-            ${fn:substring(fn:split(productNames, '/')[i], 0, 5)}...
-        </c:when>
+           									 ${fn:substring(fn:split(productNames, '/')[i], 0, 5)}...
+       									 </c:when>
 												<c:otherwise>
-            ${fn:split(productNames, '/')[i]}
-        </c:otherwise>
+           									 ${fn:split(productNames, '/')[i]}
+       										 </c:otherwise>
 											</c:choose></td>
 
 										<td class="py-5">${fn:split(productPrices, '/')[i]}원</td>
@@ -163,7 +163,6 @@
 				<input type="hidden" name="productNames" value="${productNames}"> 
 				<input type="hidden" name="productPrices" value="${productPrices}">
 				<input type="hidden" name="quantities" value="${quantities}">
-
 			<div
 				class="row g-4 text-center align-items-center justify-content-center pt-4">
 				<a href="orderCheck.do">
@@ -172,7 +171,6 @@
 				</a>
 			</div>
 		</form>
-
 	</div>
 </div>
 <script src="js/CartList.js"></script>

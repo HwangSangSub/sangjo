@@ -28,11 +28,11 @@
 <!-- Modal Search End -->
 <!-- Single Page Header start -->
 <div class="container-fluid page-header py-5">
-	<h1 class="text-center text-white display-6">Shop</h1>
+	<h1 class="text-center text-white display-6">상품보기</h1>
 	<ol class="breadcrumb justify-content-center mb-0">
-		<li class="breadcrumb-item"><a href="#">Home</a></li>
-		<li class="breadcrumb-item"><a href="#">Pages</a></li>
-		<li class="breadcrumb-item active text-white">Shop</li>
+		<li class="breadcrumb-item"><a href="#">집</a></li>
+		<li class="breadcrumb-item"><a href="#">페이지</a></li>
+		<li class="breadcrumb-item active text-white">가게</li>
 	</ol>
 </div>
 <!-- Single Page Header End -->
@@ -42,7 +42,7 @@
 <div class="container-fluid fruite py-5">
 
 	<div class="container py-5">
-		<h1 class="mb-4">Fresh fruits shop</h1>
+		<h1 class="mb-4">신선한 과일 가게</h1>
 		<div class="row g-4">
 			<div class="col-lg-12">
 				<div class="row g-4">
@@ -116,7 +116,7 @@
 									</div>
 									<div
 										class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-										S style="top: 10px; left: 10px;">${item.cdName}</div>
+										 style="top: 10px; left: 10px;">${item.cdName}</div>
 									<div
 										class="p-4 border border-secondary border-top-0 rounded-bottom">
 										<h4>${item.productName}</h4>

@@ -38,7 +38,7 @@
 							value="${detailAddress}" readonly>
 					</div>
 					<div class="form-item">
-						<label class="form-label my-3">요청사항</label> <input
+						<label class="form-label my-3">주문체크</label> <input
 							name="orderMemo" value="${orderMemo}" class="form-control"
 							spellcheck="false" readonly></input>
 					</div>
