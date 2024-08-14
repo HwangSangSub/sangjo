@@ -33,4 +33,7 @@
 		FROM   tbl_category
 		WHERE  category_name = #{categoryName}
 	</select>
+	
+	
+	
 </mapper>

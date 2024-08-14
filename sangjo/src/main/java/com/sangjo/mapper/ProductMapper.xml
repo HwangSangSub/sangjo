@@ -62,4 +62,35 @@
 		from tbl_product
 		where category_no = #{categoryNo}
 	</select>
+	
+	<select id="searchProductList" parameterType="com.sangjo.common.SearchVO" resultType="com.sangjo.vo.ProductVO">
+		<!-- SELECT *
+		FROM tbl_product
+		WHERE 1 = 1 
+			<if test="keyword != null">
+    		AND product_name LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="cdName != null">
+    		AND category_no = (SELECT category_no FROM tbl_category WHERE cd_name = #{cdName})
+			</if>
+ -->
+		SELECT  p.product_no
+		       ,p.category_no
+		       ,p.product_name
+		       ,p.product_price
+		       ,p.product_img
+		       ,p.product_thumbnail_img
+		       ,p.product_content
+		       ,p.reg_date
+		       ,c.cd_name
+		FROM    tbl_product p
+    		JOIN tbl_category c ON p.category_no = c.category_no 
+    	WHERE  1=1
+			<if test="keyword != null">
+    		AND p.product_name LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="cdName != null">
+    	 	AND c.cd_name = #{cdName}
+    		</if>
+	</select>
 </mapper>
