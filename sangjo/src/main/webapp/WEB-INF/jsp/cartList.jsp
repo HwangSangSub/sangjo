@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <!-- Single Page Header 시작 -->
 <div class="container-fluid page-header py-5">
@@ -47,13 +48,16 @@
 								data-product-img="${item.productImg}">
 								<th scope="row">
 									<div class="d-flex align-items-center">
-										<img src="img/${item.productImg}"
+										<img src="img/product/${item.productImg}"
 											class="img-fluid me-5 rounded-circle"
 											style="width: 80px; height: 80px;" alt="">
 									</div>
 								</th>
 								<td>
-									<p class="mb-0 mt-4">${item.productName}</p>
+									<p class="mb-0 mt-4">
+										<c:out
+											value="${fn:substring(item.productName, 0, 20)}${item.productName.length() > 20 ? '...' : ''}" />
+									</p>
 								</td>
 								<td>
 									<p class="mb-0 mt-4">${item.productPrice}원</p>
@@ -134,9 +138,9 @@
 							<input type="hidden" name="shippingCost" value="${shippingCost}">
 							<input type="hidden" name="totalAmount" value="${totalAmount}">
 							<input type="hidden" name="productImgs" value="${productImgs}">
-							<input type="hidden" name="cartNos" value="${cartNos}"> <input
-								type="hidden" name="productNos" value="${productNos}"> <input
-								type="hidden" name="productNames" value="${productNames}">
+							<input type="hidden" name="cartNos" value="${cartNos}"> 
+							<input type="hidden" name="productNos" value="${productNos}"> 
+								<input type="hidden" name="productNames" value="${productNames}">
 							<input type="hidden" name="productPrices"
 								value="${productPrices}"> <input type="hidden"
 								name="quantities" value="${quantities}">

@@ -19,6 +19,7 @@ public class CartListControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 사용자 ID를 세션에서 가져오기
 		String memberId = req.getParameter("memberId");
+		//req.getParameterValues("pcode");
 
 		CartListService csc = new CartListServiceImpl();
 
@@ -26,13 +27,13 @@ public class CartListControl implements Control {
 
 		// 사용자 ID가 null이면 빈 리스트를 반환하고, 그렇지 않으면 장바구니 목록을 가져오기
 		List<CartListVO> cartList = memberId != null ? csc.getCartList(memberId) : Collections.emptyList();
-
+		
 		// 요청 속성에 장바구니 목록 저장
 		req.setAttribute("cartList", cartList);
-
+		//req.setAttribute("pcode");
+		
 		// JSP 페이지로 포워딩
 		req.getRequestDispatcher("sangjo/cartList.tiles").forward(req, resp);
-
 		
 	}
 }
