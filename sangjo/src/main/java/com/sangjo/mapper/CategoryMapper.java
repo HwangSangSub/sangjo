@@ -8,6 +8,9 @@ public interface CategoryMapper {
 	List<CategoryVO> categoryNameList();
 	List<CategoryVO> categorySelectList(String categoryName);
 	List<CategoryVO> selectList();
+	List<CategoryVO> countCategory();
+	
+	
 
 	CategoryVO selectCategory(int categoryNo);
 }

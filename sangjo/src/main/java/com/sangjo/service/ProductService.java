@@ -2,6 +2,7 @@ package com.sangjo.service;
 
 import java.util.List;
 
+import com.sangjo.common.SearchVO;
 import com.sangjo.vo.ProductVO;
 
 public interface ProductService {
@@ -12,4 +13,8 @@ public interface ProductService {
 	List<ProductVO> productListByCategoryNo(int categoryNo);
 
 	ProductVO getProductByNo(String productNo);
+	
+	List<ProductVO> searchProductList(SearchVO search);
+	
+	List<ProductVO> sortingDate(SearchVO search);
 }

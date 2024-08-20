@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.sangjo.common.DataSource;
+import com.sangjo.common.SearchVO;
 import com.sangjo.mapper.ProductMapper;
-import com.sangjo.vo.CategoryVO;
 import com.sangjo.vo.ProductVO;
 
 public class ProductServiceImpl implements ProductService{
@@ -33,4 +33,13 @@ public class ProductServiceImpl implements ProductService{
 		return mapper.selectProductListByCategoryNo(categoryNo);
 	}
 
+	@Override
+	public List<ProductVO> searchProductList(SearchVO search) {
+		return mapper.searchProductList(search);
+	}
+	
+	@Override
+	public List<ProductVO> sortingDate(SearchVO search) {
+		return mapper.sortingDate(search);
+	}
 }

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sangjo.common.Control;
+import com.sangjo.common.SearchVO;
 import com.sangjo.service.CategoryService;
 import com.sangjo.service.CategoryServiceImpl;
 import com.sangjo.service.ProductService;
@@ -24,6 +25,13 @@ public class IndexControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/json;charset=utf-8");
 		
+		String cdName = req.getParameter("cdName");
+		String keyword = req.getParameter("keyword");
+		
+		SearchVO search = new SearchVO();
+		search.setKeyword(keyword);
+		search.setCdName(cdName);
+		
 		ProductService psvc = new ProductServiceImpl();
 		
 		List<ProductVO> list = psvc.productList();
@@ -32,9 +40,13 @@ public class IndexControl implements Control {
 		
 		List<CategoryVO> category = csvc.categoryList();
 		
+		//List<CategoryVO> count = csvc.categoryCountList();
+		
 		req.setAttribute("productList", list);
 		
 		req.setAttribute("categoryList", category);
+		
+		//req.setAttribute("categoryCountList", count);
 		
 		req.getRequestDispatcher("sangjo/indexBody.tiles").forward(req, resp);
 	}

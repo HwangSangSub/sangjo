@@ -136,7 +136,7 @@
 						<form action="orderList.do" method="post" id="cartForm">
 							<input type="hidden" name="grandTotal" value="${grandTotal}">
 							<input type="hidden" name="shippingCost" value="${shippingCost}">
-							<input type="hidden" name="totalAmount" value="${totalAmount}">
+							<input type="hidden" name="totalAmount" id="totalAmount" value="${totalAmount}">
 							<input type="hidden" name="productImgs" value="${productImgs}">
 							<input type="hidden" name="cartNos" value="${cartNos}"> 
 							<input type="hidden" name="productNos" value="${productNos}"> 
@@ -151,7 +151,7 @@
 				</div>
 			</div>
 		</c:if>
-
+		
 		<!-- 장바구니가 비어있을 때 -->
 		<c:if test="${empty cartList}">
 			<div class="alert alert-warning">장바구니가 비어 있습니다.</div>

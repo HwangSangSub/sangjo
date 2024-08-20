@@ -20,7 +20,7 @@ public class OrderListControl implements Control {
 		String productNames = req.getParameter("productNames");		
 		String productImgs = req.getParameter("productImgs");
 		String quantities = req.getParameter("quantities");
-		
+		String totalAmount = req.getParameter("totalAmount");
 		
 		// 2. 받아온 값을 orderList.jsp 로 값 보내기
 		
@@ -30,6 +30,7 @@ public class OrderListControl implements Control {
 		req.setAttribute("productNames", productNames); // 앞에 문자열은 보내는 이름 , 뒤는 보내는 값
 		req.setAttribute("productImgs", productImgs); // 앞에 문자열은 보내는 이름 , 뒤는 보내는 값
 		req.setAttribute("quantities", quantities); // 앞에 문자열은 보내는 이름 , 뒤는 보내는 값
+		req.setAttribute("totalAmount", totalAmount); 
 		
 		req.getRequestDispatcher("sangjo/orderList.tiles").forward(req, resp);
 		

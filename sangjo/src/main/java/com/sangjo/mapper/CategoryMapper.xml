@@ -27,4 +27,13 @@
 		from tbl_category
 		where category_no = #{categoryNo}
 	</select>
+	
+	<select id="countCategory" resultType="com.sangjo.vo.CategoryVO">
+		SELECT COUNT(*)
+		FROM   tbl_category
+		WHERE  category_name = #{categoryName}
+	</select>
+	
+	
+	
 </mapper>

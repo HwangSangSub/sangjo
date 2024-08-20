@@ -1,7 +1,7 @@
 package com.sangjo.control;
 
 import java.io.IOException;
-import java.util.List;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,22 +17,23 @@ public class OrderControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String action = req.getParameter("action");
+
 		if (action == null) {
 			action = "viewCart"; // 기본적으로 장바구니 보기로 설정
 		}
+
 		OrderService osv = new OrderServiceImpl();
 
 		// 요청 파라미터 추출
-
 		String productNos = req.getParameter("productNos");
 		String productPrices = req.getParameter("productPrices");
 		String quantities = req.getParameter("quantities");
 		String totalAmount = req.getParameter("totalAmount");
-		String memberId = req.getParameter("memeberId");
+		String memberId = req.getParameter("memberId");
 		boolean paymentSuccess = false;
 
 		OrderVO ovo = new OrderVO();
-		ovo.setOrderPrice(Integer.parseInt(totalAmount));
+		ovo.setOrderPrice((int) Math.round(Double.parseDouble(totalAmount)));
 		ovo.setMemberId(memberId);
 
 		if (osv.addOrder(ovo) == 1) {
@@ -49,11 +50,9 @@ public class OrderControl implements Control {
 				ovo.setOdCnt(Integer.parseInt(quantityArray[i]));
 
 				if (osv.addOrderDetail(ovo) == 1) {
-
 					paymentSuccess = true;
 				} else {
 					paymentSuccess = false;
-
 				}
 			}
 		}
