@@ -25,18 +25,24 @@ public class ProductListControl implements Control {
 		cdName = (cdName != "" ? cdName : "주방");
 
 		String keyword = req.getParameter("keyword");
-		keyword = (keyword != "" ? keyword : "욕실");
-
+		keyword = (keyword != "" ? keyword : "");
+		
+		String order = req.getParameter("order");
+		System.out.println(cdName);
+		//order = ((order != "" && !order.isEmpty()) ? order : "p.req_date DESC");
+		order = (order != "" || order != null ? order : "p.reg_date DESC");
 		SearchVO search = new SearchVO();
 		search.setCdName(cdName);
 		search.setKeyword(keyword);
+		search.setOrder(order);
 
 		ProductService svc = new ProductServiceImpl();
 		//List<ProductVO> list = svc.selectProductList(cdName);
 		//List<ProductVO> searchList = svc.searchProductList(search);
 		
 
-		List<ProductVO> list = svc.searchProductList(search);
+		//List<ProductVO> list = svc.searchProductList(search);
+		List<ProductVO> list = svc.sortingDate(search);		
 
 		// json 문자열
 		Gson gson = new GsonBuilder().create();

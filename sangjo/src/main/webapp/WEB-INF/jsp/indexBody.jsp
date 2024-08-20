@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 
 <script>
@@ -25,8 +28,8 @@ let memberId = "${member.memberId}";
 					<div class="col-xl-3">
 						<div class="input-group w-100 mx-auto d-flex">
 							<input type="text" id="keyword" class="form-control p-3"
-								placeholder="검색어입력" aria-describedby="search-icon-1" value="${keyword }">
-							<input type="hidden" id="nowCdName" />
+								placeholder="검색어입력" aria-describedby="search-icon-1"
+								value="${keyword }"> <input type="hidden" id="nowCdName" />
 							<span id="search-icon-1" class="input-group-text p-3"><i
 								class="fa fa-search"></i></span>
 						</div>
@@ -35,12 +38,11 @@ let memberId = "${member.memberId}";
 					<div class="col-xl-3">
 						<div
 							class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
-							<label for="fruits">정렬:</label> <select id="fruits"
-								name="fruitlist" class="border-0 form-select-sm bg-light me-3"
-								form="fruitform">
-								<option value="volvo">최신등록순</option>
-								<option value="saab">낮은금액순</option>
-								<option value="opel">높은금액순</option>
+							<label for="fruits">정렬:</label> 
+							<select id="fruits" name="fruitlist" class="border-0 form-select-sm bg-light me-3" form="fruitform">
+								<option value="latest" id="sortingDate">최신등록순</option>
+								<option value="lowPrice">낮은금액순</option>
+								<option value="highPrice">높은금액순</option>
 							</select>
 						</div>
 					</div>
@@ -56,12 +58,14 @@ let memberId = "${member.memberId}";
 											<li>
 												<div class="d-flex justify-content-between fruite-name">
 													<a href="#" data-bs-toggle="collapse"
-														data-bs-target="#collapseBody_${item.categoryName }" id="categorySelectList">
-														<i class="fas fa-apple-alt me-2"></i><span>${item.categoryName }</span></a> <span>(3)</span>
+														data-bs-target="#collapseBody_${item.categoryName }"
+														id="categorySelectList"> <i
+														class="fas fa-apple-alt me-2"></i><span>${item.categoryName }</span></a>
+													<span>(3)</span>
 												</div>
 												<div class="collapse cloneapse"
 													id="collapseBody_${item.categoryName }">
-													<div class="card card-body" style="display:none;"></div>
+													<div class="card card-body" style="display: none;"></div>
 												</div>
 											</li>
 										</c:forEach>
@@ -84,7 +88,8 @@ let memberId = "${member.memberId}";
 					</div>
 					<div class="col-lg-9">
 						<div class="row g-4 justify-content-center" id="productList">
-							<div class="col-md-6 col-lg-6 col-xl-4" id="orgProductList" style="display: none;">
+							<div class="col-md-6 col-lg-6 col-xl-4" id="orgProductList"
+								style="display: none;">
 								<div class="rounded position-relative fruite-item">
 									<div class="fruite-img">
 										<img src="img/product/${item.productImg }"
@@ -92,24 +97,48 @@ let memberId = "${member.memberId}";
 									</div>
 									<div
 										class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+<<<<<<< HEAD
+										style="top: 10px; left: 10px;">${item.cdName}</div>
+=======
 										 style="top: 10px; left: 10px;">${item.cdName}</div>
+>>>>>>> branch 'KSM' of https://github.com/HwangSangSub/sangjo.git
 									<div
 										class="p-4 border border-secondary border-top-0 rounded-bottom">
-										<h4>${item.productName}</h4>
-										<p>${item.productContent }</p>
+										<h4>
+											<c:choose>
+												<c:when test="${fn:length(item.productName) > 26}">
+													<c:out value="${fn:substring(item.productName, 0, 25)}">
+													</c:out>...
+											</c:when>
+												<c:otherwise>
+													<c:out value="${item.productName}">
+													</c:out>
+												</c:otherwise>
+											</c:choose>
+										</h4>
+										<!-- <p>${item.productContent }</p> -->
 										<div class="d-flex justify-content-between flex-lg-wrap">
-											<p class="text-dark fs-5 fw-bold mb-0">${item.productPrice }원</p>
-											<button type="button" onclick="addCartEvent(${item.productNo})"
-													class="btn border border-secondary rounded-pill px-3 text-primary"><i
-													class="fa fa-shopping-bag me-2 text-primary" onclick="addCartEvent(${item.productNo})"></i>장바구니 추가</button>
+											<!-- <p class="text-dark fs-5 fw-bold mb-0">${item.productPrice }원</p> -->
+											<p>
+												<fmt:formatNumber value="${item.productPrice }"
+													pattern="#,###" />원
+											</p>
+											<button type="button"
+												onclick="addCartEvent(${item.productNo})"
+												class="btn border border-secondary rounded-pill px-3 text-primary">
+												<i class="fa fa-shopping-bag me-2 text-primary"
+													onclick="addCartEvent(${item.productNo})"></i>장바구니 추가
+											</button>
 										</div>
 									</div>
 								</div>
 							</div>
 							<c:forEach var="item" items="${productList }">
-								<div class="col-md-6 col-lg-6 col-xl-4" id="orgProductList" data-product-no = "${item.productNo}">
+								<div class="col-md-6 col-lg-6 col-xl-4" id="orgProductList"
+									data-product-no="${item.productNo}">
 									<div class="rounded position-relative fruite-item">
-										<div class="fruite-img" style="border-color: #ffb524 1px solid !important;">
+										<div class="fruite-img"
+											style="border-color: #ffb524 1px solid !important;">
 											<img src="img/product/${item.productImg }"
 												class="img-fluid w-100 rounded-top" alt="">
 										</div>
@@ -118,13 +147,31 @@ let memberId = "${member.memberId}";
 											style="top: 10px; left: 10px;">${item.cdName }</div>
 										<div
 											class="p-4 border border-secondary border-top-0 rounded-bottom">
-											<h4>${item.productName}</h4>
-											<p>${item.productContent }</p>
+											<h4>
+												<c:choose>
+													<c:when test="${fn:length(item.productName) > 26}">
+														<c:out value="${fn:substring(item.productName, 0, 25)}">
+														</c:out>...
+											</c:when>
+													<c:otherwise>
+														<c:out value="${item.productName}">
+														</c:out>
+													</c:otherwise>
+												</c:choose>
+											</h4>
+											<!-- <p>${item.productContent }</p> -->
 											<div class="d-flex justify-content-between flex-lg-wrap">
-												<p class="text-dark fs-5 fw-bold mb-0">${item.productPrice }원</p>
-												<button type="button" onclick="addCartEvent(${item.productNo})"
-													class="btn border border-secondary rounded-pill px-3 text-primary"><i
-													class="fa fa-shopping-bag me-2 text-primary" onclick="addCartEvent(${item.productNo})"></i>장바구니 추가</button>
+												<!-- <p class="text-dark fs-5 fw-bold mb-0">${item.productPrice }원</p> -->
+												<p>
+													<fmt:formatNumber value="${item.productPrice }"
+														pattern="#,###" />원
+												</p>
+												<button type="button"
+													onclick="addCartEvent(${item.productNo})"
+													class="btn border border-secondary rounded-pill px-3 text-primary">
+													<i class="fa fa-shopping-bag me-2 text-primary"
+														onclick="addCartEvent(${item.productNo})"></i>장바구니 추가
+												</button>
 											</div>
 										</div>
 									</div>

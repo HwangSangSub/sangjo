@@ -1,4 +1,4 @@
-/**
+ /**
  * category.js
  */
 
@@ -31,8 +31,60 @@ const csvc = {
 		xhtp.open('get', url);
 		xhtp.send();
 		xhtp.onload = loadCallback;
+	},
+	sortingDate(keyword, cdName, orderValue, loadCallback) {
+		const xhtp = new XMLHttpRequest()
+		let url = "productList.do";
+
+		if (keyword != null) {
+			url += '?keyword=' + keyword;
+		}
+
+		// 값이 가변형태 (있을때도 있고 없을때도 있는 값)
+		if (cdName != null) {
+			url += '&cdName=' + cdName;
+		}
+		
+		if (orderValue != null) {
+        	url += '&order=' + encodeURIComponent(orderValue); // 정렬 값 추가
+    	}
+
+		xhtp.open('get', url);
+		xhtp.send();
+		xhtp.onload = loadCallback;
 	}
 }
+
+document.querySelector('#fruits').addEventListener('change', function() {
+    let selectedOrder = this.value; // 선택된 정렬 옵션 값 가져오기
+    let keyword = document.querySelector('#keyword').value;
+    let cdName = document.querySelector('#nowCdName').value;
+
+    let orderValue;
+    if (selectedOrder === 'latest') {
+        orderValue = 'p.reg_date DESC';
+    } else if (selectedOrder === 'lowPrice') {
+        orderValue = 'TO_NUMBER(p.product_price) ASC';
+    } else if (selectedOrder === 'highPrice') {
+        orderValue = 'TO_NUMBER(p.product_price) DESC';
+    }
+	console.log(selectedOrder);
+	console.log(orderValue);
+	// 검색 요청에 정렬 값을 추가
+    csvc.sortingDate(keyword, cdName, orderValue, function() {
+        productList.querySelectorAll('.col-md-6').forEach((c, idx) => {
+            if (idx != 0) {
+                c.remove();
+            }
+        });
+		console.log(this.response);
+        let result = JSON.parse(this.response);
+        result.forEach(product => {
+            productList.appendChild(makeRow(product));
+        });
+    });
+});
+
 
 document.querySelector('#search-icon-1').addEventListener('click', function() {
 	let keyword = document.querySelector('#keyword').value;
@@ -114,9 +166,22 @@ function makeRow(product = {}) {
 	//작업 > 이미지 복사해서 경로 추가하기.
 	cloned.querySelector('.col-md-6>div>div:nth-of-type(1)>img').src = "img/product/" + product.productImg;
 	cloned.querySelector('.col-md-6>div>div:nth-of-type(2)').innerText = product.cdName;
-	cloned.querySelector('.col-md-6>div>div:nth-of-type(3)>h4').innerText = product.productName;
-	cloned.querySelector('.col-md-6>div>div:nth-of-type(3)>p').innerText = product.productContent;
-	cloned.querySelector('.col-md-6>div>div:nth-of-type(3)>div>p').innerText = product.productPrice + "원";
+	let productName;
+	if(product.productName.length > 26){
+		productName = product.productName.substr(0, 25) + '...';
+	} else {
+		productName = product.productName;
+	}
+	cloned.querySelector('.col-md-6>div>div:nth-of-type(3)>h4').innerText = productName;
+	//cloned.querySelector('.col-md-6>div>div:nth-of-type(3)>p').innerText = product.productContent;
+	let productPrice;
+	if(product.productPrice.length > 3){
+		productPrice = product.productPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+	} else {
+		productPrice = product.productPrice;
+	}
+	cloned.querySelector('.col-md-6>div>div:nth-of-type(3)>div>p').innerText = productPrice + "원";
+	//cloned.querySelector('.col-md-6>div>div:nth-of-type(3)>div>p').innerText = product.productPrice + "원";
 	cloned.querySelector('.col-md-6>div>div:nth-of-type(1)>img').addEventListener('click', function() {
 		productInfo(product.productNo);
 	});
