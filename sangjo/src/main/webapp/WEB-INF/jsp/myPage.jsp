@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <style>
 div.input-group>label.col-form-label {
 	width: 80px;
@@ -7,16 +8,33 @@ div.input-group>label.col-form-label {
 </style>
 <!-- Single Page Header start -->
 <div class="container-fluid page-header py-5">
-	<h1 class="text-center text-white display-6">Contact</h1>
-	<ol class="breadcrumb justify-content-center mb-0">
-		<li class="breadcrumb-item"><a href="#">Home</a></li>
-		<li class="breadcrumb-item"><a href="#">Pages</a></li>
-		<li class="breadcrumb-item active text-white">Contact</li>
-	</ol>
+	<h1 class="text-center text-white display-6">마이페이지</h1>
 </div>
 <!-- Single Page Header End -->
 
-<div class="container-fluid contact py-5">
+<div class="container-fluid testimonial py-5">
+	<div class="container py-5">
+		<div class="testimonial-header text-center">
+			<h1 class="display-5 mb-5 text-dark">공지사항</h1>
+		</div>
+		<div class="owl-carousel testimonial-carousel" id="boardList">
+			<c:forEach var="board" items="${boardList}">
+				<div class="testimonial-item img-border-radius bg-light rounded p-4"
+					id="boardClone">
+					<div class="position-relative">
+						<div class="mb-4 pb-4 border-bottom border-secondary">
+							<p class="mb-0">${board.boardTitle }</p>
+						</div>
+						<div class="d-flex align-items-center flex-nowrap">
+							<div class="d-block">
+								<h4 class="text-dark">${board.boardContent }</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
 	<div class="container py-5">
 		<div class="p-5 bg-light rounded">
 			<input type="hidden" id="logid" value="${member.memberId }" />
@@ -49,28 +67,33 @@ div.input-group>label.col-form-label {
 					</div>
 					<div class="modal-body d-flex align-items-center">
 						<div class="input-group mx-auto d-flex">
-							<input type="text" class="form-control" id="memberIdMy" value="${member.memberId }" readonly>
+							<input type="text" class="form-control" id="memberIdMy"
+								value="${member.memberId }" readonly>
 						</div>
 					</div>
 					<div class="modal-body d-flex align-items-center">
 						<div class="input-group mx-auto d-flex">
-							<input type="text" class="form-control" id="memberPwMy" placeholder="변경할 비밀번호 (20자)"> 
-							<input type="hidden" id="memberOldPwMy" value="${member.memberPw }">
+							<input type="text" class="form-control" id="memberPwMy"
+								placeholder="변경할 비밀번호 (20자)"> <input type="hidden"
+								id="memberOldPwMy" value="${member.memberPw }">
 						</div>
 					</div>
 					<div class="modal-body d-flex align-items-center">
 						<div class="input-group mx-auto d-flex">
-							<input type="text" class="form-control" id="memberNameMy" placeholder="변경할 비밀번호 (20자)" value="${member.memberName }">
+							<input type="text" class="form-control" id="memberNameMy"
+								placeholder="변경할 비밀번호 (20자)" value="${member.memberName }">
 						</div>
 					</div>
 					<div class="modal-body d-flex align-items-center">
 						<div class="input-group mx-auto d-flex">
-							<input type="text" class="form-control" id="memberPhoneMy" placeholder="변경할 전화번호(-포함)" value="${member.memberPhone }">
+							<input type="text" class="form-control" id="memberPhoneMy"
+								placeholder="변경할 전화번호(-포함)" value="${member.memberPhone }">
 						</div>
 					</div>
 					<div class="modal-body d-flex align-items-center">
 						<div class="input-group mx-auto d-flex">
-							<input type="text" class="form-control" id="memberEmailMy" placeholder="변경할 이메일"  value="${member.memberEmail }">
+							<input type="text" class="form-control" id="memberEmailMy"
+								placeholder="변경할 이메일" value="${member.memberEmail }">
 						</div>
 					</div>
 					<div class="modal-body d-flex align-items-center">
@@ -137,15 +160,18 @@ div.input-group>label.col-form-label {
 								<div id="cloneUl" class="modal-body">
 									<div class="mb-3">
 										<label for="inquiryTitle" class="col-form-label">문의제목</label>
-										<input type="text" class="form-control" id="inquiryTitle" disabled/>
+										<input type="text" class="form-control" id="inquiryTitle"
+											disabled />
 									</div>
 									<div class="mb-3">
 										<label for="inquiryContent" class="col-form-label">문의내용</label>
-										<textarea class="form-control" id="inquiryContent" cols="50" style="overflow: hidden;height:250px;" disabled></textarea>
+										<textarea class="form-control" id="inquiryContent" cols="50"
+											style="overflow: hidden; height: 250px;" disabled></textarea>
 									</div>
 									<div class="mb-3">
 										<label for="inquiryAnswer" class="col-form-label">답변내용</label>
-										<textarea class="form-control" id="inquiryAnswer" cols="50" style="overflow: hidden;height:200px;" disabled></textarea>
+										<textarea class="form-control" id="inquiryAnswer" cols="50"
+											style="overflow: hidden; height: 200px;" disabled></textarea>
 									</div>
 								</div>
 							</div>

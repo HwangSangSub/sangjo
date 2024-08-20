@@ -136,7 +136,7 @@
 						<form action="orderList.do" method="post" id="cartForm">
 							<input type="hidden" name="grandTotal" value="${grandTotal}">
 							<input type="hidden" name="shippingCost" value="${shippingCost}">
-							<input type="hidden" name="totalAmount" value="${totalAmount}">
+							<input type="hidden" name="totalAmount" id="totalAmount" value="${totalAmount}">
 							<input type="hidden" name="productImgs" value="${productImgs}">
 							<input type="hidden" name="cartNos" value="${cartNos}"> 
 							<input type="hidden" name="productNos" value="${productNos}"> 

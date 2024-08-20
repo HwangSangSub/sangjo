@@ -81,16 +81,15 @@ document.querySelector('#myorder-tab').addEventListener('click', function() {
 	});
 });
 function makeOrderRow(order = {}) {
-
-	let fields = ['OrderNo', 'OrderPrice', 'DeliveryPrice', 'AddressNo', 'OrderStatus', 'OrderDate'];
+	let fields = ['orderNo', 'orderPrice', 'deliveryPrice', 'addressNo', 'orderStatus', 'orderDate'];
 	let tr = document.createElement('tr');
-	tr.setAttribute('data-ono', order.OrderNo);
+	tr.setAttribute('data-ono', order.orderNo);
 	fields.forEach(field => {
 		let td = document.createElement('td');
-		if (field == 'OrderPrice' || field == 'DeliveryPrice') {
+		if (field == 'orderPrice' || field == 'deliveryPrice') {
 			let num = order[field].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			td.innerHTML = num + "원";
-		} else if (field == 'OrderStatus') {
+		} else if (field == 'orderStatus') {
 			let statusName;
 			//주문상태 1: 결제완료(배송전), 2배송시작, 3.배송완료,4 :주문취소
 			switch (order[field]) {
@@ -111,7 +110,7 @@ function makeOrderRow(order = {}) {
 					break;
 			}
 			td.innerHTML = statusName;
-		} else if (field == 'OrderDate') {
+		} else if (field == 'orderDate') {
 			let objectDate = new Date(order[field]);
 			let day = objectDate.getDate();
 			let month = objectDate.getMonth();
@@ -190,19 +189,19 @@ function viewOrderDetail(e) {
 
 function makeOrderDetailRow(orderDetail = {}) {
 	//'ProductNo', 
-	let fields = ['OdNo', 'ProductName', 'ProductPrice', 'OdCnt', 'OdPrice'];
+	let fields = ['odNo', 'productName', 'productPrice', 'odCnt', 'odPrice'];
 	let tr = document.createElement('tr');
-	tr.setAttribute('data-odno', orderDetail.OdNo);
+	tr.setAttribute('data-odno', orderDetail.odNo);
 	fields.forEach(field => {
 		let td = document.createElement('td');
-		if (field == 'ProductPrice') {
+		if (field == 'productPrice') {
 			let num = orderDetail[field].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			td.innerHTML = num + "원";
-		} else if (field == 'OdPrice') {
-			let totMoney = Number(orderDetail['OdCnt']) * Number(orderDetail['ProductPrice']);
+		} else if (field == 'odPrice') {
+			let totMoney = Number(orderDetail['odCnt']) * Number(orderDetail['productPrice']);
 			let num = totMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			td.innerHTML = num + "원";
-		} else if (field == 'OdCnt') {
+		} else if (field == 'odCnt') {
 			let num = orderDetail[field].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			td.innerHTML = num + "개";
 		} else {
@@ -210,7 +209,7 @@ function makeOrderDetailRow(orderDetail = {}) {
 		}
 		tr.appendChild(td);
 		tr.addEventListener('click', function() {
-			location.href = "productInfo.do?productNo=" + orderDetail['OdNo'];
+			location.href = "productInfo.do?productNo=" + orderDetail['odNo'];
 		});
 	});
 	return tr;
@@ -310,9 +309,9 @@ function createInquiryInfo(inquiry = {}) {
 	cloneDiv.querySelector('#inquiryTitle').value = inquiry.inquiryTitle;
 	cloneDiv.querySelector('#inquiryContent').value = inquiry.inquiryContent;
 	let inquiryAnswer = "";
-	if(inquiry.inquiryAnswer == "" || inquiry.inquiryAnswer == undefined || inquiry.inquiryAnswer == null){
+	if (inquiry.inquiryAnswer == "" || inquiry.inquiryAnswer == undefined || inquiry.inquiryAnswer == null) {
 		inquiryAnswer += "등록된 답변이 없습니다.";
-	}else{
+	} else {
 		inquiryAnswer += inquiry.inquiryAnswer;
 	}
 	cloneDiv.querySelector('#inquiryAnswer').value = inquiryAnswer;

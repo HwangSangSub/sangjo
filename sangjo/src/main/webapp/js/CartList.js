@@ -61,11 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			document.querySelector('#cartForm input[name="productNames"]').value = product_Names.join('/');
 		});
 	});
-
-	document.querySelector('#cartForm').addEventListener('submit', function(e) {
-		e.preventDefault(); // 기본 제출 방지
-		this.submit(); // 폼 제출
-	});
 });
 
 
@@ -86,6 +81,7 @@ function updateGrandTotal() {
 
 	// 소계와 총합 업데이트
 	document.querySelector('#grandTotal').textContent = grandTotal + ' 원';
+	document.querySelector('#totalAmount').value = totalAmount;
 	document.querySelector('.bg-light .py-4.mb-4.border-top.border-bottom.d-flex.justify-content-between p').textContent = totalAmount + ' 원';
 }
 function remove_proNo(e) {

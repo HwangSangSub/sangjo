@@ -25,9 +25,12 @@ public class OrderCheckControl implements Control {
         String quantities = req.getParameter("quantities");
         String shippingCost = req.getParameter("shippingCost");
         String paymentMethod = req.getParameter("paymentMethod");
-    System.out.println(orderMemo);
+        String totalAmount = req.getParameter("totalAmount");
+
+        
         // request에 값을 설정합니다.
         req.setAttribute("fullName", fullName);
+        req.setAttribute("totalAmount", totalAmount);
         req.setAttribute("phone", phone);
         req.setAttribute("address", address);
         req.setAttribute("detailAddress", detailAddress);

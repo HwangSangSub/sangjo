@@ -900,3 +900,16 @@ SELECT *
 FROM tbl_review;
 
 COMMIT;
+
+
+------------------------------ 사진없는 데이터 삭제, 0원 임시로 금액 넣기 
+UPDATE tbl_product
+SET product_price = 15682
+WHERE product_no IN (SELECT product_no
+    FROM tbl_product
+    WHERE product_price = 0);
+    
+DELETE FROM tbl_product WHERE product_no IN (27,29,65,200,206,260,266,292,276,216,232,329,348,292,232,311,312,313,314,315,316,317,318,319,320,321,322,323,324,325,326,327,328,330);
+
+
+COMMIT;

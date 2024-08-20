@@ -18,7 +18,14 @@
 	<div class="container py-5">
 		<h1 class="mb-4">주문 정보 확인</h1>
 		<form action="order.do" method="post">
-		<input type="hidden" name="memberId" value="${member.memberId}">
+			<input type="hidden" name="memberId" value="${member.memberId}">
+			<input type="hidden" name="productImgs" value="${productImgs}">
+			<input type="hidden" name="cartNos" value="${cartNos}"> 
+			<input type="hidden" name="productNos" value="${productNos}"> 
+			<input type="hidden" name="productNames" value="${productNames}"> 
+			<input type="hidden" name="productPrices" value="${productPrices}">
+			<input type="hidden" name="quantities" value="${quantities}">
+			<input type="hidden" name="totalAmount" value="${totalAmount}">
 			<div class="row g-5">
 				<div class="col-md-12 col-lg-6 col-xl-7">
 					<div class="form-item w-100">
@@ -150,7 +157,8 @@
 					class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">주문하기</button>
 			</div>
 			<c:set var="totalAmount" value="${subtotal + 3000}" />
-			<c:set var="sessionTotalAmount" value="${totalAmount}" scope="session" />
+			<c:set var="sessionTotalAmount" value="${totalAmount}"
+				scope="session" />
 		</form>
 	</div>
 </div>
