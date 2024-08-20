@@ -29,16 +29,13 @@
 	</select>
 
 	<insert id="insertOrder" parameterType="com.sangjo.vo.OrderVO">
-		INSERT INTO tbl_order (order_no, order_price, delivery_price, order_status,
-		address_no, member_id, order_date, delivery_date, cancle_date)
-		VALUES (#{orderNo}, #{orderPrice}, #{deliveryPrice}, #{orderStatus},
-		#{addressNo}, #{memberId}, #{orderDate}, #{deliveryDate},
-		#{cancleDate})
+		INSERT INTO tbl_order (order_no, order_price, address_no, member_id)
+		VALUES (order_seq.NEXTVAL, #{orderPrice}, 1, #{memberId})
 	</insert>
 	
 	<insert id="insertOrderDetail" parameterType="com.sangjo.vo.OrderVO">
 		INSERT INTO tbl_order_detail (od_no, order_no, product_no, od_price, od_cnt)
-		VALUES (#{odNo}, #{orderNo}, #{productNo}, #{odPrice}, #{odCnt})
+		VALUES (od_seq.NEXTVAL, order_seq.CURRVAL, #{productNo}, #{odPrice}, #{odCnt})
 	</insert>
 	
 	<select id="getMyOrderList" parameterType="string" resultType="com.sangjo.vo.OrderVO">

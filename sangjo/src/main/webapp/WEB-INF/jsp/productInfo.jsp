@@ -4,9 +4,14 @@
 <head>
 	<style>
 		.outer h4{
+			/*제목 2줄로 표현하기*/
 			overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap;
+			/*지정한 요소를 적용*/
+			display: -webkit-box;
+			/*요소 지정*/
+  		-webkit-box-orient: vertical;/*수직 정렬*/
+  		-webkit-line-clamp: 2;/*라인수 지정*/
 		}
 		.inner{
 			z-index: 10;
@@ -48,12 +53,7 @@
 </head>
 <!-- Single Page Header start -->
 <div class="container-fluid page-header py-5">
-	<h1 class="text-center text-white display-6">Shop Detail</h1>
-	<ol class="breadcrumb justify-content-center mb-0">
-		<li class="breadcrumb-item"><a href="#">Home</a></li>
-		<li class="breadcrumb-item"><a href="#">Pages</a></li>
-		<li class="breadcrumb-item active text-white">Shop Detail</li>
-	</ol>
+	<h1 class="text-center text-white display-6">상품 상세</h1>
 </div>
 <!-- Single Page Header End -->
 <div class="container-fluid py-5 mt-5">
@@ -72,7 +72,7 @@
 					</div>
 					<div class="col-lg-6">
 						<h4 class="fw-bold mb-3">${productMain.productName}</h4>
-						<p class="mb-3">Category: ${category.cdName}</p>
+						<p class="mb-3">카테고리: ${category.cdName}</p>
 						<h5 class="fw-bold mb-3 price">${productMain.productPrice}</h5>
 						<!-- 상품에대한 전체 리뷰 평균.-->
 						<div class="d-flex mb-4">
@@ -99,7 +99,7 @@
 						<c:if test="${not empty member.memberId }">
 							<a id="cartAdd"
 							class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
-							class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+							class="fa fa-shopping-bag me-2 text-primary"></i> 장바구니 추가</a>
 						</c:if>
 					</div>
 					<div class="col-lg-12">
@@ -108,17 +108,20 @@
 								<button class="nav-link active border-white border-bottom-0"
 									type="button" role="tab" id="nav-about-tab"
 									data-bs-toggle="tab" data-bs-target="#nav-about"
-									aria-controls="nav-about" aria-selected="true">Description</button>
+									aria-controls="nav-about" aria-selected="true">상품 설명</button>
 								<button class="nav-link border-white border-bottom-0"
 									type="button" role="tab" id="nav-mission-tab"
 									data-bs-toggle="tab" data-bs-target="#nav-mission"
-									aria-controls="nav-mission" aria-selected="false">Reviews</button>
+									aria-controls="nav-mission" aria-selected="false">상품 리뷰</button>
 							</div>
 						</nav>
+						<!-- 상품 설명 화면 -->
 						<div class="tab-content mb-5">
 							<div class="tab-pane active" id="nav-about" role="tabpanel"
 								aria-labelledby="nav-about-tab">
-								<p>${productMain.productContent}</p>
+								<img src="https://www.jubangbank.co.kr/data/base/editor/201512/ss%288%29.jpg"
+									class="img-fluid" alt="쇼핑사이트 이미지 가져오기"
+									style="width: 100%;">
 							</div>
 							<!-- 리뷰 리스트 보여주기 -->
 							<div class="tab-pane" id="nav-mission" role="tabpanel"
@@ -158,18 +161,18 @@
 					<form action="addReview.do">
 						<input type="hidden" name="memberId" value="${member.memberId}">
 						<input type="hidden" name="productNo" value="${productMain.productNo}">
-						<h4 class="mb-1 fw-bold">Leave a Reply</h4>
+						<h4 class="mb-1 fw-bold"> 리뷰 작성 </h4>
 						<div class="row g-4">
 							<div class="col-lg-12">
 								<div class="border-bottom rounded my-4">
 									<textarea name="reviewContent" class="form-control border-0" cols="30"
-										rows="8" placeholder="Your Review *" spellcheck="false"></textarea>
+										rows="8" placeholder="리뷰 작성란 입니다." spellcheck="false"></textarea>
 								</div>
 							</div>
 							<div class="col-lg-12">
 								<div class="d-flex justify-content-between py-3 mb-5">
 									<div class="d-flex align-items-center">
-										<p class="mb-0 me-3">Please rate:</p>
+										<p class="mb-0 me-3">주고싶은 별점을 클릭해 주세요:</p>
 										<div id="selectStar" class="d-flex align-items-center"
 											style="font-size: 30px;">
 											<input name="reviewPoint" type="hidden" value="0">
@@ -183,7 +186,7 @@
 									</div>
 									<input type="submit"
 										class="btn border border-secondary text-primary rounded-pill px-4 py-3"
-										value="Post Comment">
+										value="리뷰 추가">
 										</input>
 								</div>
 							</div>
@@ -193,7 +196,7 @@
 				</div>
 			</div>
 		</div>
-		<h1 class="fw-bold mb-0">Related products</h1>
+		<h1 class="fw-bold mb-0">연관 상품</h1>
 		<div class="vesitable">
 			<!-- 밑의 div의 클래스들은 아래의 div 객체의 개수를 통해 특정개수이상이되면
 			좌우 이동버튼을 만들어준다. -->
@@ -213,12 +216,13 @@
 						</div>
 						<div class="p-4 pb-0 rounded-bottom">
 							<h4>${product.productName}</h4>
-							<p class="productListContents">${product.productContent}</p>
+							<br>
+							<br>
 							<div class="d-flex justify-content-between flex-lg-wrap">
 								<p class="text-dark fs-5 fw-bold price">${product.productPrice}</p>
 								<c:if test="${not empty member.memberId }">
 									<button onclick="addCartEvent('${product.productNo}','${product.productName}')" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary inner">
-										<i class="fa fa-shopping-bag me-2 text-primary"></i>Add to cart
+										<i class="fa fa-shopping-bag me-2 text-primary"></i>장바구니 추가
 									</button>
 								</c:if>
 							</div>
@@ -280,9 +284,9 @@
 		})
 		.then(function(result){
 			if(result.addCart == "Faild"){
-				alert("장바구니에 "+cartListVO.productName+"추가가 실패하였습니다.");
+				alert("장바구니에 추가가 실패하였습니다.");
 			}else{
-				alert("장바구니에 "+cartListVO.productName+"추가가 완료되었습니다.")
+				alert("장바구니에 추가가 완료되었습니다.")
 			}
 		});
 	}
@@ -308,24 +312,6 @@
 		}
 		return newPrice.join('');
 	}
-</script>
-<!-- 글짜 제한하기 -->
-<script>
-	let contentTexts = document.querySelectorAll('.productListContents');
-	contentTexts.forEach(function(content){
-		let contentText = content.innerText;
-		if(contentText.length >= 50 ){
-			content.innerText = contentText.substring(contentText, 50) + "...";
-		}else{
-			let needCount = 50 - contentText.length;
-			contentText += "<span style='color:white'>"
-			for(let i = 0; i<needCount; i++){
-				contentText += "아";
-			}
-			contentText += "</span>"
-			content.innerHTML = contentText;
-		}
-	})
 </script>
 <!-- 별점 입력하기 -->
 <script>
@@ -353,12 +339,17 @@
 	let urlParams = new URLSearchParams(query);
 	let addReviewResult = urlParams.get('addReviewResult');
 	if(addReviewResult != null){
-		if(addReviewResult == "WrongPoint"){
+		if(addReviewResult == "WrongContent"){
+			alert("리뷰내용이 없습니다.");
+		}
+		else if(addReviewResult == "WrongPoint"){
 			alert("별을 찍어 점수를 선택해주시길 바랍니다.");
 		}else if(addReviewResult == "AlreadyReview"){
 			alert("이미 리뷰가 존재합니다.");
 		}else if(addReviewResult == "Success"){
 			alert("리뷰추가가 완료되었습니다.");
+		}else{
+			alert("리뷰추가가 실패하였습니다.");
 		}
 		window.location.search = 'productNo='+urlParams.get('productNo'); // 필요없어진 파라미터 값을 제거한다.
 	}
@@ -410,9 +401,11 @@
 			result.forEach(review => {
 				reviewDiv.appendChild(makeRow(review));
 			})
+			if(result.length > 0){
+				// 페이지 번호 부분 출력
+				reviewService.reviewCnt(productMainNo,createPageList);
+			}
 		})
-		// 페이지 번호 부분 출력
-		reviewService.reviewCnt(productMainNo,createPageList);
 	}
 	// 리뷰 객체 만들기
 	function makeRow(review = {}){
@@ -424,7 +417,20 @@
 		if(review.memberId == memberId){
 			cloned.querySelector('button').style.display='block';
 		}
-		cloned.querySelector('div > p:nth-of-type(1)').innerText= review.regDate;
+		// 날짜 수정하여 채우기
+		let objectDate = new Date(review.regDate);
+		let year = objectDate.getFullYear();
+		let month = objectDate.getMonth();
+		let day = objectDate.getDate();
+
+		if (day < 10) {
+			day = '0' + day;
+		}
+		if(month < 10){
+			month = '0' + (month + 1);
+		}
+		let reviewDate = year + "-" + month + "-" + day;
+		cloned.querySelector('div > p:nth-of-type(1)').innerText= reviewDate;
 		cloned.querySelector('div > p:nth-of-type(2)').innerText= review.reviewContent;
 		let starsHTMLString="";
 		for(let i = 1; i <= 5; i++){
@@ -465,13 +471,13 @@
 			let aTag = document.createElement('a');
 			aTag.setAttribute('data-page',startPage -1);
 			aTag.className = 'page-link';
-			aTag.innerHTML = 'prev';
+			aTag.innerHTML = '이전';
 			li.appendChild(aTag);
 		}else{
 			li.classList.add('disabled'); // li 요소의 클래스 추가.
 			let span = document.createElement('span');
 			span.className = 'page-link';
-			span.innerHTML = 'prev';
+			span.innerHTML = '이전';
 			li.appendChild(span);
 		}
 		document.querySelector('ul.pagination').appendChild(li);
@@ -503,13 +509,13 @@
 			let aTag = document.createElement('a');
 			aTag.setAttribute('data-page',endPage + 1 );
 			aTag.className = 'page-link';
-			aTag.innerHTML = 'next';
+			aTag.innerHTML = '다음';
 			li.appendChild(aTag);
 		}else{
 			li.classList.add('disabled'); 
 			let span = document.createElement('span');
 			span.className = 'page-link';
-			span.innerHTML = 'next';
+			span.innerHTML = '다음';
 			li.appendChild(span);
 		}
 		document.querySelector('ul.pagination').appendChild(li);

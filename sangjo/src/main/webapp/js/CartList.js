@@ -16,17 +16,13 @@ document.addEventListener('DOMContentLoaded', function() {
 			} else if (button.classList.contains('btn-plus')) {
 				quantity + 1;
 			}
-
 			// 수량 업데이트
 			quantityInput.value = quantity;
-
 			// 총액 계산 및 업데이트
 			const itemTotal = productPrice * quantity;
 			row.querySelector('td:nth-child(5) p').textContent = itemTotal + ' 원';
-
 			// 전체 합계 업데이트
 			updateGrandTotal();
-
 			// 1. 상품번호넣는 배열 빈값 만들기 [] =>    (장바구니번호, 수량, 금액 총 4개 빈배열 만들기)
 			let product_Nos = [];
 			let cart_Nos = [];
@@ -38,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			document.querySelectorAll('#cart>tr')
 				.forEach(tr => {
 					// 3. 반복문안에서 해당 하는 tr에 상품번호, 장바구니번호, 수량, 금액을 가져와서 해당하는 빈배열에 값 너기배열명.push(값)
-
 					// tr 안에서 값 가져오기
 					let cartNo = tr.dataset.cartNo;
 					let productNo = tr.dataset.productNo;
@@ -66,11 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			document.querySelector('#cartForm input[name="productNames"]').value = product_Names.join('/');
 		});
 	});
-
-	document.querySelector('#cartForm').addEventListener('submit', function(e) {
-		e.preventDefault(); // 기본 제출 방지
-		this.submit(); // 폼 제출
-	});
 });
 
 
@@ -91,6 +81,7 @@ function updateGrandTotal() {
 
 	// 소계와 총합 업데이트
 	document.querySelector('#grandTotal').textContent = grandTotal + ' 원';
+	document.querySelector('#totalAmount').value = totalAmount;
 	document.querySelector('.bg-light .py-4.mb-4.border-top.border-bottom.d-flex.justify-content-between p').textContent = totalAmount + ' 원';
 }
 function remove_proNo(e) {
@@ -124,7 +115,6 @@ function removeCart(e) {
 	//let inputVal = this.value;
 	//document.querySelector('input[name=send_fullName]').value = inputVal;
 //});
-
 document.querySelectorAll('#orderInfo input').forEach(input => {
 	input.addEventListener('change', function() {
 		let inputName = input.getAttribute('name');
@@ -133,7 +123,6 @@ document.querySelectorAll('#orderInfo input').forEach(input => {
 		document.querySelector('input[name=send_' + inputName + ']').value = inputVal;
 	});
 });
-
 document.querySelector('#orderInfo textarea').addEventListener('change', function() {
 	console.log(this.value);
 	let inputVal = this.value;

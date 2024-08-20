@@ -10,6 +10,7 @@ public interface CategoryMapper {
 	List<CategoryVO> selectList();
 	List<CategoryVO> countCategory();
 	
+	
 
 	CategoryVO selectCategory(int categoryNo);
 }

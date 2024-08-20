@@ -21,9 +21,7 @@ public class MyPageOrderControl implements Control {
 		resp.setContentType("text/json;charset=utf-8"); // 내용 중 한글이 있다면 utf-8로 변환해야함.
 		OrderService ovc = new OrderServiceImpl();
 		String memberId = req.getParameter("memberId");
-		
 		List<OrderVO> list = ovc.myOrderList(memberId);
-		
 
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(list); // 목록을 JSON으로 변환

@@ -32,14 +32,19 @@ public class AddReviewControl implements Control {
 		reviewVO.setReviewContent(reviewContent);
 		reviewVO.setReviewPoint(reviewPoint);
 		
-		
+		// 리뷰내용이 없을경우 반환된다.
+		if(reviewContent.length() < 1) {
+			addReviewResult = "WrongContent";
+			resp.sendRedirect("productInfo.do?productNo="+productNo+"&addReviewResult="+addReviewResult);
+			return;
+		}
 		// 리뷰 점수는 1~5 점까지기에 점수를 선택하지 않은 상태면 리뷰추가를 허용하지 않는다.
 		if(reviewPoint < 1 || reviewPoint >5 ) {
 			addReviewResult = "WrongPoint";
 			resp.sendRedirect("productInfo.do?productNo="+productNo+"&addReviewResult="+addReviewResult);
 			return;
 		}
-		// 향후 수정으로 변경할지 고민한다.
+		// 이미 리뷰가 존재한다면 실행된다.
 		if(reviewService.checkSameMember(reviewVO)) {
 			addReviewResult = "AlreadyReview";
 			resp.sendRedirect("productInfo.do?productNo="+productNo+"&addReviewResult="+addReviewResult);
