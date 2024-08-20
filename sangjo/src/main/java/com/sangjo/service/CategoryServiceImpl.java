@@ -31,4 +31,6 @@ public class CategoryServiceImpl implements CategoryService {
 	public List<CategoryVO> categoryCountList() {
 		return mapper.countCategory();
 	}
+	
+	
 }

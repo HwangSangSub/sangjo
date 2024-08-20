@@ -25,10 +25,12 @@ public class IndexControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/json;charset=utf-8");
 		
-		String kw = req.getParameter("keyword");
+		String cdName = req.getParameter("cdName");
+		String keyword = req.getParameter("keyword");
 		
 		SearchVO search = new SearchVO();
-		search.setKeyword(kw);
+		search.setKeyword(keyword);
+		search.setCdName(cdName);
 		
 		ProductService psvc = new ProductServiceImpl();
 		
@@ -39,8 +41,6 @@ public class IndexControl implements Control {
 		List<CategoryVO> category = csvc.categoryList();
 		
 		//List<CategoryVO> count = csvc.categoryCountList();
-		
-		//List<ProductVO> 
 		
 		req.setAttribute("productList", list);
 		
