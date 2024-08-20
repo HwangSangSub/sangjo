@@ -93,4 +93,36 @@
     	 	AND c.cd_name = #{cdName}
     		</if>
 	</select>
+	
+	<select id="sortingDate" parameterType="com.sangjo.common.SearchVO" resultType="com.sangjo.vo.ProductVO">
+		SELECT  p.product_no
+		       ,p.category_no
+		       ,p.product_name
+		       ,p.product_price
+		       ,p.product_img
+		       ,p.product_thumbnail_img
+		       ,p.product_content
+		       ,p.reg_date
+		       ,c.cd_name
+		FROM    tbl_product p
+    		JOIN tbl_category c ON p.category_no = c.category_no 
+    	WHERE  1=1
+			<if test="keyword != null">
+    			AND p.product_name LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="cdName != null">
+    	 		AND c.cd_name = #{cdName}
+    		</if>
+    		<choose>
+    			<when test="order == 1">
+    		 		ORDER BY p.reg_date DESC
+    			</when>
+    			<when test="order == 2">
+    			 	ORDER BY TO_NUMBER(p.product_price) DESC
+    			</when>
+    			<when test="order == 3">
+    			 	ORDER BY TO_NUMBER(p.product_price) ASC
+    			</when>
+    		</choose>
+	</select>
 </mapper>

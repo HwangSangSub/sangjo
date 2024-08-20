@@ -37,4 +37,9 @@ public class ProductServiceImpl implements ProductService{
 	public List<ProductVO> searchProductList(SearchVO search) {
 		return mapper.searchProductList(search);
 	}
+	
+	@Override
+	public List<ProductVO> sortingDate(SearchVO search) {
+		return mapper.sortingDate(search);
+	}
 }

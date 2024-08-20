@@ -18,4 +18,6 @@ public interface ProductMapper {
 	List<ProductVO> selectProductListByCategoryNo(int categoryNo);
 	
 	List<ProductVO> searchProductList(SearchVO search);
+	
+	List<ProductVO> sortingDate(SearchVO search);
 }

@@ -15,4 +15,6 @@ public interface ProductService {
 	ProductVO getProductByNo(String productNo);
 	
 	List<ProductVO> searchProductList(SearchVO search);
+	
+	List<ProductVO> sortingDate(SearchVO search);
 }

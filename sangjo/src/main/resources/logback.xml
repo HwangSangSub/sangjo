@@ -7,8 +7,8 @@
     </encoder>
   </appender>
   <!--  해당 대상에 대한 로그를 작성해준다. -->
-  <logger name="sangjo.BoardMapper">
-    <level value="debug"/>
+  <logger name="com.sangjo.mapper.ProductMapper">
+    <level value="trace"/>
   </logger>
   
   <logger name="com.sangjo.mapper.ReviewMapper">
