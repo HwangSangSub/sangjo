@@ -97,7 +97,11 @@ let memberId = "${member.memberId}";
 									</div>
 									<div
 										class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+<<<<<<< HEAD
 										style="top: 10px; left: 10px;">${item.cdName}</div>
+=======
+										 style="top: 10px; left: 10px;">${item.cdName}</div>
+>>>>>>> branch 'KSM' of https://github.com/HwangSangSub/sangjo.git
 									<div
 										class="p-4 border border-secondary border-top-0 rounded-bottom">
 										<h4>
