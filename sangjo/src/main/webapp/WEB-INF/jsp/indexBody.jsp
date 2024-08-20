@@ -92,7 +92,7 @@ let memberId = "${member.memberId}";
 									</div>
 									<div
 										class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-										S style="top: 10px; left: 10px;">${item.cdName}</div>
+										 style="top: 10px; left: 10px;">${item.cdName}</div>
 									<div
 										class="p-4 border border-secondary border-top-0 rounded-bottom">
 										<h4>${item.productName}</h4>
