@@ -20,22 +20,21 @@ public class OrderControl implements Control {
 		if (action == null) {
 			action = "viewCart"; // 기본적으로 장바구니 보기로 설정
 		}
-
 		OrderService osv = new OrderServiceImpl();
 
 		// 요청 파라미터 추출
 
 		String productNos = req.getParameter("productNos");
-
 		String productPrices = req.getParameter("productPrices");
 		String quantities = req.getParameter("quantities");
-
 		String totalAmount = req.getParameter("totalAmount");
 		String memberId = req.getParameter("memeberId");
 		boolean paymentSuccess = false;
+
 		OrderVO ovo = new OrderVO();
 		ovo.setOrderPrice(Integer.parseInt(totalAmount));
 		ovo.setMemberId(memberId);
+
 		if (osv.addOrder(ovo) == 1) {
 
 			String[] productNoArray = productNos.split("/");
