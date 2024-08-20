@@ -63,7 +63,7 @@
 <!-- 회원가입 모달창 -->
 <div class="modal fade" id="joinModal" tabindex="-1"
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-fullscreen modal-content">
+	<div class="modal-dialog modal-content">
 		<div class="rounded-0 style='height = 80%;'">
 			<!-- 헤더 부분 -->
 			<div class="modal-header">
@@ -238,7 +238,7 @@
 
         member = {memberId ,memberPw ,memberName, memberPhone, memberEmail}
         address = {addressCode,addressMain,addressDetail}
-        joinBtn.disabled = false;// 연속클릭 방지를 위해 비활성화
+        joinBtn.disabled = true;// 연속클릭 방지를 위해 비활성화
         memberService.join(member,address,joinBtn);
     })
 </script>
@@ -405,7 +405,7 @@
             .then(function(result){
                 if(result.joinResult == "Faild"){
                     alert("서버 오류로 회원가입이 실패하였습니다.");
-                    joinBtn.disabled = true;
+                    joinBtn.disabled = false;
                 }else{
                     alert("회원가입이 성공하였습니다.");
                     let answerUrl = "login.do?" + 
