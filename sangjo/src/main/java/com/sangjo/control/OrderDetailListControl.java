@@ -18,7 +18,7 @@ public class OrderDetailListControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/json;charset=utf-8"); // 내용 중 한글이 있다면 utf-8로 변환해야함.
+		resp.setContentType("text/json;charset=utf-8"); 
 		OrderService ovc = new OrderServiceImpl();
 		String orderNo = req.getParameter("orderNo");
 		
