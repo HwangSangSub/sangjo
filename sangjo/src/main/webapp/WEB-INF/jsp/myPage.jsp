@@ -142,6 +142,48 @@ div.input-group>label.col-form-label {
 						</thead>
 						<tbody>
 						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="5">
+									<button class="btn btn-info" id="" data-bs-toggle="modal"
+										data-bs-target="#inquiryIns" type="button" role="modal"
+										aria-controls="inquiryIns" aria-selected="false">문의하기</button>
+
+									<div class="modal fade" id="inquiryIns" tabindex="-1"
+										aria-labelledby="inquiryInsModalLabel" aria-hidden="true"
+										>
+										<div
+											class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+											<div class="modal-content">
+												<!-- 헤더 부분 -->
+												<div class="modal-header">
+													<h5 class="modal-title" id="inquiryInsModalLabel">문의하기</h5>
+													<!-- 닫기 버튼-->
+													<button type="button" class="btn-close"
+														data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<!--  몸통 부분 -->
+												<div id="cloneUl" class="modal-body">
+													<div class="mb-3">
+														<label for="inquiryTitleIns" class="col-form-label">문의제목</label>
+														<input type="text" class="form-control"
+															id="inquiryTitleIns" />
+													</div>
+													<div class="mb-3">
+														<label for="inquiryContentIns" class="col-form-label">문의내용</label>
+														<textarea class="form-control" id="inquiryContentIns"
+															cols="50" style="overflow: hidden; height: 250px;"></textarea>
+													</div>
+													<div class="mb-3">
+														<button type="button" class="btn btn-success" id="inqAdd">문의하기</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tfoot>
 					</table>
 					<div class="modal fade cloneDiv" id="inqModel" tabindex="-1"
 						aria-labelledby="exampleModalLabel" aria-hidden="true"

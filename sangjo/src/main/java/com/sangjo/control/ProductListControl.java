@@ -1,7 +1,9 @@
 package com.sangjo.control;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sangjo.common.Control;
+import com.sangjo.common.PageDTO;
 import com.sangjo.common.SearchVO;
 import com.sangjo.service.ProductService;
 import com.sangjo.service.ProductServiceImpl;
@@ -22,38 +25,40 @@ public class ProductListControl implements Control {
 		resp.setContentType("text/json;charset=utf-8");
 
 		String cdName = req.getParameter("cdName");
-		cdName = (cdName != "" ? cdName : "주방");
+		cdName = (cdName != "" && cdName != null ? cdName : "주방");
 
 		String keyword = req.getParameter("keyword");
-		keyword = (keyword != "" ? keyword : "");
-		
+		keyword = (keyword != "" && keyword != null ? keyword : "");
+
 		String order = req.getParameter("order");
-		System.out.println(cdName);
-		//order = ((order != "" && !order.isEmpty()) ? order : "p.req_date DESC");
-		order = (order != "" || order != null ? order : "p.reg_date DESC");
+		order = (order != "" && order != null ? order : "1");
+
+		String page = req.getParameter("page");
+		page = (page != "" && page != null ? page : "1");
+
 		SearchVO search = new SearchVO();
 		search.setCdName(cdName);
 		search.setKeyword(keyword);
 		search.setOrder(order);
+		search.setPage(Integer.parseInt(page));
 
 		ProductService svc = new ProductServiceImpl();
-		//List<ProductVO> list = svc.selectProductList(cdName);
-		//List<ProductVO> searchList = svc.searchProductList(search);
-		
+		int totalCnt = svc.totalCount(search);
 
-		//List<ProductVO> list = svc.searchProductList(search);
-		List<ProductVO> list = svc.sortingDate(search);		
+		PageDTO paging = new PageDTO(Integer.parseInt(page), totalCnt);
+
+		List<ProductVO> list = svc.sortingDatePaging(search);
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("search", search);
+		map.put("paging", paging);
+		map.put("list", list);
 
 		// json 문자열
 		Gson gson = new GsonBuilder().create();
 		String json;
-
-//		if (searchList != null && !searchList.isEmpty()) {
-//			json = gson.toJson(searchList);
-//		} else {
-//			json = gson.toJson(list);
-//		}
-		json = gson.toJson(list);
+		json = gson.toJson(map);
 		resp.getWriter().print(json);
 
 	}// end exec();

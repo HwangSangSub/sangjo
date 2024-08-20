@@ -42,4 +42,14 @@ public class ProductServiceImpl implements ProductService{
 	public List<ProductVO> sortingDate(SearchVO search) {
 		return mapper.sortingDate(search);
 	}
+
+	@Override
+	public List<ProductVO> sortingDatePaging(SearchVO search) {
+		return mapper.sortingDatePaging(search);
+	}
+
+	@Override
+	public int totalCount(SearchVO search) {
+		return mapper.selectTotalCount(search);
+	}
 }

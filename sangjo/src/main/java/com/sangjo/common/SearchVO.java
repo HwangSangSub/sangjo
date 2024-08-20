@@ -7,4 +7,5 @@ public class SearchVO {
 	private String keyword;
 	private String cdName;
 	private String order;
+	private int page;
 }

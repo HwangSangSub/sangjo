@@ -11,7 +11,7 @@
 				<span class="fa fa-bars text-primary"></span>
 			</button>
 			<div class="collapse navbar-collapse bg-white" id="navbarCollapse">
-				<div class="navbar-nav mx-auto">
+				<div class="navbar-nav mx-auto" style="visibility: hidden;">
 					<a href="index.do" class="nav-item nav-link active">메인</a> <a
 						href="index.do" class="nav-item nav-link">상품목록</a> <a
 						href="productInfo.do" class="nav-item nav-link">상품상세</a>
@@ -74,7 +74,7 @@
 			</div>
 			<!--  몸통 부분 -->
 			<div class="modal-body d-flex align-items-center">
-				<div class="input-group w-50 mx-auto d-flex">
+				<div class="input-group w-80 mx-auto d-flex">
 					<input type="text" class="form-control" id="joinMemberId"
 						placeholder="아이디 (20자)" style="width: 50%;"> <input
 						type="button" class="form-control" id="cleanIdCheckBtn"
@@ -82,25 +82,25 @@
 				</div>
 			</div>
 			<div class="modal-body d-flex align-items-center">
-				<div class="input-group w-50 mx-auto d-flex">
+				<div class="input-group w-80 mx-auto d-flex">
 					<input type="password" class="form-control" id="joinMemberPw"
 						placeholder="비밀번호 (20자)">
 				</div>
 			</div>
 			<div class="modal-body d-flex align-items-center">
-				<div class="input-group w-50 mx-auto d-flex">
+				<div class="input-group w-80 mx-auto d-flex">
 					<input type="text" class="form-control" id="memberName"
 						placeholder="이름 (8자)">
 				</div>
 			</div>
 			<div class="modal-body d-flex align-items-center">
-				<div class="input-group w-50 mx-auto d-flex">
+				<div class="input-group w-80 mx-auto d-flex">
 					<input type="text" class="form-control" id="memberPhone"
 						placeholder="전화번호 (11자)">
 				</div>
 			</div>
 			<div class="modal-body d-flex align-items-center">
-				<div class="input-group w-50 mx-auto d-flex">
+				<div class="input-group w-80 mx-auto d-flex">
 					<input type="text" class="form-control" id="memberEmail"
 						placeholder="이메일 작성" style="width: 50%;"> <input
 						type="button" class="form-control" id="cleanEmailCheckBtn"
@@ -111,21 +111,21 @@
 			<input type="hidden" id="addressCode" class="form-control"
 				placeholder="우편번호" readonly="">
 			<div class="modal-body d-flex align-items-center">
-				<div class="input-group w-50 mx-auto d-flex">
+				<div class="input-group w-80 mx-auto d-flex">
 					<input type="text" id="addressMain" class="form-control"
 						placeholder="도로명주소" onclick="sample4_execDaumPostcode()"
 						readonly="">
 				</div>
 			</div>
 			<div class="modal-body d-flex align-items-center">
-				<div class="input-group w-50 mx-auto d-flex">
+				<div class="input-group w-80 mx-auto d-flex">
 					<input type="text" id="addressDetail" class="form-control"
 						placeholder="상세주소">
 				</div>
 			</div>
 			<!--주소 입력란 끝-->
 			<div class="modal-body d-flex align-items-center">
-				<div class="input-group w-50 mx-auto d-flex">
+				<div class="input-group w-80 mx-auto d-flex">
 					<input type="reset" class="btn btn-secondary" value="초기화">
 					<input type="button" id="joinBtn" class="btn btn-primary"
 						value="회원가입" disabled="">

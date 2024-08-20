@@ -29,7 +29,7 @@ let memberId = "${member.memberId}";
 						<div class="input-group w-100 mx-auto d-flex">
 							<input type="text" id="keyword" class="form-control p-3"
 								placeholder="검색어입력" aria-describedby="search-icon-1"
-								value="${keyword }"> <input type="hidden" id="nowCdName" />
+								value="${keyword }"> <input type="hidden" id="nowCdName" value="${searching.cdName }"/>
 							<span id="search-icon-1" class="input-group-text p-3"><i
 								class="fa fa-search"></i></span>
 						</div>
@@ -40,9 +40,9 @@ let memberId = "${member.memberId}";
 							class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
 							<label for="fruits">정렬:</label> 
 							<select id="fruits" name="fruitlist" class="border-0 form-select-sm bg-light me-3" form="fruitform">
-								<option value="latest" id="sortingDate">최신등록순</option>
-								<option value="lowPrice">낮은금액순</option>
-								<option value="highPrice">높은금액순</option>
+								<option value="latest" ${searching.order == 1 ? "selected" : "" }>최신등록순</option>
+								<option value="lowPrice" ${searching.order == 2 ? "selected" : "" }>낮은금액순</option>
+								<option value="highPrice" ${searching.order == 3 ? "selected" : "" }>높은금액순</option>
 							</select>
 						</div>
 					</div>
@@ -175,13 +175,26 @@ let memberId = "${member.memberId}";
 							</c:forEach>
 						</div>
 					</div>
-					<div class="col-12">
+					<div class="col-12" style="margin-left:150px;">
 						<div class="pagination d-flex justify-content-center mt-5">
-							<a href="#" class="rounded">&laquo;</a> <a href="#"
-								class="active rounded">1</a> <a href="#" class="rounded">2</a> <a
-								href="#" class="rounded">3</a> <a href="#" class="rounded">4</a>
-							<a href="#" class="rounded">5</a> <a href="#" class="rounded">6</a>
-							<a href="#" class="rounded">&raquo;</a>
+							<input type="hidden" id="startPage" value="${paging.startPage-1}" />
+							<input type="hidden" id="endPage" value="${paging.endPage+1}" />
+							<c:if test="${paging.prev}">
+								<a class="rounded prev">&laquo;</a> 
+							</c:if>
+							<c:forEach var="p" begin="${paging.startPage}" end="${paging.endPage }">
+								<c:choose>
+									<c:when test="${paging.page == p}">
+										<a class="active rounded pageNum" data-page="${p}">${p}</a> 
+									</c:when>
+									<c:otherwise>
+										<a class="rounded pageNum" data-page="${p}">${p}</a> 
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<c:if test="${paging.next}">
+								<a class="rounded next">&raquo;</a>
+							</c:if>
 						</div>
 					</div>
 				</div>

@@ -1,6 +1,6 @@
- /**
- * category.js
- */
+/**
+* category.js
+*/
 
 const csvc = {
 	categorySelectList(categoryName, loadCallback) {
@@ -28,6 +28,10 @@ const csvc = {
 			url += '&cdName=' + cdName;
 		}
 
+		if (orderValue != null) {
+			url += '&order=' + encodeURIComponent(orderValue); // 정렬 값 추가
+		}
+
 		xhtp.open('get', url);
 		xhtp.send();
 		xhtp.onload = loadCallback;
@@ -44,10 +48,10 @@ const csvc = {
 		if (cdName != null) {
 			url += '&cdName=' + cdName;
 		}
-		
+
 		if (orderValue != null) {
-        	url += '&order=' + encodeURIComponent(orderValue); // 정렬 값 추가
-    	}
+			url += '&order=' + encodeURIComponent(orderValue); // 정렬 값 추가
+		}
 
 		xhtp.open('get', url);
 		xhtp.send();
@@ -56,50 +60,58 @@ const csvc = {
 }
 
 document.querySelector('#fruits').addEventListener('change', function() {
-    let selectedOrder = this.value; // 선택된 정렬 옵션 값 가져오기
-    let keyword = document.querySelector('#keyword').value;
-    let cdName = document.querySelector('#nowCdName').value;
-
-    let orderValue;
-    if (selectedOrder === 'latest') {
-        orderValue = 'p.reg_date DESC';
-    } else if (selectedOrder === 'lowPrice') {
-        orderValue = 'TO_NUMBER(p.product_price) ASC';
-    } else if (selectedOrder === 'highPrice') {
-        orderValue = 'TO_NUMBER(p.product_price) DESC';
-    }
-	console.log(selectedOrder);
-	console.log(orderValue);
+	let selectedOrder = this.value; // 선택된 정렬 옵션 값 가져오기
+	let keyword = document.querySelector('#keyword').value;
+	let cdName = document.querySelector('#nowCdName').value
+	
+	let orderValue;
+	if (selectedOrder === 'latest') {
+		orderValue = '1';
+	} else if (selectedOrder === 'lowPrice') {
+		orderValue = '2';
+	} else if (selectedOrder === 'highPrice') {
+		orderValue = '3';
+	}
+	document.querySelector('#fruits').value = selectedOrder;
 	// 검색 요청에 정렬 값을 추가
-    csvc.sortingDate(keyword, cdName, orderValue, function() {
-        productList.querySelectorAll('.col-md-6').forEach((c, idx) => {
-            if (idx != 0) {
-                c.remove();
-            }
-        });
-		console.log(this.response);
-        let result = JSON.parse(this.response);
-        result.forEach(product => {
-            productList.appendChild(makeRow(product));
-        });
-    });
+	csvc.sortingDate(keyword, cdName, orderValue, function() {
+		productList.querySelectorAll('.col-md-6').forEach((c, idx) => {
+			if (idx != 0) {
+				c.remove();
+			}
+		});
+		let rs = JSON.parse(this.response);
+		let list = rs.list;
+		list.forEach(product => {
+			productList.appendChild(makeRow(product));
+		});
+	});
 });
 
 
 document.querySelector('#search-icon-1').addEventListener('click', function() {
 	let keyword = document.querySelector('#keyword').value;
 	let cdName = document.querySelector('#nowCdName').value;
+	let selectedOrder = document.querySelector('#fruits').value
+	let orderValue;
+	if (selectedOrder === 'latest') {
+		orderValue = '1';
+	} else if (selectedOrder === 'lowPrice') {
+		orderValue = '2';
+	} else if (selectedOrder === 'highPrice') {
+		orderValue = '3';
+	}
 
-	csvc.searchProductList(keyword, cdName, function() {
+	csvc.sortingDate(keyword, cdName, orderValue, function() {
 		// 검색기
 		productList.querySelectorAll('.col-md-6').forEach((c, idx) => {
 			if (idx != 0) {
 				c.remove();
 			}
 		});
-		//console.log(this.response);
-		let result = JSON.parse(this.response);
-		result.forEach(product => {
+		let rs = JSON.parse(this.response);
+		let list = rs.list;
+		list.forEach(product => {
 			productList.appendChild(makeRow(product));
 		});
 	});
@@ -122,7 +134,6 @@ categorySelectList.forEach((d) => {
 					c.remove();
 				}
 			});
-			console.log(this.response);
 			let result = JSON.parse(this.response);
 			result.forEach(category => {
 				cateLocation.appendChild(cmakeRow(category));
@@ -148,9 +159,9 @@ function cmakeRow(category = {}) {
 					c.remove();
 				}
 			});
-			//console.log(this.response);
-			let result = JSON.parse(this.response);
-			result.forEach(product => {
+			let rs = JSON.parse(this.response);
+			let list = rs.list;
+			list.forEach(product => {
 				productList.appendChild(makeRow(product));
 			});
 		});
@@ -167,7 +178,7 @@ function makeRow(product = {}) {
 	cloned.querySelector('.col-md-6>div>div:nth-of-type(1)>img').src = "img/product/" + product.productImg;
 	cloned.querySelector('.col-md-6>div>div:nth-of-type(2)').innerText = product.cdName;
 	let productName;
-	if(product.productName.length > 26){
+	if (product.productName.length > 26) {
 		productName = product.productName.substr(0, 25) + '...';
 	} else {
 		productName = product.productName;
@@ -175,7 +186,7 @@ function makeRow(product = {}) {
 	cloned.querySelector('.col-md-6>div>div:nth-of-type(3)>h4').innerText = productName;
 	//cloned.querySelector('.col-md-6>div>div:nth-of-type(3)>p').innerText = product.productContent;
 	let productPrice;
-	if(product.productPrice.length > 3){
+	if (product.productPrice.length > 3) {
 		productPrice = product.productPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 	} else {
 		productPrice = product.productPrice;
@@ -206,6 +217,62 @@ document.querySelectorAll('#orgProductList').forEach(item => {
 		productInfo(productNo);
 	});
 });
+
+const prevElement = document.querySelector('.prev');
+if (prevElement) {
+	prevElement.addEventListener('click', function() {
+		let keyword = document.querySelector('#keyword').value;
+		let cdName = document.querySelector('#nowCdName').value;
+		let selectedOrder = document.querySelector('#fruits').value;
+		let startPage = document.querySelector('#startPage').value;
+		let orderValue;
+		if (selectedOrder === 'latest') {
+			orderValue = '1';
+		} else if (selectedOrder === 'lowPrice') {
+			orderValue = '2';
+		} else if (selectedOrder === 'highPrice') {
+			orderValue = '3';
+		}
+		location.href = "index.do?keyword=" + keyword + "&cdName=" + cdName + "&order=" + orderValue + "&page=" + startPage;
+	});
+}
+document.querySelectorAll('.pageNum').forEach(item => {
+	item.addEventListener('click', function() {
+		let keyword = document.querySelector('#keyword').value;
+		let cdName = document.querySelector('#nowCdName').value;
+		let selectedOrder = document.querySelector('#fruits').value;
+		let page = this.dataset.page;
+		let orderValue;
+		if (selectedOrder === 'latest') {
+			orderValue = '1';
+		} else if (selectedOrder === 'lowPrice') {
+			orderValue = '2';
+		} else if (selectedOrder === 'highPrice') {
+			orderValue = '3';
+		}
+		location.href = "index.do?keyword=" + keyword + "&cdName=" + cdName + "&order=" + orderValue + "&page=" + page;
+	});
+});
+
+
+const nextElement = document.querySelector('.next');
+if (nextElement) {
+	nextElement.addEventListener('click', function() {
+		let keyword = document.querySelector('#keyword').value;
+		let cdName = document.querySelector('#nowCdName').value;
+		let selectedOrder = document.querySelector('#fruits').value;
+		let endPage = document.querySelector('#endPage').value;
+		let orderValue;
+		if (selectedOrder === 'latest') {
+			orderValue = '1';
+		} else if (selectedOrder === 'lowPrice') {
+			orderValue = '2';
+		} else if (selectedOrder === 'highPrice') {
+			orderValue = '3';
+		}
+		location.href = "index.do?keyword=" + keyword + "&cdName=" + cdName + "&order=" + orderValue + "&page=" + endPage;
+	});
+}
 function productInfo(productNo) {
 	location.href = "productInfo.do?productNo=" + productNo;
 }

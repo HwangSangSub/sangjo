@@ -9,4 +9,8 @@
 		WHERE inquiry_inquirer = #{memberId}
 		ORDER BY inquiry_date DESC, inquiry_no DESC
 	</select>
+	<insert id="insertInquiry" parameterType="com.sangjo.vo.InquiryVO">
+	    INSERT INTO tbl_inquiry (inquiry_no, inquiry_type, inquiry_title, inquiry_content, inquiry_inquirer)
+	    VALUES (inquiry_seq.NEXTVAL, 1, #{inquiryTitle}, #{inquiryContent}, #{inquiryInquirer})
+	</insert>
 </mapper>

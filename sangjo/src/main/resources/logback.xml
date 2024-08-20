@@ -10,10 +10,10 @@
   <logger name="com.sangjo.mapper.ProductMapper">
     <level value="trace"/>
   </logger>
-  
-  <logger name="com.sangjo.mapper.ReviewMapper">
-    <level value="debug"/>
+  <logger name="com.sangjo.mapper.InquiryMapper">
+    <level value="trace"/>
   </logger>
+
   <root level="error">
     <appender-ref ref="stdout"/>
   </root>

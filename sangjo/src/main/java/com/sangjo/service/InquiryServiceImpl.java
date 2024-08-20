@@ -16,4 +16,9 @@ public class InquiryServiceImpl implements InquiryService {
 	public List<InquiryVO> myInquiryList(String memberId) {
 		return mapper.getMyInquiryList(memberId);
 	}
+
+	@Override
+	public boolean addInquiry(InquiryVO inquiry) {
+		return mapper.insertInquiry(inquiry) == 1;
+	}
 }// end class

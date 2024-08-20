@@ -50,14 +50,21 @@ const svc = {
 		xhtp.open('get', 'orderDetailList.do?orderNo=' + orderNo);
 		xhtp.send();
 		xhtp.onload = loadCallback;
-	}, // end of inquiryList
+	}, // end of orderDetailList
 	// 문의내역 조회
 	inquiryList(memberId, loadCallback) {
 		const xhtp = new XMLHttpRequest();
 		xhtp.open('get', 'myPageInquiry.do?memberId=' + memberId);
 		xhtp.send();
 		xhtp.onload = loadCallback;
-	} // end of inquiryList
+	}, // end of inquiryList
+	// 문의내역 조회
+	inquiryAdd(memberId, inquiryTitleIns, inquiryContentIns, loadCallback) {
+		const xhtp = new XMLHttpRequest();
+		xhtp.open('get', 'addInquiry.do?memberId=' + memberId + '&inquiryTitleIns=' + inquiryTitleIns + '&inquiryContentIns=' + inquiryContentIns);
+		xhtp.send();
+		xhtp.onload = loadCallback;
+	}// end of inquiryAdd
 }// end of svc
 
 let memberId = document.querySelector('#logid').value;
@@ -290,7 +297,7 @@ function makeInquiryRow(inquiry = {}) {
 	btn.setAttribute('data-bs-toggle', 'modal');
 	btn.setAttribute('data-bs-target', '#inqModel_' + inquiry.inquiryNo);
 	btn.className = 'my-auto';
-	btn.classList.add('btn', 'btn-success');
+	btn.classList.add('btn', 'btn-primary');
 	btn.innerHTML = '상세보기';
 	btn.addEventListener('click', function() {
 		veiwInquiryInfo('inqModel_' + inquiry.inquiryNo);
@@ -326,3 +333,31 @@ function veiwInquiryInfo(inquiryTagId) {
 	viewDiv.removeAttribute('aria-hidden');
 	viewDiv.setAttribute('aria-modal', true);
 }
+
+document.querySelector('#inqAdd').addEventListener('click', function() {
+	let inquiryTitleIns = document.querySelector('#inquiryTitleIns').value;
+	if (inquiryTitleIns == "") {
+		alert("문의제목이 없습니다. 입력 후 다시 시도해주세요.");
+		document.querySelector('#inquiryTitleIns').focus();
+		return;
+	}
+	let inquiryContentIns = document.querySelector('#inquiryContentIns').value;
+	if (inquiryContentIns == "") {
+		alert("문의내용이 없습니다. 입력 후 다시 시도해주세요.");
+		document.querySelector('#inquiryContentIns').focus();
+		return;
+	}
+	svc.inquiryAdd(memberId, inquiryTitleIns, inquiryContentIns, function() {
+		if (memberId == "" || memberId == null) {
+			alert('로그인되지 않아서 조회 할 수 없습니다.');
+			return;
+		}
+		let rs = JSON.parse(this.responseText);
+		if(rs.result == "success"){
+			alert("문의가 등록되었습니다.");
+			location.href = location.href;
+		} else {
+			alert("문의가 등록이 실패했습니다. 확인 후 다시 시도해주세요.");
+		}
+	});
+});

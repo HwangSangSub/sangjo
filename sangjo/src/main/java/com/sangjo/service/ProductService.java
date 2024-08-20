@@ -17,4 +17,8 @@ public interface ProductService {
 	List<ProductVO> searchProductList(SearchVO search);
 	
 	List<ProductVO> sortingDate(SearchVO search);
+	
+	List<ProductVO> sortingDatePaging(SearchVO search);
+	
+	int totalCount(SearchVO search);
 }

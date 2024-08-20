@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class InquiryVO {
 	private int inquiryNo;
-	private String inquiry_Inquirer;
+	private String inquiryInquirer;
 	private String inquiryType;
 	private String inquiryTitle;
 	private String inquiryContent;

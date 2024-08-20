@@ -45,6 +45,7 @@ import com.sangjo.control.RemoveReviewControl;
 import com.sangjo.control.ReviewCountControl;
 import com.sangjo.control.ReviewListControl;
 import com.sangjo.control.TestPageControl;
+import com.sangjo.control.AddInquiryControl;
 
 public class FrontController extends HttpServlet {
 	Map<String, Control> map;
@@ -94,6 +95,7 @@ public class FrontController extends HttpServlet {
 		map.put("/memberMod.do", new MemberModControl());// 마이페이지-회원정보수정(기능)
 		map.put("/myPageOrder.do", new MyPageOrderControl());// 마이페이지- 주문내역(기능)
 		map.put("/myPageInquiry.do", new MyPageInquiryControl());// 마이페이지- 문의내역(기능)
+		map.put("/addInquiry.do", new AddInquiryControl());// 마이페이지- 문의등록(기능)
 
 		/* 회원 파트 */
 		map.put("/idCheck.do", new IdCheckControl());// 아이디 중복체크 (기능)
