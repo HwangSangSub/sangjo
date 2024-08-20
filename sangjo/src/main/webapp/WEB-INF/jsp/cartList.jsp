@@ -141,9 +141,8 @@
 							<input type="hidden" name="cartNos" value="${cartNos}"> 
 							<input type="hidden" name="productNos" value="${productNos}"> 
 								<input type="hidden" name="productNames" value="${productNames}">
-							<input type="hidden" name="productPrices"
-								value="${productPrices}"> <input type="hidden"
-								name="quantities" value="${quantities}">
+							<input type="hidden" name="productPrices"value="${productPrices}"> 
+							<input type="hidden"name="quantities" value="${quantities}">
 							<button
 								class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
 								type="submit">결제 진행</button>
