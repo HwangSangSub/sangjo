@@ -152,7 +152,7 @@
 				</div>
 			</div>
 		</c:if>
-
+		
 		<!-- 장바구니가 비어있을 때 -->
 		<c:if test="${empty cartList}">
 			<div class="alert alert-warning">장바구니가 비어 있습니다.</div>
