@@ -214,16 +214,16 @@
 
 .page-header {
 	position: relative;
+	/*
 	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
 		url(../img/cart-page-header-img.jpg);
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	/*
+	*/
 	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
 		url(../img/main.gif);
     background-size: auto;
-	*/
 }
 
 @media ( min-width : 992px) {
